@@ -1,21 +1,24 @@
-![GitHub Logo](logo.png)
 
-**ReflektorKit** is a stylesheet engine for iOS compatible with Objective-C and Swift on iOS8+.
+@globals
+{
+    @blue: hsl(120, 100%, 75%);
+}
 
-##Getting started
+class:UILabel.trait:test
+{
+    background-color: @blue;
+    text: 'Lorem ipsum';
+    size-that-fits: true;
+    corner-radius: 50%;
+    x: 10px;
+    y: 10px;
+    width: 150px;
+    height: 50px;
+}
 
-- TODO
-
-
-##Stylesheet
-
-```css
-
-//Right-hand side supported values
+/*
 trait:rhs
 {
-	!include: trait:otherTrait, class:aClass;
-	!condition: 'idiom = pad and width < 200 and vertical = regular';
     color-one: #00ff00;
     color-two: rgb(255, 0, 0);
     color-three: rgba(255, 0, 0, 0.3);
@@ -35,6 +38,4 @@ trait:rhs
     text: nslocalized('KEY');
     vector: vector(2px, 23px, #bbbbbb, #cccccc);
 }
-
-
-```
+*/
