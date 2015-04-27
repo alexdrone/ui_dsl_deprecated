@@ -11,6 +11,42 @@
 
 ```css
 
+//Variable namespeace
+@global
+{
+	@blue = hsl(120, 100%, 75%);
+}
+
+//Selectors
+
+//trait (similar to a css' class)
+trait:rounded
+{
+	corner-radius: 50%;
+}
+
+//class selector (where class is an existing obj-c class)
+class:UIView
+{
+	background-color: #ff0000;
+	any-custom-key: 50px;
+}
+
+//class + trait (override)
+class:UIView.trait:focused
+{
+	!include: trait:rounded;
+	background-color: #00ff00;
+}
+
+//computed only if the condition is satisfied
+class:UIView
+{
+	!condition: 'idiom = pad and width < 200 and vertical = regular';
+	border-width: 2px;
+	border-color: @blue;
+}
+
 //Right-hand side supported values
 trait:rhs
 {
