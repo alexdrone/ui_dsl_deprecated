@@ -217,6 +217,14 @@ void RFLK_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
             RFLK_assertOnMalformedValue(arguments, 2, @"affine-transform-scale", @"affine-transform-scale(x, y)");
             value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeScale([arguments[0] floatValue], [arguments[1] floatValue])];
             
+        } else if ([stringValue hasPrefix:@"affine-transform-rotation"]) {
+            RFLK_assertOnMalformedValue(arguments, 1, @"affine-transform-rotation", @"affine-transform-rotation(angle)");
+            value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation([arguments[0] floatValue])];
+            
+        } else if ([stringValue hasPrefix:@"affine-transform-translation"]) {
+            RFLK_assertOnMalformedValue(arguments, 2, @"affine-transform-translation", @"affine-transform-translation(x, y)");
+            value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeTranslation([arguments[0] floatValue], [arguments[1] floatValue])];
+            
         } else if ([stringValue hasPrefix:@"edge-insets"]) {
             RFLK_assertOnMalformedValue(arguments, 4, @"edge-insets", @"edge-insets(top, bottom, width, height)");
             value = [NSValue valueWithUIEdgeInsets:(UIEdgeInsets){[arguments[0] floatValue], [arguments[1] floatValue], [arguments[2] floatValue], [arguments[3] floatValue]}];
