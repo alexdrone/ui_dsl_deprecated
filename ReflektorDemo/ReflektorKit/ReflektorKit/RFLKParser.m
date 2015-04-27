@@ -192,29 +192,33 @@ void RFLK_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
             [NSException raise:[NSString stringWithFormat:@"Unable to parse right-hand side value: %@", stringValue] format:nil];
         }
 
-        if ([stringValue hasPrefix:@"uifont"]) {
-            RFLK_assertOnMalformedValue(arguments, 2, @"uifont", @"uifont('font postscript name', size)");
+        if ([stringValue hasPrefix:@"font"]) {
+            RFLK_assertOnMalformedValue(arguments, 2, @"font", @"font('font postscript name', size)");
             value = [UIFont fontWithName:arguments[0] size:[arguments[1] floatValue]];
             (*option) = RFLK_checkForPresenceOfOptionInString(arguments[1], RFLKPropertyValueOptionPercentValue) ? RFLKPropertyValueOptionPercentValue : RFLKPropertyValueOptionNone;
             
-        } else if ([stringValue hasPrefix:@"nslocalized"]) {
-            RFLK_assertOnMalformedValue(arguments, 1, @"nslocalized", @"nslocalized('KEY')");
+        } else if ([stringValue hasPrefix:@"locale"]) {
+            RFLK_assertOnMalformedValue(arguments, 1, @"locale", @"locale('KEY')");
             value = NSLocalizedString(arguments[0], nil);
             
-        } else if ([stringValue hasPrefix:@"cgrect"]) {
-            RFLK_assertOnMalformedValue(arguments, 4, @"cgrect", @"grect(x, y, width, height)");
+        } else if ([stringValue hasPrefix:@"rect"]) {
+            RFLK_assertOnMalformedValue(arguments, 4, @"rect", @"rect(x, y, width, height)");
             value = [NSValue valueWithCGRect:(CGRect){{[arguments[0] floatValue], [arguments[1] floatValue]}, {[arguments[2] floatValue], [arguments[3] floatValue]}}];
             
-        } else if ([stringValue hasPrefix:@"cgpoint"]) {
-            RFLK_assertOnMalformedValue(arguments, 2, @"cgpoint", @"cgpoint(x, y)");
+        } else if ([stringValue hasPrefix:@"point"]) {
+            RFLK_assertOnMalformedValue(arguments, 2, @"point", @"point(x, y)");
             value = [NSValue valueWithCGPoint:(CGPoint){[arguments[0] floatValue], [arguments[1] floatValue]}];
             
-        } else if ([stringValue hasPrefix:@"cgsize"]) {
-            RFLK_assertOnMalformedValue(arguments, 2, @"cgsize", @"cgsize(width, height)");
+        } else if ([stringValue hasPrefix:@"size"]) {
+            RFLK_assertOnMalformedValue(arguments, 2, @"size", @"size(width, height)");
             value = [NSValue valueWithCGSize:(CGSize){[arguments[0] floatValue], [arguments[1] floatValue]}];
             
-        } else if ([stringValue hasPrefix:@"uiedgeinsets"]) {
-            RFLK_assertOnMalformedValue(arguments, 4, @"uiedgeinsets", @"uiedgeinsets(top, bottom, width, height)");
+        } else if ([stringValue hasPrefix:@"affine-transform-scale"]) {
+            RFLK_assertOnMalformedValue(arguments, 2, @"affine-transform-scale", @"affine-transform-scale(x, y)");
+            value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeScale([arguments[0] floatValue], [arguments[1] floatValue])];
+            
+        } else if ([stringValue hasPrefix:@"edge-insets"]) {
+            RFLK_assertOnMalformedValue(arguments, 4, @"edge-insets", @"edge-insets(top, bottom, width, height)");
             value = [NSValue valueWithUIEdgeInsets:(UIEdgeInsets){[arguments[0] floatValue], [arguments[1] floatValue], [arguments[2] floatValue], [arguments[3] floatValue]}];
             
         } else if ([stringValue hasPrefix:@"vector"]) {

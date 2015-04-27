@@ -332,6 +332,11 @@
     return valueFromValueContainer(((RFLKPropertyValueContainer*)self.value));
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ -> %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].bounds.size]];
+}
+
 @end
 
 #pragma mark - RFLKSelector
