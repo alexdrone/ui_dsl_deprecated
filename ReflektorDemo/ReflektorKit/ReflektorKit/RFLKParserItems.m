@@ -342,7 +342,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@ -> %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size]];
+    return [NSString stringWithFormat:@"%@ -> %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero]];
 }
 
 @end

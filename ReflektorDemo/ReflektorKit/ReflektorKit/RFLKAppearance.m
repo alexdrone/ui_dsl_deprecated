@@ -94,7 +94,7 @@ static const void *UIViewComputedPropertiesKey;
             if ([self respondsToSelector:NSSelectorFromString(key)]) {
                 
                 // compute the value and set it in the view
-                id value = [computedStyle[key] valueWithTraitCollection:self.traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size];
+                id value = [computedStyle[key] valueWithTraitCollection:self.traitCollection andBounds:self.bounds.size];
                 [self setValue:value forKey:key];
             }
     }
@@ -194,7 +194,7 @@ static const void *UIViewComputedPropertiesKey;
             case RFLKSelectorTypeClass:
                 if (selector.associatedClass == klass || [klass isSubclassOfClass:selector.associatedClass])
                     if (!selector.trait.length || (selector.trait.length && [traits containsObject:selector.trait]))
-                        if (!selector.condition || (selector.condition && [selector.condition evaluatConditionWithTraitCollection:traitCollection andBounds:bounds]))
+                        if (!selector.condition || (selector.condition && [selector.condition evaluatConditionWithTraitCollection:traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size]))
                             [selectors addObject:selector];
                 break;
                 
@@ -225,7 +225,7 @@ static const void *UIViewComputedPropertiesKey;
 
 - (NSDictionary*)computeStyleForView:(UIView*)view
 {
-    NSDictionary *computedProperties = [self computeStyleForClass:view.class withTraits:view.rflk_traits traitCollection:view.traitCollection bounds:[UIScreen mainScreen].rflk_screenBounds.size];
+    NSDictionary *computedProperties = [self computeStyleForClass:view.class withTraits:view.rflk_traits traitCollection:view.traitCollection bounds:view.bounds.size];
     view.rflk_computedProperties = computedProperties;
     return computedProperties;
 }
@@ -241,5 +241,5 @@ id rflk_computedProperty(UIView *view, NSString *propertyName)
     
     NSCAssert(computedProperties[propertyName] != nil, @"property not defined");
     
-    return [computedProperties[propertyName] valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size];
+    return [computedProperties[propertyName] valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:view.bounds.size];
 }
