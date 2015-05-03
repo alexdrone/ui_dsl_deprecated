@@ -9,9 +9,18 @@
     @white: #ffffff;
 }
 
-class:UILabel.trait:test
+class:UIView
+{
+    background-color: @white;
+}
+
+class:UILabel
 {
     background-color: linear-gradient(@blue, @darker-blue);
+}
+
+class:UILabel.trait:test
+{
     text: 'GO';
     corner-radius: 50%;
     x: 10px;

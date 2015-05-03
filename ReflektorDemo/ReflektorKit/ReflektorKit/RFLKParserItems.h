@@ -112,6 +112,10 @@ typedef NS_ENUM(NSInteger, RFLKSelectorType) {
 
 - (instancetype)initWithString:(NSString*)selectorString NS_DESIGNATED_INITIALIZER;
 
+/// Compare this selector priority with another one
+- (NSComparisonResult)comparePriority:(RFLKSelector*)otherSelector;
+
+
 @end
 
 

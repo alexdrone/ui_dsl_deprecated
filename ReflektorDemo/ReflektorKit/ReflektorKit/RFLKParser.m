@@ -18,7 +18,7 @@ BOOL    rflk_isValidSelector(NSString *selector, BOOL constrainedToTrait);
 
 NSString *const RFLKTokenClassPrefix = @"class";
 NSString *const RFLKTokenTraitPrefix = @"trait";
-NSString *const RFLKTokenVariablePrefix = @"-var";
+NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenSelectorSeparator = @".";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
@@ -310,6 +310,7 @@ void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
 {
     NSString *s = (*stylesheet);
     
+    //TODO: use regex - this is unsafe
     s = [s stringByReplacingOccurrencesOfString:@"@" withString:RFLKTokenVariablePrefix];
     s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@".%@:%@", RFLKTokenConditionPrefix, rflk_uuid()]];
     (*stylesheet) = s;

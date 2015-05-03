@@ -456,6 +456,21 @@
     return NSUIntegerMax-priority;
 }
 
+- (NSComparisonResult)comparePriority:(RFLKSelector*)otherSelector
+{
+    if (self.selectorPriority < otherSelector.selectorPriority)
+        return NSOrderedAscending;
+    
+    if (self.selectorPriority == otherSelector.selectorPriority &&
+        self.associatedClass != nil && otherSelector.associatedClass != nil)
+        
+        if ([self.associatedClass isSubclassOfClass:otherSelector.associatedClass])
+            return NSOrderedDescending;
+    
+    return NSOrderedDescending;
+    
+}
+
 @end
 
 

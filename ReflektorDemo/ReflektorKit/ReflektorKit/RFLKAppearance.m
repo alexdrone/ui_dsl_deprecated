@@ -192,7 +192,7 @@ static const void *UIViewComputedPropertiesKey;
         switch (selector.type) {
                 
             case RFLKSelectorTypeClass:
-                if (selector.associatedClass == klass)
+                if (selector.associatedClass == klass || [klass isSubclassOfClass:selector.associatedClass])
                     if (!selector.trait.length || (selector.trait.length && [traits containsObject:selector.trait]))
                         if (!selector.condition || (selector.condition && [selector.condition evaluatConditionWithTraitCollection:traitCollection andBounds:bounds]))
                             [selectors addObject:selector];
@@ -210,13 +210,8 @@ static const void *UIViewComputedPropertiesKey;
     
     //selector priorities: RFLKSelectorTypeClass > RFLKSelectorTypeTrait > RFLKSelectorTypeClassWithAssociatedTrait
     NSArray *sortedSelectors = [selectors sortedArrayUsingComparator:^NSComparisonResult(RFLKSelector *obj1, RFLKSelector *obj2) {
-        if (obj1.selectorPriority < obj2.selectorPriority)
-            return NSOrderedAscending;
-        else
-            return NSOrderedDescending;
+        return [obj1 comparePriority:obj2];
     }];
-    
-    NSLog(@"selectors: %@", sortedSelectors);
 
     
     for (RFLKSelector *selector in sortedSelectors)
