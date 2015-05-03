@@ -95,7 +95,8 @@ static const void *UIViewComputedPropertiesKey;
                 
                 // compute the value and set it in the view
                 id value = [computedStyle[key] valueWithTraitCollection:self.traitCollection andBounds:self.bounds.size];
-                [self setValue:value forKey:key];
+                if (![value isEqual:[self valueForKey:key]])
+                    [self setValue:value forKey:key];
             }
     }
 }
@@ -105,7 +106,6 @@ static const void *UIViewComputedPropertiesKey;
 @interface RFLKAppearance ()
 
 @property (nonatomic, strong) NSDictionary *propertyMap;
-@property (nonatomic, strong) NSSet *classCache;
 
 @end
 
@@ -123,14 +123,7 @@ static const void *UIViewComputedPropertiesKey;
             [[RFLKAppearance sharedAppearance] computeStyleForView:_self];
             
             if (_self.rflk_computedProperties.count != 0) {
-            
-                for (NSString *key in _self.rflk_computedProperties)
-                    if ([_self respondsToSelector:NSSelectorFromString(key)]) {
-                        
-                        // compute the value and set it in the view
-                        id value = [_self.rflk_computedProperties[key] valueWithTraitCollection:_self.traitCollection andBounds:_self.bounds.size];
-                        [_self setValue:value forKey:key];
-                    }
+                [_self rflk_applyComputedStyle:_self.rflk_computedProperties];
             }
             
         } error:&error];
@@ -166,23 +159,11 @@ static const void *UIViewComputedPropertiesKey;
 {
     self.propertyMap = rflk_parseStylesheet(stylesheet);
     
-    NSMutableSet *set = [[NSMutableSet alloc] init];
-    
-    // adds all the classes that have a style
-    for (RFLKSelector *selector in self.propertyMap.allKeys)
-        if (selector.associatedClass != nil)
-            [set addObject:selector.associatedClass];
-    
-    self.classCache = set.copy;
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:RFLKApperanceStylesheetDidChangeNotification object:nil];
 }
 
 - (NSDictionary*)computeStyleForClass:(Class)klass withTraits:(NSSet*)traits traitCollection:(UITraitCollection*)traitCollection bounds:(CGSize)bounds
 {
-    // there's no style defined for this class or the traits set passed as arg is empty
-    if (!([self.classCache containsObject:klass] || traits.count > 0))
-        return @{};
     
     NSMutableDictionary *computedProperties = @{}.mutableCopy;
     NSMutableArray *selectors = @[].mutableCopy;
@@ -220,8 +201,6 @@ static const void *UIViewComputedPropertiesKey;
     
     return computedProperties;
 }
-
-
 
 - (NSDictionary*)computeStyleForView:(UIView*)view
 {

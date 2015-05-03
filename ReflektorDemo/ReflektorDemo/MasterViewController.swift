@@ -25,8 +25,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.label.rflk_addTrait("test")
-        self.view.addSubview(self.label)
+//        self.label.rflk_addTrait("test")
+//        self.view.addSubview(self.label)
         
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()

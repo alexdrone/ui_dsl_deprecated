@@ -11,7 +11,9 @@
 
 class:UIView
 {
-    background-color: @white;
+    border-width: 1px;
+    border-color: @orange;
+    font: font('Thonburi-Bold', 12pt);
 }
 
 class:UILabel
