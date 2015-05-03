@@ -13,6 +13,7 @@
 #import "RFLKParserItems.h"
 #import "RFLKMacros.h"
 #import "UIKit+RFLKAdditions.h"
+#import "RFLKWatchFileServer.h"
 
 NSString *RFLKApperanceStylesheetDidChangeNotification = @"RFLKApperanceStylesheetDidChangeNotification";
 
@@ -141,8 +142,9 @@ static const void *UIViewComputedPropertiesKey;
             }
             
         } error:&error];
-        
     });
+    
+    [[RFLKWatchFileServer sharedInstance] startOnPort:RFLKWatchFileServerDefaultPort];
 }
 
 + (instancetype)sharedAppearance

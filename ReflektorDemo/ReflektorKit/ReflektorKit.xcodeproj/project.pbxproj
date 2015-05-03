@@ -27,6 +27,10 @@
 		16B759341AF68C78005F55CF /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7592B1AF68C78005F55CF /* CSSTokens.m */; };
 		16B759351AF68C78005F55CF /* UIColor+HTMLColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B7592C1AF68C78005F55CF /* UIColor+HTMLColors.h */; };
 		16B759361AF68C78005F55CF /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7592D1AF68C78005F55CF /* UIColor+HTMLColors.m */; };
+		16B759391AF68CBE005F55CF /* AsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B759371AF68CBE005F55CF /* AsyncSocket.h */; };
+		16B7593A1AF68CBE005F55CF /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759381AF68CBE005F55CF /* AsyncSocket.m */; };
+		16B7593D1AF68CF1005F55CF /* RFLKWatchFileServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B7593B1AF68CF1005F55CF /* RFLKWatchFileServer.h */; };
+		16B7593E1AF68CF1005F55CF /* RFLKWatchFileServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7593C1AF68CF1005F55CF /* RFLKWatchFileServer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		16B7592B1AF68C78005F55CF /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTokens.m; sourceTree = "<group>"; };
 		16B7592C1AF68C78005F55CF /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HTMLColors.h"; sourceTree = "<group>"; };
 		16B7592D1AF68C78005F55CF /* UIColor+HTMLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HTMLColors.m"; sourceTree = "<group>"; };
+		16B759371AF68CBE005F55CF /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		16B759381AF68CBE005F55CF /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		16B7593B1AF68CF1005F55CF /* RFLKWatchFileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLKWatchFileServer.h; sourceTree = "<group>"; };
+		16B7593C1AF68CF1005F55CF /* RFLKWatchFileServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLKWatchFileServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,8 @@
 				167781801AEA70B700668B47 /* RFLKMacros.h */,
 				167781821AEA70B700668B47 /* RFLKAppearance.h */,
 				167781811AEA70B700668B47 /* RFLKAppearance.m */,
+				16B7593B1AF68CF1005F55CF /* RFLKWatchFileServer.h */,
+				16B7593C1AF68CF1005F55CF /* RFLKWatchFileServer.m */,
 				167781831AEA70B700668B47 /* ATTRIBUTIONS.md */,
 				167781471AEA707F00668B47 /* ReflektorKit.h */,
 				167781451AEA707F00668B47 /* Supporting Files */,
@@ -121,6 +131,8 @@
 				16B7592B1AF68C78005F55CF /* CSSTokens.m */,
 				16B7592C1AF68C78005F55CF /* UIColor+HTMLColors.h */,
 				16B7592D1AF68C78005F55CF /* UIColor+HTMLColors.m */,
+				16B759371AF68CBE005F55CF /* AsyncSocket.h */,
+				16B759381AF68CBE005F55CF /* AsyncSocket.m */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -135,9 +147,11 @@
 				167781481AEA707F00668B47 /* ReflektorKit.h in Headers */,
 				1677818C1AEA70B700668B47 /* RFLKAppearance.h in Headers */,
 				167781871AEA70B700668B47 /* RFLKParserItems.h in Headers */,
+				16B7593D1AF68CF1005F55CF /* RFLKWatchFileServer.h in Headers */,
 				16B759351AF68C78005F55CF /* UIColor+HTMLColors.h in Headers */,
 				167781851AEA70B700668B47 /* UIKit+RFLKAdditions.h in Headers */,
 				1677818A1AEA70B700668B47 /* RFLKMacros.h in Headers */,
+				16B759391AF68CBE005F55CF /* AsyncSocket.h in Headers */,
 				16B759331AF68C78005F55CF /* CSSTokens.h in Headers */,
 				16B7592E1AF68C78005F55CF /* Aspects.h in Headers */,
 				167781891AEA70B700668B47 /* RFLKParser.h in Headers */,
@@ -212,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B7593E1AF68CF1005F55CF /* RFLKWatchFileServer.m in Sources */,
 				167781841AEA70B700668B47 /* UIKit+RFLKAdditions.m in Sources */,
 				16B759311AF68C78005F55CF /* CSSParser.m in Sources */,
 				1677818B1AEA70B700668B47 /* RFLKAppearance.m in Sources */,
@@ -219,6 +234,7 @@
 				1677818D1AEA70B700668B47 /* ATTRIBUTIONS.md in Sources */,
 				16B759321AF68C78005F55CF /* CSSTokenizer.m in Sources */,
 				167781861AEA70B700668B47 /* RFLKParserItems.m in Sources */,
+				16B7593A1AF68CBE005F55CF /* AsyncSocket.m in Sources */,
 				16B7592F1AF68C78005F55CF /* Aspects.m in Sources */,
 				16B759361AF68C78005F55CF /* UIColor+HTMLColors.m in Sources */,
 				16B759341AF68C78005F55CF /* CSSTokens.m in Sources */,
