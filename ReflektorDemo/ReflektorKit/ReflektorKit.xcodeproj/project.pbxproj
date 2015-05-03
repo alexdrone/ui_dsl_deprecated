@@ -8,15 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		167781481AEA707F00668B47 /* ReflektorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 167781471AEA707F00668B47 /* ReflektorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		167781711AEA70A100668B47 /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 167781681AEA70A100668B47 /* UIColor+HTMLColors.m */; };
-		167781721AEA70A100668B47 /* UIColor+HTMLColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 167781691AEA70A100668B47 /* UIColor+HTMLColors.h */; };
-		167781731AEA70A100668B47 /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677816A1AEA70A100668B47 /* CSSTokens.m */; };
-		167781741AEA70A100668B47 /* CSSTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 1677816B1AEA70A100668B47 /* CSSTokens.h */; };
-		167781751AEA70A100668B47 /* CSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677816C1AEA70A100668B47 /* CSSTokenizer.m */; };
-		167781761AEA70A100668B47 /* CSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677816D1AEA70A100668B47 /* CSSParser.m */; };
-		167781771AEA70A100668B47 /* CSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1677816E1AEA70A100668B47 /* CSSParser.h */; };
-		167781781AEA70A100668B47 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677816F1AEA70A100668B47 /* Aspects.m */; };
-		167781791AEA70A100668B47 /* Aspects.h in Headers */ = {isa = PBXBuildFile; fileRef = 167781701AEA70A100668B47 /* Aspects.h */; };
 		167781841AEA70B700668B47 /* UIKit+RFLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677817A1AEA70B700668B47 /* UIKit+RFLKAdditions.m */; };
 		167781851AEA70B700668B47 /* UIKit+RFLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1677817B1AEA70B700668B47 /* UIKit+RFLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		167781861AEA70B700668B47 /* RFLKParserItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677817C1AEA70B700668B47 /* RFLKParserItems.m */; };
@@ -27,21 +18,21 @@
 		1677818B1AEA70B700668B47 /* RFLKAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 167781811AEA70B700668B47 /* RFLKAppearance.m */; };
 		1677818C1AEA70B700668B47 /* RFLKAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 167781821AEA70B700668B47 /* RFLKAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1677818D1AEA70B700668B47 /* ATTRIBUTIONS.md in Sources */ = {isa = PBXBuildFile; fileRef = 167781831AEA70B700668B47 /* ATTRIBUTIONS.md */; };
+		16B7592E1AF68C78005F55CF /* Aspects.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B759251AF68C78005F55CF /* Aspects.h */; };
+		16B7592F1AF68C78005F55CF /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759261AF68C78005F55CF /* Aspects.m */; };
+		16B759301AF68C78005F55CF /* CSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B759271AF68C78005F55CF /* CSSParser.h */; };
+		16B759311AF68C78005F55CF /* CSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759281AF68C78005F55CF /* CSSParser.m */; };
+		16B759321AF68C78005F55CF /* CSSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759291AF68C78005F55CF /* CSSTokenizer.m */; };
+		16B759331AF68C78005F55CF /* CSSTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B7592A1AF68C78005F55CF /* CSSTokens.h */; };
+		16B759341AF68C78005F55CF /* CSSTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7592B1AF68C78005F55CF /* CSSTokens.m */; };
+		16B759351AF68C78005F55CF /* UIColor+HTMLColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B7592C1AF68C78005F55CF /* UIColor+HTMLColors.h */; };
+		16B759361AF68C78005F55CF /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7592D1AF68C78005F55CF /* UIColor+HTMLColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		167781421AEA707F00668B47 /* ReflektorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReflektorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		167781461AEA707F00668B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		167781471AEA707F00668B47 /* ReflektorKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflektorKit.h; sourceTree = "<group>"; };
-		167781681AEA70A100668B47 /* UIColor+HTMLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HTMLColors.m"; sourceTree = "<group>"; };
-		167781691AEA70A100668B47 /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HTMLColors.h"; sourceTree = "<group>"; };
-		1677816A1AEA70A100668B47 /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTokens.m; sourceTree = "<group>"; };
-		1677816B1AEA70A100668B47 /* CSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSTokens.h; sourceTree = "<group>"; };
-		1677816C1AEA70A100668B47 /* CSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTokenizer.m; sourceTree = "<group>"; };
-		1677816D1AEA70A100668B47 /* CSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSParser.m; sourceTree = "<group>"; };
-		1677816E1AEA70A100668B47 /* CSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSParser.h; sourceTree = "<group>"; };
-		1677816F1AEA70A100668B47 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
-		167781701AEA70A100668B47 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		1677817A1AEA70B700668B47 /* UIKit+RFLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+RFLKAdditions.m"; sourceTree = "<group>"; };
 		1677817B1AEA70B700668B47 /* UIKit+RFLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+RFLKAdditions.h"; sourceTree = "<group>"; };
 		1677817C1AEA70B700668B47 /* RFLKParserItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLKParserItems.m; sourceTree = "<group>"; };
@@ -52,6 +43,15 @@
 		167781811AEA70B700668B47 /* RFLKAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLKAppearance.m; sourceTree = "<group>"; };
 		167781821AEA70B700668B47 /* RFLKAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLKAppearance.h; sourceTree = "<group>"; };
 		167781831AEA70B700668B47 /* ATTRIBUTIONS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ATTRIBUTIONS.md; sourceTree = "<group>"; };
+		16B759251AF68C78005F55CF /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
+		16B759261AF68C78005F55CF /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
+		16B759271AF68C78005F55CF /* CSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSParser.h; sourceTree = "<group>"; };
+		16B759281AF68C78005F55CF /* CSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSParser.m; sourceTree = "<group>"; };
+		16B759291AF68C78005F55CF /* CSSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTokenizer.m; sourceTree = "<group>"; };
+		16B7592A1AF68C78005F55CF /* CSSTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSTokens.h; sourceTree = "<group>"; };
+		16B7592B1AF68C78005F55CF /* CSSTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSTokens.m; sourceTree = "<group>"; };
+		16B7592C1AF68C78005F55CF /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HTMLColors.h"; sourceTree = "<group>"; };
+		16B7592D1AF68C78005F55CF /* UIColor+HTMLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HTMLColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +84,7 @@
 		167781441AEA707F00668B47 /* ReflektorKit */ = {
 			isa = PBXGroup;
 			children = (
+				16B759241AF68C78005F55CF /* Dependencies */,
 				1677817A1AEA70B700668B47 /* UIKit+RFLKAdditions.m */,
 				1677817B1AEA70B700668B47 /* UIKit+RFLKAdditions.h */,
 				1677817D1AEA70B700668B47 /* RFLKParserItems.h */,
@@ -94,7 +95,6 @@
 				167781821AEA70B700668B47 /* RFLKAppearance.h */,
 				167781811AEA70B700668B47 /* RFLKAppearance.m */,
 				167781831AEA70B700668B47 /* ATTRIBUTIONS.md */,
-				167781671AEA708900668B47 /* Dependencies */,
 				167781471AEA707F00668B47 /* ReflektorKit.h */,
 				167781451AEA707F00668B47 /* Supporting Files */,
 			);
@@ -109,20 +109,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		167781671AEA708900668B47 /* Dependencies */ = {
+		16B759241AF68C78005F55CF /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				167781681AEA70A100668B47 /* UIColor+HTMLColors.m */,
-				167781691AEA70A100668B47 /* UIColor+HTMLColors.h */,
-				1677816A1AEA70A100668B47 /* CSSTokens.m */,
-				1677816B1AEA70A100668B47 /* CSSTokens.h */,
-				1677816C1AEA70A100668B47 /* CSSTokenizer.m */,
-				1677816D1AEA70A100668B47 /* CSSParser.m */,
-				1677816E1AEA70A100668B47 /* CSSParser.h */,
-				1677816F1AEA70A100668B47 /* Aspects.m */,
-				167781701AEA70A100668B47 /* Aspects.h */,
+				16B759251AF68C78005F55CF /* Aspects.h */,
+				16B759261AF68C78005F55CF /* Aspects.m */,
+				16B759271AF68C78005F55CF /* CSSParser.h */,
+				16B759281AF68C78005F55CF /* CSSParser.m */,
+				16B759291AF68C78005F55CF /* CSSTokenizer.m */,
+				16B7592A1AF68C78005F55CF /* CSSTokens.h */,
+				16B7592B1AF68C78005F55CF /* CSSTokens.m */,
+				16B7592C1AF68C78005F55CF /* UIColor+HTMLColors.h */,
+				16B7592D1AF68C78005F55CF /* UIColor+HTMLColors.m */,
 			);
-			name = Dependencies;
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,16 +132,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				167781791AEA70A100668B47 /* Aspects.h in Headers */,
 				167781481AEA707F00668B47 /* ReflektorKit.h in Headers */,
-				167781721AEA70A100668B47 /* UIColor+HTMLColors.h in Headers */,
-				167781741AEA70A100668B47 /* CSSTokens.h in Headers */,
 				1677818C1AEA70B700668B47 /* RFLKAppearance.h in Headers */,
-				167781771AEA70A100668B47 /* CSSParser.h in Headers */,
 				167781871AEA70B700668B47 /* RFLKParserItems.h in Headers */,
+				16B759351AF68C78005F55CF /* UIColor+HTMLColors.h in Headers */,
 				167781851AEA70B700668B47 /* UIKit+RFLKAdditions.h in Headers */,
 				1677818A1AEA70B700668B47 /* RFLKMacros.h in Headers */,
+				16B759331AF68C78005F55CF /* CSSTokens.h in Headers */,
+				16B7592E1AF68C78005F55CF /* Aspects.h in Headers */,
 				167781891AEA70B700668B47 /* RFLKParser.h in Headers */,
+				16B759301AF68C78005F55CF /* CSSParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,15 +213,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				167781841AEA70B700668B47 /* UIKit+RFLKAdditions.m in Sources */,
+				16B759311AF68C78005F55CF /* CSSParser.m in Sources */,
 				1677818B1AEA70B700668B47 /* RFLKAppearance.m in Sources */,
-				167781781AEA70A100668B47 /* Aspects.m in Sources */,
-				167781761AEA70A100668B47 /* CSSParser.m in Sources */,
-				167781711AEA70A100668B47 /* UIColor+HTMLColors.m in Sources */,
 				167781881AEA70B700668B47 /* RFLKParser.m in Sources */,
 				1677818D1AEA70B700668B47 /* ATTRIBUTIONS.md in Sources */,
-				167781731AEA70A100668B47 /* CSSTokens.m in Sources */,
-				167781751AEA70A100668B47 /* CSSTokenizer.m in Sources */,
+				16B759321AF68C78005F55CF /* CSSTokenizer.m in Sources */,
 				167781861AEA70B700668B47 /* RFLKParserItems.m in Sources */,
+				16B7592F1AF68C78005F55CF /* Aspects.m in Sources */,
+				16B759361AF68C78005F55CF /* UIColor+HTMLColors.m in Sources */,
+				16B759341AF68C78005F55CF /* CSSTokens.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
