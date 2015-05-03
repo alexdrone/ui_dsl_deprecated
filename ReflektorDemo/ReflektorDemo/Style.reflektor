@@ -22,7 +22,7 @@ class:UITableViewCell
 
 class:UILabel.trait:test
 {
-    text: 'GO';
+    text: 'GO now';
     corner-radius: 50%;
     x: 10px;
     y: 10px;
