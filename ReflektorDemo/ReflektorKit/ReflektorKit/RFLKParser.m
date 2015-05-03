@@ -377,16 +377,29 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
                     variables[key] = res[selector][key];
         }
         
+        // prefix keys
+        NSMutableArray *vk = variables.allKeys.mutableCopy;
+        for (NSInteger i = 0; i < vk.count; i++) {
+            for (NSInteger j = 0; j < vk.count; j++) {
+             
+                // move the item that is prefix of another at the bottom
+                if ([vk[j] hasPrefix:vk[i]]) {
+                    NSString *v = vk[j];
+                    [vk removeObjectAtIndex:j];
+                    [vk insertObject:v atIndex:0];
+                }
+            }
+        }
+        
+        
         // resolve the variables
         for (NSString *selector in res.allKeys)
             for (NSString *key in [res[selector] allKeys]) {
-                
                 NSString *value = res[selector][key];
-                for (NSString *variable in variables.allKeys) {
+                for (NSString *variable in vk) {
                     value = [value stringByReplacingOccurrencesOfString:variable withString:variables[variable]];
                     res[selector][key] = value;
                 }
-
             }
         
         // remove the variable prefix

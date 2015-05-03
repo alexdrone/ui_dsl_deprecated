@@ -5,20 +5,19 @@
     @darker-blue: #3f91ba;
     @green: #2cdcaa;
     @yellow: #ffcc33;
-    @orange: #ff9900;    
+    @orange: #ff9900;
+    @whitesmoke: #f5f5f5;
     @white: #ffffff;
 }
 
 class:UIView
 {
-    border-width: 1px;
-    border-color: @orange;
-    font: font('Thonburi-Bold', 12pt);
+    font: font('AvenirNext-Regular', 12pt);
 }
 
-class:UILabel
+class:UITableViewCell
 {
-    background-color: linear-gradient(@blue, @darker-blue);
+    background-color: linear-gradient(@whitesmoke, @white);
 }
 
 class:UILabel.trait:test
