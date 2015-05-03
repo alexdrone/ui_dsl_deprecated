@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1692A465159B02B6008E8208 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1692A464159B02B6008E8208 /* Cocoa.framework */; };
+		16B7596B1AF697E5005F55CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759581AF697E5005F55CF /* main.m */; };
+		16B7596C1AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7595A1AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.m */; };
+		16B7596D1AF697E5005F55CF /* ReflektorWatchFile-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16B7595B1AF697E5005F55CF /* ReflektorWatchFile-Info.plist */; };
+		16B7596E1AF697E5005F55CF /* RFLKWatchFileAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7595E1AF697E5005F55CF /* RFLKWatchFileAppDelegate.m */; };
+		16B7596F1AF697E5005F55CF /* RFLKWatchFileMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759601AF697E5005F55CF /* RFLKWatchFileMenu.m */; };
+		16B759701AF697E5005F55CF /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759631AF697E5005F55CF /* UKFileWatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		16B759711AF697E5005F55CF /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759651AF697E5005F55CF /* UKFNSubscribeFileWatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		16B759721AF697E5005F55CF /* UKKQueue Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16B759661AF697E5005F55CF /* UKKQueue Readme.txt */; };
+		16B759731AF697E5005F55CF /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759681AF697E5005F55CF /* UKKQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		16B759741AF697E5005F55CF /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7596A1AF697E5005F55CF /* UKMainThreadProxy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1692A460159B02B6008E8208 /* ReflektorWatchFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReflektorWatchFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1692A464159B02B6008E8208 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1692A467159B02B6008E8208 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1692A468159B02B6008E8208 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1692A469159B02B6008E8208 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		16B759581AF697E5005F55CF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WatchFile/main.m; sourceTree = SOURCE_ROOT; };
+		16B759591AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+CanBecomeWindowKey.h"; path = "WatchFile/NSWindow+CanBecomeWindowKey.h"; sourceTree = SOURCE_ROOT; };
+		16B7595A1AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+CanBecomeWindowKey.m"; path = "WatchFile/NSWindow+CanBecomeWindowKey.m"; sourceTree = SOURCE_ROOT; };
+		16B7595B1AF697E5005F55CF /* ReflektorWatchFile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ReflektorWatchFile-Info.plist"; path = "WatchFile/ReflektorWatchFile-Info.plist"; sourceTree = SOURCE_ROOT; };
+		16B7595C1AF697E5005F55CF /* ReflektorWatchFile-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ReflektorWatchFile-Prefix.pch"; path = "WatchFile/ReflektorWatchFile-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		16B7595D1AF697E5005F55CF /* RFLKWatchFileAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFLKWatchFileAppDelegate.h; path = WatchFile/RFLKWatchFileAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		16B7595E1AF697E5005F55CF /* RFLKWatchFileAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFLKWatchFileAppDelegate.m; path = WatchFile/RFLKWatchFileAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		16B7595F1AF697E5005F55CF /* RFLKWatchFileMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFLKWatchFileMenu.h; path = WatchFile/RFLKWatchFileMenu.h; sourceTree = SOURCE_ROOT; };
+		16B759601AF697E5005F55CF /* RFLKWatchFileMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFLKWatchFileMenu.m; path = WatchFile/RFLKWatchFileMenu.m; sourceTree = SOURCE_ROOT; };
+		16B759621AF697E5005F55CF /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFileWatcher.h; sourceTree = "<group>"; };
+		16B759631AF697E5005F55CF /* UKFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFileWatcher.m; sourceTree = "<group>"; };
+		16B759641AF697E5005F55CF /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
+		16B759651AF697E5005F55CF /* UKFNSubscribeFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFNSubscribeFileWatcher.m; sourceTree = "<group>"; };
+		16B759661AF697E5005F55CF /* UKKQueue Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UKKQueue Readme.txt"; sourceTree = "<group>"; };
+		16B759671AF697E5005F55CF /* UKKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKKQueue.h; sourceTree = "<group>"; };
+		16B759681AF697E5005F55CF /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
+		16B759691AF697E5005F55CF /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
+		16B7596A1AF697E5005F55CF /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1692A45D159B02B6008E8208 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1692A465159B02B6008E8208 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1692A455159B02B6008E8208 = {
+			isa = PBXGroup;
+			children = (
+				1692A46A159B02B6008E8208 /* WatchFile */,
+				1692A463159B02B6008E8208 /* Frameworks */,
+				1692A461159B02B6008E8208 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1692A461159B02B6008E8208 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1692A460159B02B6008E8208 /* ReflektorWatchFile.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1692A463159B02B6008E8208 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1692A464159B02B6008E8208 /* Cocoa.framework */,
+				1692A466159B02B6008E8208 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1692A466159B02B6008E8208 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1692A467159B02B6008E8208 /* AppKit.framework */,
+				1692A468159B02B6008E8208 /* CoreData.framework */,
+				1692A469159B02B6008E8208 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		1692A46A159B02B6008E8208 /* WatchFile */ = {
+			isa = PBXGroup;
+			children = (
+				16B759581AF697E5005F55CF /* main.m */,
+				16B759591AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.h */,
+				16B7595A1AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.m */,
+				16B7595B1AF697E5005F55CF /* ReflektorWatchFile-Info.plist */,
+				16B7595C1AF697E5005F55CF /* ReflektorWatchFile-Prefix.pch */,
+				16B7595D1AF697E5005F55CF /* RFLKWatchFileAppDelegate.h */,
+				16B7595E1AF697E5005F55CF /* RFLKWatchFileAppDelegate.m */,
+				16B7595F1AF697E5005F55CF /* RFLKWatchFileMenu.h */,
+				16B759601AF697E5005F55CF /* RFLKWatchFileMenu.m */,
+				16B759611AF697E5005F55CF /* UKKQueue */,
+			);
+			name = WatchFile;
+			path = Latte;
+			sourceTree = "<group>";
+		};
+		16B759611AF697E5005F55CF /* UKKQueue */ = {
+			isa = PBXGroup;
+			children = (
+				16B759621AF697E5005F55CF /* UKFileWatcher.h */,
+				16B759631AF697E5005F55CF /* UKFileWatcher.m */,
+				16B759641AF697E5005F55CF /* UKFNSubscribeFileWatcher.h */,
+				16B759651AF697E5005F55CF /* UKFNSubscribeFileWatcher.m */,
+				16B759661AF697E5005F55CF /* UKKQueue Readme.txt */,
+				16B759671AF697E5005F55CF /* UKKQueue.h */,
+				16B759681AF697E5005F55CF /* UKKQueue.m */,
+				16B759691AF697E5005F55CF /* UKMainThreadProxy.h */,
+				16B7596A1AF697E5005F55CF /* UKMainThreadProxy.m */,
+			);
+			name = UKKQueue;
+			path = WatchFile/UKKQueue;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1692A45F159B02B6008E8208 /* ReflektorWatchFile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1692A47E159B02B6008E8208 /* Build configuration list for PBXNativeTarget "ReflektorWatchFile" */;
+			buildPhases = (
+				1692A45C159B02B6008E8208 /* Sources */,
+				1692A45D159B02B6008E8208 /* Frameworks */,
+				1692A45E159B02B6008E8208 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReflektorWatchFile;
+			productName = Latte;
+			productReference = 1692A460159B02B6008E8208 /* ReflektorWatchFile.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1692A457159B02B6008E8208 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LT;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 1692A45A159B02B6008E8208 /* Build configuration list for PBXProject "ReflektorWatchFile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1692A455159B02B6008E8208;
+			productRefGroup = 1692A461159B02B6008E8208 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1692A45F159B02B6008E8208 /* ReflektorWatchFile */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1692A45E159B02B6008E8208 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16B7596D1AF697E5005F55CF /* ReflektorWatchFile-Info.plist in Resources */,
+				16B759721AF697E5005F55CF /* UKKQueue Readme.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1692A45C159B02B6008E8208 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16B759731AF697E5005F55CF /* UKKQueue.m in Sources */,
+				16B7596C1AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.m in Sources */,
+				16B7596F1AF697E5005F55CF /* RFLKWatchFileMenu.m in Sources */,
+				16B759701AF697E5005F55CF /* UKFileWatcher.m in Sources */,
+				16B759711AF697E5005F55CF /* UKFNSubscribeFileWatcher.m in Sources */,
+				16B759741AF697E5005F55CF /* UKMainThreadProxy.m in Sources */,
+				16B7596B1AF697E5005F55CF /* main.m in Sources */,
+				16B7596E1AF697E5005F55CF /* RFLKWatchFileAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1692A47C159B02B6008E8208 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1692A47D159B02B6008E8208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1692A47F159B02B6008E8208 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WatchFile/ReflektorWatchFile-Prefix.pch";
+				INFOPLIST_FILE = "WatchFile/ReflektorWatchFile-Info.plist";
+				PRODUCT_NAME = ReflektorWatchFile;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1692A480159B02B6008E8208 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WatchFile/ReflektorWatchFile-Prefix.pch";
+				INFOPLIST_FILE = "WatchFile/ReflektorWatchFile-Info.plist";
+				PRODUCT_NAME = ReflektorWatchFile;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1692A45A159B02B6008E8208 /* Build configuration list for PBXProject "ReflektorWatchFile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1692A47C159B02B6008E8208 /* Debug */,
+				1692A47D159B02B6008E8208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1692A47E159B02B6008E8208 /* Build configuration list for PBXNativeTarget "ReflektorWatchFile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1692A47F159B02B6008E8208 /* Debug */,
+				1692A480159B02B6008E8208 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1692A457159B02B6008E8208 /* Project object */;
+}
