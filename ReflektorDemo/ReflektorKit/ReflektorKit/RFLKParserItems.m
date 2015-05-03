@@ -8,6 +8,8 @@
 
 #import "RFLKParserItems.h"
 #import "RFLKParser.h"
+#import "UIColor+HTMLColors.h"
+#import "UIKit+RFLKAdditions.h"
 
 #pragma mark - RFLKPropertyValueContainer
 
@@ -298,7 +300,7 @@
         
         id value = NSNull.null;
         RFLKPropertyValueOption option = RFLKPropertyValueOptionNone;
-        RFLK_parseRhsValue(propertyString, &value, &option);
+        rflk_parseRhsValue(propertyString, &value, &option);
         _value = [[RFLKPropertyValueContainer alloc] initWithValue:value option:option];
     }
     
@@ -326,6 +328,12 @@
             }
         }
         
+        // linear-gradient
+        if (container.option & RFLKPropertyValueOptionLinearGradient) {
+            NSAssert([container.value isKindOfClass:NSArray.class], nil);
+            return [UIColor gradientFromColor:container.value[0] toColor:container.value[1] withSize:bounds];
+        }
+        
         return container.value;
     };
     
@@ -334,7 +342,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@ -> %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].bounds.size]];
+    return [NSString stringWithFormat:@"%@ -> %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size]];
 }
 
 @end
@@ -350,7 +358,7 @@
         _selectorString = selectorString;
         
         // the string is assumed to be legal selector
-        // @see RFLK_isValidSelector
+        // @see rflk_isValidSelector
         
         NSArray *components = [selectorString componentsSeparatedByString:RFLKTokenSelectorSeparator];
         NSString *selector = components.firstObject;

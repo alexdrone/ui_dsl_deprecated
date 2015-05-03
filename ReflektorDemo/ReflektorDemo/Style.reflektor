@@ -1,21 +1,28 @@
 
 @globals
 {
-    @blue: hsl(120, 100%, 75%);
+    @blue: #51beff;
+    @darker-blue: #3f91ba;
+    @green: #2cdcaa;
+    @yellow: #ffcc33;
+    @orange: #ff9900;    
+    @white: #ffffff;
 }
 
 class:UILabel.trait:test
 {
-    background-color: @blue;
-    text: 'Lorem ipsum';
-    size-that-fits: true;
+    background-color: linear-gradient(@blue, @darker-blue);
+    text: 'GO';
     corner-radius: 50%;
     x: 10px;
     y: 10px;
-    width: 150px;
+    width: 50px;
     height: 50px;
+    text-alignment: 1;
+    text-color: @white;
+    border-color: @darker-blue;
+    border-with: 1px;
 }
-
 
 trait:rhs
 {
@@ -24,6 +31,7 @@ trait:rhs
     color-three: rgba(255, 0, 0, 0.3);
     color-four: hsl(120, 100%, 75%);
     color-five: hsla(120, 60%, 70%, 0.3);
+    color-gradient: linear-gradient(hsla(120, 60%, 70%, 0.3), rgb(255, 0, 0));
     font: font('Arial', 16pt);
     font-two: font('Arial', 50%);
     number: 23.4px;
@@ -37,4 +45,7 @@ trait:rhs
     edge: edge-insets(1px, 2px, 3px, 4px);
     text: locale('KEY');
     vector: vector(2px, 23px, #bbbbbb, #cccccc);
+    transform-one: transform-scale(0.1, 0.2);
+    transform-two: transform-rotate(10rad);
+    transform-three: transform-translate(10px, 40px);
 }

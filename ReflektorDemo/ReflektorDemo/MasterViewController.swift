@@ -25,7 +25,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.label.RFLK_addTrait("test")
+        self.label.rflk_addTrait("test")
         self.view.addSubview(self.label)
         
         // Do any additional setup after loading the view, typically from a nib.

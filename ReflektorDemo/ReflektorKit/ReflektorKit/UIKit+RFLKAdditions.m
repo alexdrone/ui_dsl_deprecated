@@ -11,7 +11,6 @@
 
 @implementation UIView (RFLKAdditions)
 
-
 - (CGFloat)cornerRadius
 {
     return self.layer.cornerRadius;
@@ -96,5 +95,21 @@
     self.frame = rect;
 }
 
+@end
+
+@implementation UIScreen (RLFKAddtions)
+
+- (CGRect)rflk_screenBounds
+{
+    UIScreen *screen = self;
+    
+#if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    if ([screen respondsToSelector:@selector(fixedCoordinateSpace)])
+        return [screen.coordinateSpace convertRect:screen.bounds toCoordinateSpace:screen.fixedCoordinateSpace];
+#endif
+    
+    return screen.bounds;
+}
 
 @end
+

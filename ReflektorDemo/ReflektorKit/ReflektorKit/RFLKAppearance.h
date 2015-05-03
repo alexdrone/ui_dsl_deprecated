@@ -13,28 +13,31 @@ extern NSString *RFLKApperanceStylesheetDidChangeNotification;
 @interface UIView (RFLKAppearance)
 
 /// All the computed properties for this view
-@property (nonatomic, strong) NSDictionary *RFLK_computedProperties;
+@property (nonatomic, strong) NSDictionary *rflk_computedProperties;
 
 /// The current set of traits that belong to this view
-@property (nonatomic, readonly) NSSet *RFLK_traits;
+@property (nonatomic, readonly) NSSet *rflk_traits;
 
 /// Add a trait to this view
 /// @note Call 'setNeedsLayout' to re-apply the correct style for this view
-- (void)RFLK_addTrait:(NSString*)traitName;
+- (void)rflk_addTrait:(NSString*)traitName;
 
 /// Remove an existing trait to this view
 /// @note Call 'setNeedsLayout' to re-apply the correct style for this view
-- (void)RFLK_removeTrait:(NSString*)traitName;
+- (void)rflk_removeTrait:(NSString*)traitName;
 
 /// Default getter for a computed property.
 /// Uses the main screen bounds and its traitCollection
-- (id)RFLK_property:(NSString*)propertyName;
+- (id)rflk_property:(NSString*)propertyName;
 
 /// Getter for a computed property
-- (id)RFLK_property:(NSString*)propertyName withTraitCollection:(UITraitCollection*)traitCollection andBounds:(CGSize)size;
+- (id)rflk_property:(NSString*)propertyName withTraitCollection:(UITraitCollection*)traitCollection andBounds:(CGSize)size;
 
 /// Called when the stylesheet changes.
-- (void)RFLK_stylesheetDidChangeNotification:(id)notification;
+- (void)rflk_stylesheetDidChangeNotification:(id)notification;
+
+/// Applies the style dictionary to this view
+- (void)rflk_applyComputedStyle:(NSDictionary*)computedStyle;
 
 @end
 
@@ -50,7 +53,7 @@ extern NSString *RFLKApperanceStylesheetDidChangeNotification;
 /// Initialise the appearance with the given stylesheet data
 - (void)parseStylesheetData:(NSString*)stylesheet;
 
-/// Apply the style from the stylesheet
+/// Returns the computed style from the stylesheet
 - (NSDictionary*)computeStyleForView:(UIView*)view;
 
 @end

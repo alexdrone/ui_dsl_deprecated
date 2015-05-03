@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let content = NSString(contentsOfFile: RFLK_bundlePath("Style", "reflektor"), encoding: NSUTF8StringEncoding, error: nil)
+        let content = NSString(contentsOfFile: rflk_bundlePath("Style", "reflektor"), encoding: NSUTF8StringEncoding, error: nil)
         RFLKAppearance.sharedAppearance().parseStylesheetData(content as! String);
         
         // Override point for customization after application launch.

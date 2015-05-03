@@ -12,6 +12,7 @@
 #import "RFLKParser.h"
 #import "RFLKParserItems.h"
 #import "RFLKMacros.h"
+#import "UIKit+RFLKAdditions.h"
 
 NSString *RFLKApperanceStylesheetDidChangeNotification = @"RFLKApperanceStylesheetDidChangeNotification";
 
@@ -20,22 +21,22 @@ static const void *UIViewComputedPropertiesKey;
 
 @implementation UIView (RFLKAppearance)
 
-- (NSDictionary*)RFLK_computedProperties
+- (NSDictionary*)rflk_computedProperties
 {
     return objc_getAssociatedObject(self, &UIViewComputedPropertiesKey);
 }
 
-- (void)setRFLK_computedProperties:(NSDictionary*)RFLK_computedProperties
+- (void)setRflk_computedProperties:(NSDictionary*)rflk_computedProperties
 {
-    objc_setAssociatedObject(self, &UIViewComputedPropertiesKey, RFLK_computedProperties, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &UIViewComputedPropertiesKey, rflk_computedProperties, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (NSSet*)RFLK_traits
+- (NSSet*)rflk_traits
 {
     return objc_getAssociatedObject(self, &UIViewTraitsKey);
 }
 
-- (void)RFLK_addTrait:(NSString*)traitName
+- (void)rflk_addTrait:(NSString*)traitName
 {
     NSMutableSet *set = objc_getAssociatedObject(self, &UIViewTraitsKey);
     
@@ -48,7 +49,7 @@ static const void *UIViewComputedPropertiesKey;
     [self setNeedsLayout];
 }
 
-- (void)RFLK_removeTrait:(NSString*)traitName
+- (void)rflk_removeTrait:(NSString*)traitName
 {
     NSMutableSet *set = objc_getAssociatedObject(self, &UIViewTraitsKey);
     
@@ -61,14 +62,14 @@ static const void *UIViewComputedPropertiesKey;
     [self setNeedsLayout];
 }
 
-- (id)RFLK_property:(NSString*)propertyName
+- (id)rflk_property:(NSString*)propertyName
 {
-    return [self RFLK_property:propertyName withTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].bounds.size];
+    return [self rflk_property:propertyName withTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size];
 }
 
-- (id)RFLK_property:(NSString*)propertyName withTraitCollection:(UITraitCollection*)traitCollection andBounds:(CGSize)size
+- (id)rflk_property:(NSString*)propertyName withTraitCollection:(UITraitCollection*)traitCollection andBounds:(CGSize)size
 {
-    NSDictionary *computedProperties = self.RFLK_computedProperties;
+    NSDictionary *computedProperties = self.rflk_computedProperties;
     
     if (computedProperties == nil)
         computedProperties = [[RFLKAppearance sharedAppearance] computeStyleForView:self];
@@ -79,10 +80,24 @@ static const void *UIViewComputedPropertiesKey;
     return [computedProperties[propertyName] valueWithTraitCollection:traitCollection andBounds:size];
 }
 
-- (void)RFLK_stylesheetDidChangeNotification:(id)notification
+- (void)rflk_stylesheetDidChangeNotification:(id)notification
 {
     [self setNeedsUpdateConstraints];
     [self setNeedsLayout];
+}
+
+- (void)rflk_applyComputedStyle:(NSDictionary*)computedStyle
+{
+    if (computedStyle.count != 0) {
+        
+        for (NSString *key in computedStyle)
+            if ([self respondsToSelector:NSSelectorFromString(key)]) {
+                
+                // compute the value and set it in the view
+                id value = [computedStyle[key] valueWithTraitCollection:self.traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size];
+                [self setValue:value forKey:key];
+            }
+    }
 }
 
 @end
@@ -107,13 +122,13 @@ static const void *UIViewComputedPropertiesKey;
             UIView *_self = aspectInfo.instance;
             [[RFLKAppearance sharedAppearance] computeStyleForView:_self];
             
-            if (_self.RFLK_computedProperties.count != 0) {
+            if (_self.rflk_computedProperties.count != 0) {
             
-                for (NSString *key in _self.RFLK_computedProperties)
+                for (NSString *key in _self.rflk_computedProperties)
                     if ([_self respondsToSelector:NSSelectorFromString(key)]) {
                         
                         // compute the value and set it in the view
-                        id value = [_self.RFLK_computedProperties[key] valueWithTraitCollection:_self.traitCollection andBounds:_self.bounds.size];
+                        id value = [_self.rflk_computedProperties[key] valueWithTraitCollection:_self.traitCollection andBounds:_self.bounds.size];
                         [_self setValue:value forKey:key];
                     }
             }
@@ -124,9 +139,9 @@ static const void *UIViewComputedPropertiesKey;
             
             UIView *_self = aspectInfo.instance;
             
-            // triggers RFLK_stylesheetDidChangeNotification to be called when the stylesheet changes
+            // triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
             if (_self.superview != nil) {
-                [[NSNotificationCenter defaultCenter] addObserver:_self selector:@selector(RFLK_stylesheetDidChangeNotification:) name:RFLKApperanceStylesheetDidChangeNotification object:nil];
+                [[NSNotificationCenter defaultCenter] addObserver:_self selector:@selector(rflk_stylesheetDidChangeNotification:) name:RFLKApperanceStylesheetDidChangeNotification object:nil];
 
             } else {
                 [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -149,7 +164,7 @@ static const void *UIViewComputedPropertiesKey;
 
 - (void)parseStylesheetData:(NSString*)stylesheet
 {
-    self.propertyMap = RFLK_parseStylesheet(stylesheet);
+    self.propertyMap = rflk_parseStylesheet(stylesheet);
     
     NSMutableSet *set = [[NSMutableSet alloc] init];
     
@@ -215,21 +230,21 @@ static const void *UIViewComputedPropertiesKey;
 
 - (NSDictionary*)computeStyleForView:(UIView*)view
 {
-    NSDictionary *computedProperties = [self computeStyleForClass:view.class withTraits:view.RFLK_traits traitCollection:view.traitCollection bounds:[UIScreen mainScreen].bounds.size];
-    view.RFLK_computedProperties = computedProperties;
+    NSDictionary *computedProperties = [self computeStyleForClass:view.class withTraits:view.rflk_traits traitCollection:view.traitCollection bounds:[UIScreen mainScreen].rflk_screenBounds.size];
+    view.rflk_computedProperties = computedProperties;
     return computedProperties;
 }
 
 @end
 
-id RFLK_computedProperty(UIView *view, NSString *propertyName)
+id rflk_computedProperty(UIView *view, NSString *propertyName)
 {
-    NSDictionary *computedProperties = view.RFLK_computedProperties;
+    NSDictionary *computedProperties = view.rflk_computedProperties;
     
     if (computedProperties == nil)
         computedProperties = [[RFLKAppearance sharedAppearance] computeStyleForView:view];
     
     NSCAssert(computedProperties[propertyName] != nil, @"property not defined");
     
-    return [computedProperties[propertyName] valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].bounds.size];
+    return [computedProperties[propertyName] valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size];
 }

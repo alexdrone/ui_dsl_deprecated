@@ -32,3 +32,9 @@
 @property (nonatomic, assign) CGFloat height;
 
 @end
+
+@interface UIScreen (RLFKAddtions)
+
+@property (nonatomic, readonly) CGRect rflk_screenBounds;
+
+@end

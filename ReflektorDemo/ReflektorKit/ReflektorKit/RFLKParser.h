@@ -24,7 +24,7 @@ extern NSString *const RFLKTokenExpressionGreaterThan;
 extern NSString *const RFLKTokenExpressionGreaterThanOrEqual;
 extern NSString *const RFLKTokenExpressionNotEqual;
 
-extern NSDictionary *RFLK_parseStylesheet(NSString *stylesheet);
-extern void RFLK_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option);
-extern NSString *RFLK_bundlePath(NSString *file, NSString *extension);
+extern NSDictionary *rflk_parseStylesheet(NSString *stylesheet);
+extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option);
+extern NSString *rflk_bundlePath(NSString *file, NSString *extension);
 
