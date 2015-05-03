@@ -8,6 +8,7 @@
 
 #import "RFLKWatchFileServer.h"
 #import "RFLKMacros.h"
+#import "RFLKAppearance.h"
 #import "AsyncSocket.h"
 
 const NSUInteger RFLKWatchFileServerDefaultPort = 3000;
@@ -109,8 +110,10 @@ const NSUInteger RFLKWatchFileServerDefaultPort = 3000;
     [socket writeData:[@"HTTP/1.1 200" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
     
     @try {
-        NSString *payload = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *payload = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByString:@"!!reflektor-payload-begin"][1];
         RFLKLog(@"%@", payload);
+        
+        [[RFLKAppearance sharedAppearance] parseStylesheetData:payload];
     }
     
     @catch (NSException *exception) {

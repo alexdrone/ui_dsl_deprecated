@@ -14,11 +14,11 @@
 		<string>github.com:alexdrone/ReflektorKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ReflektorDemo/Mac (Watchfile)/Latte/ReflektorWatchFile.xcodeproj</string>
+	<string>ReflektorDemo/WatchFile/ReflektorWatchFile.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>36ECFEB33A1541BBBE1C4B2CF6E6AC5BD03C2D24</key>
-		<string>../../../../..</string>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:alexdrone/ReflektorKit.git</string>

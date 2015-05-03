@@ -113,3 +113,104 @@
 
 @end
 
+#pragma mark - Notification center
+
+
+typedef void (^_RFLKDeallocBlock)();
+
+@interface NSObject (RFLKAutoRemovalNotificationHelper)
+
+@property (nonatomic, strong, setter=rflk_setDeallocContext:) id rflk_deallocContext;
+- (void)rflk_setDeallocBlock:(_RFLKDeallocBlock)block;
+
+@end
+
+@implementation NSObject (prmAutoRemovalNotification)
+
+- (void)rflk_addObserverForName:(NSString*)name object:(id)obj queue:(NSOperationQueue*)queue usingBlock:(void (^)(NSNotification*))block
+{
+    id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name object:obj queue:queue usingBlock:block];
+    NSMutableArray *observers = [self rflk_deallocContext];
+    
+    if (observers == nil) {
+        
+        observers = @[].mutableCopy;
+        [self rflk_setDeallocContext:observers];
+        
+        __weak typeof(self) weakSelf = self;
+        [self rflk_setDeallocBlock:^{
+            for (id o in weakSelf.rflk_deallocContext) [[NSNotificationCenter defaultCenter] removeObserver:o];
+        }];
+    }
+    
+    [observers addObject:observer];
+}
+
+- (void)rflk_addObserverForName:(NSString*)name usingBlock:(void (^)(NSNotification*))block
+{
+    [self rflk_addObserverForName:name object:nil queue:nil usingBlock:block];
+}
+
+@end
+
+
+@interface _RFLKDeallocBlockBox : NSObject
+
+@property (nonatomic, retain) id context;
+@property (nonatomic, copy) _RFLKDeallocBlock block;
+
+@end
+
+static void *_RFLKBlockBoxPropertyKey;
+static void *_RFLKObservervationAddedPropertyKey;
+
+
+@implementation NSObject (prmAutoRemovalNotificationHelper)
+
+- (id)rflk_deallocContext
+{
+    return [self rflk_box].context;
+}
+
+- (void)rflk_setDeallocContext:(id)context
+{
+    [self rflk_box].context = context;
+}
+
+- (void)rflk_setDeallocBlock:(_RFLKDeallocBlock)block
+{
+    [self rflk_box].block = block;
+}
+
+- (_RFLKDeallocBlockBox*)rflk_box
+{
+    _RFLKDeallocBlockBox *box = objc_getAssociatedObject(self, &_RFLKBlockBoxPropertyKey);
+    
+    if (box == nil) {
+        box = [[_RFLKDeallocBlockBox alloc] init];
+        objc_setAssociatedObject(self, &_RFLKBlockBoxPropertyKey, box, OBJC_ASSOCIATION_RETAIN);
+    }
+    
+    return box;
+}
+
+- (void)setRflk_observationAdded:(BOOL)rflk_observationAdded
+{
+    objc_setAssociatedObject(self, &_RFLKObservervationAddedPropertyKey, @(rflk_observationAdded), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)rflk_observationAdded
+{
+    return [objc_getAssociatedObject(self, &_RFLKObservervationAddedPropertyKey) boolValue];
+}
+
+@end
+
+@implementation _RFLKDeallocBlockBox
+
+- (void)dealloc
+{
+    if (self.block) self.block();
+}
+
+@end

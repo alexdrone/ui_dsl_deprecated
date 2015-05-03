@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
+#import <objc/runtime.h>
+
 @import UIKit;
 
 @interface UIView (RFLKAdditions)
@@ -38,3 +40,13 @@
 @property (nonatomic, readonly) CGRect rflk_screenBounds;
 
 @end
+
+@interface NSObject (RFLKAutoRemovalNotification)
+
+@property (nonatomic, assign) BOOL rflk_observationAdded;
+
+- (void)rflk_addObserverForName:(NSString*)name object:(id)obj queue:(NSOperationQueue*)queue usingBlock:(void (^)(NSNotification*note))block;
+- (void)rflk_addObserverForName:(NSString*)name usingBlock:(void (^)(NSNotification*note))block;
+
+@end
+

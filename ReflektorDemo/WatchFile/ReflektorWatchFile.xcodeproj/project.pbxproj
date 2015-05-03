@@ -18,6 +18,7 @@
 		16B759721AF697E5005F55CF /* UKKQueue Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16B759661AF697E5005F55CF /* UKKQueue Readme.txt */; };
 		16B759731AF697E5005F55CF /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B759681AF697E5005F55CF /* UKKQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		16B759741AF697E5005F55CF /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B7596A1AF697E5005F55CF /* UKMainThreadProxy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		16B7597F1AF6A04C005F55CF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B7597E1AF6A04C005F55CF /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		16B759681AF697E5005F55CF /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
 		16B759691AF697E5005F55CF /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
 		16B7596A1AF697E5005F55CF /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
+		16B7597E1AF6A04C005F55CF /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		1692A46A159B02B6008E8208 /* WatchFile */ = {
 			isa = PBXGroup;
 			children = (
+				16B7597E1AF6A04C005F55CF /* MainMenu.xib */,
 				16B759581AF697E5005F55CF /* main.m */,
 				16B759591AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.h */,
 				16B7595A1AF697E5005F55CF /* NSWindow+CanBecomeWindowKey.m */,
@@ -182,6 +185,7 @@
 			files = (
 				16B7596D1AF697E5005F55CF /* ReflektorWatchFile-Info.plist in Resources */,
 				16B759721AF697E5005F55CF /* UKKQueue Readme.txt in Resources */,
+				16B7597F1AF6A04C005F55CF /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

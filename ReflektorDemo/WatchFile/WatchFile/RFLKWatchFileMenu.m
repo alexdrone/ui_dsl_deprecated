@@ -125,6 +125,8 @@ static RFLKWatchFileMenu *sharedInstace = nil;
                                                encoding:NSUTF8StringEncoding
                                                   error:&error];
     
+    file = [NSString stringWithFormat:@"!!reflektor-payload-begin\n%@",file];
+    
     if (nil != error) {
         NSLog(@"Unable to encode the file: %@", error.description);
         return;

@@ -83,7 +83,7 @@ static const void *UIViewComputedPropertiesKey;
 
 - (void)rflk_stylesheetDidChangeNotification:(id)notification
 {
-    [self setNeedsUpdateConstraints];
+    self.rflk_computedProperties = [[RFLKAppearance sharedAppearance] computeStyleForView:self];
     [self setNeedsLayout];
 }
 
@@ -133,13 +133,15 @@ static const void *UIViewComputedPropertiesKey;
             
             UIView *_self = aspectInfo.instance;
             
-            // triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
-            if (_self.superview != nil) {
-                [[NSNotificationCenter defaultCenter] addObserver:_self selector:@selector(rflk_stylesheetDidChangeNotification:) name:RFLKApperanceStylesheetDidChangeNotification object:nil];
-
-            } else {
-                [[NSNotificationCenter defaultCenter] removeObserver:self];
+            if (!_self.rflk_observationAdded) {
+                
+                // triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
+                _self.rflk_observationAdded = YES;
+                [_self rflk_addObserverForName:RFLKApperanceStylesheetDidChangeNotification usingBlock:^(NSNotification *note) {
+                    [_self rflk_stylesheetDidChangeNotification:note];
+                }];
             }
+
             
         } error:&error];
     });
@@ -160,13 +162,11 @@ static const void *UIViewComputedPropertiesKey;
 - (void)parseStylesheetData:(NSString*)stylesheet
 {
     self.propertyMap = rflk_parseStylesheet(stylesheet);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:RFLKApperanceStylesheetDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RFLKApperanceStylesheetDidChangeNotification object:nil userInfo:@{}];
 }
 
 - (NSDictionary*)computeStyleForClass:(Class)klass withTraits:(NSSet*)traits traitCollection:(UITraitCollection*)traitCollection bounds:(CGSize)bounds
 {
-    
     NSMutableDictionary *computedProperties = @{}.mutableCopy;
     NSMutableArray *selectors = @[].mutableCopy;
     
