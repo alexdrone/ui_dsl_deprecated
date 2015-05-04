@@ -102,7 +102,9 @@ static RFLKWatchFileMenu *sharedInstace = nil;
 /* Change the menu icon for the given status */
 - (void)changeIconForStatus:(LTMenuIconStatus)status
 {
-    _statusItem.title = [NSString stringWithFormat:@"Reflektor (%@)", [[self.IPAddress componentsSeparatedByString:@"//"][1] componentsSeparatedByString:@":"][0]];
+    NSString *ip = [[self.IPAddress componentsSeparatedByString:@"//"][1] componentsSeparatedByString:@":"][0];
+    ip = [ip isEqualToString:@"127.0.0.1"] ? @"localhost" : ip;
+    _statusItem.title = [NSString stringWithFormat:@"reflektor@%@", ip];
 }
 
 /* This is the only method to be implemented to conform to the SCEventListenerProtocol.

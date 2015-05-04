@@ -14,12 +14,9 @@
 #import "UIKit+RFLKAdditions.h"
 
 void    rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key);
-BOOL    rflk_isValidSelector(NSString *selector, BOOL constrainedToTrait);
 
-NSString *const RFLKTokenClassPrefix = @"class";
-NSString *const RFLKTokenTraitPrefix = @"trait";
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
-NSString *const RFLKTokenSelectorSeparator = @".";
+NSString *const RFLKTokenSelectorSeparator = @":";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
 NSString *const RFLKTokenConditionPrefix = @"condition";
@@ -114,30 +111,6 @@ void rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key)
                 newValuesForSelector[property] = dictionary[inheritedKey][property];
     
     dictionary[key] = newValuesForSelector;
-}
-
-BOOL rflk_isValidSelector(NSString *selector, BOOL constrainedToTrait)
-{
-    NSCParameterAssert(selector);
-    
-    if ([selector hasPrefix:RFLKTokenTraitPrefix])
-        return YES;
-    
-    if([selector hasPrefix:RFLKTokenConditionPrefix])
-        return YES;
-    
-    if (!constrainedToTrait) {
-    
-        if ([selector hasPrefix:RFLKTokenClassPrefix])
-            return YES;
-
-        if ([selector hasPrefix:RFLKTokenVariablePrefix])
-            return YES;
-    }
-
-    RFLKLog(@"Invalid selector: %@", selector);
-    
-    return NO;
 }
 
 NSString *rflk_stringToCamelCase(NSString *string)
@@ -312,7 +285,7 @@ void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
     
     //TODO: use regex - this is unsafe
     s = [s stringByReplacingOccurrencesOfString:@"@" withString:RFLKTokenVariablePrefix];
-    s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@".%@:%@", RFLKTokenConditionPrefix, rflk_uuid()]];
+    s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@"%@%@:%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
     (*stylesheet) = s;
 }
 
@@ -333,27 +306,6 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
     
     NSMutableDictionary *res = dictionary.mutableCopy;
 
-    //
-    // sanity check
-    //
-    {
-        
-        BOOL wellformed = YES;
-        
-        for (NSString *key in res.allKeys) {
-            
-            BOOL valid = YES;
-            NSInteger constrainedToTrait = 0;
-            for (NSString *selector in [key componentsSeparatedByString:RFLKTokenSelectorSeparator])
-                valid &= rflk_isValidSelector(selector, constrainedToTrait++);
-            
-            wellformed &= valid;
-        }
-       
-        if (!wellformed)
-            return nil;
-    }
-    
     //
     // flatten inheritance
     //

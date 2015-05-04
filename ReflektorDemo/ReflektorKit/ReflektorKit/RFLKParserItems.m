@@ -363,28 +363,24 @@
         NSArray *components = [selectorString componentsSeparatedByString:RFLKTokenSelectorSeparator];
         NSString *selector = components.firstObject;
         
-        if ([selector hasPrefix:RFLKTokenTraitPrefix]) {
-            _type = RFLKSelectorTypeTrait;
-            _trait = [selector stringByReplacingOccurrencesOfString:RFLKTokenTraitPrefix withString:@""];
+        if (NSClassFromString(selector) != nil) {
+            
+            _type = RFLKSelectorTypeClass;
+            _associatedClass = NSClassFromString(selector);
             
         } else if ([selector hasPrefix:RFLKTokenVariablePrefix]) {
             _type = RFLKSelectorTypeScope;
             _scopeName =[selector stringByReplacingOccurrencesOfString:RFLKTokenVariablePrefix withString:@""];
             
-        } else if ([selector hasPrefix:RFLKTokenClassPrefix]) {
-            _type = RFLKSelectorTypeClass;
-            
-            NSString *className = [selector stringByReplacingOccurrencesOfString:RFLKTokenClassPrefix withString:@""];
-            NSAssert(NSClassFromString(className) != nil, @"invalid class name");
-            
-            _associatedClass = NSClassFromString(className);
+        } else  {
+            _type = RFLKSelectorTypeTrait;
         }
         
         if (components.count > 1) {
             NSAssert(_type == RFLKSelectorTypeClass, @"if it's a compound selector, the base selector should be a class");
             
-            if ([components[1] hasPrefix:RFLKTokenTraitPrefix])
-                _trait = [components[1] stringByReplacingOccurrencesOfString:RFLKTokenTraitPrefix withString:@""];
+            if (![components[1] hasPrefix:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix]])
+                _trait = components[1];
         }
         
     }

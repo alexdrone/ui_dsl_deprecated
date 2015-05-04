@@ -170,6 +170,9 @@ void CSS_scan(const char *text, int token) {
                         NSMutableString *value = [[NSMutableString alloc] init];
                         _activeRuleSet[_activePropertyName] = value;
                     }
+                    if (_state.flag == InsideStyleSheet) {
+                        [_activeSelector appendString:@(text)];
+                    }
                     break;
                 case '@': {
                     _state.type = RuleTypeKeyframes;

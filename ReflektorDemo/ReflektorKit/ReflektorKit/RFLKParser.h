@@ -8,8 +8,6 @@
 
 @import UIKit;
 
-extern NSString *const RFLKTokenClassPrefix;
-extern NSString *const RFLKTokenTraitPrefix;
 extern NSString *const RFLKTokenVariablePrefix;
 extern NSString *const RFLKTokenConditionPrefix;
 extern NSString *const RFLKTokenSelectorSeparator;
