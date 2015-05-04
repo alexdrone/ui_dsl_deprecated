@@ -335,7 +335,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
             for (NSInteger j = 0; j < vk.count; j++) {
              
                 // move the item that is prefix of another at the bottom
-                if ([vk[j] hasPrefix:vk[i]]) {
+                if ([vk[i] hasPrefix:vk[j]]) {
                     NSString *v = vk[j];
                     [vk removeObjectAtIndex:j];
                     [vk insertObject:v atIndex:0];
