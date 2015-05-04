@@ -12,12 +12,11 @@
     @compact-condition: 'vertical = regular and width < 200';
 }
 
-
 UIView
 {
     font: font(@font-name, 12pt);
-    border-color: @green;
     border-width: 1px;
+    border-color: @blue;
 }
 
 UITableViewCell
@@ -25,15 +24,14 @@ UITableViewCell
     background-color: linear-gradient(@whitesmoke, @white);
 }
 
-
 UILabel
 { 
     border-width: 1px;
     border-color: @orange;
-    corner-radius: 50%;
+
 }
 
-UILabel:test:?
+UILabel:test:__where
 {
     condition: 'idiom = pad';
     text: 'GO now';

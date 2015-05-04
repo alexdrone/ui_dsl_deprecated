@@ -111,7 +111,7 @@ const NSUInteger RFLKWatchFileServerDefaultPort = 3000;
     
     @try {
         NSString *payload = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByString:@"!!reflektor-payload-begin"][1];
-        RFLKLog(@"%@", payload);
+        RFLKLog(@"received remote stylesheet payload.");
         
         [[RFLKAppearance sharedAppearance] parseStylesheetData:payload];
     }

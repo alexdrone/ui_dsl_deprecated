@@ -19,7 +19,7 @@ NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenSelectorSeparator = @":";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
-NSString *const RFLKTokenConditionPrefix = @"condition";
+NSString *const RFLKTokenConditionPrefix = @"__where";
 
 NSString *const RFLKTokenExpressionLessThan = @"<";
 NSString *const RFLKTokenExpressionLessThanOrEqual = @"<=";
@@ -267,7 +267,7 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
 NSString *rflk_uuid()
 {
     // Returns a UUID
-    static const NSString *letters = @"abcdefghijklmnopqrstuvwxyz";
+    static const NSString *letters = @"1234567890abcdef";
     static const u_int32_t lenght = 16;
 
     NSMutableString *randomString = [NSMutableString stringWithCapacity:lenght];
@@ -285,7 +285,7 @@ void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
     
     //TODO: use regex - this is unsafe
     s = [s stringByReplacingOccurrencesOfString:@"@" withString:RFLKTokenVariablePrefix];
-    s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@"%@%@:%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
+    s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
     (*stylesheet) = s;
 }
 
@@ -403,6 +403,5 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
             }
     }
     
-    NSLog(@"%@", res);
     return res;
 }

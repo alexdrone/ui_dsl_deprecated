@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>ReflektorWatchFile</string>
 	<key>CFBundleIconFile</key>
-	<string>appicon.png</string>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>se.alexusbergo.ReflektorWatchFile</string>
 	<key>CFBundleInfoDictionaryVersion</key>
