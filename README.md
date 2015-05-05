@@ -23,7 +23,19 @@ Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced b
 	@blue = hsl(120, 100%, 75%);
 }
 
-/*Selectors*/
+/* 
+	Selectors: 
+	Only one selector per scope is allowed — so selector1, selector2 {} is valid in CSS, but not here.
+	The valid selectors are:
+	
+	- ObjCClass (I)
+	- trait (II)
+	- ObjCClass:trait (III)
+	- ObjCClass:__where (condition modifier on I)
+	- trait:__where (condition modifier on II)
+	- ObjCClass:trait:__where (condition modifier on III)
+
+*/
 
 /* trait selector (it is not possible to define more than one trait in a single selector). */
 rounded
