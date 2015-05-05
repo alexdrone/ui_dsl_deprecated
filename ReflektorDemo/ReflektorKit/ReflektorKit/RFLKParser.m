@@ -273,7 +273,7 @@ NSString *rflk_uuid()
     NSMutableString *randomString = [NSMutableString stringWithCapacity:lenght];
     
     for (int i = 0; i < lenght; i++)
-        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+        [randomString appendFormat: @"%C", [letters characterAtIndex:(NSUInteger)arc4random_uniform((u_int32_t)letters.length)]];
     
     return randomString;
 }

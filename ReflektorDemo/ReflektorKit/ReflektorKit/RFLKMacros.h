@@ -26,7 +26,7 @@ static inline void RFLKLog(NSString* format, ...)
     NSString* formattedMessage = [[NSString alloc] initWithFormat:format arguments:vargs];
     va_end(vargs);
     
-    NSString* message = [NSString stringWithFormat:@"▦ %@ ▦ ⓀⓈⒹ %@", timestamp, formattedMessage];
+    NSString* message = [NSString stringWithFormat:@"▦ %@ ▦ ReflektorKit ▦ %@", timestamp, formattedMessage];
     
     printf("%s\n", [message UTF8String]);
 #endif
