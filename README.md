@@ -34,6 +34,7 @@ Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced b
 	- ObjCClass:__where (condition modifier on I)
 	- trait:__where (condition modifier on II)
 	- ObjCClass:trait:__where (condition modifier on III)
+	- @namespace (variables namespace)
 
 */
 
