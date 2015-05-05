@@ -27,14 +27,16 @@ Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced b
 
 /* trait selector (it is not possible to define more than one trait in a single selector). */
 rounded
-{
-	// the property name can be arbitrary. 
-	// Their names are translated from dash notation to camelCase at parse time
-	// If it matches a class keyPath, the value is evaluated and automatically set to any view that 
-	// matches the current selector.
-	// Otherwise the properties can be accessed from within the view's dictionary stored inside the 
-	// property rflk_computedProperties defined in ReflektorKit's UIView category.
-	// e.g. [self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]
+{	
+	/*
+	  the property name can be arbitrary. 
+	  Their names are translated from dash notation to camelCase at parse time
+	  If it matches a class keyPath, the value is evaluated and automatically set to any view that 
+	  matches the current selector.
+	  Otherwise the properties can be accessed from within the view's dictionary stored inside the 
+	  property rflk_computedProperties defined in ReflektorKit's UIView category.
+	  e.g. [self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]
+	  */
 	corner-radius: 50%;
 	any-custom-key: 50px;
 }
@@ -48,7 +50,7 @@ UIView
 /* class + trait selector (override, it is constrained to a single trait per selector). */
 UIView:circularView
 {
-	// The 'include' directive includes the definition of other traits or classes inside this selector scope
+	/* The 'include' directive includes the definition of other traits or classes inside this selector scope */
 	include: rounded, foo, UILabel;
 	background-color: @blue;
 }
