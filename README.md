@@ -19,8 +19,8 @@ Only one selector per scope is allowed — so `selector1, selector2 {}` is valid
 The only valid selectors are the following:
 
 - `ObjCClass {}` (I)
-- `trait {}` (II)
-- `ObjCClass:trait {}` (III)
+- `trait {}` (II, NB: Only one trait is allowed)
+- `ObjCClass:trait {}` (III, NB: Only one trait is allowed)
 - `ObjCClass:__where {}` (*condition modifier* on I, see the **Conditions** section to know more about the condition construct)
 - `trait:__where {}` (*condition modifier* on II)
 - `ObjCClass:trait:__where {}` (*condition modifier* on III)
@@ -42,18 +42,15 @@ e.g.
 
 ```css
 
-UIButton
-{
+UIButton {
 	text-color: #ff00ff;
 }
 
-rounded
-{
+rounded {
 	corner-radius: 50%;
 }
 
-UILabel
-{
+UILabel {
 	include: UIButton, rounded;
 }
 ```
@@ -63,8 +60,7 @@ If `:__where` special trait is defined in the selector, the selector's propertie
 e.g.
 
 ```css
-UIView:__where
-{
+UIView:__where {
 	condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
@@ -75,11 +71,9 @@ To know more about the conditions syntax and semantic, see the **Conditions** se
 
 ##Left Hand-side Values
 
-The property name can be arbitrary. 
+The property name can be arbitrary, and the keys are translated from dash notation to camelCase notation at parse time.
 
-Their names are translated from dash notation to camelCase at parse time
-
-If it matches a class keyPath, the value is evaluated and automatically set to any view that 
+If it matches a class `keyPath`, the value is evaluated and automatically set to any view that 
 matches the current selector.
 
 Otherwise the properties can be accessed from within the view's dictionary stored inside the 
@@ -93,16 +87,14 @@ e.g. `[self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:se
 ```css
 
 /* Variable namespeace (must start with @). */
-@global
-{
+@global {
 	@blue = hsl(120, 100%, 75%);
 }
 
 /* Selectors: */
 
 /* trait selector (it is not possible to define more than one trait in a single selector). */
-rounded
-{	
+rounded {	
 	/*
 	  the property name can be arbitrary. 
 	  Their names are translated from dash notation to camelCase at parse time
@@ -117,14 +109,12 @@ rounded
 }
 
 /* class selector (can be any valid Obj-C class that inherits from UIView). */
-UIView
-{
+UIView {
 	background-color: #ff0000;
 }
 
 /* class + trait selector (override, it is constrained to a single trait per selector). */
-UIView:circularView
-{
+UIView:circularView {
 	/* The 'include' directive includes the definition of other traits or classes inside this selector scope */
 	include: rounded, foo, UILabel;
 	background-color: @blue;
@@ -135,16 +125,14 @@ UIView:circularView
   If :__where is defined, the selector's properties are computed only if the condition string 
   defined in the 'condition' property is satisfied.
  */
-UIView:__where
-{
+UIView:__where {
 	condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
 
 /* Collection of valid right-hand side values */
-foo
-{
+foo {
 	include: rounded, UIView;
 	condition: 'idiom = pad and width < 200 and vertical = regular';
 	color-one: #00ff00;
