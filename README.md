@@ -12,8 +12,83 @@ Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced b
 
 - TODO
 
+##Selectors
 
-##Stylesheet
+Only one selector per scope is allowed — so `selector1, selector2 {}` is valid in *CSS*, but not here.
+
+The only valid selectors are the following:
+
+- `ObjCClass {}` (I)
+- `trait {}` (II)
+- `ObjCClass:trait {}` (III)
+- `ObjCClass:__where {}` (*condition modifier* on I, see the **Conditions** section to know more about the condition construct)
+- `trait:__where {}` (*condition modifier* on II)
+- `ObjCClass:trait:__where {}` (*condition modifier* on III)
+- `@namespace {}` (variables namespace)
+
+Example of valid selectors are the following
+
+- `UILabel {}` (I)
+- `redLabel {}` (II)
+- `UILabel:redLabel {}` (III)
+- `UIView:__where {}` (*condition modifier* on I)
+- `rounded:__where {}` (*condition modifier* on II)
+- `UIView:rounded:__where {}` (*condition modifier* on III)
+- `@globals {}` (variables namespace)
+
+You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
+
+e.g.
+
+```css
+
+UIButton
+{
+	text-color: #ff00ff;
+}
+
+rounded
+{
+	corner-radius: 50%;
+}
+
+UILabel
+{
+	include: UIButton, rounded;
+}
+```
+
+If `:__where` special trait is defined in the selector, the selector's properties are computed only if the condition string defined in the 'condition' property is satisfied.
+
+e.g.
+
+```css
+UIView:__where
+{
+	condition: 'idiom = pad and width < 200 and vertical = regular';
+	border-width: 2px;
+	border-color: @blue;
+}
+```
+
+To know more about the conditions syntax and semantic, see the **Conditions** section.
+
+##Left Hand-side Values
+
+The property name can be arbitrary. 
+
+Their names are translated from dash notation to camelCase at parse time
+
+If it matches a class keyPath, the value is evaluated and automatically set to any view that 
+matches the current selector.
+
+Otherwise the properties can be accessed from within the view's dictionary stored inside the 
+property `rflk_computedProperties` defined in ReflektorKit's UIView category.
+e.g. `[self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]`
+
+
+
+##Example of a stylesheet
 
 ```css
 
@@ -23,20 +98,7 @@ Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced b
 	@blue = hsl(120, 100%, 75%);
 }
 
-/* 
-	Selectors: 
-	Only one selector per scope is allowed — so selector1, selector2 {} is valid in CSS, but not here.
-	The valid selectors are:
-	
-	- ObjCClass (I)
-	- trait (II)
-	- ObjCClass:trait (III)
-	- ObjCClass:__where (condition modifier on I)
-	- trait:__where (condition modifier on II)
-	- ObjCClass:trait:__where (condition modifier on III)
-	- @namespace (variables namespace)
-
-*/
+/* Selectors: */
 
 /* trait selector (it is not possible to define more than one trait in a single selector). */
 rounded
