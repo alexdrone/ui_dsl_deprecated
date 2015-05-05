@@ -1,10 +1,8 @@
 
 @import UIKit;
 
-
-
 /**
- * Extensions to read and write colors in the formats supported by CSS.
+ * Extensions to read and write colors in the formats supported by RFLKLESS.
  * Emphasis has been given to parsing corrently formatted colors, rather
  * than rejecting technically invalid colors.
  */
@@ -16,7 +14,7 @@
  * Reads a color from a string containing hex, RGB, HSL or X11 named color.
  * Returns `nil` on failure.
  */
-+ (UIColor *)colorWithCSS:(NSString *)cssColor;
++ (UIColor *)colorWithRFLKLESS:(NSString *)cssColor;
 
 /**
  * Reads a color from a string containing a hex color, of the form
@@ -75,14 +73,14 @@
 
 
 /**
- * Extensions to scan colors in the formats supported by CSS.
+ * Extensions to scan colors in the formats supported by RFLKLESS.
  */
 @interface NSScanner (HTMLColors)
 
 /**
  * Scan a color hex, RGB, HSL or X11 named color.
  */
-- (BOOL)scanCSSColor:(UIColor **)color;
+- (BOOL)scanRFLKLESSColor:(UIColor **)color;
 
 /**
  * Scan an RGB color ("rgb(255, 255, 255)", "rgba(255, 255, 255, 1.0)").
@@ -100,7 +98,7 @@
 - (BOOL)scanHexColor:(UIColor **)color;
 
 /**
- * Scan a CSS3/SVG named color. These are similar to the X11 named colors.
+ * Scan a RFLKLESS3/SVG named color. These are similar to the X11 named colors.
  * See: http://www.w3.org/TR/css3-color/#svg-color
  */
 - (BOOL)scanW3CNamedColor:(UIColor **)color;

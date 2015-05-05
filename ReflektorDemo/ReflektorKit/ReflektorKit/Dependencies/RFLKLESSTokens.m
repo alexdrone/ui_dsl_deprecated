@@ -1,12 +1,13 @@
 //
-//  CSSToken.m
+//  RFLKLESSToken.m
 //  Tests
+//  Forked from https://github.com/tracy-e/ESCssParser
 //
 //
 
-#import "CSSTokens.h"
+#import "RFLKLESSTokens.h"
 
-const char* CSSTokenName[] = {
+const char* RFLKLESSTokenName[] = {
     "charset",
     "import",
     "page",

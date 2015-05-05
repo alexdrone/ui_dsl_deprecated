@@ -1,13 +1,14 @@
 //
-//  CSSParser.m
+//  RFLKLESSParser.m
 //  Tests
+//  Forked from https://github.com/tracy-e/ESCssParser
 //
 //
 
-#import "CSSParser.h"
-#include "CSSTokens.h"
+#import "RFLKLESSParser.h"
+#include "RFLKLESSTokens.h"
 
-static CSSParser *__currentParser = nil;
+static RFLKLESSParser *__currentParser = nil;
 
 typedef NS_ENUM(NSUInteger, RuleType) {
     RuleTypeStyle,
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSUInteger, Flags) {
     InsideValue
 };
 
-@interface CSSParser () {
+@interface RFLKLESSParser () {
     NSMutableDictionary*    _styleSheet;
     NSMutableDictionary *   _activeKeyframes;
     NSMutableDictionary *   _activeRuleSet;
@@ -40,16 +41,16 @@ typedef NS_ENUM(NSUInteger, Flags) {
     } _state;
 }
 
-- (void)CSSScan:(const char *)text token:(int)token;
+- (void)RFLKLESSScan:(const char *)text token:(int)token;
 
 @end
 
-void CSS_scan(const char *text, int token) {
-    [__currentParser CSSScan:text token:token];
+void RFLKLESS_scan(const char *text, int token) {
+    [__currentParser RFLKLESSScan:text token:token];
 }
 
 
-@implementation CSSParser
+@implementation RFLKLESSParser
 
 - (instancetype)init {
     self = [super init];
@@ -60,7 +61,7 @@ void CSS_scan(const char *text, int token) {
     return self;
 }
 
-- (void)CSSScan:(const char *)text token:(int)token {
+- (void)RFLKLESSScan:(const char *)text token:(int)token {
     switch (token) {
         case S:
             return;
@@ -216,22 +217,22 @@ void CSS_scan(const char *text, int token) {
                     break;
                 }
                 default:
-                    printf("[%s] (%s)", text, CSSTokenName[token]);
+                    printf("[%s] (%s)", text, RFLKLESSTokenName[token]);
                     break;
             }
             break;
         }
         default:
-            printf("[%s] (%s)", text, CSSTokenName[token]);
+            printf("[%s] (%s)", text, RFLKLESSTokenName[token]);
             break;
     }
     _state.lastToken = token;
     
 }
 
-- (NSDictionary *)parseText:(NSString *)CSSText {
+- (NSDictionary *)parseText:(NSString *)RFLKLESSText {
     __currentParser = self;
-    CSS_parse([CSSText UTF8String]);
+    RFLKLESS_parse([RFLKLESSText UTF8String]);
     return _styleSheet;
 }
 

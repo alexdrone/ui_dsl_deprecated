@@ -8,7 +8,7 @@
 
 #import "RFLKParserItems.h"
 #import "RFLKParser.h"
-#import "UIColor+HTMLColors.h"
+#import "UIColor+RFLKAddictions.h"
 #import "UIKit+RFLKAdditions.h"
 
 #pragma mark - RFLKPropertyValueContainer

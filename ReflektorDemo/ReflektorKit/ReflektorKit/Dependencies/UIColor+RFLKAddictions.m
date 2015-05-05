@@ -1,6 +1,5 @@
 
-#import "UIColor+HTMLColors.h"
-
+#import "UIColor+RFLKAddictions.h"
 
 typedef struct {
     CGFloat a, b, c;
@@ -10,7 +9,7 @@ typedef struct {
     CGFloat a, b, c, d;
 } CMRFloatQuad;
 
-// CSS uses HSL, but we have to specify UIColor as HSB
+// RFLKLESS uses HSL, but we have to specify UIColor as HSB
 static inline CMRFloatTriple HSB2HSL(CGFloat hue, CGFloat saturation, CGFloat brightness);
 static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat lightness);
 
@@ -52,11 +51,11 @@ static NSDictionary *CMRW3CNamedColors(void);
     return [UIColor colorWithPatternImage:uiImage];
 }
 
-+ (UIColor*)colorWithCSS:(NSString *)cssColor
++ (UIColor*)colorWithRFLKLESS:(NSString *)cssColor
 {
     UIColor *color = nil;
     NSScanner *scanner = [NSScanner scannerWithString:cssColor];
-    [scanner scanCSSColor:&color];
+    [scanner scanRFLKLESSColor:&color];
     return (scanner.isAtEnd) ? color : nil;
 }
 
@@ -206,7 +205,7 @@ static inline unsigned ToPercentage(CGFloat f)
 
 @implementation NSScanner (HTMLColors)
 
-- (BOOL)scanCSSColor:(UIColor **)color
+- (BOOL)scanRFLKLESSColor:(UIColor **)color
 {
     return [self scanHexColor:color]
         || [self scanRGBColor:color]
@@ -564,7 +563,7 @@ static NSArray *CMRW3CColorNames() {
     return colorNames;
 }
 
-// Color values as defined in CSS3 spec.
+// Color values as defined in RFLKLESS3 spec.
 // See: http://www.w3.org/TR/css3-color/#svg-color
 static NSDictionary *CMRW3CNamedColors() {
     static NSDictionary *namedColors;

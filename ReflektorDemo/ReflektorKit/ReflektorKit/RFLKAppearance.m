@@ -8,7 +8,7 @@
 
 #import "RFLKAppearance.h"
 #import <objc/runtime.h>
-#import "Aspects.h"
+#import "RFLKAspects.h"
 #import "RFLKParser.h"
 #import "RFLKParserItems.h"
 #import "RFLKMacros.h"
@@ -118,7 +118,7 @@ static const void *UIViewComputedPropertiesKey;
     dispatch_once(&onceToken, ^{
         
         NSError *error;
-        [UIView aspect_hookSelector:@selector(layoutSubviews) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> aspectInfo) {
+        [UIView rflkAspect_hookSelector:@selector(layoutSubviews) withOptions:RFLKAspectPositionBefore usingBlock:^(id<RFLKAspectInfo> aspectInfo) {
             
             UIView *_self = aspectInfo.instance;
             [[RFLKAppearance sharedAppearance] computeStyleForView:_self];
@@ -129,7 +129,7 @@ static const void *UIViewComputedPropertiesKey;
             
         } error:&error];
         
-        [UIView aspect_hookSelector:@selector(didMoveToSuperview) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo) {
+        [UIView rflkAspect_hookSelector:@selector(didMoveToSuperview) withOptions:RFLKAspectPositionAfter usingBlock:^(id<RFLKAspectInfo> aspectInfo) {
             
             UIView *_self = aspectInfo.instance;
             

@@ -1,6 +1,7 @@
 //
-//  CSSToken.h
+//  RFLKLESSToken.h
 //  Tests
+//  Forked from https://github.com/tracy-e/ESCssParser
 //
 //
 
@@ -39,15 +40,15 @@ typedef enum {
     
     UNICODERANGE,         //U\+{range} | U\+{h}{1,6}-{h}{1,6}
     UNKNOWN               //.
-} CSSToken;
+} RFLKLESSToken;
 
-extern const char* CSSTokenName[];
+extern const char* RFLKLESSTokenName[];
 
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
 typedef void* yyscan_t;
 #endif
 
-int CSSlex(void);
-void CSS_parse(const char *buffer);
-void CSS_scan(const char *text, int token);
+int RFLKLESSlex(void);
+void RFLKLESS_parse(const char *buffer);
+void RFLKLESS_scan(const char *text, int token);

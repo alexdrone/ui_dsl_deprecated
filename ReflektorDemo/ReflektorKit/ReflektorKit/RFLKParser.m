@@ -7,9 +7,9 @@
 //
 
 #import "RFLKParser.h"
-#import "CSSParser.h"
+#import "RFLKLESSParser.h"
 #import "RFLKMacros.h"
-#import "UIColor+HTMLColors.h"
+#import "UIColor+RFLKAddictions.h"
 #import "RFLKParserItems.h"
 #import "UIKit+RFLKAdditions.h"
 
@@ -187,7 +187,7 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
         value = [value stringByReplacingOccurrencesOfString:@"'" withString:@""];
         
     } else if ([stringValue hasPrefix:@"rgb"] || [stringValue hasPrefix:@"hsl"] || [stringValue hasPrefix:@"rgba"] || [stringValue hasPrefix:@"hsla"] || [stringValue hasPrefix:@"#"]) {
-        value = [UIColor colorWithCSS:stringValue];
+        value = [UIColor colorWithRFLKLESS:stringValue];
         
     } else {
         
@@ -292,7 +292,7 @@ void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
 
 NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
 {
-    CSSParser *parser = [[CSSParser alloc] init];
+    RFLKLESSParser *parser = [[RFLKLESSParser alloc] init];
     
     NSDictionary *dictionary;
     

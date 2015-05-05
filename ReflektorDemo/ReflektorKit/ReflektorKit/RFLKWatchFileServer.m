@@ -9,7 +9,7 @@
 #import "RFLKWatchFileServer.h"
 #import "RFLKMacros.h"
 #import "RFLKAppearance.h"
-#import "AsyncSocket.h"
+#import "RFLKAsyncSocket.h"
 
 const NSUInteger RFLKWatchFileServerDefaultPort = 3000;
 
