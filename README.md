@@ -26,6 +26,15 @@ Furthermore the properties defined in the scope a stylesheet selectors are purel
 
 - TODO
 
+##Terminology
+
+```css
+SELECTOR {
+	(scope)
+	LEFT-HAND SIDE EXPR (property): RIGHT-HAND SIDE EXPR (value);
+}
+```
+
 ##Selectors
 
 Only one selector per scope is allowed — so `selector1, selector2 {}` is valid in *CSS*, but not here.
