@@ -10,7 +10,7 @@
     @white: #ffffff;
     @tomato: #ff6347;
     @steelblue: #4682b4;
-    @coral: #ff7f50;
+    @coral:10 #ff7f50;
     @burlywood: #deb887;
     @font-name: 'AvenirNext-Regular';
     @compact-condition: 'vertical = regular and width < 200';
@@ -19,33 +19,11 @@
 UIView
 {
     font: font(@font-name, 12pt);
-    border-width: 0px;
 }
 
 UITableViewCell
 {
-    background-color: @steelblue;
-}
-
-UILabel
-{ 
-    background-color: @tomato;
-    text-color: @white;
-}
-
-UILabel:test:__where
-{
-    condition: 'idiom = pad';
-    text: 'GO now';
-    corner-radius: 50%;
-    x: 10px;
-    y: 10px;
-    width: 50px;
-    height: 50px;
-    text-alignment: 1;
-    text-color: @white;
-    border-color: @darker-blue;
-    border-with: 1px;
+    background-color: linear-gradient(@whitesmoke, @white);
 }
 
 rhs

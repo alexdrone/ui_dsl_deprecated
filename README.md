@@ -1,11 +1,25 @@
 ![GitHub Logo](logo.png)
 
-**ReflektorKit** is a stylesheet engine for iOS compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
+**ReflektorKit** is a **lightweight** native stylesheet engine for iOS compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
+With ReflektorKit, you can replace many complicated lines of Objective-C or Swift with a few lines in the stylesheet, and be able to apply this changes real-time, without rebuilding the app.
 
 
 The stylesheet language can be considered a *LESS/CSS* dialect, even though it's been designed specifically to map some UIKit patterns and behaviours, therefore — **it is not CSS**.
 
 Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced by other more UIKit-friendly constructs.
+
+###Why ReflektorKit and not Pixate Freestyle or XYZ?
+
+There are many libraries that offers a way to style native controls, but many times they have a completely different rendering pipeline that makes them incompatible with vanilla custom made uikit controls and they don't offer low level control over the styling of your components.
+
+Moreover the aim of these libraries is to port *all of the CSS practices and concepts* to the iOS platform, and I believe this is often an overkill and not an optimal fit.
+
+ReflektorKit was made with UIKit in mind: it takes full advantage of all the capabilities UIKit offers out-of-the-box (such as *size classes*, *appearance selectors* and more) and it doens't fight the platform.
+
+With ReflektorKit you can have fine control over when a stylesheet property is computed and applied in the lifecycle of UIView.
+
+Furthermore the properties defined in the scope a stylesheet selectors are purely *keyPaths*, making it straight-forward to style custom components or supply custom appearance selectors to a view. 
+
 
 
 ##Getting started
