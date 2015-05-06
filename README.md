@@ -1,4 +1,4 @@
-->![GitHub Logo](logo.png)<-|
+<p align="center">![GitHub Logo](logo.png)</p>
 
 **ReflektorKit** is a **lightweight** native stylesheet engine for iOS compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
 With ReflektorKit, you can replace many complicated lines of Objective-C or Swift with a few lines in the stylesheet, and be able to apply this changes real-time, without rebuilding the app.
