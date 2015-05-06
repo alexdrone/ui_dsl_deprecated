@@ -90,7 +90,9 @@ typedef NS_ENUM(NSInteger, RFLKSelectorType) {
 
 @interface RFLKSelector : NSObject<NSCopying>
 
-@property (nonatomic, readonly) NSUInteger selectorPriority;
+/// If this selector is of kind 'RFLKSelectorTypeClass', if this flag is YES then
+/// all the subclasses of 'associatedClass' will match this selector as wells
+@property (nonatomic, assign) BOOL appliesToSubclasses;
 
 /// What kind of selector this is
 @property (nonatomic, readonly) RFLKSelectorType type;
@@ -110,6 +112,9 @@ typedef NS_ENUM(NSInteger, RFLKSelectorType) {
 
 /// The selector original string
 @property (nonatomic, strong) NSString *selectorString;
+
+/// The selector priority
+@property (nonatomic, readonly) NSUInteger selectorPriority;
 
 - (instancetype)initWithString:(NSString*)selectorString NS_DESIGNATED_INITIALIZER;
 

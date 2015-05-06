@@ -134,6 +134,23 @@ N.B. All the components inside this rhs functions can be variables (prefixed wit
 - `transform-translate(X px, Y px)` a CGAffineTransform
 - `vector(VAL, VAL, ...)` an NSArray whose components can be any of the previous definitions (or a variable) **but not** a nested vector.
 
+### The `!important` modifier
+
+**N.B. The meaning of `!important` is extremely different from CSS **
+
+By default the style is applied after the view initialisation and when the view traits (@see `-[UIView rflk_traits]`) change.
+You can alter this behaviour and have the views to compute and apply a specific rule by appending the `!important` modifier to it.
+
+```css
+UILabel {
+	background-color: @red !important;
+	border-color: @blue !important;
+}
+```
+
+If the right-hand side value of a directive uses a `%` unit or is a `linear-gradient`, the `!important` modifier is automatically added to it.
+
+
 ##Special Directives
 
 
@@ -256,6 +273,11 @@ UIView:__where {
 	condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
+}
+
+UILabel:small {
+	apply-to-subclasses: true; /*This means that all the subclasses of UILabel that also have a 'small' trait defined will apply this style*/
+	font: font('Arial', 12pt) !important; /*!important means that this rule is going to be set at layout time -[layoutSubviews]*/
 }
 
 /* Collection of valid right-hand side values */

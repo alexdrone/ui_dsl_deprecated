@@ -9,8 +9,9 @@
 @import UIKit;
 
 extern NSString *const RFLKTokenVariablePrefix;
+extern NSString *const RFLKTokenImportantModifierSuffix;
+extern NSString *const RFLKTokenAppliesToSubclassesDirective;
 extern NSString *const RFLKTokenConditionPrefix;
-extern NSString *const RFLKTokenLayoutModifierSuffix;
 extern NSString *const RFLKTokenSelectorSeparator;
 extern NSString *const RFLKTokenConditionSeparator;
 extern NSString *const RFLKTokenSeparator;

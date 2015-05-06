@@ -24,10 +24,12 @@ UILabel
 }
 
 
+/*
 UITableViewCell
 {
     background-color: rgb(255,0,0);
 }
+*/
 /*
 rhs
 {

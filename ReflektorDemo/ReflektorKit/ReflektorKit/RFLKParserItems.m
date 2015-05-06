@@ -412,7 +412,8 @@
     selector->_trait = [_trait copyWithZone:zone];
     selector->_scopeName = [_scopeName copyWithZone:zone];
     selector->_condition = [_condition copyWithZone:zone];
-    
+    selector->_appliesToSubclasses = _appliesToSubclasses;
+
     return selector;
 }
 

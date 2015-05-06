@@ -16,7 +16,8 @@
 void    rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key);
 
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
-NSString *const RFLKTokenLayoutModifierSuffix = @"-reflektor-layout";
+NSString *const RFLKTokenImportantModifierSuffix = @"-reflektor-important";
+NSString *const RFLKTokenAppliesToSubclassesDirective = @"applies-to-subclasses";
 NSString *const RFLKTokenSelectorSeparator = @":";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
@@ -173,8 +174,8 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
     
     // checks if it's marked with !layout
     (*layoutTimeProperty) = NO;
-    if ([stringValue hasSuffix:RFLKTokenLayoutModifierSuffix]) {
-        stringValue = [stringValue substringToIndex:stringValue.length - RFLKTokenLayoutModifierSuffix.length];
+    if ([stringValue hasSuffix:RFLKTokenImportantModifierSuffix]) {
+        stringValue = [stringValue substringToIndex:stringValue.length - RFLKTokenImportantModifierSuffix.length];
         (*layoutTimeProperty) = YES;
     }
 
@@ -295,7 +296,7 @@ void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
     
     //TODO: use regex - this is unsafe
     s = [s stringByReplacingOccurrencesOfString:@"@" withString:RFLKTokenVariablePrefix];
-    s = [s stringByReplacingOccurrencesOfString:@"!important" withString:RFLKTokenLayoutModifierSuffix];
+    s = [s stringByReplacingOccurrencesOfString:@"!important" withString:RFLKTokenImportantModifierSuffix];
     s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
     (*stylesheet) = s;
 }
@@ -394,6 +395,10 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
             NSString *condition = (res)[selectorString][RFLKTokenConditionPrefix];
             if (condition != nil)
                 selector.condition = [[RFLKCondition alloc] initWithString:condition];
+            
+            NSString *appliesToSubclasses = (res)[selectorString][RFLKTokenAppliesToSubclassesDirective];
+            if (appliesToSubclasses != nil && [appliesToSubclasses isEqualToString:@"true"])
+                selector.appliesToSubclasses = YES;
             
             newDictionaryWithSelectorsAsKeys[selector] = (res)[selectorString];
         }

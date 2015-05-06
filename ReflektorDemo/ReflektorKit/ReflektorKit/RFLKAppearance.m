@@ -199,7 +199,7 @@ static const void *UIViewComputedPropertiesKey;
         switch (selector.type) {
                 
             case RFLKSelectorTypeClass:
-                if (selector.associatedClass == klass || [klass isSubclassOfClass:selector.associatedClass])
+                if (selector.associatedClass == klass || (selector.appliesToSubclasses && [klass isSubclassOfClass:selector.associatedClass]))
                     if (!selector.trait.length || (selector.trait.length && [traits containsObject:selector.trait]))
                         if (!selector.condition || (selector.condition && [selector.condition evaluatConditionWithTraitCollection:traitCollection andBounds:[UIScreen mainScreen].rflk_screenBounds.size]))
                             [selectors addObject:selector];
@@ -224,10 +224,6 @@ static const void *UIViewComputedPropertiesKey;
     for (RFLKSelector *selector in sortedSelectors)
         for (NSString *key in properties[selector])
             computedProperties[key] = properties[selector][key];
-    
-    
-    if (sortedSelectors.count > 0)
-        NSLog(@"\n\n\n\n --------\n %@ \n\n SELECTORS %@ \n\n Properties: %@", klass, sortedSelectors, computedProperties);
     
     return computedProperties;
 }
