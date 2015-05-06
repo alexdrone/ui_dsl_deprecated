@@ -47,7 +47,7 @@ static const void *UIViewComputedPropertiesKey;
     [set addObject:traitName];
     
     objc_setAssociatedObject(self, &UIViewTraitsKey, set, OBJC_ASSOCIATION_RETAIN);
-    [self setNeedsLayout];
+    [self rflk_stylesheetDidChangeNotification:nil];
 }
 
 - (void)rflk_removeTrait:(NSString*)traitName
@@ -60,7 +60,7 @@ static const void *UIViewComputedPropertiesKey;
     [set removeObject:traitName];
     
     objc_setAssociatedObject(self, &UIViewTraitsKey, set, OBJC_ASSOCIATION_RETAIN);
-    [self setNeedsLayout];
+    [self rflk_stylesheetDidChangeNotification:nil];
 }
 
 - (id)rflk_property:(NSString*)propertyName
@@ -73,7 +73,7 @@ static const void *UIViewComputedPropertiesKey;
     NSDictionary *computedProperties = self.rflk_computedProperties;
     
     if (computedProperties == nil)
-        computedProperties = [[RFLKAppearance sharedAppearance] computeStyleForView:self];
+        computedProperties = [[RFLKAppearance sharedAppearance] computePropertiesForView:self];
     
     if (computedProperties[propertyName] == nil)
         [NSException raise:[NSString stringWithFormat:@"Property not defined: %@", propertyName] format:nil];
@@ -83,7 +83,8 @@ static const void *UIViewComputedPropertiesKey;
 
 - (void)rflk_stylesheetDidChangeNotification:(id)notification
 {
-    self.rflk_computedProperties = [[RFLKAppearance sharedAppearance] computeStyleForView:self];
+    self.rflk_computedProperties = [[RFLKAppearance sharedAppearance] computePropertiesForView:self];
+    [self rflk_applyComputedStyle:self.rflk_computedProperties];
     [self setNeedsLayout];
 }
 
@@ -106,7 +107,9 @@ static const void *UIViewComputedPropertiesKey;
 
 @interface RFLKAppearance ()
 
-@property (nonatomic, strong) NSDictionary *propertyMap;
+// a map from selectors to a dictionary of properties
+@property (nonatomic, strong) NSDictionary *properties;
+@property (nonatomic, strong) NSDictionary *layoutProperties;
 
 @end
 
@@ -121,10 +124,10 @@ static const void *UIViewComputedPropertiesKey;
         [UIView rflkAspect_hookSelector:@selector(layoutSubviews) withOptions:RFLKAspectPositionBefore usingBlock:^(id<RFLKAspectInfo> aspectInfo) {
             
             UIView *_self = aspectInfo.instance;
-            [[RFLKAppearance sharedAppearance] computeStyleForView:_self];
+            NSDictionary *computedLayoutProperties = [[RFLKAppearance sharedAppearance] computeLayoutPropertiesForView:_self];
             
-            if (_self.rflk_computedProperties.count != 0) {
-                [_self rflk_applyComputedStyle:_self.rflk_computedProperties];
+            if (computedLayoutProperties.count != 0) {
+                [_self rflk_applyComputedStyle:computedLayoutProperties];
             }
             
         } error:&error];
@@ -135,6 +138,9 @@ static const void *UIViewComputedPropertiesKey;
             
             if (!_self.rflk_observationAdded) {
                 
+                // applies the style  a first time
+                [_self rflk_stylesheetDidChangeNotification:nil];
+
                 // triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
                 _self.rflk_observationAdded = YES;
                 [_self rflk_addObserverForName:RFLKApperanceStylesheetDidChangeNotification usingBlock:^(NSNotification *note) {
@@ -161,16 +167,34 @@ static const void *UIViewComputedPropertiesKey;
 
 - (void)parseStylesheetData:(NSString*)stylesheet
 {
-    self.propertyMap = rflk_parseStylesheet(stylesheet);
+    self.properties = rflk_parseStylesheet(stylesheet);
     [[NSNotificationCenter defaultCenter] postNotificationName:RFLKApperanceStylesheetDidChangeNotification object:nil userInfo:@{}];
+    
+    // filter out the !layout properties
+    NSMutableDictionary *layoutProperties = @{}.mutableCopy;
+    for (RFLKSelector *selector in self.properties.allKeys)
+        for (NSString *propertyKey in [self.properties[selector] allKeys]) {
+            
+            RFLKPropertyValue *value = self.properties[selector][propertyKey];
+            if (value.layoutTimeProperty) {
+                
+                // creates a container for the selector
+                if (layoutProperties[selector] == nil)
+                    layoutProperties[selector] = @{}.mutableCopy;
+                
+                layoutProperties[selector][propertyKey] = value;
+            }
+        }
+    
+    self.layoutProperties = layoutProperties.copy;
 }
 
-- (NSDictionary*)computeStyleForClass:(Class)klass withTraits:(NSSet*)traits traitCollection:(UITraitCollection*)traitCollection bounds:(CGSize)bounds
+- (NSDictionary*)computeStyleFromDictionary:(NSDictionary*)properties forClass:(Class)klass withTraits:(NSSet*)traits traitCollection:(UITraitCollection*)traitCollection bounds:(CGSize)bounds
 {
     NSMutableDictionary *computedProperties = @{}.mutableCopy;
     NSMutableArray *selectors = @[].mutableCopy;
     
-    for (RFLKSelector *selector in self.propertyMap.allKeys) {
+    for (RFLKSelector *selector in properties.allKeys) {
         
         switch (selector.type) {
                 
@@ -198,17 +222,33 @@ static const void *UIViewComputedPropertiesKey;
 
     
     for (RFLKSelector *selector in sortedSelectors)
-        for (NSString *key in self.propertyMap[selector])
-            computedProperties[key] = self.propertyMap[selector][key];
+        for (NSString *key in properties[selector])
+            computedProperties[key] = properties[selector][key];
+    
+    
+    if (sortedSelectors.count > 0)
+        NSLog(@"\n\n\n\n --------\n %@ \n\n SELECTORS %@ \n\n Properties: %@", klass, sortedSelectors, computedProperties);
     
     return computedProperties;
 }
 
-- (NSDictionary*)computeStyleForView:(UIView*)view
+- (NSDictionary*)computePropertiesForView:(UIView*)view
 {
-    NSDictionary *computedProperties = [self computeStyleForClass:view.class withTraits:view.rflk_traits traitCollection:view.traitCollection bounds:view.bounds.size];
+    NSDictionary *computedProperties = [self computeStyleFromDictionary:self.properties forClass:view.class withTraits:view.rflk_traits traitCollection:view.traitCollection bounds:view.bounds.size];
     view.rflk_computedProperties = computedProperties;
     return computedProperties;
+}
+
+- (NSDictionary*)computeLayoutPropertiesForView:(UIView*)view
+{
+    NSDictionary *computedLayoutProperties = [self computeStyleFromDictionary:self.layoutProperties forClass:view.class withTraits:view.rflk_traits traitCollection:view.traitCollection bounds:view.bounds.size];
+    
+    NSMutableDictionary *computedProperties = view.rflk_computedProperties.mutableCopy;
+    for (NSString *key in computedLayoutProperties)
+        computedProperties[key] = computedProperties[key];
+    
+    view.rflk_computedProperties = computedProperties;
+    return computedLayoutProperties;
 }
 
 @end
@@ -218,7 +258,7 @@ id rflk_computedProperty(UIView *view, NSString *propertyName)
     NSDictionary *computedProperties = view.rflk_computedProperties;
     
     if (computedProperties == nil)
-        computedProperties = [[RFLKAppearance sharedAppearance] computeStyleForView:view];
+        computedProperties = [[RFLKAppearance sharedAppearance] computePropertiesForView:view];
     
     NSCAssert(computedProperties[propertyName] != nil, @"property not defined");
     

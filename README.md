@@ -115,6 +115,7 @@ N.B. All the components inside this rhs functions can be variables (prefixed wit
 - `X pt` point unit
 - `X %` % unit, calculated on the bounds of the view *
 - `'foo'` a string
+- `true` or `false` for a boolean
 - `#FFFFFF` hex color code)
 - `rgb(red, green, blue)` RGB color
 - `rgb(red, green, blue, alpha)` RGB color with alpha component
@@ -133,7 +134,10 @@ N.B. All the components inside this rhs functions can be variables (prefixed wit
 - `transform-translate(X px, Y px)` a CGAffineTransform
 - `vector(VAL, VAL, ...)` an NSArray whose components can be any of the previous definitions (or a variable) **but not** a nested vector.
 
-###Conditions
+##Special Directives
+
+
+### The `condition`directive
 
 If a selector is *conditional* is must be suffixed with the special trait `:__where` (e.g. `XYZButton:__where`).
 Furthermore a `condition` directive should be defined within the scope of the conditional selector.
@@ -167,6 +171,43 @@ UIView:__where {
 ```
 
 The properties are computed only if the view matches the condition expressed in the condition string.
+
+### The `include`directive
+
+You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
+
+e.g.
+
+```css
+
+UIButton {
+	text-color: #ff00ff;
+}
+
+rounded {
+	corner-radius: 50%;
+}
+
+UILabel {
+	include: UIButton, rounded;
+}
+```
+
+### The `applies-to-subclasses` directive
+
+By default, in order to improve the performance to compute the style for a view, the class rule for the selector is matched only if the class specified in the selector is exactly the same as the target view.
+
+If you wish to apply a style to all its subclasses (e.g. you specify some rules for UILabel and you want all the UILabel's subclasses to behave in the same way) you just have to define the `applies-to-subclasses` and set it to `true`
+
+e.g.
+
+```css
+
+UILabel {
+	applies-to-subclasses: true;
+}
+
+```
 
 ##Example of a stylesheet
 

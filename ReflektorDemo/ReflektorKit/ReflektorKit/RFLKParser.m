@@ -16,6 +16,7 @@
 void    rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key);
 
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
+NSString *const RFLKTokenLayoutModifierSuffix = @"-reflektor-layout";
 NSString *const RFLKTokenSelectorSeparator = @":";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
@@ -165,11 +166,18 @@ BOOL rflk_checkForPresenceOfOptionInString(NSString *string, RFLKPropertyValueOp
     }
 }
 
-void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option)
+extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option, BOOL *layoutTimeProperty)
 {
     NSCParameterAssert(stringValue);
     NSCAssert(![stringValue hasPrefix:RFLKTokenConditionPrefix], @"This can't be a condition value.");
     
+    // checks if it's marked with !layout
+    (*layoutTimeProperty) = NO;
+    if ([stringValue hasSuffix:RFLKTokenLayoutModifierSuffix]) {
+        stringValue = [stringValue substringToIndex:stringValue.length - RFLKTokenLayoutModifierSuffix.length];
+        (*layoutTimeProperty) = YES;
+    }
+
     id value = stringValue;
     
     float numericValue;
@@ -248,7 +256,8 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
                 
                 // rescursively parsing the vector component
                 id cv;
-                rflk_parseRhsValue(c, &cv, option);
+                BOOL layoutTimeProperty;
+                rflk_parseRhsValue(c, &cv, option, &layoutTimeProperty);
                 [array addObject:cv];
             }
             
@@ -260,6 +269,7 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
         }
     }
     
+    (*layoutTimeProperty) |= ((*option) == RFLKPropertyValueOptionLinearGradient || (*option) == RFLKPropertyValueOptionPercentValue);
     (*returnValue) = value;
 }
 
@@ -285,6 +295,7 @@ void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
     
     //TODO: use regex - this is unsafe
     s = [s stringByReplacingOccurrencesOfString:@"@" withString:RFLKTokenVariablePrefix];
+    s = [s stringByReplacingOccurrencesOfString:@"!important" withString:RFLKTokenLayoutModifierSuffix];
     s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
     (*stylesheet) = s;
 }

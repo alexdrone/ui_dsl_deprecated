@@ -300,7 +300,7 @@
         
         id value = NSNull.null;
         RFLKPropertyValueOption option = RFLKPropertyValueOptionNone;
-        rflk_parseRhsValue(propertyString, &value, &option);
+        rflk_parseRhsValue(propertyString, &value, &option, &_layoutTimeProperty);
         _value = [[RFLKPropertyValueContainer alloc] initWithValue:value option:option];
     }
     
@@ -342,7 +342,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@ -> %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero]];
+    return [NSString stringWithFormat:@"%@ -> %@ %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero], self.layoutTimeProperty ? @"!layout" : @""];
 }
 
 @end

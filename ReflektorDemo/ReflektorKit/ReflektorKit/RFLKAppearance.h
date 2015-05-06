@@ -54,6 +54,6 @@ extern NSString *RFLKApperanceStylesheetDidChangeNotification;
 - (void)parseStylesheetData:(NSString*)stylesheet;
 
 /// Returns the computed style from the stylesheet
-- (NSDictionary*)computeStyleForView:(UIView*)view;
+- (NSDictionary*)computePropertiesForView:(UIView*)view;
 
 @end

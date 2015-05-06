@@ -51,7 +51,6 @@ typedef NS_ENUM(NSInteger, RFLKExpressionRhs) {
 @end
 
 
-
 @interface RFLKCondition : NSObject
 
 @property (nonatomic, readonly) NSString *conditionString;
@@ -71,8 +70,10 @@ typedef NS_OPTIONS(NSInteger, RFLKPropertyValueOption) {
 };
 
 
-
 @interface RFLKPropertyValue : NSObject
+
+/// If YES this property must be computed and applied at layout time (when -[layoutSubviews] is called)
+@property (nonatomic, assign) BOOL layoutTimeProperty;
 
 - (instancetype)initWithString:(NSString*)propertyString NS_DESIGNATED_INITIALIZER;
 

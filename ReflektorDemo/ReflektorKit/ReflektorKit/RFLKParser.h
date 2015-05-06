@@ -10,6 +10,7 @@
 
 extern NSString *const RFLKTokenVariablePrefix;
 extern NSString *const RFLKTokenConditionPrefix;
+extern NSString *const RFLKTokenLayoutModifierSuffix;
 extern NSString *const RFLKTokenSelectorSeparator;
 extern NSString *const RFLKTokenConditionSeparator;
 extern NSString *const RFLKTokenSeparator;
@@ -23,6 +24,6 @@ extern NSString *const RFLKTokenExpressionGreaterThanOrEqual;
 extern NSString *const RFLKTokenExpressionNotEqual;
 
 extern NSDictionary *rflk_parseStylesheet(NSString *stylesheet);
-extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option);
+extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option, BOOL *layoutTimeProperty);
 extern NSString *rflk_bundlePath(NSString *file, NSString *extension);
 
