@@ -83,7 +83,7 @@ UIView:__where {
 
 To know more about the conditions syntax and semantic, see the **Conditions** section.
 
-##Left Hand-side Values
+##Left-Hand side Values
 
 The property name can be arbitrary, and the keys are translated from dash notation to camelCase notation at parse time.
 
@@ -94,6 +94,33 @@ Otherwise the properties can be accessed from within the view's dictionary store
 property `rflk_computedProperties` defined in ReflektorKit's UIView category.
 e.g. `[self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]`
 
+
+##Right-Hand Side Values
+
+N.B. All the components inside this rhs functions can be variables (prefixed with `@`).
+
+- `X` pixel unit
+- `X px` pixel unit
+- `X pt` point unit
+- `X %` % unit, calculated on the bounds of the view *
+- `'foo'` a string
+- `#FFFFFF` hex color code)
+- `rgb(red, green, blue)` RGB color
+- `rgb(red, green, blue, alpha)` RGB color with alpha component
+- `hsl(hue, saturation, lightness)` HSL color
+- `hsla(hue, saturation, lightness, alpha)` HSL color with alpha component
+- `linear-gradient(@color1, @color2)` linear gradient between 2 colors. The two colors can appear as any of the previous definition, or as a variable *
+- `font('fontName', X pt)` font, the fontname and the point size
+- `font('fontName', X %)` font, the fontname and the size is gonna be calculated at layout time as dependant from the view bounds *
+- `rect(X px, Y px, WIDTH px, HEIGHT px)` a CGRect
+- `point(X px, Y px)` a CGPoint
+- `size(WIDTH px, HEIGHT px)` a CGSize
+- `edge-insets(LEFT px, TOP px, RIGHT px, BOTTOM px)` a UIEdgeInsets
+- `locale('KEY')` a NSLocalizedString
+- `transform-scale(WIDHT, HEIGHT)` a CGAffineTransform
+- `transform-rotate(Xrad)` a CGAffineTransform
+- `transform-translate(X px, Y px)` a CGAffineTransform
+- `vector(VAL, VAL, ...)` an NSArray whose components can be any of the previous definitions (or a variable) **but not** a nested vector.
 
 
 ##Example of a stylesheet
