@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'Latte' target in the 'Latte' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
