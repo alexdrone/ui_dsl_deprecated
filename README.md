@@ -92,7 +92,7 @@ UIView:__where {
 
 To know more about the conditions syntax and semantic, see the **Conditions** section.
 
-##Left-Hand side Values
+##Left-Hand Side Values
 
 The property name can be arbitrary, and the keys are translated from dash notation to camelCase notation at parse time.
 
@@ -131,6 +131,40 @@ N.B. All the components inside this rhs functions can be variables (prefixed wit
 - `transform-translate(X px, Y px)` a CGAffineTransform
 - `vector(VAL, VAL, ...)` an NSArray whose components can be any of the previous definitions (or a variable) **but not** a nested vector.
 
+###Conditions
+
+If a selector is *conditional* is must be suffixed with the special trait `:__where` (e.g. `XYZButton:__where`).
+Furthermore a `condition` directive should be defined within the scope of the conditional selector.
+
+```css
+SELECTOR:__where {
+	condition: @condition;
+}
+```
+
+The right-hand side of a 'condition' has the following syntax
+
+```
+	CONDITION := 'EXPR and EXPR and ...' //e.g. 'width < 200 and vertical = compact and idiom = phone'
+	EXPR := SIZE_CLASS_EXPR | SIZE_EXPR | IDIOM_EXPR 
+	SIZE_CLASS_EXPR := (horizontal|vertical)(=|!=)(regular|compact) // e.g. horizontal = regular
+	SIZE_EXPR := (width|height)(<|<=|=|!=|>|>=)(SIZE_PX) //e.g. width > 320
+	SIZE_PX := (0-9)+ //e.g. 42, a number
+	IDIOM_EXPR := (idiom)(=|!=)(pad|phone) //e.g. idiom = pad
+
+```
+
+So an example of a conditional selector is the following
+
+```css
+UIView:__where {
+	condition: 'idiom = pad and width < 200 and vertical = regular';
+	border-width: 2px;
+	border-color: @blue;
+}
+```
+
+The properties are computed only if the view matches the condition expressed in the condition string.
 
 ##Example of a stylesheet
 
