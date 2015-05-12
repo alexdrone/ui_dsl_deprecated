@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
         if let detail: AnyObject = self.detailItem {
             if let label = self.detailDescriptionLabel {
                 label.text = detail.description
+                label.rflk_addTrait("center")
             }
         }
     }

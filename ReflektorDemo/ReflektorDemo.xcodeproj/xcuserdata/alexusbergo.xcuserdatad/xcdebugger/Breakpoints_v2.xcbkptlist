@@ -354,7 +354,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
-            timestampString = "452607876.389201"
+            timestampString = "453151742.489122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-computeStyleFromDictionary:forClass:withTraits:traitCollection:bounds:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
+            timestampString = "453151742.489122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "-computeStyleFromDictionary:forClass:withTraits:traitCollection:bounds:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
+            timestampString = "453151742.489122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -370,11 +402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
-            timestampString = "452607882.531799"
+            timestampString = "453151742.489122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-computeStyleFromDictionary:forClass:withTraits:traitCollection:bounds:"
             landmarkType = "5">
          </BreakpointContent>
@@ -382,16 +414,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
+            condition = "traits.count &gt; 0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
-            timestampString = "452608007.609212"
+            timestampString = "453151775.879104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-computeStyleFromDictionary:forClass:withTraits:traitCollection:bounds:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit/ReflektorKit/RFLKParserItems.m"
+            timestampString = "453152080.433051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "-initWithString:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

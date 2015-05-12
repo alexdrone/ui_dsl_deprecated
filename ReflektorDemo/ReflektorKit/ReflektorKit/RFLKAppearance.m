@@ -191,6 +191,8 @@ static const void *UIViewComputedPropertiesKey;
 
 - (NSDictionary*)computeStyleFromDictionary:(NSDictionary*)properties forClass:(Class)klass withTraits:(NSSet*)traits traitCollection:(UITraitCollection*)traitCollection bounds:(CGSize)bounds
 {
+    NSLog(@"traits -> %@", traits);
+    
     NSMutableDictionary *computedProperties = @{}.mutableCopy;
     NSMutableArray *selectors = @[].mutableCopy;
     

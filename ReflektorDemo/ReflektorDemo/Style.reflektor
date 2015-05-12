@@ -1,5 +1,5 @@
 
-/*
+
 @globals
 {
     @blue: #51beff;
@@ -11,16 +11,25 @@
     @white: #ffffff;
     @tomato: #ff6347;
     @steelblue: #4682b4;
-    @coral:10 #ff7f50;
+    @coral: #ff7f50;
     @burlywood: #deb887;
     @font-name: 'AvenirNext-Regular';
     @compact-condition: 'vertical = regular and width < 200';
 }
-*/
 
-UILabel
+
+
+UILabel:__where
 {
-    background-color: rgb(0,255,0) !important;
+    background-color: @coral;
+}
+
+
+center
+{
+    border-color: @yellow;
+    border-width: 2px;
+    background-color:@blue;
 }
 
 

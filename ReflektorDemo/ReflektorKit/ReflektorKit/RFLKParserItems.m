@@ -358,7 +358,6 @@
         _selectorString = selectorString;
         
         // the string is assumed to be legal selector
-        // @see rflk_isValidSelector
         
         NSArray *components = [selectorString componentsSeparatedByString:RFLKTokenSelectorSeparator];
         NSString *selector = components.firstObject;
@@ -374,6 +373,7 @@
             
         } else  {
             _type = RFLKSelectorTypeTrait;
+            _trait = selector;
         }
         
         if (components.count > 1) {
