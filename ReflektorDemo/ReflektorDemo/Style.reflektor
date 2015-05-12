@@ -17,20 +17,40 @@
     @compact-condition: 'vertical = regular and width < 200';
 }
 
-
-
-UILabel:__where
+UILabel
 {
     background-color: @coral;
 }
 
-
-center
+flex-container
 {
-    border-color: @yellow;
-    border-width: 2px;
-    background-color:@blue;
+    background-color: @steelblue;
+    flex-container: true;
+    flex-justify-content: center;
+    flex-direction: row;
+    flex-align-items: center;
 }
+
+flex-item
+{
+    text: 'Foo';
+    background-color: @coral;
+    flex-margin: edge-insets(8,8,8,8);
+    flex-padding: edge-insets(8,8,8,8);
+    text-alignment: 1;
+    corner-radius: 50%;
+    font: font(@font-name, 12);
+    text-color: @whitesmoke;
+}
+
+flex-item-first
+{
+    include: flex-item;
+    background-color: @green;
+    flex-padding: edge-insets(12,12,12,12);
+    text: 'Baz';
+}
+
 
 
 /*
@@ -39,6 +59,7 @@ UITableViewCell
     background-color: rgb(255,0,0);
 }
 */
+
 /*
 rhs
 {

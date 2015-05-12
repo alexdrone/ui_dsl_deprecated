@@ -14,6 +14,7 @@
 #import "RFLKMacros.h"
 #import "UIKit+RFLKAdditions.h"
 #import "RFLKWatchFileServer.h"
+#import "UIView+FLEXBOX.h"
 
 NSString *RFLKApperanceStylesheetDidChangeNotification = @"RFLKApperanceStylesheetDidChangeNotification";
 
@@ -126,9 +127,14 @@ static const void *UIViewComputedPropertiesKey;
             UIView *_self = aspectInfo.instance;
             NSDictionary *computedLayoutProperties = [[RFLKAppearance sharedAppearance] computeLayoutPropertiesForView:_self];
             
+            // applies the properties that are marked as !important
             if (computedLayoutProperties.count != 0) {
                 [_self rflk_applyComputedStyle:computedLayoutProperties];
             }
+            
+            // compute the flex layout if this view is a flex container
+            if (_self.flexContainer)
+                [_self flexLayoutSubviews];
             
         } error:&error];
         
@@ -190,9 +196,7 @@ static const void *UIViewComputedPropertiesKey;
 }
 
 - (NSDictionary*)computeStyleFromDictionary:(NSDictionary*)properties forClass:(Class)klass withTraits:(NSSet*)traits traitCollection:(UITraitCollection*)traitCollection bounds:(CGSize)bounds
-{
-    NSLog(@"traits -> %@", traits);
-    
+{    
     NSMutableDictionary *computedProperties = @{}.mutableCopy;
     NSMutableArray *selectors = @[].mutableCopy;
     

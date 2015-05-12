@@ -12,6 +12,7 @@
 #import "UIColor+RFLKAddictions.h"
 #import "RFLKParserItems.h"
 #import "UIKit+RFLKAdditions.h"
+#import "UIView+FLEXBOX.h"
 
 void    rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key);
 
@@ -178,8 +179,15 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
         stringValue = [stringValue substringToIndex:stringValue.length - RFLKTokenImportantModifierSuffix.length];
         (*layoutTimeProperty) = YES;
     }
-
+    
     id value = stringValue;
+    
+    //check for flexbox values
+    id flexboxValue = FLEXBOX_parseCSSValue(value);
+    if (flexboxValue != nil) {
+        (*returnValue) = flexboxValue;
+        return;
+    }
     
     float numericValue;
     NSScanner *scan = [NSScanner scannerWithString:stringValue];
@@ -265,6 +273,7 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
             value = array;
             
         } else  {
+            
             RFLKLog(@"unsupported value: %@", stringValue);
             value = [NSNull null];
         }

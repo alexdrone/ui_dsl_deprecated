@@ -11,6 +11,7 @@
 #import <ReflektorKit/RFLKParser.h>
 #import <ReflektorKit/RFLKAppearance.h>
 #import <ReflektorKit/UIKit+RFLKAdditions.h>
+#import <ReflektorKit/UIView+FLEXBOX.h>
 
 //! Project version number for ReflektorKit.
 FOUNDATION_EXPORT double ReflektorKitVersionNumber;

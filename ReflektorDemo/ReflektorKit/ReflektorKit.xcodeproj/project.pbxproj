@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16066AD41B028EFF000514B0 /* Layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 16066ACC1B028EFF000514B0 /* Layout.c */; };
+		16066AD51B028EFF000514B0 /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16066ACD1B028EFF000514B0 /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16066AD61B028EFF000514B0 /* UIView+FLEXBOX.h in Headers */ = {isa = PBXBuildFile; fileRef = 16066ACE1B028EFF000514B0 /* UIView+FLEXBOX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16066AD71B028EFF000514B0 /* UIView+FLEXBOX.m in Sources */ = {isa = PBXBuildFile; fileRef = 16066ACF1B028EFF000514B0 /* UIView+FLEXBOX.m */; };
 		167781481AEA707F00668B47 /* ReflektorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 167781471AEA707F00668B47 /* ReflektorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		167781841AEA70B700668B47 /* UIKit+RFLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1677817A1AEA70B700668B47 /* UIKit+RFLKAdditions.m */; };
 		167781851AEA70B700668B47 /* UIKit+RFLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1677817B1AEA70B700668B47 /* UIKit+RFLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16066ACC1B028EFF000514B0 /* Layout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Layout.c; sourceTree = "<group>"; };
+		16066ACD1B028EFF000514B0 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
+		16066ACE1B028EFF000514B0 /* UIView+FLEXBOX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FLEXBOX.h"; sourceTree = "<group>"; };
+		16066ACF1B028EFF000514B0 /* UIView+FLEXBOX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FLEXBOX.m"; sourceTree = "<group>"; };
 		167781421AEA707F00668B47 /* ReflektorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReflektorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		167781461AEA707F00668B47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		167781471AEA707F00668B47 /* ReflektorKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflektorKit.h; sourceTree = "<group>"; };
@@ -73,6 +81,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16066AC71B028EFF000514B0 /* Flexbox */ = {
+			isa = PBXGroup;
+			children = (
+				16066ACD1B028EFF000514B0 /* Layout.h */,
+				16066ACC1B028EFF000514B0 /* Layout.c */,
+				16066ACE1B028EFF000514B0 /* UIView+FLEXBOX.h */,
+				16066ACF1B028EFF000514B0 /* UIView+FLEXBOX.m */,
+			);
+			path = Flexbox;
+			sourceTree = "<group>";
+		};
 		167781381AEA707F00668B47 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +141,7 @@
 		16B759241AF68C78005F55CF /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				16066AC71B028EFF000514B0 /* Flexbox */,
 				16B759251AF68C78005F55CF /* RFLKAspects.h */,
 				16B759261AF68C78005F55CF /* RFLKAspects.m */,
 				16B759271AF68C78005F55CF /* RFLKLESSParser.h */,
@@ -146,6 +166,7 @@
 			files = (
 				167781481AEA707F00668B47 /* ReflektorKit.h in Headers */,
 				1677818C1AEA70B700668B47 /* RFLKAppearance.h in Headers */,
+				16066AD61B028EFF000514B0 /* UIView+FLEXBOX.h in Headers */,
 				167781871AEA70B700668B47 /* RFLKParserItems.h in Headers */,
 				16B7593D1AF68CF1005F55CF /* RFLKWatchFileServer.h in Headers */,
 				16B759351AF68C78005F55CF /* UIColor+RFLKAddictions.h in Headers */,
@@ -154,6 +175,7 @@
 				16B759391AF68CBE005F55CF /* RFLKAsyncSocket.h in Headers */,
 				16B759331AF68C78005F55CF /* RFLKLESSTokens.h in Headers */,
 				16B7592E1AF68C78005F55CF /* RFLKAspects.h in Headers */,
+				16066AD51B028EFF000514B0 /* Layout.h in Headers */,
 				167781891AEA70B700668B47 /* RFLKParser.h in Headers */,
 				16B759301AF68C78005F55CF /* RFLKLESSParser.h in Headers */,
 			);
@@ -226,11 +248,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16066AD41B028EFF000514B0 /* Layout.c in Sources */,
 				16B7593E1AF68CF1005F55CF /* RFLKWatchFileServer.m in Sources */,
 				167781841AEA70B700668B47 /* UIKit+RFLKAdditions.m in Sources */,
 				16B759311AF68C78005F55CF /* RFLKLESSParser.m in Sources */,
 				1677818B1AEA70B700668B47 /* RFLKAppearance.m in Sources */,
 				167781881AEA70B700668B47 /* RFLKParser.m in Sources */,
+				16066AD71B028EFF000514B0 /* UIView+FLEXBOX.m in Sources */,
 				1677818D1AEA70B700668B47 /* ATTRIBUTIONS.md in Sources */,
 				16B759321AF68C78005F55CF /* RFLKLESSTokenizer.m in Sources */,
 				167781861AEA70B700668B47 /* RFLKParserItems.m in Sources */,
