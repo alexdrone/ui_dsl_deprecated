@@ -1,9 +1,9 @@
 //
-//  RFLKParser.m
-//  ReflektorKit
+// RFLKParser.m
+// ReflektorKit
 //
-//  Created by Alex Usbergo on 20/04/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 20/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 #import "RFLKParser.h"
@@ -14,8 +14,6 @@
 #import "UIKit+RFLKAdditions.h"
 #import "UIView+FLEXBOX.h"
 
-void    rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key);
-
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenImportantModifierSuffix = @"-reflektor-important";
 NSString *const RFLKTokenAppliesToSubclassesDirective = @"applies-to-subclasses";
@@ -23,14 +21,12 @@ NSString *const RFLKTokenSelectorSeparator = @":";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
 NSString *const RFLKTokenConditionPrefix = @"__where";
-
 NSString *const RFLKTokenExpressionLessThan = @"<";
 NSString *const RFLKTokenExpressionLessThanOrEqual = @"<=";
 NSString *const RFLKTokenExpressionEqual = @"=";
 NSString *const RFLKTokenExpressionGreaterThan = @">";
 NSString *const RFLKTokenExpressionGreaterThanOrEqual = @">=";
 NSString *const RFLKTokenExpressionNotEqual = @"!=";
-
 NSString *const RFLKTokenInclude = @"include";
 
 #pragma mark - Utilities
@@ -38,18 +34,23 @@ NSString *const RFLKTokenInclude = @"include";
 NSString *rflk_stripQuotesFromString(NSString *string)
 {
     NSString *result = string;
-    
+ 
+    //If the strings is wrapped with ' or "...
     if ([string characterAtIndex:0] == '\'' || [string characterAtIndex:0] == '\"')
         result = [string substringFromIndex:1];
     
     if ([result characterAtIndex:result.length-1] == '\'' || [result characterAtIndex:result.length-1] == '\"')
         result = [result substringToIndex:result.length-1];
     
+    //returns a string without quotation marks
     return result;
 }
 
 NSString *rflk_stringToCamelCase(NSString *string)
 {
+    //Transform a string in dash notation (e.g. property-foo) into camel case notation
+    //(e.g. propertyFoo)
+    
     NSMutableString *output = [NSMutableString string];
     BOOL makeNextCharacterUpperCase = NO;
     for (NSInteger i = 0; i < string.length; i++) {
@@ -72,6 +73,9 @@ NSArray *rflk_getArgumentForValue(NSString* stringValue)
 {
     NSCParameterAssert(stringValue);
     
+    //Given a function-value string such as font('Arial', 12px) returns its
+    //arguments (e.g. @['Arial', @12])
+    
     NSUInteger argsStartIndex = 0;
     for (argsStartIndex = 0; argsStartIndex < stringValue.length; argsStartIndex++)
         if ([stringValue characterAtIndex:argsStartIndex] == '(')
@@ -82,7 +86,7 @@ NSArray *rflk_getArgumentForValue(NSString* stringValue)
     stringValue = [stringValue substringToIndex:stringValue.length-1];
     
     //or ([^,]+\(.+?\))|([^,]+)
-    NSArray *matches = [stringValue componentsSeparatedByString:@","];
+    NSArray *matches = [stringValue componentsSeparatedByString:RFLKTokenSeparator];
     NSMutableArray *arguments = @[].mutableCopy;
     
     //note: it doesn't support recursively nested functions (just depth 1)
@@ -127,6 +131,8 @@ void rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key)
 {
     NSCParameterAssert(dictionary);
     NSCParameterAssert(key);
+    
+    //Resolves all the include directives by recursively coping the included definitions
 
     key = rflk_stripQuotesFromString(key);
     NSString *inherit = dictionary[key][RFLKTokenInclude];
@@ -185,12 +191,21 @@ BOOL rflk_checkForPresenceOfOptionInString(NSString *string, RFLKPropertyValueOp
     }
 }
 
-extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option, BOOL *layoutTimeProperty)
+BOOL rflk_stringHasPrefix(NSString *string, NSArray *prefixes)
+{
+    BOOL match = NO;
+    for (NSString *s in prefixes)
+        match |= [string hasPrefix:s];
+    
+    return match;
+}
+
+void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option, BOOL *layoutTimeProperty)
 {
     NSCParameterAssert(stringValue);
     NSCAssert(![stringValue hasPrefix:RFLKTokenConditionPrefix], @"This can't be a condition value.");
     
-    // checks if it's marked with !layout
+    //checks if it's marked with !layout
     (*layoutTimeProperty) = NO;
     if ([stringValue hasSuffix:RFLKTokenImportantModifierSuffix]) {
         stringValue = [stringValue substringToIndex:stringValue.length - RFLKTokenImportantModifierSuffix.length];
@@ -215,15 +230,15 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
         (*option) = rflk_checkForPresenceOfOptionInString(stringValue, RFLKPropertyValueOptionPercentValue) ? RFLKPropertyValueOptionPercentValue : RFLKPropertyValueOptionNone;
 
     //boolean value
-    } else if ([stringValue isEqualToString:@"true"] || [stringValue isEqualToString:@"false"]) {
+    } else if (rflk_stringHasPrefix(stringValue, @[@"true", @"false"])) {
         value = [stringValue isEqualToString:@"true"] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO];
         
     //string (in quotes)
-    } else if ([stringValue hasPrefix:@"'"] || [stringValue hasPrefix:@"\""]) {
+    } else if (rflk_stringHasPrefix(stringValue, @[@"\"", @"\'"])) {
         value = rflk_stripQuotesFromString(stringValue);
         
     //css color
-    } else if ([stringValue hasPrefix:@"rgb"] || [stringValue hasPrefix:@"hsl"] || [stringValue hasPrefix:@"rgba"] || [stringValue hasPrefix:@"hsla"] || [stringValue hasPrefix:@"#"]) {
+    } else if (rflk_stringHasPrefix(stringValue, @[@"rgb", @"rgba", @"hsl", @"hsla", @"#"])) {
         value = [UIColor colorWithRFLKLESS:stringValue];
         
     } else {
@@ -237,53 +252,53 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
             [NSException raise:[NSString stringWithFormat:@"Unable to parse right-hand side value: %@", stringValue] format:nil];
         }
 
-        if ([stringValue hasPrefix:@"font"]) {
+        if (rflk_stringHasPrefix(stringValue, @[@"font"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"font", @"font('font postscript name', size)");
             NSString *fontName = [[arguments[0] stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             value = [UIFont fontWithName:fontName size:[arguments[1] floatValue]];
             (*option) = rflk_checkForPresenceOfOptionInString(arguments[1], RFLKPropertyValueOptionPercentValue) ? RFLKPropertyValueOptionPercentValue : RFLKPropertyValueOptionNone;
             
-        } else if ([stringValue hasPrefix:@"locale"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"locale"])) {
             rflk_assertOnMalformedValue(arguments, 1, @"locale", @"locale('KEY')");
             value = NSLocalizedString(arguments[0], nil);
             
-        } else if ([stringValue hasPrefix:@"rect"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"rect"])) {
             rflk_assertOnMalformedValue(arguments, 4, @"rect", @"rect(x, y, width, height)");
             value = [NSValue valueWithCGRect:(CGRect){{[arguments[0] floatValue], [arguments[1] floatValue]}, {[arguments[2] floatValue], [arguments[3] floatValue]}}];
             
-        } else if ([stringValue hasPrefix:@"point"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"point"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"point", @"point(x, y)");
             value = [NSValue valueWithCGPoint:(CGPoint){[arguments[0] floatValue], [arguments[1] floatValue]}];
             
-        } else if ([stringValue hasPrefix:@"size"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"size"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"size", @"size(width, height)");
             value = [NSValue valueWithCGSize:(CGSize){[arguments[0] floatValue], [arguments[1] floatValue]}];
             
-        } else if ([stringValue hasPrefix:@"transform-scale"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"transform-scale"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"transform-scale", @"transform-scale(x, y)");
             value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeScale([arguments[0] floatValue], [arguments[1] floatValue])];
             
-        } else if ([stringValue hasPrefix:@"transform-rotate"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"transform-rotate"])) {
             rflk_assertOnMalformedValue(arguments, 1, @"transform-rotate", @"transform-rotate(angle)");
             value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation([arguments[0] floatValue])];
             
-        } else if ([stringValue hasPrefix:@"transform-translate"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"transform-translate"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"transform-translate", @"transform-translate(x, y)");
             value = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeTranslation([arguments[0] floatValue], [arguments[1] floatValue])];
             
-        } else if ([stringValue hasPrefix:@"edge-insets"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"edge-insets"])) {
             rflk_assertOnMalformedValue(arguments, 4, @"edge-insets", @"edge-insets(top, bottom, width, height)");
             value = [NSValue valueWithUIEdgeInsets:(UIEdgeInsets){[arguments[0] floatValue], [arguments[1] floatValue], [arguments[2] floatValue], [arguments[3] floatValue]}];
             
-        } else if ([stringValue hasPrefix:@"vector"] || [stringValue hasPrefix:@"linear-gradient"]) {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"vector", @"linear-gradient"])) {
             
-            if ([stringValue hasPrefix:@"linear-gradient"])
+            if (rflk_stringHasPrefix(stringValue, @[@"linear-gradient"]))
                 (*option) = RFLKPropertyValueOptionLinearGradient;
             
             NSMutableArray *array = @[].mutableCopy;
             for (NSString *c in arguments) {
                 
-                // rescursively parsing the vector component
+                //rescursively parsing the vector component
                 id cv;
                 BOOL layoutTimeProperty;
                 rflk_parseRhsValue(c, &cv, option, &layoutTimeProperty);
@@ -292,7 +307,7 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
             
             value = array;
             
-        } else  {
+        } else if (rflk_stringHasPrefix(stringValue, @[@"vector"])) {
             
             RFLKLog(@"unsupported value: %@", stringValue);
             value = [NSNull null];
@@ -306,7 +321,7 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
 
 NSString *rflk_uuid()
 {
-    // Returns a UUID
+    //Returns a UUID
     static const NSString *letters = @"1234567890abcdef";
     static const u_int32_t lenght = 16;
 
@@ -339,9 +354,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
     
     NSDictionary *dictionary;
     
-    //
-    // parse
-    //
+    //Preprocess and parse the LESS-compliant preprocessed stylesheet
     {
         rflk_preprocessStylesheet(&stylesheet);
         dictionary = [parser parseText:stylesheet];
@@ -349,36 +362,32 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
     
     NSMutableDictionary *res = dictionary.mutableCopy;
 
-    //
-    // flatten inheritance
-    //
+    //Flatten inheritance
     {
         for (NSString *key in dictionary.allKeys) {
             rflk_flattenInheritance(res, key);
         }
     }
     
-    //
-    // resolve variables in the dictionary
-    //
+    //Resolve variables in the dictionary
     {
         NSMutableDictionary *variables = [[NSMutableDictionary alloc] init];
         
-        // gets all the variables
+        //gets all the variables
         for (NSString *selector in res.allKeys) {
             
-            if ([selector hasPrefix:RFLKTokenVariablePrefix])
+            if (rflk_stringHasPrefix(selector, @[RFLKTokenVariablePrefix]))
                 for (NSString *key in [res[selector] allKeys])
                     variables[key] = res[selector][key];
         }
         
-        // prefix keys
+        //prefix keys
         NSMutableArray *vk = variables.allKeys.mutableCopy;
         for (NSInteger i = 0; i < vk.count; i++) {
             for (NSInteger j = 0; j < vk.count; j++) {
              
-                // move the item that is prefix of another at the bottom
-                if ([vk[i] hasPrefix:vk[j]]) {
+                //move the item that is prefix of another at the bottom
+                if (rflk_stringHasPrefix(vk[i], @[vk[j]])) {
                     NSString *v = vk[j];
                     [vk removeObjectAtIndex:j];
                     [vk insertObject:v atIndex:0];
@@ -387,7 +396,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
         }
         
         
-        // resolve the variables
+        //resolve the variables
         for (NSString *selector in res.allKeys)
             for (NSString *key in [res[selector] allKeys]) {
                 NSString *value = res[selector][key];
@@ -397,10 +406,9 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
                 }
             }
         
-        // remove the variable prefix
+        //remove the variable prefix
         for (NSString *selector in res.allKeys) {
-            
-            if ([selector hasPrefix:RFLKTokenVariablePrefix])
+            if (rflk_stringHasPrefix(selector, @[RFLKTokenVariablePrefix]))
                 for (NSString *key in [res[selector] allKeys]) {
                     
                     NSString *strippedKey = [key stringByReplacingOccurrencesOfString:RFLKTokenVariablePrefix withString:@""];
@@ -413,9 +421,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
         }
     }
 
-    //
-    // create selectors
-    //
+    //Create selector objects
     {
         NSMutableDictionary *newDictionaryWithSelectorsAsKeys = @{}.mutableCopy;
         
@@ -437,9 +443,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
         res = newDictionaryWithSelectorsAsKeys;
     }
     
-    //
-    // create rhs values
-    //
+    //Create rhs values
     {
         for (NSString *selector in res.allKeys)
             for (NSString *key in [res[selector] allKeys]) {

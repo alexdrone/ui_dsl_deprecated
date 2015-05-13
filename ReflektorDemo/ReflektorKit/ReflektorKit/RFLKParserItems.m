@@ -1,9 +1,9 @@
 //
-//  RFLKPropertyValue.m
-//  ReflektorKit
+// RFLKPropertyValue.m
+// ReflektorKit
 //
-//  Created by Alex Usbergo on 21/04/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 21/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 #import "RFLKParserItems.h"
@@ -226,7 +226,7 @@
 
 @interface RFLKCondition ()
 
-// holds on to all the expressions (expr1 and expr2 and ...)
+//holds on to all the expressions (expr1 and expr2 and ...)
 @property (nonatomic, strong) NSArray *expressions;
 
 @end
@@ -313,22 +313,22 @@
     
         CGFloat min = MIN(bounds.width, bounds.height);
         
-        // % measure unit
+        //% measure unit
         if (container.option & RFLKPropertyValueOptionPercentValue) {
             
-            // number
+            //number
             if ([container.value isKindOfClass:NSNumber.class]) {
                 CGFloat percent = [container.value floatValue];
                 return @((percent/100)*min);
                 
-            // font size
+            //font size
             } else if ([container.value isKindOfClass:UIFont.class]) {
                 CGFloat percent = [container.value pointSize];
                 return [UIFont fontWithName:[container.value fontName] size:(percent/100)*min];
             }
         }
         
-        // linear-gradient
+        //linear-gradient
         if (container.option & RFLKPropertyValueOptionLinearGradient) {
             NSAssert([container.value isKindOfClass:NSArray.class], nil);
             return [UIColor gradientFromColor:container.value[0] toColor:container.value[1] withSize:bounds];
@@ -357,7 +357,7 @@
         
         _selectorString = selectorString;
         
-        // the string is assumed to be legal selector
+        //the string is assumed to be legal selector
         
         NSArray *components = [selectorString componentsSeparatedByString:RFLKTokenSelectorSeparator];
         NSString *selector = components.firstObject;
@@ -403,17 +403,9 @@
     return self.selectorString.hash;
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (id)copyWithZone:(NSZone*)zone
 {
-    RFLKSelector *selector = [[RFLKSelector alloc] init];
-    selector->_associatedClass = [_associatedClass copy];
-    selector->_type = _type;
-    selector->_trait = [_trait copyWithZone:zone];
-    selector->_scopeName = [_scopeName copyWithZone:zone];
-    selector->_condition = [_condition copyWithZone:zone];
-    selector->_appliesToSubclasses = _appliesToSubclasses;
-    selector->_selectorString = _selectorString;
-
+    RFLKSelector *selector = [[RFLKSelector alloc] initWithString:_selectorString];
     return selector;
 }
 
@@ -461,8 +453,8 @@
     if (self.selectorPriority == otherSelector.selectorPriority &&
         self.associatedClass != nil && otherSelector.associatedClass != nil)
         
-        if ([self.associatedClass isSubclassOfClass:otherSelector.associatedClass])
-            return NSOrderedDescending;
+    if ([self.associatedClass isSubclassOfClass:otherSelector.associatedClass])
+        return NSOrderedDescending;
     
     return NSOrderedDescending;
     

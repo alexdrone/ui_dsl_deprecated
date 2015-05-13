@@ -1,9 +1,9 @@
 //
-//  RFLKMacros.h
-//  ReflektorKit
+// RFLKMacros.h
+// ReflektorKit
 //
-//  Created by Alex Usbergo on 21/04/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 21/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 #ifndef ReflektorKit_RFLKMacros_h

@@ -1,11 +1,11 @@
 //
-//  AsyncSocket.h
-//  
-//  This class is in the public domain.
-//  Originally created by Dustin Voss on Wed Jan 29 2003.
-//  Updated and maintained by Deusty Designs and the Mac development community.
+// AsyncSocket.h
+// 
+// This class is in the public domain.
+// Originally created by Dustin Voss on Wed Jan 29 2003.
+// Updated and maintained by Deusty Designs and the Mac development community.
 //
-//  http://code.google.com/p/cocoaasyncsocket/
+// http://code.google.com/p/cocoaasyncsocket/
 //
 
 #import <Foundation/Foundation.h>
@@ -19,11 +19,11 @@ extern NSString *const AsyncSocketErrorDomain;
 
 enum AsyncSocketError
 {
-	AsyncSocketCFSocketError = kCFSocketError,	// From CFSocketError enum.
-	AsyncSocketNoError = 0,						// Never used.
-	AsyncSocketCanceledError,					// onSocketWillConnect: returned NO.
+	AsyncSocketCFSocketError = kCFSocketError,	//From CFSocketError enum.
+	AsyncSocketNoError = 0,						//Never used.
+	AsyncSocketCanceledError,					//onSocketWillConnect: returned NO.
 	AsyncSocketConnectTimeoutError,
-	AsyncSocketReadMaxedOutError,               // Reached set maxLength without completing
+	AsyncSocketReadMaxedOutError,               //Reached set maxLength without completing
 	AsyncSocketReadTimeoutError,
 	AsyncSocketWriteTimeoutError
 };
@@ -156,14 +156,14 @@ typedef enum AsyncSocketError AsyncSocketError;
 	CFSocketNativeHandle theNativeSocket4;
 	CFSocketNativeHandle theNativeSocket6;
 	
-	CFSocketRef theSocket4;            // IPv4 accept or connect socket
-	CFSocketRef theSocket6;            // IPv6 accept or connect socket
+	CFSocketRef theSocket4;            //IPv4 accept or connect socket
+	CFSocketRef theSocket6;            //IPv6 accept or connect socket
 	
 	CFReadStreamRef theReadStream;
 	CFWriteStreamRef theWriteStream;
 
-	CFRunLoopSourceRef theSource4;     // For theSocket4
-	CFRunLoopSourceRef theSource6;     // For theSocket6
+	CFRunLoopSourceRef theSource4;     //For theSocket4
+	CFRunLoopSourceRef theSource6;     //For theSocket6
 	CFRunLoopRef theRunLoop;
 	CFSocketContext theContext;
 	NSArray *theRunLoopModes;
@@ -209,27 +209,27 @@ typedef enum AsyncSocketError AsyncSocketError;
 - (CFReadStreamRef)getCFReadStream;
 - (CFWriteStreamRef)getCFWriteStream;
 
-// Once one of the accept or connect methods are called, the AsyncSocket instance is locked in
-// and the other accept/connect methods can't be called without disconnecting the socket first.
-// If the attempt fails or times out, these methods either return NO or
-// call "onSocket:willDisconnectWithError:" and "onSockedDidDisconnect:".
+//Once one of the accept or connect methods are called, the AsyncSocket instance is locked in
+//and the other accept/connect methods can't be called without disconnecting the socket first.
+//If the attempt fails or times out, these methods either return NO or
+//call "onSocket:willDisconnectWithError:" and "onSockedDidDisconnect:".
 
-// When an incoming connection is accepted, AsyncSocket invokes several delegate methods.
-// These methods are (in chronological order):
-// 1. onSocket:didAcceptNewSocket:
-// 2. onSocket:wantsRunLoopForNewSocket:
-// 3. onSocketWillConnect:
-// 
-// Your server code will need to retain the accepted socket (if you want to accept it).
-// The best place to do this is probably in the onSocket:didAcceptNewSocket: method.
-// 
-// After the read and write streams have been setup for the newly accepted socket,
-// the onSocket:didConnectToHost:port: method will be called on the proper run loop.
-// 
-// Multithreading Note: If you're going to be moving the newly accepted socket to another run
-// loop by implementing onSocket:wantsRunLoopForNewSocket:, then you should wait until the
-// onSocket:didConnectToHost:port: method before calling read, write, or startTLS methods.
-// Otherwise read/write events are scheduled on the incorrect runloop, and chaos may ensue.
+//When an incoming connection is accepted, AsyncSocket invokes several delegate methods.
+//These methods are (in chronological order):
+//1. onSocket:didAcceptNewSocket:
+//2. onSocket:wantsRunLoopForNewSocket:
+//3. onSocketWillConnect:
+//
+//Your server code will need to retain the accepted socket (if you want to accept it).
+//The best place to do this is probably in the onSocket:didAcceptNewSocket: method.
+//
+//After the read and write streams have been setup for the newly accepted socket,
+//the onSocket:didConnectToHost:port: method will be called on the proper run loop.
+//
+//Multithreading Note: If you're going to be moving the newly accepted socket to another run
+//loop by implementing onSocket:wantsRunLoopForNewSocket:, then you should wait until the
+//onSocket:didConnectToHost:port: method before calling read, write, or startTLS methods.
+//Otherwise read/write events are scheduled on the incorrect runloop, and chaos may ensue.
 
 /**
  * Tells the socket to begin listening and accepting connections on the given port.
@@ -347,18 +347,18 @@ typedef enum AsyncSocketError AsyncSocketError;
 - (BOOL)isIPv4;
 - (BOOL)isIPv6;
 
-// The readData and writeData methods won't block (they are asynchronous).
-// 
-// When a read is complete the onSocket:didReadData:withTag: delegate method is called.
-// When a write is complete the onSocket:didWriteDataWithTag: delegate method is called.
-// 
-// You may optionally set a timeout for any read/write operation. (To not timeout, use a negative time interval.)
-// If a read/write opertion times out, the corresponding "onSocket:shouldTimeout..." delegate method
-// is called to optionally allow you to extend the timeout.
-// Upon a timeout, the "onSocket:willDisconnectWithError:" method is called, followed by "onSocketDidDisconnect".
-// 
-// The tag is for your convenience.
-// You can use it as an array index, step number, state id, pointer, etc.
+//The readData and writeData methods won't block (they are asynchronous).
+//
+//When a read is complete the onSocket:didReadData:withTag: delegate method is called.
+//When a write is complete the onSocket:didWriteDataWithTag: delegate method is called.
+//
+//You may optionally set a timeout for any read/write operation. (To not timeout, use a negative time interval.)
+//If a read/write opertion times out, the corresponding "onSocket:shouldTimeout..." delegate method
+//is called to optionally allow you to extend the timeout.
+//Upon a timeout, the "onSocket:willDisconnectWithError:" method is called, followed by "onSocketDidDisconnect".
+//
+//The tag is for your convenience.
+//You can use it as an array index, step number, state id, pointer, etc.
 
 /**
  * Reads the first available bytes that become available on the socket.
@@ -651,9 +651,9 @@ typedef enum AsyncSocketError AsyncSocketError;
 - (NSData *)unreadData;
 
 /* A few common line separators, for use with the readDataToData:... methods. */
-+ (NSData *)CRLFData;   // 0x0D0A
-+ (NSData *)CRData;     // 0x0D
-+ (NSData *)LFData;     // 0x0A
-+ (NSData *)ZeroData;   // 0x00
++ (NSData *)CRLFData;   //0x0D0A
++ (NSData *)CRData;     //0x0D
++ (NSData *)LFData;     //0x0A
++ (NSData *)ZeroData;   //0x00
 
 @end

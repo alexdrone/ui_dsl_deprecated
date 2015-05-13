@@ -1,9 +1,9 @@
 //
-//  UIView+FLEXBOX.m
-//  FlexboxKit
+// UIView+FLEXBOX.m
+// FlexboxKit
 //
-//  Created by Alex Usbergo on 09/05/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 09/05/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 #import "UIView+FLEXBOX.h"
@@ -284,14 +284,14 @@ static css_dim_t FLEXBOX_measureNode(void *context, float width)
     NSAssert(self.childrenCountBlock, nil);
     NSUInteger count = self.childrenCountBlock();
     
-    // prepares the nodes for the layout recursively
+    //prepares the nodes for the layout recursively
     for (NSInteger i = 0; i < count; i++) {
         FLEXBOXNode *node = self.childrenAtIndexBlock(i);
         [node prepareForLayout];
     }
     
-    // Apparently we need to reset these before laying out, otherwise the layout
-    // has some weird additive effect.
+    //Apparently we need to reset these before laying out, otherwise the layout
+    //has some weird additive effect.
     self.node->layout.position[CSS_LEFT] = 0;
     self.node->layout.position[CSS_TOP] = 0;
     self.node->layout.dimensions[CSS_WIDTH] = CSS_UNDEFINED;

@@ -9,7 +9,7 @@ typedef struct {
     CGFloat a, b, c, d;
 } CMRFloatQuad;
 
-// RFLKLESS uses HSL, but we have to specify UIColor as HSB
+//RFLKLESS uses HSL, but we have to specify UIColor as HSB
 static inline CMRFloatTriple HSB2HSL(CGFloat hue, CGFloat saturation, CGFloat brightness);
 static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat lightness);
 
@@ -25,27 +25,27 @@ static NSDictionary *CMRW3CNamedColors(void);
 {
     NSArray *colors = [NSArray arrayWithObjects:(id)color1.CGColor, (id)color2.CGColor, nil];
     
-    // Allocate color space
+    //Allocate color space
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    // Allocate the gradients
+    //Allocate the gradients
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)colors, NULL);
     
-    // Allocate bitmap context
-    // The pattern is vertical - it doesn't require the whole width
+    //Allocate bitmap context
+    //The pattern is vertical - it doesn't require the whole width
     CGContextRef bitmapContext = CGBitmapContextCreate(NULL, 1., frame.height, 8, 4 * frame.width, colorSpace, kCGImageAlphaNoneSkipFirst);
-    // Draw Gradient Here
+    //Draw Gradient Here
     CGContextDrawLinearGradient(bitmapContext, gradient, CGPointMake(0.0f, 0.0f), CGPointMake(0, frame.height), kCGImageAlphaNoneSkipFirst);
-    // Create a CGImage from context
+    //Create a CGImage from context
     CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
-    // Create a UIImage from CGImage
+    //Create a UIImage from CGImage
     UIImage *uiImage = [UIImage imageWithCGImage:cgImage];
-    // Release the CGImage
+    //Release the CGImage
     CGImageRelease(cgImage);
-    // Release the bitmap context
+    //Release the bitmap context
     CGContextRelease(bitmapContext);
-    // Release the color space
+    //Release the color space
     CGColorSpaceRelease(colorSpace);
-    // Release the gradient
+    //Release the gradient
     CGGradientRelease(gradient);
     
     return [UIColor colorWithPatternImage:uiImage];
@@ -95,7 +95,7 @@ static NSDictionary *CMRW3CNamedColors(void);
 
 static inline unsigned ToByte(CGFloat f)
 {
-    f = MAX(0, MIN(f, 1)); // Clamp
+    f = MAX(0, MIN(f, 1)); //Clamp
     return (unsigned)round(f * 255);
 }
 
@@ -133,7 +133,7 @@ static inline unsigned ToDeg(CGFloat f)
 
 static inline unsigned ToPercentage(CGFloat f)
 {
-    f = MAX(0, MIN(f, 1)); // Clamp
+    f = MAX(0, MIN(f, 1)); //Clamp
     return (unsigned)round(f * 100);
 }
 
@@ -154,7 +154,7 @@ static inline unsigned ToPercentage(CGFloat f)
     return hsl;
 }
 
-// Fix up getting color components
+//Fix up getting color components
 - (BOOL)cmr_getRed:(CGFloat *)red green:(CGFloat *)green blue:(CGFloat *)blue alpha:(CGFloat *)alpha
 {
     if ([self getRed:red green:green blue:blue alpha:alpha]) {
@@ -240,7 +240,7 @@ static inline unsigned ToPercentage(CGFloat f)
     }];
 }
 
-// Wrap hues in a circle, where [0,1] = [0°,360°]
+//Wrap hues in a circle, where [0,1] = [0°,360°]
 static inline CGFloat CMRNormHue(CGFloat hue)
 {
     return hue - floor(hue);
@@ -361,7 +361,7 @@ static inline CGFloat CMRNormHue(CGFloat hue)
     return success;
 }
 
-// Scan, but only so far
+//Scan, but only so far
 - (NSRange)cmr_scanCharactersInSet:(NSCharacterSet *)chars maxLength:(NSUInteger)maxLength intoString:(NSString **)outString
 {
     NSRange range = [self cmr_rangeFromScanLocation];
@@ -384,7 +384,7 @@ static inline CGFloat CMRNormHue(CGFloat hue)
     return charRange;
 }
 
-// Hex characters
+//Hex characters
 static NSCharacterSet *CMRHexCharacters() {
     static NSCharacterSet *hexChars;
     static dispatch_once_t onceToken;
@@ -394,7 +394,7 @@ static NSCharacterSet *CMRHexCharacters() {
     return hexChars;
 }
 
-// We know we've got hex already, so assume this works
+//We know we've got hex already, so assume this works
 static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
 {
     NSUInteger ans = 0;
@@ -406,25 +406,25 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     return ans;
 }
 
-// Scan FFF or FFFFFF, doesn't reset scan location on failure
+//Scan FFF or FFFFFF, doesn't reset scan location on failure
 - (BOOL)cmr_scanHexTriple:(UIColor **)color
 {
     NSString *hex = nil;
     NSRange range = [self cmr_scanCharactersInSet:CMRHexCharacters() maxLength:6 intoString:&hex];
     CGFloat red, green, blue;
     if (hex.length == 6) {
-        // Parse 2 chars per component
+        //Parse 2 chars per component
         red   = CMRParseHex([hex substringWithRange:NSMakeRange(0, 2)], NO) / 255.0;
         green = CMRParseHex([hex substringWithRange:NSMakeRange(2, 2)], NO) / 255.0;
         blue  = CMRParseHex([hex substringWithRange:NSMakeRange(4, 2)], NO) / 255.0;
     } else if (hex.length >= 3) {
-        // Parse 1 char per component, but repeat it to calculate hex value
+        //Parse 1 char per component, but repeat it to calculate hex value
         red   = CMRParseHex([hex substringWithRange:NSMakeRange(0, 1)], YES) / 255.0;
         green = CMRParseHex([hex substringWithRange:NSMakeRange(1, 1)], YES) / 255.0;
         blue  = CMRParseHex([hex substringWithRange:NSMakeRange(2, 1)], YES) / 255.0;
         self.scanLocation = range.location + 3;
     } else {
-        return NO; // Fail
+        return NO; //Fail
     }
     if (color) {
         *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
@@ -432,7 +432,7 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     return YES;
 }
 
-// Scan "transparent"
+//Scan "transparent"
 - (BOOL)cmr_scanTransparent:(UIColor **)color
 {
     return [self cmr_caseInsensitiveWithCleanup:^BOOL{
@@ -446,8 +446,8 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     }];
 }
 
-// Scan a float or percentage. Multiply float by `scale` if it was not a
-// percentage.
+//Scan a float or percentage. Multiply float by `scale` if it was not a
+//percentage.
 - (BOOL)cmr_scanNum:(CGFloat *)value scale:(CGFloat)scale
 {
     float f = 0.0;
@@ -465,8 +465,8 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     return NO;
 }
 
-// Scan a triple of numbers "(10, 10, 10)". If they are not percentages, multiply
-// by the corresponding `scale` component.
+//Scan a triple of numbers "(10, 10, 10)". If they are not percentages, multiply
+//by the corresponding `scale` component.
 - (BOOL)cmr_scanFloatTriple:(CMRFloatTriple *)triple scale:(CMRFloatTriple)scale
 {
     __block BOOL success = NO;
@@ -486,8 +486,8 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     return success;
 }
 
-// Scan a quad of numbers "(10, 10, 10, 10)". If they are not percentages,
-// multiply by the corresponding `scale` component.
+//Scan a quad of numbers "(10, 10, 10, 10)". If they are not percentages,
+//multiply by the corresponding `scale` component.
 - (BOOL)cmr_scanFloatQuad:(CMRFloatQuad *)quad scale:(CMRFloatQuad)scale
 {
     __block BOOL success = NO;
@@ -544,7 +544,7 @@ static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat l)
     return hsb;
 }
 
-// Color names, longest first
+//Color names, longest first
 static NSArray *CMRW3CColorNames() {
     static NSArray *colorNames;
     static dispatch_once_t onceToken;
@@ -563,8 +563,8 @@ static NSArray *CMRW3CColorNames() {
     return colorNames;
 }
 
-// Color values as defined in RFLKLESS3 spec.
-// See: http://www.w3.org/TR/css3-color/#svg-color
+//Color values as defined in RFLKLESS3 spec.
+//See: http://www.w3.org/TR/css3-color/#svg-color
 static NSDictionary *CMRW3CNamedColors() {
     static NSDictionary *namedColors;
     static dispatch_once_t onceToken;

@@ -1,9 +1,9 @@
 //
-//  MasterViewController.swift
-//  ReflektorDemo
+// MasterViewController.swift
+// ReflektorDemo
 //
-//  Created by Alex Usbergo on 24/04/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 24/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 import UIKit
@@ -25,10 +25,10 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.label.rflk_addTrait("test")
-//        self.view.addSubview(self.label)
+//       self.label.rflk_addTrait("test")
+//       self.view.addSubview(self.label)
         
-        // Do any additional setup after loading the view, typically from a nib.
+        //Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
@@ -41,7 +41,7 @@ class MasterViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        //Dispose of any resources that can be recreated.
     }
 
     func insertNewObject(sender: AnyObject) {
@@ -50,7 +50,7 @@ class MasterViewController: UITableViewController {
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
 
-    // MARK: - Segues
+    //MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
@@ -64,7 +64,7 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View
+    //MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -83,7 +83,7 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+        //Return false if you do not want the specified item to be editable.
         return true
     }
 
@@ -92,7 +92,7 @@ class MasterViewController: UITableViewController {
             objects.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            //Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
 

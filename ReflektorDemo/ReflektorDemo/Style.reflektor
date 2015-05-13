@@ -48,7 +48,6 @@ UIButton:flex-item-first
 {
     include: 'UIButton:flex-item';
     flex-padding: edge-insets(12px,12px,12px,12px);
-    text: 'FIRST!';
     highlighted-text-color: @yellow;
 }
 
@@ -61,7 +60,7 @@ UITableViewCell
 }
 */
 
-/*
+
 rhs
 {
     color-one: #00ff00;
@@ -87,4 +86,4 @@ rhs
     transform-two: transform-rotate(10rad);
     transform-three: transform-translate(10px, 40px);
 }
-*/
+

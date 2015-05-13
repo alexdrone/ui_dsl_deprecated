@@ -1,9 +1,9 @@
 //
-//  RFLKAppearance.m
-//  ReflektorKit
+// RFLKAppearance.m
+// ReflektorKit
 //
-//  Created by Alex Usbergo on 22/04/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 22/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 #import "RFLKAppearance.h"
@@ -96,7 +96,7 @@ static const void *UIViewComputedPropertiesKey;
         for (NSString *key in computedStyle)
             if ([self respondsToSelector:NSSelectorFromString(key)]) {
                 
-                // compute the value and set it in the view
+                //compute the value and set it in the view
                 id value = [computedStyle[key] valueWithTraitCollection:self.traitCollection andBounds:self.bounds.size];
                 if (![value isEqual:[self valueForKey:key]])
                     [self setValue:value forKey:key];
@@ -108,7 +108,7 @@ static const void *UIViewComputedPropertiesKey;
 
 @interface RFLKAppearance ()
 
-// a map from selectors to a dictionary of properties
+//a map from selectors to a dictionary of properties
 @property (nonatomic, strong) NSDictionary *properties;
 @property (nonatomic, strong) NSDictionary *layoutProperties;
 
@@ -127,12 +127,12 @@ static const void *UIViewComputedPropertiesKey;
             UIView *_self = aspectInfo.instance;
             NSDictionary *computedLayoutProperties = [[RFLKAppearance sharedAppearance] computeLayoutPropertiesForView:_self];
             
-            // applies the properties that are marked as !important
+            //applies the properties that are marked as !important
             if (computedLayoutProperties.count != 0) {
                 [_self rflk_applyComputedStyle:computedLayoutProperties];
             }
             
-            // compute the flex layout if this view is a flex container
+            //compute the flex layout if this view is a flex container
             if (_self.flexContainer)
                 [_self flexLayoutSubviews];
             
@@ -144,7 +144,7 @@ static const void *UIViewComputedPropertiesKey;
             
             if (!_self.rflk_observationAdded) {
 
-                // triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
+                //triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
                 _self.rflk_observationAdded = YES;
                 [_self rflk_addObserverForName:RFLKApperanceStylesheetDidChangeNotification usingBlock:^(NSNotification *note) {
                     [_self rflk_stylesheetDidChangeNotification:note];
@@ -180,7 +180,7 @@ static const void *UIViewComputedPropertiesKey;
     self.properties = rflk_parseStylesheet(stylesheet);
     [[NSNotificationCenter defaultCenter] postNotificationName:RFLKApperanceStylesheetDidChangeNotification object:nil userInfo:@{}];
     
-    // filter out the !layout properties
+    //filter out the !layout properties
     NSMutableDictionary *layoutProperties = @{}.mutableCopy;
     for (RFLKSelector *selector in self.properties.allKeys)
         for (NSString *propertyKey in [self.properties[selector] allKeys]) {
@@ -188,7 +188,7 @@ static const void *UIViewComputedPropertiesKey;
             RFLKPropertyValue *value = self.properties[selector][propertyKey];
             if (value.layoutTimeProperty) {
                 
-                // creates a container for the selector
+                //creates a container for the selector
                 if (layoutProperties[selector] == nil)
                     layoutProperties[selector] = @{}.mutableCopy;
                 

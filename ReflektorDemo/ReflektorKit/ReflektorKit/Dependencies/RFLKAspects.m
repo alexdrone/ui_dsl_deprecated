@@ -1,9 +1,9 @@
 //
-//  RFLKAspects.m
-//  RFLKAspects - A delightful, simple library for aspect oriented programming.
+// RFLKAspects.m
+// RFLKAspects - A delightful, simple library for aspect oriented programming.
 //
-//  Copyright (c) 2014 Peter Steinberger. Licensed under the MIT license.
-//  Forked from https://github.com/steipete/RFLKAspects
+// Copyright (c) 2014 Peter Steinberger. Licensed under the MIT license.
+// Forked from https://github.com/steipete/RFLKAspects
 //
 
 #import "RFLKAspects.h"
@@ -15,7 +15,7 @@
 //#define RFLKAspectLog(...) do { NSLog(__VA_ARGS__); }while(0)
 #define RFLKAspectLogError(...) do { NSLog(__VA_ARGS__); }while(0)
 
-// Block internals.
+//Block internals.
 typedef NS_OPTIONS(int, RFLKAspectBlockFlags) {
 	RFLKAspectBlockFlagsHasCopyDisposeHelpers = (1 << 25),
 	RFLKAspectBlockFlagsHasSignature          = (1 << 30)
@@ -28,14 +28,14 @@ typedef struct _RFLKAspectBlock {
 	struct {
 		unsigned long int reserved;
 		unsigned long int size;
-		// requires RFLKAspectBlockFlagsHasCopyDisposeHelpers
+		//requires RFLKAspectBlockFlagsHasCopyDisposeHelpers
 		void (*copy)(void *dst, const void *src);
 		void (*dispose)(const void *);
-		// requires RFLKAspectBlockFlagsHasSignature
+		//requires RFLKAspectBlockFlagsHasSignature
 		const char *signature;
 		const char *layout;
 	} *descriptor;
-	// imported variables
+	//imported variables
 } *RFLKAspectBlockRef;
 
 @interface RFLKAspectInfo : NSObject <RFLKAspectInfo>
@@ -45,7 +45,7 @@ typedef struct _RFLKAspectBlock {
 @property (nonatomic, strong, readonly) NSInvocation *originalInvocation;
 @end
 
-// Tracks a single aspect.
+//Tracks a single aspect.
 @interface RFLKAspectIdentifier : NSObject
 + (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(RFLKAspectOptions)options block:(id)block error:(NSError **)error;
 - (BOOL)invokeWithInfo:(id<RFLKAspectInfo>)info;
@@ -56,7 +56,7 @@ typedef struct _RFLKAspectBlock {
 @property (nonatomic, assign) RFLKAspectOptions options;
 @end
 
-// Tracks all aspects for an object/class.
+//Tracks all aspects for an object/class.
 @interface RFLKAspectsContainer : NSObject
 - (void)addRFLKAspect:(RFLKAspectIdentifier *)aspect withOptions:(RFLKAspectOptions)injectPosition;
 - (BOOL)removeRFLKAspect:(id)aspect;
@@ -99,7 +99,7 @@ static NSString *const RFLKAspectsMessagePrefix = @"aspects_";
     return rflkAspect_add((id)self, selector, options, block, error);
 }
 
-/// @return A token which allows to later deregister the aspect.
+///@return A token which allows to later deregister the aspect.
 - (id<RFLKAspectToken>)rflkAspect_hookSelector:(SEL)selector
                       withOptions:(RFLKAspectOptions)options
                        usingBlock:(id)block
@@ -123,7 +123,7 @@ static id rflkAspect_add(id self, SEL selector, RFLKAspectOptions options, id bl
             if (identifier) {
                 [aspectContainer addRFLKAspect:identifier withOptions:options];
 
-                // Modify the class to allow message interception.
+                //Modify the class to allow message interception.
                 rflkAspect_prepareClassAndHookSelector(self, selector, error);
             }
         }
@@ -136,13 +136,13 @@ static BOOL rflkAspect_remove(RFLKAspectIdentifier *aspect, NSError **error) {
 
     __block BOOL success = NO;
     rflkAspect_performLocked(^{
-        id self = aspect.object; // strongify
+        id self = aspect.object; //strongify
         if (self) {
             RFLKAspectsContainer *aspectContainer = rflkAspect_getContainerForObject(self, aspect.selector);
             success = [aspectContainer removeRFLKAspect:aspect];
 
             rflkAspect_cleanupHookedClassAndSelector(self, aspect.selector);
-            // destroy token
+            //destroy token
             aspect.object = nil;
             aspect.block = nil;
             aspect.selector = NULL;
@@ -203,13 +203,13 @@ static BOOL rflkAspect_isCompatibleBlockSignature(NSMethodSignature *blockSignat
                 signaturesMatch = NO;
             }
         }
-        // Argument 0 is self/block, argument 1 is SEL or id<RFLKAspectInfo>. We start comparing at argument 2.
-        // The block can have less arguments than the method, that's ok.
+        //Argument 0 is self/block, argument 1 is SEL or id<RFLKAspectInfo>. We start comparing at argument 2.
+        //The block can have less arguments than the method, that's ok.
         if (signaturesMatch) {
             for (NSUInteger idx = 2; idx < blockSignature.numberOfArguments; idx++) {
                 const char *methodType = [methodSignature getArgumentTypeAtIndex:idx];
                 const char *blockType = [blockSignature getArgumentTypeAtIndex:idx];
-                // Only compare parameter, not the optional type data.
+                //Only compare parameter, not the optional type data.
                 if (!methodType || !blockType || methodType[0] != blockType[0]) {
                     signaturesMatch = NO; break;
                 }
@@ -239,10 +239,10 @@ static BOOL rflkAspect_isMsgForwardIMP(IMP impl) {
 static IMP rflkAspect_getMsgForwardIMP(NSObject *self, SEL selector) {
     IMP msgForwardIMP = _objc_msgForward;
 #if !defined(__arm64__)
-    // As an ugly internal runtime implementation detail in the 32bit runtime, we need to determine of the method we hook returns a struct or anything larger than id.
-    // https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/LowLevelABI/000-Introduction/introduction.html
-    // https://github.com/ReactiveCocoa/ReactiveCocoa/issues/783
-    // http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042e/IHI0042E_aapcs.pdf (Section 5.4)
+    //As an ugly internal runtime implementation detail in the 32bit runtime, we need to determine of the method we hook returns a struct or anything larger than id.
+    //https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/LowLevelABI/000-Introduction/introduction.html
+    //https://github.com/ReactiveCocoa/ReactiveCocoa/issues/783
+    //http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042e/IHI0042E_aapcs.pdf (Section 5.4)
     Method method = class_getInstanceMethod(self.class, selector);
     const char *encoding = method_getTypeEncoding(method);
     BOOL methodReturnsStructValue = encoding[0] == _C_STRUCT_B;
@@ -269,7 +269,7 @@ static void rflkAspect_prepareClassAndHookSelector(NSObject *self, SEL selector,
     Method targetMethod = class_getInstanceMethod(klass, selector);
     IMP targetMethodIMP = method_getImplementation(targetMethod);
     if (!rflkAspect_isMsgForwardIMP(targetMethodIMP)) {
-        // Make a method alias for the existing method implementation, it not already copied.
+        //Make a method alias for the existing method implementation, it not already copied.
         const char *typeEncoding = method_getTypeEncoding(targetMethod);
         SEL aliasSelector = rflkAspect_aliasForSelector(selector);
         if (![klass instancesRespondToSelector:aliasSelector]) {
@@ -277,13 +277,13 @@ static void rflkAspect_prepareClassAndHookSelector(NSObject *self, SEL selector,
             NSCAssert(addedAlias, @"Original implementation for %@ is already copied to %@ on %@", NSStringFromSelector(selector), NSStringFromSelector(aliasSelector), klass);
         }
 
-        // We use forwardInvocation to hook in.
+        //We use forwardInvocation to hook in.
         class_replaceMethod(klass, selector, rflkAspect_getMsgForwardIMP(self, selector), typeEncoding);
         RFLKAspectLog(@"RFLKAspects: Installed hook for -[%@ %@].", klass, NSStringFromSelector(selector));
     }
 }
 
-// Will undo the runtime changes made.
+//Will undo the runtime changes made.
 static void rflkAspect_cleanupHookedClassAndSelector(NSObject *self, SEL selector) {
     NSCParameterAssert(self);
     NSCParameterAssert(selector);
@@ -294,11 +294,11 @@ static void rflkAspect_cleanupHookedClassAndSelector(NSObject *self, SEL selecto
         klass = (Class)self;
     }
 
-    // Check if the method is marked as forwarded and undo that.
+    //Check if the method is marked as forwarded and undo that.
     Method targetMethod = class_getInstanceMethod(klass, selector);
     IMP targetMethodIMP = method_getImplementation(targetMethod);
     if (rflkAspect_isMsgForwardIMP(targetMethodIMP)) {
-        // Restore the original method implementation.
+        //Restore the original method implementation.
         const char *typeEncoding = method_getTypeEncoding(targetMethod);
         SEL aliasSelector = rflkAspect_aliasForSelector(selector);
         Method originalMethod = class_getInstanceMethod(klass, aliasSelector);
@@ -309,16 +309,16 @@ static void rflkAspect_cleanupHookedClassAndSelector(NSObject *self, SEL selecto
         RFLKAspectLog(@"RFLKAspects: Removed hook for -[%@ %@].", klass, NSStringFromSelector(selector));
     }
 
-    // Deregister global tracked selector
+    //Deregister global tracked selector
     rflkAspect_deregisterTrackedSelector(self, selector);
 
-    // Get the aspect container and check if there are any hooks remaining. Clean up if there are not.
+    //Get the aspect container and check if there are any hooks remaining. Clean up if there are not.
     RFLKAspectsContainer *container = rflkAspect_getContainerForObject(self, selector);
     if (!container.hasRFLKAspects) {
-        // Destroy the container
+        //Destroy the container
         rflkAspect_destroyContainerForObject(self, selector);
 
-        // Figure out how the class was modified to undo the changes.
+        //Figure out how the class was modified to undo the changes.
         NSString *className = NSStringFromClass(klass);
         if ([className hasSuffix:RFLKAspectsSubclassSuffix]) {
             Class originalClass = NSClassFromString([className stringByReplacingOccurrencesOfString:RFLKAspectsSubclassSuffix withString:@""]);
@@ -326,11 +326,11 @@ static void rflkAspect_cleanupHookedClassAndSelector(NSObject *self, SEL selecto
             object_setClass(self, originalClass);
             RFLKAspectLog(@"RFLKAspects: %@ has been restored.", NSStringFromClass(originalClass));
 
-            // We can only dispose the class pair if we can ensure that no instances exist using our subclass.
-            // Since we don't globally track this, we can't ensure this - but there's also not much overhead in keeping it around.
+            //We can only dispose the class pair if we can ensure that no instances exist using our subclass.
+            //Since we don't globally track this, we can't ensure this - but there's also not much overhead in keeping it around.
             //objc_disposeClassPair(object.class);
         }else {
-            // Class is most likely swizzled in place. Undo that.
+            //Class is most likely swizzled in place. Undo that.
             if (isMetaClass) {
                 rflkAspect_undoSwizzleClassInPlace((Class)self);
             }else if (self.class != klass) {
@@ -349,19 +349,19 @@ static Class rflkAspect_hookClass(NSObject *self, NSError **error) {
 	Class baseClass = object_getClass(self);
 	NSString *className = NSStringFromClass(baseClass);
 
-    // Already subclassed
+    //Already subclassed
 	if ([className hasSuffix:RFLKAspectsSubclassSuffix]) {
 		return baseClass;
 
-        // We swizzle a class object, not a single object.
+        //We swizzle a class object, not a single object.
 	}else if (class_isMetaClass(baseClass)) {
         return rflkAspect_swizzleClassInPlace((Class)self);
-        // Probably a KVO'ed class. Swizzle in place. Also swizzle meta classes in place.
+        //Probably a KVO'ed class. Swizzle in place. Also swizzle meta classes in place.
     }else if (statedClass != baseClass) {
         return rflkAspect_swizzleClassInPlace(baseClass);
     }
 
-    // Default case. Create dynamic subclass.
+    //Default case. Create dynamic subclass.
 	const char *subclassName = [className stringByAppendingString:RFLKAspectsSubclassSuffix].UTF8String;
 	Class subclass = objc_getClass(subclassName);
 
@@ -386,7 +386,7 @@ static Class rflkAspect_hookClass(NSObject *self, NSError **error) {
 static NSString *const RFLKAspectsForwardInvocationSelectorName = @"__aspects_forwardInvocation:";
 static void rflkAspect_swizzleForwardInvocation(Class klass) {
     NSCParameterAssert(klass);
-    // If there is no method, replace will act like class_addMethod.
+    //If there is no method, replace will act like class_addMethod.
     IMP originalImplementation = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)__ASPECTS_ARE_BEING_CALLED__, "v@:@");
     if (originalImplementation) {
         class_addMethod(klass, NSSelectorFromString(RFLKAspectsForwardInvocationSelectorName), originalImplementation, "v@:@");
@@ -398,7 +398,7 @@ static void rflkAspect_undoSwizzleForwardInvocation(Class klass) {
     NSCParameterAssert(klass);
     Method originalMethod = class_getInstanceMethod(klass, NSSelectorFromString(RFLKAspectsForwardInvocationSelectorName));
     Method objectMethod = class_getInstanceMethod(NSObject.class, @selector(forwardInvocation:));
-    // There is no class_removeMethod, so the best we can do is to retore the original implementation, or use a dummy.
+    //There is no class_removeMethod, so the best we can do is to retore the original implementation, or use a dummy.
     IMP originalImplementation = method_getImplementation(originalMethod ?: objectMethod);
     class_replaceMethod(klass, @selector(forwardInvocation:), originalImplementation, "v@:@");
 
@@ -457,7 +457,7 @@ static void rflkAspect_undoSwizzleClassInPlace(Class klass) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - RFLKAspect Invoke Point
 
-// This is a macro so we get a cleaner stack trace.
+//This is a macro so we get a cleaner stack trace.
 #define rflkAspect_invoke(aspects, info) \
 for (RFLKAspectIdentifier *aspect in aspects) {\
     [aspect invokeWithInfo:info];\
@@ -466,7 +466,7 @@ for (RFLKAspectIdentifier *aspect in aspects) {\
     } \
 }
 
-// This is the swizzled forwardInvocation: method.
+//This is the swizzled forwardInvocation: method.
 static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL selector, NSInvocation *invocation) {
     NSCParameterAssert(self);
     NSCParameterAssert(invocation);
@@ -478,11 +478,11 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
     RFLKAspectInfo *info = [[RFLKAspectInfo alloc] initWithInstance:self invocation:invocation];
     NSArray *aspectsToRemove = nil;
 
-    // Before hooks.
+    //Before hooks.
     rflkAspect_invoke(classContainer.beforeRFLKAspects, info);
     rflkAspect_invoke(objectContainer.beforeRFLKAspects, info);
 
-    // Instead hooks.
+    //Instead hooks.
     BOOL respondsToAlias = YES;
     if (objectContainer.insteadRFLKAspects.count || classContainer.insteadRFLKAspects.count) {
         rflkAspect_invoke(classContainer.insteadRFLKAspects, info);
@@ -497,11 +497,11 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
         }while (!respondsToAlias && (klass = class_getSuperclass(klass)));
     }
 
-    // After hooks.
+    //After hooks.
     rflkAspect_invoke(classContainer.afterRFLKAspects, info);
     rflkAspect_invoke(objectContainer.afterRFLKAspects, info);
 
-    // If no hooks are installed, call original implementation (usually to throw an exception)
+    //If no hooks are installed, call original implementation (usually to throw an exception)
     if (!respondsToAlias) {
         invocation.selector = originalSelector;
         SEL originalForwardInvocationSEL = NSSelectorFromString(RFLKAspectsForwardInvocationSelectorName);
@@ -512,7 +512,7 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
         }
     }
 
-    // Remove any hooks that are queued for deregistration.
+    //Remove any hooks that are queued for deregistration.
     [aspectsToRemove makeObjectsPerformSelector:@selector(remove)];
 }
 #undef rflkAspect_invoke
@@ -520,7 +520,7 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - RFLKAspect Container Management
 
-// Loads or creates the aspect container.
+//Loads or creates the aspect container.
 static RFLKAspectsContainer *rflkAspect_getContainerForObject(NSObject *self, SEL selector) {
     NSCParameterAssert(self);
     SEL aliasSelector = rflkAspect_aliasForSelector(selector);
@@ -568,7 +568,7 @@ static BOOL rflkAspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, R
         disallowedSelectorList = [NSSet setWithObjects:@"retain", @"release", @"autorelease", @"forwardInvocation:", nil];
     });
 
-    // Check against the blacklist.
+    //Check against the blacklist.
     NSString *selectorName = NSStringFromSelector(selector);
     if ([disallowedSelectorList containsObject:selectorName]) {
         NSString *errorDescription = [NSString stringWithFormat:@"Selector %@ is blacklisted.", selectorName];
@@ -576,7 +576,7 @@ static BOOL rflkAspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, R
         return NO;
     }
 
-    // Additional checks.
+    //Additional checks.
     RFLKAspectOptions position = options&RFLKAspectPositionFilter;
     if ([selectorName isEqualToString:@"dealloc"] && position != RFLKAspectPositionBefore) {
         NSString *errorDesc = @"RFLKAspectPositionBefore is the only valid position when hooking dealloc.";
@@ -590,7 +590,7 @@ static BOOL rflkAspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, R
         return NO;
     }
 
-    // Search for the current class and the class hierarchy IF we are modifying a class object
+    //Search for the current class and the class hierarchy IF we are modifying a class object
     if (class_isMetaClass(object_getClass(self))) {
         Class klass = [self class];
         NSMutableDictionary *swizzledClassesDict = rflkAspect_getSwizzledClassesDict();
@@ -599,7 +599,7 @@ static BOOL rflkAspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, R
             RFLKAspectTracker *tracker = swizzledClassesDict[currentClass];
             if ([tracker.selectorNames containsObject:selectorName]) {
 
-                // Find the topmost class for the log.
+                //Find the topmost class for the log.
                 if (tracker.parentEntry) {
                     RFLKAspectTracker *topmostEntry = tracker.parentEntry;
                     while (topmostEntry.parentEntry) {
@@ -609,13 +609,13 @@ static BOOL rflkAspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, R
                     RFLKAspectError(RFLKAspectErrorSelectorAlreadyHookedInClassHierarchy, errorDescription);
                     return NO;
                 }else if (klass == currentClass) {
-                    // Already modified and topmost!
+                    //Already modified and topmost!
                     return YES;
                 }
             }
         }while ((currentClass = class_getSuperclass(currentClass)));
 
-        // Add the selector as being modified.
+        //Add the selector as being modified.
         currentClass = klass;
         RFLKAspectTracker *parentTracker = nil;
         do {
@@ -625,7 +625,7 @@ static BOOL rflkAspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, R
                 swizzledClassesDict[(id<NSCopying>)currentClass] = tracker;
             }
             [tracker.selectorNames addObject:selectorName];
-            // All superclasses get marked as having a subclass that is modified.
+            //All superclasses get marked as having a subclass that is modified.
             parentTracker = tracker;
         }while ((currentClass = class_getSuperclass(currentClass)));
     }
@@ -673,10 +673,10 @@ static void rflkAspect_deregisterTrackedSelector(id self, SEL selector) {
 
 @implementation NSInvocation (RFLKAspects)
 
-// Thanks to the ReactiveCocoa team for providing a generic solution for this.
+//Thanks to the ReactiveCocoa team for providing a generic solution for this.
 - (id)rflkAspect_argumentAtIndex:(NSUInteger)index {
 	const char *argType = [self.methodSignature getArgumentTypeAtIndex:index];
-	// Skip const type qualifier.
+	//Skip const type qualifier.
 	if (argType[0] == _C_CONST) argType++;
 
 #define WRAP_AND_RETURN(type) do { type val = 0; [self getArgument:&val atIndex:(NSInteger)index]; return @(val); } while (0)
@@ -692,7 +692,7 @@ static void rflkAspect_deregisterTrackedSelector(id self, SEL selector) {
         __autoreleasing Class theClass = Nil;
         [self getArgument:&theClass atIndex:(NSInteger)index];
         return theClass;
-        // Using this list will box the number with the appropriate constructor, instead of the generic NSValue.
+        //Using this list will box the number with the appropriate constructor, instead of the generic NSValue.
 	} else if (strcmp(argType, @encode(char)) == 0) {
 		WRAP_AND_RETURN(char);
 	} else if (strcmp(argType, @encode(int)) == 0) {
@@ -758,7 +758,7 @@ static void rflkAspect_deregisterTrackedSelector(id self, SEL selector) {
 + (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(RFLKAspectOptions)options block:(id)block error:(NSError **)error {
     NSCParameterAssert(block);
     NSCParameterAssert(selector);
-    NSMethodSignature *blockSignature = rflkAspect_blockMethodSignature(block, error); // TODO: check signature compatibility, etc.
+    NSMethodSignature *blockSignature = rflkAspect_blockMethodSignature(block, error); //TODO: check signature compatibility, etc.
     if (!rflkAspect_isCompatibleBlockSignature(blockSignature, object, selector, error)) {
         return nil;
     }
@@ -770,7 +770,7 @@ static void rflkAspect_deregisterTrackedSelector(id self, SEL selector) {
         identifier.block = block;
         identifier.blockSignature = blockSignature;
         identifier.options = options;
-        identifier.object = object; // weak
+        identifier.object = object; //weak
     }
     return identifier;
 }
@@ -780,13 +780,13 @@ static void rflkAspect_deregisterTrackedSelector(id self, SEL selector) {
     NSInvocation *originalInvocation = info.originalInvocation;
     NSUInteger numberOfArguments = self.blockSignature.numberOfArguments;
 
-    // Be extra paranoid. We already check that on hook registration.
+    //Be extra paranoid. We already check that on hook registration.
     if (numberOfArguments > originalInvocation.methodSignature.numberOfArguments) {
         RFLKAspectLogError(@"Block has too many arguments. Not calling %@", info);
         return NO;
     }
 
-    // The `self` of the block will be the RFLKAspectInfo. Optional.
+    //The `self` of the block will be the RFLKAspectInfo. Optional.
     if (numberOfArguments > 1) {
         [blockInvocation setArgument:&info atIndex:1];
     }
@@ -883,7 +883,7 @@ static void rflkAspect_deregisterTrackedSelector(id self, SEL selector) {
 }
 
 - (NSArray *)arguments {
-    // Lazily evaluate arguments, boxing is expensive.
+    //Lazily evaluate arguments, boxing is expensive.
     if (!_arguments) {
         _arguments = self.originalInvocation.aspects_arguments;
     }

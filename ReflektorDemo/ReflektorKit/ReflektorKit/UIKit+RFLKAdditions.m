@@ -1,9 +1,9 @@
 //
-//  UIView+RFLKAdditions.m
-//  ReflektorKit
+// UIView+RFLKAdditions.m
+// ReflektorKit
 //
-//  Created by Alex Usbergo on 22/04/15.
-//  Copyright (c) 2015 Alex Usbergo. All rights reserved.
+// Created by Alex Usbergo on 22/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
 //
 
 #import "UIKit+RFLKAdditions.h"
