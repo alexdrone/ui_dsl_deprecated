@@ -122,7 +122,7 @@ static const void *UIViewComputedPropertiesKey;
     dispatch_once(&onceToken, ^{
         
         NSError *error;
-        [UIView rflkAspect_hookSelector:@selector(layoutSubviews) withOptions:RFLKAspectPositionBefore usingBlock:^(id<RFLKAspectInfo> aspectInfo) {
+        [UIView rflkAspect_hookSelector:@selector(layoutSubviews) withOptions:RFLKAspectPositionAfter usingBlock:^(id<RFLKAspectInfo> aspectInfo) {
             
             UIView *_self = aspectInfo.instance;
             NSDictionary *computedLayoutProperties = [[RFLKAppearance sharedAppearance] computeLayoutPropertiesForView:_self];
@@ -143,22 +143,26 @@ static const void *UIViewComputedPropertiesKey;
             UIView *_self = aspectInfo.instance;
             
             if (!_self.rflk_observationAdded) {
-                
-                // applies the style  a first time
-                [_self rflk_stylesheetDidChangeNotification:nil];
 
                 // triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
                 _self.rflk_observationAdded = YES;
                 [_self rflk_addObserverForName:RFLKApperanceStylesheetDidChangeNotification usingBlock:^(NSNotification *note) {
                     [_self rflk_stylesheetDidChangeNotification:note];
                 }];
+                
+                //applies the stylesheet on the next runloop
+                __weak __typeof(_self) weakSelf = _self;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf rflk_stylesheetDidChangeNotification:nil];
+                });
             }
-
             
         } error:&error];
     });
     
+#ifdef DEBUG
     [[RFLKWatchFileServer sharedInstance] startOnPort:RFLKWatchFileServerDefaultPort];
+#endif
 }
 
 + (instancetype)sharedAppearance

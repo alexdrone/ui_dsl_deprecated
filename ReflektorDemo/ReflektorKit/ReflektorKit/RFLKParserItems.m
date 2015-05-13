@@ -342,7 +342,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@ -> %@ %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero], self.layoutTimeProperty ? @"!layout" : @""];
+    return [NSString stringWithFormat:@"%@ -> %@ %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero], self.layoutTimeProperty ? @"!important" : @""];
 }
 
 @end
@@ -382,7 +382,6 @@
             if (![components[1] hasPrefix:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix]])
                 _trait = components[1];
         }
-        
     }
     
     return self;
@@ -390,18 +389,18 @@
 
 - (BOOL)isEqual:(id)object
 {
-    RFLKSelector *otherSelector = object;
-    
-    if ((self == otherSelector) ||
-        (self.hash == otherSelector.hash))
+    if (object == self)
         return YES;
     
-    return NO;
+    if (![object isKindOfClass:self.class])
+        return NO;
+    
+    return [self.selectorString isEqualToString:[object selectorString]];
 }
 
 - (NSUInteger)hash
 {
-    return self.trait.hash ^ NSStringFromClass(self.associatedClass).hash ^ self.scopeName.hash ^ self.condition.hash;
+    return self.selectorString.hash;
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -413,6 +412,7 @@
     selector->_scopeName = [_scopeName copyWithZone:zone];
     selector->_condition = [_condition copyWithZone:zone];
     selector->_appliesToSubclasses = _appliesToSubclasses;
+    selector->_selectorString = _selectorString;
 
     return selector;
 }

@@ -1,5 +1,4 @@
 
-
 @globals
 {
     @blue: #51beff;
@@ -29,26 +28,28 @@ flex-container
     flex-justify-content: center;
     flex-direction: row;
     flex-align-items: center;
+    y: 44px !important;
+    height: 200px !important;
 }
 
-flex-item
+UIButton:flex-item
 {
     text: 'Foo';
-    background-color: @coral;
-    flex-margin: edge-insets(8,8,8,8);
-    flex-padding: edge-insets(8,8,8,8);
+    tint-color: @coral;
+    flex-margin: edge-insets(8px,8px,8px,8px);
+    flex-padding: edge-insets(8px,8px,8px,8px);
     text-alignment: 1;
-    corner-radius: 50%;
+    corner-radius: 50% !important;
     font: font(@font-name, 12);
     text-color: @whitesmoke;
 }
 
-flex-item-first
+UIButton:flex-item-first
 {
-    include: flex-item;
-    background-color: @green;
-    flex-padding: edge-insets(12,12,12,12);
-    text: 'Baz';
+    include: 'UIButton:flex-item';
+    flex-padding: edge-insets(12px,12px,12px,12px);
+    text: 'FIRST!';
+    highlighted-text-color: @yellow;
 }
 
 

@@ -33,8 +33,40 @@ NSString *const RFLKTokenExpressionNotEqual = @"!=";
 
 NSString *const RFLKTokenInclude = @"include";
 
-#pragma mark - Private functions
+#pragma mark - Utilities
 
+NSString *rflk_stripQuotesFromString(NSString *string)
+{
+    NSString *result = string;
+    
+    if ([string characterAtIndex:0] == '\'' || [string characterAtIndex:0] == '\"')
+        result = [string substringFromIndex:1];
+    
+    if ([result characterAtIndex:result.length-1] == '\'' || [result characterAtIndex:result.length-1] == '\"')
+        result = [result substringToIndex:result.length-1];
+    
+    return result;
+}
+
+NSString *rflk_stringToCamelCase(NSString *string)
+{
+    NSMutableString *output = [NSMutableString string];
+    BOOL makeNextCharacterUpperCase = NO;
+    for (NSInteger i = 0; i < string.length; i++) {
+        
+        unichar c = [string characterAtIndex:i];
+        
+        if (c == '-') {
+            makeNextCharacterUpperCase = YES;
+        } else if (makeNextCharacterUpperCase) {
+            [output appendString:[[NSString stringWithCharacters:&c length:1] uppercaseString]];
+            makeNextCharacterUpperCase = NO;
+        } else {
+            [output appendFormat:@"%C", c];
+        }
+    }
+    return output;
+}
 
 NSArray *rflk_getArgumentForValue(NSString* stringValue)
 {
@@ -84,6 +116,8 @@ NSArray *rflk_getArgumentForValue(NSString* stringValue)
     return arguments;
 }
 
+#pragma mark - Private functions
+
 void rflk_assertOnMalformedValue(NSArray *arguments, NSInteger count, NSString *type, NSString *format)
 {
     NSCAssert(arguments.count == count, @"Malformed %@ value. Expected format: %@", type, format);
@@ -94,15 +128,19 @@ void rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key)
     NSCParameterAssert(dictionary);
     NSCParameterAssert(key);
 
+    key = rflk_stripQuotesFromString(key);
     NSString *inherit = dictionary[key][RFLKTokenInclude];
     
     if (inherit == nil)
         return;
  
-    NSArray *components = [inherit componentsSeparatedByString:RFLKTokenSeparator];
+    NSMutableArray *components = @[].mutableCopy;
+    for (NSString *c in [inherit componentsSeparatedByString:RFLKTokenSeparator])
+         [components addObject:rflk_stripQuotesFromString(c)];
     
-    for (NSString *inheritedKey in components)
+    for (NSString *inheritedKey in components) {
         rflk_flattenInheritance(dictionary, inheritedKey);
+    }
     
     NSMutableDictionary *newValuesForSelector = [dictionary[key] mutableCopy];
     [newValuesForSelector removeObjectForKey:RFLKTokenInclude];
@@ -115,27 +153,6 @@ void rflk_flattenInheritance(NSMutableDictionary *dictionary, NSString *key)
     
     dictionary[key] = newValuesForSelector;
 }
-
-NSString *rflk_stringToCamelCase(NSString *string)
-{
-    NSMutableString *output = [NSMutableString string];
-    BOOL makeNextCharacterUpperCase = NO;
-    for (NSInteger i = 0; i < string.length; i++) {
-        
-        unichar c = [string characterAtIndex:i];
-        
-        if (c == '-') {
-            makeNextCharacterUpperCase = YES;
-        } else if (makeNextCharacterUpperCase) {
-            [output appendString:[[NSString stringWithCharacters:&c length:1] uppercaseString]];
-            makeNextCharacterUpperCase = NO;
-        } else {
-            [output appendFormat:@"%C", c];
-        }
-    }
-    return output;
-}
-
 
 #pragma mark - Public functions
 
@@ -192,17 +209,20 @@ extern void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger
     float numericValue;
     NSScanner *scan = [NSScanner scannerWithString:stringValue];
     
+    //plain number
     if ([scan scanFloat:&numericValue]) {
         value = [NSNumber numberWithFloat:numericValue];
         (*option) = rflk_checkForPresenceOfOptionInString(stringValue, RFLKPropertyValueOptionPercentValue) ? RFLKPropertyValueOptionPercentValue : RFLKPropertyValueOptionNone;
 
+    //boolean value
     } else if ([stringValue isEqualToString:@"true"] || [stringValue isEqualToString:@"false"]) {
         value = [stringValue isEqualToString:@"true"] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO];
         
+    //string (in quotes)
     } else if ([stringValue hasPrefix:@"'"] || [stringValue hasPrefix:@"\""]) {
-        value = [stringValue stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        value = [value stringByReplacingOccurrencesOfString:@"'" withString:@""];
+        value = rflk_stripQuotesFromString(stringValue);
         
+    //css color
     } else if ([stringValue hasPrefix:@"rgb"] || [stringValue hasPrefix:@"hsl"] || [stringValue hasPrefix:@"rgba"] || [stringValue hasPrefix:@"hsla"] || [stringValue hasPrefix:@"#"]) {
         value = [UIColor colorWithRFLKLESS:stringValue];
         
@@ -299,14 +319,16 @@ NSString *rflk_uuid()
 }
 
 //TODO: Add these to the lexer
-void rflk_replaceSymbolsInStylesheet(NSString **stylesheet)
+void rflk_preprocessStylesheet(NSString **stylesheet)
 {
     NSString *s = (*stylesheet);
     
-    //TODO: use regex - this is unsafe
     s = [s stringByReplacingOccurrencesOfString:@"@" withString:RFLKTokenVariablePrefix];
     s = [s stringByReplacingOccurrencesOfString:@"!important" withString:RFLKTokenImportantModifierSuffix];
-    s = [s stringByReplacingOccurrencesOfString:@".?" withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
+    
+    //makes the condition traits unique
+    s = [s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix]
+                                     withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
     (*stylesheet) = s;
 }
 
@@ -321,7 +343,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
     // parse
     //
     {
-        rflk_replaceSymbolsInStylesheet(&stylesheet);
+        rflk_preprocessStylesheet(&stylesheet);
         dictionary = [parser parseText:stylesheet];
     }
     

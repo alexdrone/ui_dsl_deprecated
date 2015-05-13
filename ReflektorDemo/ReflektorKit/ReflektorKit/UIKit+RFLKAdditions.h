@@ -33,11 +33,39 @@
 /// Frame helper (self.frame.size.height)
 @property (nonatomic, assign) CGFloat height;
 
+/// The opacity of the shadow. Defaults to 0. Specifying a value outside the
+@property (nonatomic, assign) CGFloat shadowOpacity;
+
+/// The blur radius used to create the shadow. Defaults to 3.
+@property (nonatomic, assign) CGFloat shadowRadius;
+
+/// The shadow offset. Defaults to (0, -3)
+@property (nonatomic, assign) CGSize shadowOffset;
+
+/// The color of the shadow. Defaults to opaque black.
+@property (nonatomic, strong) UIColor *shadowColor;
+
 @end
 
 @interface UIScreen (RLFKAddtions)
 
 @property (nonatomic, readonly) CGRect rflk_screenBounds;
+
+@end
+
+@interface UIButton (RFLKAdditions)
+
+// Symeetrical to  -[UIButton titleForState:]
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *highlightedText;
+@property (nonatomic, strong) NSString *selectedText;
+@property (nonatomic, strong) NSString *disabledText;
+
+// Symeetrical to  -[UIButton titleColorForState:]
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *highlightedTextColor;
+@property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic, strong) UIColor *disabledTextColor;
 
 @end
 

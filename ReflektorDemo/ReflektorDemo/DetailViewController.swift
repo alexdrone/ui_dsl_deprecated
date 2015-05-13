@@ -13,9 +13,9 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     let container = UIView(frame: CGRectZero)
-    let label1 = UILabel(frame: CGRectZero)
-    let label2 = UILabel(frame: CGRectZero)
-    let label3 = UILabel(frame: CGRectZero)
+    let label1 = UIButton(frame: CGRectZero)
+    let label2 = UIButton(frame: CGRectZero)
+    let label3 = UIButton(frame: CGRectZero)
     
     var detailItem: AnyObject?
 
