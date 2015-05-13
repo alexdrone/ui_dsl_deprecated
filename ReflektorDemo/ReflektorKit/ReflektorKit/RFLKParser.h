@@ -10,7 +10,7 @@
 
 extern NSString *const RFLKTokenVariablePrefix;
 extern NSString *const RFLKTokenImportantModifierSuffix;
-extern NSString *const RFLKTokenConditionPrefix;
+extern NSString *const RFLKTokenConditionTraitSuffix;
 extern NSString *const RFLKTokenAppliesToSubclassesDirective;
 extern NSString *const RFLKTokenSelectorSeparator;
 extern NSString *const RFLKTokenConditionSeparator;

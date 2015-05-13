@@ -44,6 +44,9 @@
 {
     if (self = [super init]) {
         
+        expressionString = [expressionString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        expressionString = rflk_stripQuotesFromString(expressionString);
+        
         _expressionString = expressionString;
         _constant = 0;
         
@@ -87,7 +90,7 @@
             static NSString *const lhsVertical = @"vertical";
             static NSString *const lhsWidth = @"width";
             static NSString *const lhsHeight = @"height";
-            static NSString *const lhsIdiom = @"height";
+            static NSString *const lhsIdiom = @"idiom";
             
             if ([lhsString containsString:lhsHorizontal])
                 _lhs = RFLKExpressionLhsSizeClassHorizontal;
@@ -237,13 +240,16 @@
 {
     if (self = [super init]) {
         
+        originalString = [originalString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        originalString = rflk_stripQuotesFromString(originalString);
+        
         _conditionString = originalString;
         
-        NSMutableArray *conditions = @[].mutableCopy;
-        NSArray *expressions = [originalString componentsSeparatedByString:RFLKTokenConditionSeparator];
+        NSMutableArray *expressions = @[].mutableCopy;
+        NSArray *expressionsStrings = [originalString componentsSeparatedByString:RFLKTokenConditionSeparator];
 
-        for (NSString *expr in expressions)
-            [conditions addObject:[[RFLKExpression alloc] initWithString:expr]];
+        for (NSString *expr in expressionsStrings)
+            [expressions addObject:[[RFLKExpression alloc] initWithString:expr]];
             
         self.expressions = expressions;
     }
@@ -252,9 +258,7 @@
 }
 
 - (BOOL)evaluatConditionWithTraitCollection:(UITraitCollection *)traitCollection andBounds:(CGSize)bounds
-{
-    return YES;
-    
+{    
     BOOL satisfied = YES;
     for (RFLKExpression *expr in self.expressions) {
         satisfied &= [expr evaluateExpressionWithTraitCollection:traitCollection andBounds:bounds];
@@ -379,7 +383,7 @@
         if (components.count > 1) {
             NSAssert(_type == RFLKSelectorTypeClass, @"if it's a compound selector, the base selector should be a class");
             
-            if (![components[1] hasPrefix:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix]])
+            if (![components[1] hasPrefix:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix]])
                 _trait = components[1];
         }
     }
@@ -406,6 +410,10 @@
 - (id)copyWithZone:(NSZone*)zone
 {
     RFLKSelector *selector = [[RFLKSelector alloc] initWithString:_selectorString];
+    
+    if (_condition != nil)
+        selector->_condition = [[RFLKCondition alloc] initWithString:_condition.conditionString];
+    
     return selector;
 }
 

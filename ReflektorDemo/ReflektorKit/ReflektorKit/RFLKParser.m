@@ -17,13 +17,14 @@
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenImportantModifierSuffix = @"-reflektor-important";
 NSString *const RFLKTokenAppliesToSubclassesDirective = @"applies-to-subclasses";
+NSString *const RFLKTokenConditionDirective = @"condition";
 NSString *const RFLKTokenSelectorSeparator = @":";
 NSString *const RFLKTokenSeparator = @",";
 NSString *const RFLKTokenConditionSeparator = @"and";
-NSString *const RFLKTokenConditionPrefix = @"__where";
+NSString *const RFLKTokenConditionTraitSuffix = @"__where";
 NSString *const RFLKTokenExpressionLessThan = @"<";
 NSString *const RFLKTokenExpressionLessThanOrEqual = @"<=";
-NSString *const RFLKTokenExpressionEqual = @"=";
+NSString *const RFLKTokenExpressionEqual = @"==";
 NSString *const RFLKTokenExpressionGreaterThan = @">";
 NSString *const RFLKTokenExpressionGreaterThanOrEqual = @">=";
 NSString *const RFLKTokenExpressionNotEqual = @"!=";
@@ -203,7 +204,6 @@ BOOL rflk_stringHasPrefix(NSString *string, NSArray *prefixes)
 void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *option, BOOL *layoutTimeProperty)
 {
     NSCParameterAssert(stringValue);
-    NSCAssert(![stringValue hasPrefix:RFLKTokenConditionPrefix], @"This can't be a condition value.");
     
     //checks if it's marked with !layout
     (*layoutTimeProperty) = NO;
@@ -342,8 +342,8 @@ void rflk_preprocessStylesheet(NSString **stylesheet)
     s = [s stringByReplacingOccurrencesOfString:@"!important" withString:RFLKTokenImportantModifierSuffix];
     
     //makes the condition traits unique
-    s = [s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix]
-                                     withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionPrefix, rflk_uuid()]];
+    s = [s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix]
+                                     withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix, rflk_uuid()]];
     (*stylesheet) = s;
 }
 
@@ -395,7 +395,6 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
             }
         }
         
-        
         //resolve the variables
         for (NSString *selector in res.allKeys)
             for (NSString *key in [res[selector] allKeys]) {
@@ -429,7 +428,7 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
             RFLKSelector *selector = [[RFLKSelector alloc] initWithString:selectorString];
             
             //check if there's a associated condition
-            NSString *condition = (res)[selectorString][RFLKTokenConditionPrefix];
+            NSString *condition = (res)[selectorString][RFLKTokenConditionDirective];
             if (condition != nil)
                 selector.condition = [[RFLKCondition alloc] initWithString:condition];
             

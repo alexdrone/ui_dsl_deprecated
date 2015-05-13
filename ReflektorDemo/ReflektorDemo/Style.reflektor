@@ -41,14 +41,16 @@ UIButton:flex-item
     text-alignment: 1;
     corner-radius: 50% !important;
     font: font(@font-name, 12);
-    text-color: @whitesmoke;
+    background-color: @orange;
+
 }
 
-UIButton:flex-item-first
+UIButton:flex-item-first:__where
 {
+    condition: 'idiom == phone and width < 600';
     include: 'UIButton:flex-item';
-    flex-padding: edge-insets(12px,12px,12px,12px);
-    highlighted-text-color: @yellow;
+    text: 'First';
+    background-color: @blue;
 }
 
 
