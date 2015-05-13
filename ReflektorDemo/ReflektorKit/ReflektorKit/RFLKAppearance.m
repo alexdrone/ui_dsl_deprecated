@@ -20,6 +20,7 @@ NSString *RFLKApperanceStylesheetDidChangeNotification = @"RFLKApperanceStyleshe
 
 static const void *UIViewTraitsKey;
 static const void *UIViewComputedPropertiesKey;
+static const void *UIVIewResetPropertiesKey;
 
 @implementation UIView (RFLKAppearance)
 
@@ -31,6 +32,16 @@ static const void *UIViewComputedPropertiesKey;
 - (void)setRflk_computedProperties:(NSDictionary*)rflk_computedProperties
 {
     objc_setAssociatedObject(self, &UIViewComputedPropertiesKey, rflk_computedProperties, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (NSDictionary*)rflk_resetProperties
+{
+    return objc_getAssociatedObject(self, &UIVIewResetPropertiesKey);
+}
+
+- (void)setRflk_resetProperties:(NSDictionary*)rflk_resetProperties
+{
+    objc_setAssociatedObject(self, &UIVIewResetPropertiesKey, rflk_resetProperties, OBJC_ASSOCIATION_RETAIN);
 }
 
 - (NSSet*)rflk_traits
@@ -91,6 +102,32 @@ static const void *UIViewComputedPropertiesKey;
 
 - (void)rflk_applyComputedStyle:(NSDictionary*)computedStyle
 {
+    //reset the view before applying the style (this happens only for the variables
+    //that are not applied at runtime - the ones marked with !important)
+    if ([computedStyle isEqualToDictionary:self.rflk_computedProperties]) {
+    
+        //reset the view
+        for (NSString *key in self.rflk_resetProperties)
+            if ([self respondsToSelector:NSSelectorFromString(key)]) {
+                id value = self.rflk_resetProperties[key];
+                
+                //reset the view with the old value
+                if (![[self valueForKey:key] isEqual:value])
+                    [self setValue:(value == NSNull.null ? nil : value) forKey:key];
+            }
+        
+        NSMutableDictionary *resetProperties = @{}.mutableCopy;
+        
+        //computes the new reset properties set
+        for (NSString *key in self.rflk_computedProperties)
+            if ([self respondsToSelector:NSSelectorFromString(key)]) {
+                id value = [self valueForKey:key];
+                resetProperties[key] = value ? value : NSNull.null;
+            }
+        
+        self.rflk_resetProperties = resetProperties;
+    }
+    
     if (computedStyle.count != 0) {
         
         for (NSString *key in computedStyle)
@@ -144,6 +181,8 @@ static const void *UIViewComputedPropertiesKey;
             
             if (!_self.rflk_observationAdded) {
 
+                [_self rflk_stylesheetDidChangeNotification:nil];
+                
                 //triggers rflk_stylesheetDidChangeNotification to be called when the stylesheet changes
                 _self.rflk_observationAdded = YES;
                 [_self rflk_addObserverForName:RFLKApperanceStylesheetDidChangeNotification usingBlock:^(NSNotification *note) {

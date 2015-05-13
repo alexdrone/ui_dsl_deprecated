@@ -198,12 +198,28 @@
             condition = "selector.condition != nil"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
-            timestampString = "453220941.738986"
+            timestampString = "453232387.588111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "-computeStyleFromDictionary:forClass:withTraits:traitCollection:bounds:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit/ReflektorKit/RFLKAppearance.m"
+            timestampString = "453232387.588111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "-rflk_applyComputedStyle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

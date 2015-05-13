@@ -15,6 +15,9 @@ extern NSString *RFLKApperanceStylesheetDidChangeNotification;
 ///All the computed properties for this view
 @property (nonatomic, strong) NSDictionary *rflk_computedProperties;
 
+///Used to reset the applied style
+@property (nonatomic, strong) NSDictionary *rflk_resetProperties;
+
 ///The current set of traits that belong to this view
 @property (nonatomic, readonly) NSSet *rflk_traits;
 

@@ -16,10 +16,7 @@
     @compact-condition: 'vertical = regular and width < 200';
 }
 
-UILabel
-{
-    background-color: @coral;
-}
+
 
 flex-container
 {
@@ -47,9 +44,9 @@ UIButton:flex-item
 
 UIButton:flex-item-first:__where
 {
-    condition: 'idiom == phone and width < 600';
+    condition: 'idiom == phone';
     include: 'UIButton:flex-item';
-    text: 'First';
+    text: 'Foo';
     background-color: @blue;
 }
 
