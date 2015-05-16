@@ -13,7 +13,7 @@
 #import "RFLKParserItems.h"
 #import "UIKit+RFLKAdditions.h"
 #import "UIView+FLEXBOX.h"
-#import "FLEXBOXDirectives.h"
+#import "RFLKParserKeywords.h"
 
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenImportantModifierSuffix = @"-reflektor-important";
@@ -216,9 +216,9 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
     id value = stringValue;
     
     //check for flexbox values
-    id flexboxValue = FLEXBOX_parseCSSValue(value);
-    if (flexboxValue != nil) {
-        (*returnValue) = flexboxValue;
+    id keywordValue = rflk_parseKeyword(value);
+    if (keywordValue != nil) {
+        (*returnValue) = keywordValue;
         return;
     }
     

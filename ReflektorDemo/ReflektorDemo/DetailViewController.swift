@@ -24,7 +24,6 @@ class DetailViewController: UIViewController {
         //Do any additional setup after loading the view, typically from a nib.
 
         container.frame = self.view.bounds
-        container.autoresizingMask = .FlexibleHeight | .FlexibleWidth
         container.rflk_addTrait("flex-container")
         
         label1.rflk_addTrait("flex-item-first")

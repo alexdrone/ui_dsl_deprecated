@@ -31,6 +31,7 @@ flex-container
     y: 44px !important;
     height: 500px !important;
     flex-direction: row;
+    autoresizing-mask: flexible-height,flexible-width;
 }
 
 UIButton:flex-item

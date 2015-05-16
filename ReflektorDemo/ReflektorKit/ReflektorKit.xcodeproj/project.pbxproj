@@ -40,7 +40,7 @@
 		16D734C11B07CA90006A306B /* FLEXBOXContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D734BD1B07CA90006A306B /* FLEXBOXContainerView.m */; };
 		16D734C21B07CA90006A306B /* FLEXBOXNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 16D734BE1B07CA90006A306B /* FLEXBOXNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16D734C31B07CA90006A306B /* FLEXBOXNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D734BF1B07CA90006A306B /* FLEXBOXNode.m */; };
-		16D734C41B07CB79006A306B /* FLEXBOXDirectives.h in Headers */ = {isa = PBXBuildFile; fileRef = 16D734BB1B07CA48006A306B /* FLEXBOXDirectives.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16D734C41B07CB79006A306B /* RFLKParserKeywords.h in Headers */ = {isa = PBXBuildFile; fileRef = 16D734BB1B07CA48006A306B /* RFLKParserKeywords.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +75,7 @@
 		16B759381AF68CBE005F55CF /* RFLKAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLKAsyncSocket.m; sourceTree = "<group>"; };
 		16B7593B1AF68CF1005F55CF /* RFLKWatchFileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLKWatchFileServer.h; sourceTree = "<group>"; };
 		16B7593C1AF68CF1005F55CF /* RFLKWatchFileServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLKWatchFileServer.m; sourceTree = "<group>"; };
-		16D734BB1B07CA48006A306B /* FLEXBOXDirectives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLEXBOXDirectives.h; sourceTree = "<group>"; };
+		16D734BB1B07CA48006A306B /* RFLKParserKeywords.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RFLKParserKeywords.h; path = Dependencies/Flexbox/RFLKParserKeywords.h; sourceTree = "<group>"; };
 		16D734BC1B07CA90006A306B /* FLEXBOXContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXBOXContainerView.h; sourceTree = "<group>"; };
 		16D734BD1B07CA90006A306B /* FLEXBOXContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXBOXContainerView.m; sourceTree = "<group>"; };
 		16D734BE1B07CA90006A306B /* FLEXBOXNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXBOXNode.h; sourceTree = "<group>"; };
@@ -104,7 +104,6 @@
 				16066ACC1B028EFF000514B0 /* Layout.c */,
 				16066ACE1B028EFF000514B0 /* UIView+FLEXBOX.h */,
 				16066ACF1B028EFF000514B0 /* UIView+FLEXBOX.m */,
-				16D734BB1B07CA48006A306B /* FLEXBOXDirectives.h */,
 			);
 			path = Flexbox;
 			sourceTree = "<group>";
@@ -135,6 +134,7 @@
 				1677817C1AEA70B700668B47 /* RFLKParserItems.m */,
 				1677817F1AEA70B700668B47 /* RFLKParser.h */,
 				1677817E1AEA70B700668B47 /* RFLKParser.m */,
+				16D734BB1B07CA48006A306B /* RFLKParserKeywords.h */,
 				167781801AEA70B700668B47 /* RFLKMacros.h */,
 				167781821AEA70B700668B47 /* RFLKAppearance.h */,
 				167781811AEA70B700668B47 /* RFLKAppearance.m */,
@@ -184,7 +184,7 @@
 			files = (
 				16D734C01B07CA90006A306B /* FLEXBOXContainerView.h in Headers */,
 				16D734C21B07CA90006A306B /* FLEXBOXNode.h in Headers */,
-				16D734C41B07CB79006A306B /* FLEXBOXDirectives.h in Headers */,
+				16D734C41B07CB79006A306B /* RFLKParserKeywords.h in Headers */,
 				167781481AEA707F00668B47 /* ReflektorKit.h in Headers */,
 				1677818C1AEA70B700668B47 /* RFLKAppearance.h in Headers */,
 				16066AD61B028EFF000514B0 /* UIView+FLEXBOX.h in Headers */,
