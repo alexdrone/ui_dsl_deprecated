@@ -359,8 +359,26 @@ foo {
 	edge: edge-insets(1px, 2px, 3px, 4px);
 	text: locale('KEY');
 	vector: vector(2px, 23px, #bbbbbb, #cccccc);
+	
+	/* Most UIKit's enums and options have a reserved keyword in the stylesheet
+	The ',' between the two is interpreted as an OR ( '|' ) */
+	autoresizing-mask: flexible-height,flexible-width,flexible-left-margin,flexible-right-margin,flexible-top-margin,flexible-bottom-margin;
+	 
+	content-mode: mode-scale-to-fill;
+	
+	/* Flexbox directives*/
+	flex-minimum-size: size(100px, 20px);
+	flex-maximum-size: size(100px, 20px);
+	flex-fixed-size: size(50px, 50px);
+	flex-direction: row;
+	flex-margin: edge-insets(8px,8px,8px,8px);
+	flex-padding:  edge-insets(8px,8px,8px,8px);
+	flex-wrap: wrap;
+	flex-justify-content: center;
+	flex-align-self: stretch;
+	flex-align-items: center;
+	flex: 1;	
 }
-
 
 ```
 
