@@ -16,17 +16,21 @@
     @compact-condition: 'vertical = regular and width < 200';
 }
 
-
+UILabel
+{
+    applies-to-subclasses: true;
+    border-color: @blue !important;
+    border-width: 1px !important;
+}
 
 flex-container
 {
     background-color: @steelblue;
     flex-container: true;
     flex-justify-content: center;
-    flex-direction: row;
-    flex-align-items: center;
     y: 44px !important;
-    height: 200px !important;
+    height: 500px !important;
+    flex-direction: row;
 }
 
 UIButton:flex-item
@@ -39,7 +43,8 @@ UIButton:flex-item
     corner-radius: 50% !important;
     font: font(@font-name, 12);
     background-color: @orange;
-
+    flex-maximum-size: size(200px,50px);
+    flex-align-self: center;
 }
 
 UIButton:flex-item-first:__where

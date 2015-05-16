@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #endif
 
-//Not defined in MSVC++
+// Not defined in MSVC++
 #ifndef NAN
 static const unsigned long __nan[2] = {0xffffffff, 0x7fffffff};
 #define NAN (*(const float *)__nan)
@@ -44,8 +44,8 @@ typedef enum {
   CSS_JUSTIFY_SPACE_AROUND
 } css_justify_t;
 
-//Note: auto is only a valid value for alignSelf. It is NOT a valid value for
-//alignItems.
+// Note: auto is only a valid value for alignSelf. It is NOT a valid value for
+// alignItems.
 typedef enum {
   CSS_ALIGN_AUTO = 0,
   CSS_ALIGN_FLEX_START,
@@ -64,13 +64,15 @@ typedef enum {
   CSS_WRAP
 } css_wrap_type_t;
 
-//Note: left and top are shared between position[2] and position[4], so
-//they have to be before right and bottom.
+// Note: left and top are shared between position[2] and position[4], so
+// they have to be before right and bottom.
 typedef enum {
   CSS_LEFT = 0,
   CSS_TOP,
   CSS_RIGHT,
   CSS_BOTTOM,
+  CSS_START,
+  CSS_END,
   CSS_POSITION_COUNT
 } css_position_t;
 
@@ -83,8 +85,8 @@ typedef struct {
   float position[4];
   float dimensions[2];
 
-  //Instead of recomputing the entire layout every single time, we
-  //cache some information to break early when nothing changed
+  // Instead of recomputing the entire layout every single time, we
+  // cache some information to break early when nothing changed
   bool should_update;
   float last_requested_dimensions[2];
   float last_parent_max_width;
@@ -106,7 +108,7 @@ typedef struct {
   css_position_type_t position_type;
   css_wrap_type_t flex_wrap;
   float flex;
-  float margin[4];
+  float margin[6];
   float position[4];
   /**
    * You should skip all the rules that contain negative values for the
@@ -118,8 +120,8 @@ typedef struct {
    *   {left: -5 ...}
    *   {left: 0 ...}
    */
-  float padding[4];
-  float border[4];
+  float padding[6];
+  float border[6];
   float dimensions[2];
   float minDimensions[2];
   float maxDimensions[2];
@@ -138,12 +140,12 @@ typedef struct css_node {
 } css_node_t;
 
 
-//Lifecycle of nodes and children
+// Lifecycle of nodes and children
 css_node_t *new_css_node(void);
 void init_css_node(css_node_t *node);
 void free_css_node(css_node_t *node);
 
-//Print utilities
+// Print utilities
 typedef enum {
   CSS_PRINT_LAYOUT = 1,
   CSS_PRINT_STYLE = 2,
@@ -151,7 +153,7 @@ typedef enum {
 } css_print_options_t;
 void print_css_node(css_node_t *node, css_print_options_t options);
 
-//Function that computes the layout!
+// Function that computes the layout!
 void layoutNode(css_node_t *node, float maxWidth, css_direction_t parentDirection);
 bool isUndefined(float value);
 

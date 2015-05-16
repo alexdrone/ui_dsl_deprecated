@@ -15,6 +15,7 @@
 #import "UIKit+RFLKAdditions.h"
 #import "RFLKWatchFileServer.h"
 #import "UIView+FLEXBOX.h"
+#import "FLEXBOXNode.h"
 
 NSString *RFLKApperanceStylesheetDidChangeNotification = @"RFLKApperanceStylesheetDidChangeNotification";
 

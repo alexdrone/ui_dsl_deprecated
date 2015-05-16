@@ -45,6 +45,9 @@
 ///The color of the shadow. Defaults to opaque black.
 @property (nonatomic, strong) UIColor *shadowColor;
 
+///Wheter this view uses flexbox layout for its children or not
+@property (nonatomic, assign) BOOL flexContainer;
+
 @end
 
 @interface UIScreen (RLFKAddtions)

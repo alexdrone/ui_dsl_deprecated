@@ -13,6 +13,7 @@
 #import "RFLKParserItems.h"
 #import "UIKit+RFLKAdditions.h"
 #import "UIView+FLEXBOX.h"
+#import "FLEXBOXDirectives.h"
 
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenImportantModifierSuffix = @"-reflektor-important";

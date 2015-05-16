@@ -8,6 +8,9 @@
 
 #import "UIKit+RFLKAdditions.h"
 #import "RFLKMacros.h"
+#import <objc/runtime.h>
+
+static void *UIViewFlexContainerKey;
 
 #pragma mark - UIView
 
@@ -135,6 +138,16 @@
 - (void)setShadowColor:(UIColor*)shadowColor
 {
     self.layer.shadowColor = shadowColor.CGColor;
+}
+
+- (BOOL)flexContainer
+{
+    return [objc_getAssociatedObject(self, &UIViewFlexContainerKey) boolValue];
+}
+
+- (void)setFlexContainer:(BOOL)flexContainer
+{
+    objc_setAssociatedObject(self, &UIViewFlexContainerKey, @(flexContainer), OBJC_ASSOCIATION_RETAIN);
 }
 
 @end
