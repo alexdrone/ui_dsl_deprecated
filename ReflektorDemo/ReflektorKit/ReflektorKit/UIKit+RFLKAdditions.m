@@ -257,6 +257,32 @@ static void *UIViewFlexContainerKey;
 
 @end
 
+#pragma mark - UIImage
+
+@implementation UIImage (RFLKAdditions)
+
++ (UIImage*)rflk_imageWithColor:(UIColor*)color
+{
+    return [self rflk_imageWithColor:color size:(CGSize){1,1}];
+}
+
++ (UIImage*)rflk_imageWithColor:(UIColor*)color size:(CGSize)size
+{
+    CGRect rect = (CGRect){CGPointZero, size};
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+@end
+
 #pragma mark - UINotificationCenter
 
 typedef void (^_RFLKDeallocBlock)();

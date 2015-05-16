@@ -44,7 +44,7 @@ UIButton:flex-item
     text-alignment: 1;
     corner-radius: 50% !important;
     font: font(@font-name, 12);
-    background-color: @orange;
+    background-color: linear-gradient(@tomato, @yellow);
 }
 
 UIButton:flex-item-first:__where
@@ -61,7 +61,8 @@ UIImageView:image
     border-color: @orange;
     border-width: 1px;
     flex-align-self: center;
-    image: image('testImage');
+    image: image(linear-gradient(@tomato, @yellow));
+    content-mode: mode-scale-to-fill;
 }
 
 

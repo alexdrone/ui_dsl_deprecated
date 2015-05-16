@@ -270,7 +270,7 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
            
         } else if (rflk_stringHasPrefix(stringValue, @[@"image"])) {
             rflk_assertOnMalformedValue(arguments, 1, @"image", @"size(imagename)");
-            value = rflk_stripQuotesFromString(arguments[0]);
+            rflk_parseRhsValue(arguments[0], &value, option, layoutTimeProperty);
             (*option) = RFLKPropertyValueOptionImage;
             
         } else if (rflk_stringHasPrefix(stringValue, @[@"transform-scale"])) {

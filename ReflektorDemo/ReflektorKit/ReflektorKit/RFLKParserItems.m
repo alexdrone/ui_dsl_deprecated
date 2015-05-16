@@ -340,8 +340,26 @@
         
         //image
         if (container.option & RFLKPropertyValueOptionImage) {
-            NSAssert([container.value isKindOfClass:NSString.class], nil);
-            return [UIImage imageNamed:container.value];
+            
+            //unwrap the value if the contained value is a proxy as well
+            id value = container.value;
+            if ([value isKindOfClass:RFLKPropertyValueContainer.class]) {
+                value = [value valueWithTraitCollection:traitCollection andBounds:bounds];
+            }
+            
+            if ([value isKindOfClass:NSString.class]) {
+                return [UIImage imageNamed:value];
+                
+            } else if ([value isKindOfClass:UIColor.class]){
+                return [UIImage rflk_imageWithColor:value];
+                
+            } else if ([value isKindOfClass:NSArray.class] && [value count] == 2 && [value[0] isKindOfClass:UIColor.class] && [value[1] isKindOfClass:UIColor.class]){
+                return [UIImage rflk_imageWithColor:[UIColor gradientFromColor:value[0] toColor:value[1] withSize:bounds] size:bounds];
+                
+            } else {
+                NSAssert(NO, @"Invalid argument for an image value");
+            }
+            
         }
         
         return container.value;

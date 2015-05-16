@@ -72,6 +72,13 @@
 
 @end
 
+@interface UIImage (RFLKAdditions)
+
++ (UIImage*)rflk_imageWithColor:(UIColor*)color;
++ (UIImage*)rflk_imageWithColor:(UIColor*)color size:(CGSize)size;
+
+@end
+
 @interface NSObject (RFLKAutoRemovalNotification)
 
 @property (nonatomic, assign) BOOL rflk_observationAdded;

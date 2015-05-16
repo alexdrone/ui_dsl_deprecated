@@ -134,6 +134,7 @@ N.B. All the components inside this rhs functions can be variables (prefixed wit
 - `transform-translate(X px, Y px)` a CGAffineTransform
 - `vector(VAL, VAL, ...)` an NSArray whose components can be any of the previous definitions (or a variable) **but not** a nested vector.
 - `image('imageName')` for an image.
+- `image(COLOR)` for an image from a color (even a linear-gradient!).
 - `flexible-height,flexible-width,flexible-left-margin,flexible-right-margin,flexible-top-margin,flexible-bottom-margin` as valid UIViewAutoresingMask values (the comma between the values is interpreted as an OR between the options).
 
 
