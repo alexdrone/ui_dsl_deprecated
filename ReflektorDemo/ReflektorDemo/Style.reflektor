@@ -43,7 +43,7 @@ UIButton:flex-item
     corner-radius: 50% !important;
     font: font(@font-name, 12);
     background-color: @orange;
-    flex-maximum-size: size(200px,50px);
+    flex-minimum-size: size(32px, 0px);
     flex-align-self: center;
 }
 
@@ -51,7 +51,7 @@ UIButton:flex-item-first:__where
 {
     condition: 'idiom == phone';
     include: 'UIButton:flex-item';
-    text: 'Foo';
+    text: 'This is a long text';
     background-color: @blue;
 }
 
