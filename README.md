@@ -223,8 +223,64 @@ e.g.
 UILabel {
 	applies-to-subclasses: true;
 }
-
 ```
+
+##Flexbox
+
+ReflektorKit includes **Facebook**'s implementation of CSS'*Flexbox* and wraps all the flexbox directives in a UIView category.
+To make a view a flexbox container (a view that lays out its children using flexbox directives) you simply have to set the UIView's category property `flexContainer` to `YES`.
+
+e.g.
+
+```css
+
+UILabel {
+	flex-container: true;
+}
+```
+Once you've done that, you can define your layout logic using the following flexbox properties (see `UIView+FLEXBOX`)
+
+```css
+
+UILabel {
+	/* The minumum size for this element */
+	flex-minimum-size: size(...,...);
+	
+	/* The maximum size for this element */
+	flex-maximum-size: size(...,...);
+	
+	/* if you wish to have a fixed size for this element */
+	flex-fixed-size: size(...,...);
+	
+	/* It establishes the main-axis, thus defining the direction flex items are placed in the flex container. */
+	flex-direction: row|column|row-reverse|colum-reverse;
+	
+	/* The margins for this flex item (default is 0) */
+	flex-margin: edge-insets(...,...,...,...);
+	
+	/* The padding for this flex item (default is 0) */
+	flex-padding: edge-insets(...,...,...,...);
+	
+	/* Make the flexible items wrap if necesarry (default is wrap)*/
+	flex-wrap: wrap|nowrap;
+	
+	/* It defines the alignment along the main axis. It helps distribute extra free 
+	space leftover when either all the flex items on a line are inflexible, or are 
+	flexible but have reached their maximum size. It also exerts some control over 
+	the alignment of items when they overflow the line (default is flex-start) */
+	flex-justify-content: flex-start|flex-end|center|space-between|space-around;
+	
+	/* Center the alignments for one of the items inside a flexible element (default is auto) */
+	flex-align-self: auto|stretch|center|flex-start|flex-end;
+	
+	/* Center the alignments for one of the items inside a flexible element (default is stretch) */
+	flex-align-items: stretch|center|flex-start|flex-end;
+	
+	/* The flex property specifies the initial length of a flexible item */
+	flex: 1;	
+}
+```
+
 
 ##Example of a stylesheet
 
