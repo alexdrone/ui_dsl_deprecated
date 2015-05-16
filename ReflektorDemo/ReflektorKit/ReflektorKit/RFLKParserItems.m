@@ -338,6 +338,12 @@
             return [UIColor gradientFromColor:container.value[0] toColor:container.value[1] withSize:bounds];
         }
         
+        //image
+        if (container.option & RFLKPropertyValueOptionImage) {
+            NSAssert([container.value isKindOfClass:NSString.class], nil);
+            return [UIImage imageNamed:container.value];
+        }
+        
         return container.value;
     };
     

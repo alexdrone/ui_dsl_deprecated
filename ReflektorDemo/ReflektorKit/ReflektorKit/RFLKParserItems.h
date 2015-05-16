@@ -66,9 +66,9 @@ typedef NS_ENUM(NSInteger, RFLKExpressionRhs) {
 typedef NS_OPTIONS(NSInteger, RFLKPropertyValueOption) {
     RFLKPropertyValueOptionNone = 0,
     RFLKPropertyValueOptionPercentValue = 1 << 1,
-    RFLKPropertyValueOptionLinearGradient = 1 << 2
+    RFLKPropertyValueOptionLinearGradient = 1 << 2,
+    RFLKPropertyValueOptionImage = 1 << 3
 };
-
 
 @interface RFLKPropertyValue : NSObject
 

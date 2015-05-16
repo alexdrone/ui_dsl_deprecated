@@ -27,11 +27,12 @@ flex-container
 {
     background-color: @steelblue;
     flex-container: true;
-    flex-justify-content: center;
     y: 44px !important;
     height: 500px !important;
-    flex-direction: row;
     autoresizing-mask: flexible-height,flexible-width;
+    flex-wrap: wrap;
+    flex-align-items: center;
+    flex-justify-content: center;
 }
 
 UIButton:flex-item
@@ -44,8 +45,6 @@ UIButton:flex-item
     corner-radius: 50% !important;
     font: font(@font-name, 12);
     background-color: @orange;
-    flex-minimum-size: size(32px, 0px);
-    flex-align-self: center;
 }
 
 UIButton:flex-item-first:__where
@@ -56,6 +55,14 @@ UIButton:flex-item-first:__where
     background-color: @blue;
 }
 
+UIImageView:image
+{
+    flex-fixed-size: size(150px,150px);
+    border-color: @orange;
+    border-width: 1px;
+    flex-align-self: center;
+    image: image('testImage');
+}
 
 
 /*

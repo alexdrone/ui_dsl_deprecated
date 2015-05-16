@@ -177,20 +177,13 @@ NSString *rflk_bundlePath(NSString *file, NSString *extension)
 
 BOOL rflk_checkForPresenceOfOptionInString(NSString *string, RFLKPropertyValueOption option)
 {
-    switch (option) {
-        case RFLKPropertyValueOptionNone:
-            return YES;
-            break;
-            
-        case RFLKPropertyValueOptionPercentValue:
-            return [string containsString:@"%"];
-            
-        case RFLKPropertyValueOptionLinearGradient:
-            return NO;
-            
-        default:
-            break;
-    }
+    if (option == RFLKPropertyValueOptionNone)
+        return YES;
+    
+    else if (option == RFLKPropertyValueOptionPercentValue)
+        return [string containsString:@"%"];
+    else
+        return NO;
 }
 
 BOOL rflk_stringHasPrefix(NSString *string, NSArray *prefixes)
@@ -255,7 +248,7 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
 
         if (rflk_stringHasPrefix(stringValue, @[@"font"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"font", @"font('font postscript name', size)");
-            NSString *fontName = [[arguments[0] stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+            NSString *fontName = rflk_stripQuotesFromString(arguments[0]);
             value = [UIFont fontWithName:fontName size:[arguments[1] floatValue]];
             (*option) = rflk_checkForPresenceOfOptionInString(arguments[1], RFLKPropertyValueOptionPercentValue) ? RFLKPropertyValueOptionPercentValue : RFLKPropertyValueOptionNone;
             
@@ -274,6 +267,11 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
         } else if (rflk_stringHasPrefix(stringValue, @[@"size"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"size", @"size(width, height)");
             value = [NSValue valueWithCGSize:(CGSize){[arguments[0] floatValue], [arguments[1] floatValue]}];
+           
+        } else if (rflk_stringHasPrefix(stringValue, @[@"image"])) {
+            rflk_assertOnMalformedValue(arguments, 1, @"image", @"size(imagename)");
+            value = rflk_stripQuotesFromString(arguments[0]);
+            (*option) = RFLKPropertyValueOptionImage;
             
         } else if (rflk_stringHasPrefix(stringValue, @[@"transform-scale"])) {
             rflk_assertOnMalformedValue(arguments, 2, @"transform-scale", @"transform-scale(x, y)");

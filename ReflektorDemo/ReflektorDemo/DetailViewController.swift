@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     let label1 = UIButton(frame: CGRectZero)
     let label2 = UIButton(frame: CGRectZero)
     let label3 = UIButton(frame: CGRectZero)
+    let image = UIImageView(frame: CGRectZero)
     
     var detailItem: AnyObject?
 
@@ -29,10 +30,12 @@ class DetailViewController: UIViewController {
         label1.rflk_addTrait("flex-item-first")
         label2.rflk_addTrait("flex-item")
         label3.rflk_addTrait("flex-item")
+        image.rflk_addTrait("image")
         
         container.addSubview(label1)
         container.addSubview(label2)
         container.addSubview(label3)
+        container.addSubview(image)
         
         self.view.addSubview(container)
 
