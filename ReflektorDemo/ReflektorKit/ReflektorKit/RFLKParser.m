@@ -13,7 +13,6 @@
 #import "RFLKParserItems.h"
 #import "UIKit+RFLKAdditions.h"
 #import "UIView+FLEXBOX.h"
-#import "RFLKParserKeywords.h"
 
 NSString *const RFLKTokenVariablePrefix = @"-reflektor-variable-";
 NSString *const RFLKTokenImportantModifierSuffix = @"-reflektor-important";
@@ -121,6 +120,86 @@ NSArray *rflk_getArgumentForValue(NSString* stringValue)
     
     return arguments;
 }
+
+#pragma mark - Reserved Rhs values
+
+NSDictionary *rflk_rhsKeywordsMap()
+{
+    static NSDictionary *__mapping;
+    
+    if (__mapping == nil) {
+        __mapping = @{
+                      
+            //autoresizing masks
+            @"none": @(0),
+            @"flexible-left-margin": @(UIViewAutoresizingFlexibleLeftMargin),
+            @"flexible-width": @(UIViewAutoresizingFlexibleWidth),
+            @"flexible-right-margin": @(UIViewAutoresizingFlexibleRightMargin),
+            @"flexible-top-margin": @(UIViewAutoresizingFlexibleTopMargin),
+            @"flexible-height": @(UIViewAutoresizingFlexibleHeight),
+            @"flexible-bottom-margin": @(UIViewAutoresizingFlexibleBottomMargin),
+
+            //content mode
+            @"mode-scale-to-fill": @(UIViewContentModeScaleToFill),
+            @"mode-scale-aspect-fit": @(UIViewContentModeScaleAspectFit),
+            @"mode-scale-aspect-fill": @(UIViewContentModeScaleAspectFill),
+            @"mode-redraw": @(UIViewContentModeRedraw),
+            @"mode-center": @(UIViewContentModeCenter),
+            @"mode-top": @(UIViewContentModeTop),
+            @"mode-bottom": @(UIViewContentModeBottom),
+            @"mode-left": @(UIViewContentModeLeft),
+            @"mode-right": @(UIViewContentModeRight),
+            @"mode-top-left": @(UIViewContentModeTopLeft),
+            @"mode-top-right": @(UIViewContentModeTopRight),
+            @"mode-bottom-left": @(UIViewContentModeBottomLeft),
+            @"mode-bottom-right": @(UIViewContentModeRight),
+
+            //flexbox
+            @"row": @(FLEXBOXFlexDirectionRow),
+            @"row-reverse": @(FLEXBOXFlexDirectionRowReverse),
+            @"column": @(FLEXBOXFlexDirectionColumn),
+            @"column-reverse": @(FLEXBOXFlexDirectionColumnReverse),
+
+            @"wrap": @(YES),
+            @"nowrap": @(NO),
+
+            @"flex-start": @(FLEXBOXJustificationFlexStart),
+            @"center": @(FLEXBOXJustificationCenter),
+            @"flex-end": @(FLEXBOXJustificationFlexEnd),
+            @"space-between": @(FLEXBOXJustificationSpaceBetween),
+            @"space-around": @(FLEXBOXJustificationSpaceAround),
+
+            @"auto": @(FLEXBOXAlignmentAuto),
+            @"stretch": @(FLEXBOXAlignmentStretch)
+        };
+    }
+    
+    return __mapping;
+}
+
+id rflk_parseKeyword(NSString *cssValue)
+{
+    //Called from rhs_parseRhsValue
+    //If the Rhs value is a reserved keyword (or a combination of those) this function
+    //returns the associated value right aways
+    
+    NSArray *components = [cssValue componentsSeparatedByString:RFLKTokenSeparator];
+    
+    BOOL keywords = YES;
+    for (NSString *c in components)
+        keywords &= rflk_rhsKeywordsMap()[c] != nil;
+    
+    if (!keywords)
+        return nil;
+    
+    NSInteger value = 0;
+    for (NSString *c in components) {
+        value = value | [rflk_rhsKeywordsMap()[c] integerValue];
+    }
+    
+    return @(value);
+}
+
 
 #pragma mark - Private functions
 
@@ -318,7 +397,7 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
 }
 
 
-NSString *rflk_uuid()
+NSString *rflk_cssUuid()
 {
     //Returns a UUID
     static const NSString *letters = @"1234567890abcdef";
@@ -342,7 +421,7 @@ void rflk_preprocessStylesheet(NSString **stylesheet)
     
     //makes the condition traits unique
     s = [s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix]
-                                     withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix, rflk_uuid()]];
+                                     withString:[NSString stringWithFormat:@"%@%@_%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix, rflk_cssUuid()]];
     (*stylesheet) = s;
 }
 
@@ -415,7 +494,6 @@ NSDictionary *rflk_parseStylesheet(NSString *stylesheet)
                     [res[selector] removeObjectForKey:key];
                     res[selector][strippedKey] = value;
                 }
-            
         }
     }
 

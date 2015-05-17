@@ -33,15 +33,28 @@ typedef NS_ENUM(NSInteger, RFLKExpressionRhs) {
     RFLKExpressionRhsIdiomPhone
 };
 
+///An expression is a term of a condition (e.g. 'idiom == pad' and ' width < 100' are two expressions in 'idiom == pad and width < 100')
 @interface RFLKExpression : NSObject
 
+///The original expression string (e.g. 'idiom == pad')
 @property (nonatomic, readonly) NSString *expressionString;
-@property (nonatomic, readonly) BOOL defaultExpression;
+
+///Wether this expression if a tautology ('default' in the stylesheet)
+@property (nonatomic, readonly) BOOL tautology;
+
+///The left-hand side term for this expression ('idiom', 'horizontal', 'vertical', 'width' and 'height' in the stylesheet)
 @property (nonatomic, readonly) RFLKExpressionLhs lhs;
+
+///The right-hand side term for this expression ('phone', 'pad', 'compact', 'regular' or a number)
 @property (nonatomic, readonly) RFLKExpressionRhs rhs;
+
+///The expression operator ('<','<=','==','!=','>=','>')
 @property (nonatomic, readonly) RFLKExpressionOperator operator;
+
+///If the Rhs is a number
 @property (nonatomic, readonly) CGFloat constant;
 
+///Initialise the expression object with a valid expression string (e.g. 'idiom == pad')
 - (instancetype)initWithString:(NSString*)expressionString NS_DESIGNATED_INITIALIZER;
 
 ///Returns 'YES' if the expression is satisfied within the trait collection passed as argument
@@ -50,11 +63,13 @@ typedef NS_ENUM(NSInteger, RFLKExpressionRhs) {
 
 @end
 
-
+///Object associated to a condition string (e.g. 'idiom == pad and width < 100')
 @interface RFLKCondition : NSObject
 
+///The original condition string
 @property (nonatomic, readonly) NSString *conditionString;
 
+///Create a condition object from a condition string (e,g, 'idiom == pad and width < 100')
 - (instancetype)initWithString:(NSString*)conditionString NS_DESIGNATED_INITIALIZER;
 
 ///Returns 'YES' if all the expressions contained by this condition are satisfied within the trait collection passed as argument
@@ -70,11 +85,21 @@ typedef NS_OPTIONS(NSInteger, RFLKPropertyValueOption) {
     RFLKPropertyValueOptionImage = 1 << 3
 };
 
+///The object associated to a Rhs value
 @interface RFLKPropertyValue : NSObject
 
+///The original string that originated this object (e.g. font('Helvetica', 12px)
+@property (nonatomic, strong, readonly) NSString *originalString;
+
+///The resulting value (@see RFLKPropertyValueContainer)
+@property (nonatomic, strong) id value;
+
 ///If YES this property must be computed and applied at layout time (when -[layoutSubviews] is called)
+///This properties are the ones marked with !important
 @property (nonatomic, assign) BOOL layoutTimeProperty;
 
+///Creates a new Rhs value container from a valid rhs string (e.g. font('Helvetica', 12pt)
+///@see rflk_parseRhsValue
 - (instancetype)initWithString:(NSString*)propertyString NS_DESIGNATED_INITIALIZER;
 
 ///Returns the value in the given context
@@ -88,6 +113,7 @@ typedef NS_ENUM(NSInteger, RFLKSelectorType) {
     RFLKSelectorTypeScope
 };
 
+///This class represent a stylesheet selector (e.g Class:trait)
 @interface RFLKSelector : NSObject<NSCopying>
 
 ///If this selector is of kind 'RFLKSelectorTypeClass', if this flag is YES then
@@ -116,6 +142,7 @@ typedef NS_ENUM(NSInteger, RFLKSelectorType) {
 ///The selector priority
 @property (nonatomic, readonly) NSUInteger selectorPriority;
 
+///Initialise the selector object from a well-formed stylesheet selector (e.g. Class:trait)
 - (instancetype)initWithString:(NSString*)selectorString NS_DESIGNATED_INITIALIZER;
 
 ///Compare this selector priority with another one

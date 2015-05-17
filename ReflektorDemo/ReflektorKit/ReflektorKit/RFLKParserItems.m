@@ -13,13 +13,11 @@
 
 #pragma mark - RFLKPropertyValueContainer
 
+//Proxy for the value contained in RFLKPropertyValue, containes a raw object
+//value (e.g. a UIColor, a UIFont or a NSString) and some options
 @interface RFLKPropertyValueContainer : NSObject
-
 @property (nonatomic, assign) RFLKPropertyValueOption option;
 @property (nonatomic, strong) id value;
-
-- (instancetype)initWithValue:(id)value option:(RFLKPropertyValueOption)option NS_DESIGNATED_INITIALIZER;
-
 @end
 
 @implementation RFLKPropertyValueContainer
@@ -30,7 +28,6 @@
         _value = value;
         _option = option;
     }
-    
     return self;
 }
 
@@ -50,10 +47,10 @@
         _expressionString = expressionString;
         _constant = 0;
         
-        static NSString *const defaultExpression = @"default";
+        static NSString *const tautology = @"default";
         
-        if ([expressionString containsString:defaultExpression]) {
-            _defaultExpression = YES;
+        if ([expressionString containsString:tautology]) {
+            _tautology = YES;
             
         } else {
             
@@ -138,7 +135,7 @@
 
 - (BOOL)evaluateExpressionWithTraitCollection:(UITraitCollection*)traitCollection andBounds:(CGSize)bounds
 {
-    if (self.defaultExpression)
+    if (self.tautology)
         return YES;
     
     switch (self.lhs) {
@@ -240,9 +237,9 @@
 {
     if (self = [super init]) {
         
-        originalString = [originalString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
+        //strip the quotes from the expression
+        originalString = [originalString stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
         originalString = rflk_stripQuotesFromString(originalString);
-        
         _conditionString = originalString;
         
         NSMutableArray *expressions = @[].mutableCopy;
@@ -286,13 +283,6 @@
 @end
 
 #pragma mark - RFLKPropertyValue
-
-@interface RFLKPropertyValue ()
-
-@property (nonatomic, strong, readonly) NSString *originalString;
-@property (nonatomic, strong) id value;
-
-@end
 
 @implementation RFLKPropertyValue
 
@@ -341,18 +331,22 @@
         //image
         if (container.option & RFLKPropertyValueOptionImage) {
             
-            //unwrap the value if the contained value is a proxy as well
+            //unwrap the value if the contained is a nested property value container
+            //(true in the case of a linear-gradient for example)
             id value = container.value;
             if ([value isKindOfClass:RFLKPropertyValueContainer.class]) {
                 value = [value valueWithTraitCollection:traitCollection andBounds:bounds];
             }
             
+            //image with name
             if ([value isKindOfClass:NSString.class]) {
                 return [UIImage imageNamed:value];
                 
+            //image from color
             } else if ([value isKindOfClass:UIColor.class]){
                 return [UIImage rflk_imageWithColor:value];
                 
+            //image from gradient color
             } else if ([value isKindOfClass:NSArray.class] && [value count] == 2 && [value[0] isKindOfClass:UIColor.class] && [value[1] isKindOfClass:UIColor.class]){
                 return [UIImage rflk_imageWithColor:[UIColor gradientFromColor:value[0] toColor:value[1] withSize:bounds] size:bounds];
                 
@@ -370,7 +364,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@ -> %@ %@>", NSStringFromClass(self.class), [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero], self.layoutTimeProperty ? @"!important" : @""];
+    return [NSString stringWithFormat:@"<%@ %@>", [self valueWithTraitCollection:[UIScreen mainScreen].traitCollection andBounds:CGSizeZero], self.layoutTimeProperty ? @"!important" : @""];
 }
 
 @end
@@ -405,6 +399,8 @@
         }
         
         if (components.count > 1) {
+            
+            //currently conditional scopes are available only for class selectors
             NSAssert(_type == RFLKSelectorTypeClass, @"if it's a compound selector, the base selector should be a class");
             
             if (![components[1] hasPrefix:[NSString stringWithFormat:@"%@%@", RFLKTokenSelectorSeparator, RFLKTokenConditionTraitSuffix]])
@@ -445,13 +441,13 @@
 {
     switch (self.type) {
         case RFLKSelectorTypeClass:
-            return [NSString stringWithFormat:@"<RFLKSelectorTypeClass class: %@ trait: %@ condition: %@>", NSStringFromClass(self.associatedClass), self.trait, self.condition];
+            return [NSString stringWithFormat:@"<ClassSelector class: %@ trait: %@ condition: %@>", NSStringFromClass(self.associatedClass), self.trait, self.condition];
             
         case RFLKSelectorTypeTrait:
-            return [NSString stringWithFormat:@"<RFLKSelectorTypeTrait trait: %@>", self.trait];
+            return [NSString stringWithFormat:@"<TraitSelector trait: %@>", self.trait];
             
         case RFLKSelectorTypeScope:
-            return [NSString stringWithFormat:@"<RFLKSelectorTypeScope scope: %@>", self.scopeName];
+            return [NSString stringWithFormat:@"<Scope scope: %@>", self.scopeName];
     }
 }
 
