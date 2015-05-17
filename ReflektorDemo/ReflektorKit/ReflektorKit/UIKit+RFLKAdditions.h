@@ -70,6 +70,18 @@
 @property (nonatomic, strong) UIColor *selectedTextColor;
 @property (nonatomic, strong) UIColor *disabledTextColor;
 
+//Symmetrical to -[UIButton backgroundImageForState:]
+@property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, strong) UIImage *highlightedBackgroundImage;
+@property (nonatomic, strong) UIImage *selectedBackgroundImage;
+@property (nonatomic, strong) UIImage *disabledBackgroundImage;
+
+//Symmetrical to -[UIButton imageForState:]
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *highlightedImage;
+@property (nonatomic, strong) UIImage *selectedImage;
+@property (nonatomic, strong) UIImage *disabledImage;
+
 @end
 
 @interface UIImage (RFLKAdditions)

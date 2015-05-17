@@ -13,22 +13,16 @@
     @coral: #ff7f50;
     @burlywood: #deb887;
     @font-name: 'AvenirNext-Regular';
+    @iconic-font; 'FontAwesome';
     @compact-condition: 'vertical = regular and width < 200';
-}
-
-UILabel
-{
-    applies-to-subclasses: true;
-    border-color: @blue !important;
-    border-width: 1px !important;
 }
 
 flex-container
 {
     background-color: @steelblue;
     flex-container: true;
-    y: 44px !important;
-    height: 500px !important;
+    y: 44px;
+    height: 500px;
     autoresizing-mask: flexible-height,flexible-width;
     flex-wrap: wrap;
     flex-align-items: center;
@@ -37,14 +31,15 @@ flex-container
 
 UIButton:flex-item
 {
-    text: 'Foo';
+
     tint-color: @coral;
     flex-margin: edge-insets(8px,8px,8px,8px);
     flex-padding: edge-insets(8px,8px,8px,8px);
     text-alignment: 1;
     corner-radius: 50% !important;
-    font: font(@font-name, 12);
-    background-color: linear-gradient(@tomato, @yellow);
+
+    background-image: image(@coral);
+    highlighted-background-image: image(@darker-blue);
 }
 
 UIButton:flex-item-first:__where
@@ -55,15 +50,7 @@ UIButton:flex-item-first:__where
     background-color: @blue;
 }
 
-UIImageView:image
-{
-    flex-fixed-size: size(150px,150px);
-    border-color: @orange;
-    border-width: 1px;
-    flex-align-self: center;
-    image: image(linear-gradient(@tomato, @yellow));
-    content-mode: mode-scale-to-fill;
-}
+
 
 
 /*

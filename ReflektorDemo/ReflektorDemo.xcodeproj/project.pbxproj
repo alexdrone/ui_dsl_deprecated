@@ -17,6 +17,7 @@
 		1677818E1AEA717B00668B47 /* ReflektorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167781641AEA708000668B47 /* ReflektorKit.framework */; };
 		1677818F1AEA717B00668B47 /* ReflektorKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 167781641AEA708000668B47 /* ReflektorKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		167781941AEA724100668B47 /* Style.reflektor in Resources */ = {isa = PBXBuildFile; fileRef = 167781931AEA724100668B47 /* Style.reflektor */; };
+		168977D91B08F5F6006FE0D8 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 168977D81B08F5F6006FE0D8 /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		1677812E1AEA706200668B47 /* ReflektorDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflektorDemoTests.swift; sourceTree = "<group>"; };
 		1677815E1AEA708000668B47 /* ReflektorKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReflektorKit.xcodeproj; path = ReflektorKit/ReflektorKit.xcodeproj; sourceTree = "<group>"; };
 		167781931AEA724100668B47 /* Style.reflektor */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Style.reflektor; sourceTree = "<group>"; };
+		168977D81B08F5F6006FE0D8 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		167781131AEA706200668B47 /* ReflektorDemo */ = {
 			isa = PBXGroup;
 			children = (
+				168977D71B08F5EB006FE0D8 /* Resources */,
 				167781161AEA706200668B47 /* AppDelegate.swift */,
 				167781181AEA706200668B47 /* MasterViewController.swift */,
 				1677811A1AEA706200668B47 /* DetailViewController.swift */,
@@ -157,6 +160,14 @@
 				167781641AEA708000668B47 /* ReflektorKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		168977D71B08F5EB006FE0D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				168977D81B08F5F6006FE0D8 /* FontAwesome.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1677811E1AEA706200668B47 /* Main.storyboard in Resources */,
+				168977D91B08F5F6006FE0D8 /* FontAwesome.ttf in Resources */,
 				167781231AEA706200668B47 /* LaunchScreen.xib in Resources */,
 				167781941AEA724100668B47 /* Style.reflektor in Resources */,
 				167781201AEA706200668B47 /* Images.xcassets in Resources */,

@@ -255,6 +255,86 @@ static void *UIViewFlexContainerKey;
     [self setTitleColor:disabledTextColor forState:UIControlStateDisabled];
 }
 
+- (UIImage*)backgroundImage
+{
+    return [self backgroundImageForState:UIControlStateNormal];
+}
+
+- (void)setBackgroundImage:(UIImage*)backgroundImage
+{
+    [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+}
+
+- (UIImage*)highlightedBackgroundImage
+{
+    return [self backgroundImageForState:UIControlStateHighlighted];
+}
+
+- (void)setHighlightedBackgroundImage:(UIImage*)highlightedBackgroundImage
+{
+    [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+}
+
+- (UIImage*)selectedBackgroundImage
+{
+    return [self backgroundImageForState:UIControlStateSelected];
+}
+
+- (void)setSelectedBackgroundImage:(UIImage*)selectedBackgroundImage
+{
+    [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
+}
+
+- (UIImage*)disabledBackgroundImage
+{
+    return [self backgroundImageForState:UIControlStateDisabled];
+}
+
+- (void)setDisabledBackgroundImage:(UIImage*)disabledBackgroundImage
+{
+    [self setBackgroundImage:disabledBackgroundImage forState:UIControlStateDisabled];
+}
+
+- (UIImage*)image
+{
+    return [self imageForState:UIControlStateNormal];
+}
+
+- (void)setImage:(UIImage*)image
+{
+    [self setImage:image forState:UIControlStateNormal];
+}
+
+- (UIImage*)highlightedImage
+{
+    return [self imageForState:UIControlStateHighlighted];
+}
+
+- (void)setHighlightedImage:(UIImage*)highlightedImage
+{
+    [self setImage:highlightedImage forState:UIControlStateHighlighted];
+}
+
+- (UIImage*)selectedImage
+{
+    return [self imageForState:UIControlStateSelected];
+}
+
+- (void)setSelectedImage:(UIImage*)selectedImage
+{
+    [self setImage:selectedImage forState:UIControlStateSelected];
+}
+
+- (UIImage*)disabledImage
+{
+    return [self imageForState:UIControlStateDisabled];
+}
+
+- (void)setDisabledImage:(UIImage*)disabledImage
+{
+    [self setImage:disabledImage forState:UIControlStateDisabled];
+}
+
 @end
 
 #pragma mark - UIImage
@@ -269,7 +349,7 @@ static void *UIViewFlexContainerKey;
 + (UIImage*)rflk_imageWithColor:(UIColor*)color size:(CGSize)size
 {
     CGRect rect = (CGRect){CGPointZero, size};
-    UIGraphicsBeginImageContext(rect.size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, [color CGColor]);

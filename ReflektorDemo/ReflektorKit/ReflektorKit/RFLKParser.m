@@ -308,7 +308,13 @@ void rflk_parseRhsValue(NSString *stringValue, id *returnValue, NSInteger *optio
         
     //string (in quotes)
     } else if (rflk_stringHasPrefix(stringValue, @[@"\"", @"\'"])) {
-        value = rflk_stripQuotesFromString(stringValue);
+        NSString *string = rflk_stripQuotesFromString(stringValue);
+        NSMutableString *convertedString = [string mutableCopy];
+
+        CFStringRef transform = CFSTR("Any-Hex/Java");
+        CFStringTransform((__bridge CFMutableStringRef)convertedString, NULL, transform, YES);
+        
+        value = convertedString.copy;
         
     //css color
     } else if (rflk_stringHasPrefix(stringValue, @[@"rgb", @"rgba", @"hsl", @"hsla", @"#"])) {
