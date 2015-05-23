@@ -21,12 +21,11 @@ flex-container
 {
     background-color: @steelblue;
     flex-container: true;
-    y: 44px;
+    y: 100px;
     height: 500px;
-    autoresizing-mask: flexible-height,flexible-width;
-    flex-wrap: wrap;
     flex-align-items: center;
     flex-justify-content: center;
+    flex-direction: row;
 }
 
 UIButton:flex-item
@@ -37,7 +36,7 @@ UIButton:flex-item
     flex-padding: edge-insets(8px,8px,8px,8px);
     text-alignment: 1;
     corner-radius: 50% !important;
-
+    text: 'Foo';
     background-image: image(@coral);
     highlighted-background-image: image(@darker-blue);
 }

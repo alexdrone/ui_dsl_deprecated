@@ -13,8 +13,9 @@
 
 // Properties
 
-/// The associated flexbox node
-@property (nonatomic, strong) FLEXBOXNode *flexNode;
+/// YES if this view contains subviews that you wish to layout using the flexbox engine
+/// @note You don't need to set this if your view is a FLEXBOXContainerView
+@property (nonatomic, assign) BOOL flexContainer;
 
 /// Set this if you wish to have a fixed size for this element
 @property (nonatomic, assign) CGSize flexFixedSize;
@@ -70,7 +71,9 @@
 @property (nonatomic, assign) FLEXBOXAlignment flexAlignItems;
 
 /// The flex property specifies the initial length of a flexible item.
+/// A value between 0 and 1 (a ratio e.g. 1/2, 2/3)
 @property (nonatomic, assign) CGFloat flex;
+
 
 /// The node content directon (default is inherit)
 @property (nonatomic, assign) FLEXBOXContentDirection flexContentDirection;

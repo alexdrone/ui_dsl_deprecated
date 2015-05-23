@@ -7,11 +7,24 @@
 //
 
 #import "UIView+FLEXBOX.h"
+#import "FLEXBOXContainerView.h"
 #import <objc/runtime.h>
 
+const void *FLEXBOXContainerKey;
 const void *FLEXBOXNodeKey;
+const void *FLEXBOXOffsetNodeKey;
+const void *FLEXBOXOffsetKey;
 const void *FLEXBOXSizeKey;
 const void *FLEXBOXSizeThatFitsBlock;
+
+@interface UIView (_FLEXBOX)
+
+/// The associated flexbox node
+@property (nonatomic, strong) FLEXBOXNode *flexNode;
+@property (nonatomic, readonly, getter=isFlexOffsetNodeDefined) BOOL flexNodeDefined;
+
+@end
+
 
 @implementation UIView (FLEXBOX)
 
@@ -44,6 +57,18 @@ const void *FLEXBOXSizeThatFitsBlock;
 - (void)setFlexNode:(FLEXBOXNode*)flexNode
 {
     objc_setAssociatedObject(self, &FLEXBOXNodeKey, flexNode, OBJC_ASSOCIATION_RETAIN);
+}
+
+
+- (BOOL)flexContainer
+{
+    return  [objc_getAssociatedObject(self, &FLEXBOXContainerKey) boolValue];
+}
+
+- (void)setFlexContainer:(BOOL)flexContainer
+{
+    objc_setAssociatedObject(self, &FLEXBOXContainerKey, @(flexContainer), OBJC_ASSOCIATION_RETAIN);
+    self.flex = flexContainer ? 1 : 0;
 }
 
 - (CGSize)flexFixedSize
@@ -104,19 +129,28 @@ const void *FLEXBOXSizeThatFitsBlock;
 
 - (void)flexLayoutSubviews
 {
-    FLEXBOXNode *node = self.flexNode;
-    node.dimensions = self.bounds.size;
+    self.flexNode.dimensions = self.bounds.size;
+    [self _flexLayoutSubviewsFromView:self];
+    self.frame = (CGRect){self.frame.origin, self.flexNode.frame.size};
+}
+
+- (void)_flexLayoutSubviewsFromView:(UIView*)view
+{
+    [view.flexNode layoutConstrainedToMaximumWidth:CGRectGetWidth(view.bounds)];
     
-    [node layoutConstrainedToMaximumWidth:self.bounds.size.width];
-    
-    for (NSUInteger i = 0; i < node.childrenCountBlock(); i++) {
+    for (NSUInteger i = 0; i < view.subviews.count; i++) {
         
-        UIView *subview = self.subviews[i];
-        FLEXBOXNode *subnode = node.childrenAtIndexBlock(i);
+        UIView *subview = view.subviews[i];
+        FLEXBOXNode *subnode = subview.flexNode;
         subview.frame = CGRectIntegral(subnode.frame);
     }
-
-    self.frame = (CGRect){self.frame.origin, node.frame.size};
+    
+    for (NSUInteger i = 0; i < view.subviews.count; i++) {
+        UIView *subview = view.subviews[i];
+        
+        if (subview.flexContainer)
+            [self _flexLayoutSubviewsFromView:subview];
+    }
 }
 
 #pragma mark - Properties
