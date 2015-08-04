@@ -2,7 +2,7 @@
 ![GitHub Logo](logo.png)
 
 
-**ReflektorKit** is a **lightweight** native stylesheet engine for iOS compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
+**ReflektorKit** is a **lightweight** extensible native stylesheet engine for iOS written in *Swift* and compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
 With ReflektorKit, you can replace many complicated lines of Objective-C or Swift with a few lines in the stylesheet, and be able to apply this changes real-time, without rebuilding the app.
 
 
@@ -22,7 +22,7 @@ With ReflektorKit you can have fine control over when a stylesheet property is c
 
 Furthermore the properties defined in the scope a stylesheet selectors are purely *keyPaths*, making it straight-forward to style custom components or supply custom appearance selectors to a view. 
 
-
+Additionaly ReflektorKit is **extensible** - it allows you to write plugin and extensions (for example to parse a custom kind of value, or define a custom condition for the rules to be computed) 
 
 ##Getting started
 
@@ -142,7 +142,7 @@ N.B. All the components inside this rhs functions can be variables (prefixed wit
 
 **N.B. The meaning of `!important` is extremely different from CSS **
 
-By default the style is applied after the view initialisation and when the view traits (@see `-[UIView rflk_traits]`) change.
+By default the style is applied after the view initialisation and when the view traits (@see `UIView.traits`) change.
 You can alter this behaviour and have the views to compute and apply a specific rule by appending the `!important` modifier to it.
 
 ```css
@@ -154,6 +154,10 @@ UILabel {
 
 If the right-hand side value of a directive uses a `%` unit or is a `linear-gradient`, the `!important` modifier is automatically added to it.
 
+### Plugins
+
+You can write extension in order to define a new datatype for your rules.
+To do so you simply have to write a class that conforms  the `PropertyValuePlugin` protocol and register an instance by calling `Configuration.sharedConfiguration.registerPropertyValuePlugin(plugin: PropertyValuePlugin)`
 
 ##Special Directives
 
@@ -193,6 +197,32 @@ UIView:__where {
 
 The properties are computed only if the view matches the condition expressed in the condition string.
 
+####External (or custom) conditions
+
+You can define some condition in code and bound them to a unique key that can be referenced inside the stylesheet. e.g. 
+
+```swift
+            Configuration.sharedConfiguration.registerExternalCondition("alwaysFalse", conditionClosure: { (view, traitCollection, size) -> Bool in
+                return false
+            })
+            
+            Configuration.sharedConfiguration.registerExternalCondition("alwaysTrue", conditionClosure: { (view, traitCollection, size) -> Bool in
+                return true
+            })
+                        
+```
+
+
+
+You can reference these custom conditon by their key + `?` as prefix.
+
+
+```css
+UIView:__where {
+	condition: '?alwaysFalse and ?alwaysTrue';
+}
+```
+
 ### The `include`directive
 
 You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
@@ -228,63 +258,6 @@ UILabel {
 	applies-to-subclasses: true;
 }
 ```
-
-##Flexbox
-
-ReflektorKit includes **Facebook**'s implementation of CSS'*Flexbox* and wraps all the flexbox directives in a UIView category.
-To make a view a flexbox container (a view that lays out its children using flexbox directives) you simply have to set the UIView's category property `flexContainer` to `YES`.
-
-e.g.
-
-```css
-
-UILabel {
-	flex-container: true;
-}
-```
-Once you've done that, you can define your layout logic using the following flexbox properties (see `UIView+FLEXBOX`)
-
-```css
-
-UILabel {
-	/* The minumum size for this element */
-	flex-minimum-size: size(...,...);
-	
-	/* The maximum size for this element */
-	flex-maximum-size: size(...,...);
-	
-	/* if you wish to have a fixed size for this element */
-	flex-fixed-size: size(...,...);
-	
-	/* It establishes the main-axis, thus defining the direction flex items are placed in the flex container. */
-	flex-direction: row|column|row-reverse|colum-reverse;
-	
-	/* The margins for this flex item (default is 0) */
-	flex-margin: edge-insets(...,...,...,...);
-	
-	/* The padding for this flex item (default is 0) */
-	flex-padding: edge-insets(...,...,...,...);
-	
-	/* Make the flexible items wrap if necesarry (default is wrap)*/
-	flex-wrap: wrap|nowrap;
-	
-	/* It defines the alignment along the main axis. It helps distribute extra free 
-	space leftover when either all the flex items on a line are inflexible, or are 
-	flexible but have reached their maximum size. It also exerts some control over 
-	the alignment of items when they overflow the line (default is flex-start) */
-	flex-justify-content: flex-start|flex-end|center|space-between|space-around;
-	
-	/* Center the alignments for one of the items inside a flexible element (default is auto) */
-	flex-align-self: auto|stretch|center|flex-start|flex-end;
-	
-	/* Center the alignments for one of the items inside a flexible element (default is stretch) */
-	flex-align-items: stretch|center|flex-start|flex-end;
-	
-	/* The flex property specifies the initial length of a flexible item */
-	flex: 1;	
-}
-```
-
 
 ##Included UIKit's categories
 
@@ -374,36 +347,10 @@ foo {
 	autoresizing-mask: flexible-height,flexible-width,flexible-left-margin,flexible-right-margin,flexible-top-margin,flexible-bottom-margin;
 	 
 	content-mode: mode-scale-to-fill;
-	
-	/* Flexbox directives*/
-	flex-minimum-size: size(100px, 20px);
-	flex-maximum-size: size(100px, 20px);
-	flex-fixed-size: size(50px, 50px);
-	flex-direction: row;
-	flex-margin: edge-insets(8px,8px,8px,8px);
-	flex-padding:  edge-insets(8px,8px,8px,8px);
-	flex-wrap: wrap;
-	flex-justify-content: center;
-	flex-align-self: stretch;
-	flex-align-items: center;
-	flex: 1;	
 }
 
 ```
 
-##TODOs
-
-- `applies-to-subclasses` doesn't always seem to be working. For example the following style doesn't render to the expected result 
-
-```css
-UIView {
-applies-to-subclasses: true;
-border-color: @blue !important;
-border-width: 1px !important;
-}
-```
-
-- add support for `image-from-icon(font, icon-char)`
 
 ##Attribuitions
 

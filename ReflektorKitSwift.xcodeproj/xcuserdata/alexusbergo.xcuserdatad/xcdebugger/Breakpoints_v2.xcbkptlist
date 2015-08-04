@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "recursivelyResolveInclusions(_:dictionary:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "resolveVariables(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "resolveVariables(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "resolveVariables(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "recursivelyResolveInclusions(_:dictionary:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "ExpressionToken"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "Condition"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parser.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "parseStylesheet(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Parsable.swift"
+            timestampString = "459169945.734271"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "Selector"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-SwiftTests/ReflektorKit_SwiftTests.swift"
+            timestampString = "459182421.549006"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "CondtionTests"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-SwiftTests/ReflektorKit_SwiftTests.swift"
+            timestampString = "459182422.550316"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "testExample()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-SwiftTests/ReflektorKit_SwiftTests.swift"
+            timestampString = "459182608.438077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "testExample()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459200250.199252"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459200250.206089"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459182714.616112"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "2400">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459182714.61667"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "2400">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459201229.445132"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "3356">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459201229.455391"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "3356">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459201229.445449"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "1876">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459201229.455711"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "1876">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459200807.19559"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "2312">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459200807.19638"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "2312">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459200644.279609"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "2189">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459200644.279944"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "2189">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459201054.072195"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "2647">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459201054.072955"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "2647">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "compare(_:rhs:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.ExpressionToken.Operator.compare &lt;A where A: Swift.Comparable&gt; (ReflektorKitSwiftTests.ExpressionToken.Operator)(A, rhs : A) -&gt; Swift.Bool"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459247697.561603"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.ExpressionToken.Operator.compare &lt;A where A: Swift.Comparable&gt; (ReflektorKitSwift.ExpressionToken.Operator)(A, rhs : A) -&gt; Swift.Bool"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459247697.561889"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Selector.swift"
+            timestampString = "459247630.870258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "Selector"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410435.557853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "compare(_:rhs:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.ExpressionToken.Operator.compare &lt;A where A: Swift.Comparable&gt; (ReflektorKitSwiftTests.ExpressionToken.Operator)(A, rhs : A) -&gt; Swift.Bool"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459247700.798321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.ExpressionToken.Operator.compare &lt;A where A: Swift.Comparable&gt; (ReflektorKitSwift.ExpressionToken.Operator)(A, rhs : A) -&gt; Swift.Bool"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "459247700.798564"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-SwiftTests/SelectorTest.swift"
+            timestampString = "459248658.146607"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "testSelectorsInitialisation()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.SelectorTest.testSelectorsInitialisation (ReflektorKitSwiftTests.SelectorTest)() -&gt; ()"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-SwiftTests/SelectorTest.swift"
+                  timestampString = "459250327.559828"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "16745">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.SelectorTest.(testSelectorsInitialisation (ReflektorKitSwiftTests.SelectorTest) -&gt; () -&gt; ()).(implicit closure #28)"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-SwiftTests/SelectorTest.swift"
+                  timestampString = "459250327.560353"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "199">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-SwiftTests/SelectorTest.swift"
+            timestampString = "459250557.101599"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "testSelectorsPriority()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-SwiftTests/SelectorTest.swift"
+            timestampString = "459260165.953926"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "testSelectorsPriority()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.SelectorTest.testSelectorsPriority (ReflektorKitSwiftTests.SelectorTest)() -&gt; ()"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-SwiftTests/SelectorTest.swift"
+                  timestampString = "459260129.502509"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "7180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.SelectorTest.(testSelectorsPriority (ReflektorKitSwiftTests.SelectorTest) -&gt; () -&gt; ()).(implicit closure #6)"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-SwiftTests/SelectorTest.swift"
+                  timestampString = "459260129.502737"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.PropertyValue.init (ReflektorKitSwiftTests.PropertyValue.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.PropertyValue"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460391930.271743"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "5360">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.PropertyValue.init (ReflektorKitSwift.PropertyValue.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.PropertyValue"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460391930.287949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "5360">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.PropertyValue.init (ReflektorKitSwiftTests.PropertyValue.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.PropertyValue"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460388747.24981"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "381">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.PropertyValue.init (ReflektorKitSwift.PropertyValue.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.PropertyValue"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460388747.250808"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "381">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "computeValue(_:size:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.PropertyValue.computeValue (ReflektorKitSwiftTests.PropertyValue)(ObjectiveC.UITraitCollection, size : C.CGSize) -&gt; Swift.Optional&lt;Swift.AnyObject&gt;"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460391930.272514"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "113">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.PropertyValue.computeValue (ReflektorKitSwift.PropertyValue)(ObjectiveC.UITraitCollection, size : C.CGSize) -&gt; Swift.Optional&lt;Swift.AnyObject&gt;"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460391930.288633"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "113">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.PropertyValue.init (ReflektorKitSwiftTests.PropertyValue.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.PropertyValue"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460391281.674971"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "17226">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.PropertyValue.init (ReflektorKitSwift.PropertyValue.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.PropertyValue"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/PropertyValue.swift"
+                  timestampString = "460391281.675796"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "17226">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+            timestampString = "460391333.185127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
+            landmarkName = "-initWithColor1:color2:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIEGradientColor initWithColor1:color2:]"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+                  timestampString = "460410658.94784"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "732"
+                  endingLineNumber = "732"
+                  offsetFromSymbolStart = "74">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIEGradientColor initWithColor1:color2:]"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+                  timestampString = "460410658.958808"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "732"
+                  endingLineNumber = "732"
+                  offsetFromSymbolStart = "74">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+            timestampString = "460391337.791943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "741"
+            endingLineNumber = "741"
+            landmarkName = "-gradientWithSize:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIEGradientColor gradientWithSize:]"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+                  timestampString = "460410658.948108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "741"
+                  endingLineNumber = "741"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIEGradientColor gradientWithSize:]"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+                  timestampString = "460410658.959079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "741"
+                  endingLineNumber = "741"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+            timestampString = "460410662.61861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "+gradientFromColor:toColor:withSize:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[UIColor(HTMLColors) gradientFromColor:toColor:withSize:]"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+                  timestampString = "460410662.818298"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[UIColor(HTMLColors) gradientFromColor:toColor:withSize:]"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Dependencies/UIColor+LESS.m"
+                  timestampString = "460410662.818592"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "computeValue(_:size:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/PropertyValue.swift"
+            timestampString = "460410084.356131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "computeValue(_:size:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410507.169235"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "460410509.624725"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1480">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "460410509.634101"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "1480">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Condition.swift"
+            timestampString = "460410584.090869"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "init(rawString:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwiftTests.Expression.init (ReflektorKitSwiftTests.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwiftTests.Expression"
+                  moduleName = "ReflektorKitSwiftTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "460410585.722594"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "1712">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReflektorKitSwift.Expression.init (ReflektorKitSwift.Expression.Type)(rawString : Swift.String) throws -&gt; ReflektorKitSwift.Expression"
+                  moduleName = "ReflektorKitSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexusbergo/Documents/ReflektorKit-Swift/ReflektorKit-Swift/Condition.swift"
+                  timestampString = "460410585.725491"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "1712">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
