@@ -9,13 +9,20 @@
 import UIKit
 
 @objc class AppearanceProxy {
+    
     private weak var view: UIView?
     
-    //All the currently computed properties for this associated view
+    ///All the currently computed properties for this associated view
     let computedProperties = AppearanceManager.ComputedProperties()
+    var resetDictionary = [String: AnyObject?]()
+    
+    @objc var trait: String? {
+        didSet {
+            self.refreshComputedProperties()
+        }
+    }
 
     @objc subscript(key: String) -> AnyObject? {
-        
         get {
             if let value = self.computedProperties.all[PropertyKeyPath(keyPath: key)] {
                 return value.computeValue((self.view?.traitCollection)!, size: UIScreen.mainScreen().bounds.size)
@@ -23,6 +30,46 @@ import UIKit
             } else {
                 return nil
             }
+        }
+    }
+    
+    init() {
+        self.refreshComputedProperties()
+    }
+
+    ///Recompute what properties
+    @objc func refreshComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
+        
+        //TODO
+        
+        if Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties {
+            self.applyComputedProperties(shouldApplyOnlyImportantProperties)
+        }
+        
+    }
+    
+    ///Applies the properties from the 'computedProperties' dictionary down to the view
+    ///If 'shouldApplyOnlyImportantProperties' is set to true, only the rules marked with 
+    ///!important are going to be processed and applied to the view.
+    @objc func applyComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
+        
+        let dictionary = shouldApplyOnlyImportantProperties ? self.computedProperties.important : self.computedProperties.all
+        
+        //reset the view with the previous values
+        for keyPath in self.resetDictionary.keys {
+            self.view?.setValue(self.resetDictionary[keyPath]!, forKey: keyPath)
+        }
+        
+        for key in dictionary.keys {
+            
+            let keyPath = key.rawString
+            let value = self[keyPath]
+            
+            //populate the reset dictionary
+            self.resetDictionary[keyPath] = self.view?.valueForKey(keyPath)
+
+            //applies the value
+            self.view?.setValue(value, forKey: keyPath)
         }
     }
 }

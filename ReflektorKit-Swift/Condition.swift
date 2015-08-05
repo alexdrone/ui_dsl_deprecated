@@ -258,8 +258,6 @@ struct Condition: Hashable, Parsable {
         
         return satisfied
     }
-    
-    
 }
 
 private func sanitizeConditionString(string: String) -> String {

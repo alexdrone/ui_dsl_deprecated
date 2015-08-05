@@ -14,14 +14,14 @@
  * Reads a color from a string containing hex, RGB, HSL or X11 named color.
  * Returns `nil` on failure.
  */
-+ (UIColor *)refl_colorWithCSSColor:(NSString *)cssColor;
++ (UIColor*)refl_colorWithCSSColor:(NSString *)cssColor;
 
 /**
  * Reads a color from a string containing a hex color, of the form
  * "#FFFFFF" or "#FFF".
  * Returns `nil` on failure.
  */
-+ (UIColor *)colorWithHexString:(NSString *)hexColor;
++ (UIColor*)colorWithHexString:(NSString *)hexColor;
 
 /**
  * Reads a color from a string containing an RGB color, of the form
@@ -29,45 +29,45 @@
  * represented as percentages.
  * Returns `nil` on failure.
  */
-+ (UIColor *)colorWithRGBString:(NSString *)rgbColor;
++ (UIColor*)colorWithRGBString:(NSString *)rgbColor;
 
 /**
  * Reads a color from a string containing an HSL color, of the form
  * "hsl(359, 100%, 100%)" or "hsla(359, 100%, 100%, 1.0)".
  * Returns `nil` on failure.
  */
-+ (UIColor *)colorWithHSLString:(NSString *)hslColor;
++ (UIColor*)colorWithHSLString:(NSString *)hslColor;
 
 /**
  * Reads a color from a string containing a W3C named color.
  * Returns `nil` on failure.
  */
-+ (UIColor *)colorWithW3CNamedColor:(NSString *)namedColor;
++ (UIColor*)colorWithW3CNamedColor:(NSString *)namedColor;
 
 /**
  * Returns a representation of this color as a hex string, of the form "#FFFFFF".
  * Alpha information is not represented.
  */
-- (NSString *)hexStringValue;
+- (NSString*)hexStringValue;
 
 /**
  * Returns a representation of this color as an RGB string, of the form
  * "rgb(255, 255, 255)" or "rgba(255, 255, 255, 1.0)".
  * Returns `nil` on failure.
  */
-- (NSString *)rgbStringValue;
+- (NSString*)rgbStringValue;
 
 /**
  * Returns a representation of this color as an RGB string, of the form
  * "hsl(359, 100%, 100%)" or "hsla(359, 100%, 100%, 1.0)".
  * Returns `nil` on failure.
  */
-- (NSString *)hslStringValue;
+- (NSString*)hslStringValue;
 
 /**
  * FOR DEBUGGING - All the supported W3C color names.
  */
-+ (NSArray *)W3CColorNames;
++ (NSArray*)W3CColorNames;
 
 @end
 
@@ -80,7 +80,7 @@
 /**
  * Scan a color hex, RGB, HSL or X11 named color.
  */
-- (BOOL)scanRFLKLESSColor:(UIColor **)color;
+- (BOOL)scanLESSColor:(UIColor **)color;
 
 /**
  * Scan an RGB color ("rgb(255, 255, 255)", "rgba(255, 255, 255, 1.0)").
@@ -112,7 +112,7 @@
 
 @end
 
-@interface UIImage (RFLKAdditions)
+@interface UIImage (REFLAdditions)
 
 + (UIImage*)imageWithColor:(UIColor*)color;
 + (UIImage*)imageWithColor:(UIColor*)color size:(CGSize)size;

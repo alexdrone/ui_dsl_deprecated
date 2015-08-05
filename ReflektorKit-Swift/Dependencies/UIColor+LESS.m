@@ -55,7 +55,7 @@ static NSDictionary *CMRW3CNamedColors(void);
 {
     UIColor *color = nil;
     NSScanner *scanner = [NSScanner scannerWithString:cssColor];
-    [scanner scanRFLKLESSColor:&color];
+    [scanner scanLESSColor:&color];
     return (scanner.isAtEnd) ? color : nil;
 }
 
@@ -205,7 +205,7 @@ static inline unsigned ToPercentage(CGFloat f)
 
 @implementation NSScanner (HTMLColors)
 
-- (BOOL)scanRFLKLESSColor:(UIColor **)color
+- (BOOL)scanLESSColor:(UIColor **)color
 {
     return [self scanHexColor:color]
         || [self scanRGBColor:color]
@@ -385,7 +385,8 @@ static inline CGFloat CMRNormHue(CGFloat hue)
 }
 
 //Hex characters
-static NSCharacterSet *CMRHexCharacters() {
+static NSCharacterSet *CMRHexCharacters()
+{
     static NSCharacterSet *hexChars;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -545,7 +546,8 @@ static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat l)
 }
 
 //Color names, longest first
-static NSArray *CMRW3CColorNames() {
+static NSArray *CMRW3CColorNames()
+{
     static NSArray *colorNames;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -565,7 +567,8 @@ static NSArray *CMRW3CColorNames() {
 
 //Color values as defined in RFLKLESS3 spec.
 //See: http://www.w3.org/TR/css3-color/#svg-color
-static NSDictionary *CMRW3CNamedColors() {
+static NSDictionary *CMRW3CNamedColors()
+{
     static NSDictionary *namedColors;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -728,7 +731,8 @@ static NSDictionary *CMRW3CNamedColors() {
 
 @implementation UIEGradientColor
 
-- (instancetype)initWithColor1:(UIColor*)color1 color2:(UIColor*)color2 {
+- (instancetype)initWithColor1:(UIColor*)color1 color2:(UIColor*)color2
+{
     if (self = [super init]) {
         _color1 = color1;
         _color2 = color2;
@@ -737,13 +741,14 @@ static NSDictionary *CMRW3CNamedColors() {
     return self;
 }
 
-- (UIColor*)gradientWithSize:(CGSize)size {
+- (UIColor*)gradientWithSize:(CGSize)size
+{
     return [UIColor gradientFromColor:self.color1 toColor:self.color2 withSize:size];
 }
 
 @end
 
-@implementation UIImage (RFLKAdditions)
+@implementation UIImage (REFLAdditions)
 
 + (UIImage*)imageWithColor:(UIColor*)color
 {

@@ -8,11 +8,16 @@
 
 import Foundation
 
-
 @objc class Configuration {
     
     ///The unique shared configuration
     static let sharedConfiguration = Configuration()
+    
+    ///When set to 'true' when an apperance proxy refreshes its computed properties 
+    ///These are automatically passed down to the associated view
+    @objc var shouldAutomaticallySetViewProperties = true
+    
+    //MARK: Plugins
     
     internal var propertyValuePlugins = [PropertyValuePlugin]()
     internal var externalConditions = [String: ExternalConditionClosure]()
