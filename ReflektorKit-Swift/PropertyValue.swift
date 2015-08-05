@@ -8,6 +8,8 @@
 
 import Foundation
 
+//MARK: Values
+
 struct PropertyValue: Parsable {
     
     //@see Parsable
@@ -35,7 +37,7 @@ struct PropertyValue: Parsable {
         }
         
         //keyword
-        if let keyword = LESS_parseKeyword(mutableRawString) {
+        if let keyword = refl_parseKeyword(mutableRawString) {
             self.object = keyword
             return
         }
@@ -53,20 +55,20 @@ struct PropertyValue: Parsable {
         mutableRawString = mutableRawString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         //boolean
-        if LESS_stringHasPrefix(mutableRawString, ["true", "false"]) {
+        if refl_stringHasPrefix(mutableRawString, ["true", "false"]) {
             self.object = mutableRawString.hasPrefix("true")
             return
         }
         
         //string (in quotes)
-        if LESS_stringHasPrefix(mutableRawString, ["\"", "'"]) {
-            self.object = LESS_stripQuotesFromString(mutableRawString)
+        if refl_stringHasPrefix(mutableRawString, ["\"", "'"]) {
+            self.object = refl_stripQuotesFromString(mutableRawString)
             return
         }
         
         //color
-        if LESS_stringHasPrefix(mutableRawString, ["rgb", "rgba", "hsl", "hsla", "#"]) {
-            self.object = UIColor.LESS_colorWithCSSColor(mutableRawString)
+        if refl_stringHasPrefix(mutableRawString, ["rgb", "rgba", "hsl", "hsla", "#"]) {
+            self.object = UIColor.refl_colorWithCSSColor(mutableRawString)
             
             if self.object == nil {
                 throw ParserError.MalformedRhsValue(error: "Malformed color value: \(mutableRawString)")
@@ -75,24 +77,24 @@ struct PropertyValue: Parsable {
             return
         }
 
-        guard let args = LESS_getArgumentForValue(mutableRawString) else {
+        guard let args = refl_getArgumentForValue(mutableRawString) else {
             throw ParserError.MalformedRhsValue(error: "The right-hand side '\(mutableRawString)' is malformed")
         }
         
         //font
-        if LESS_stringHasPrefix(mutableRawString, ["font"]) {
+        if refl_stringHasPrefix(mutableRawString, ["font"]) {
             
             guard let fontName = args[0] as? String, size = args[1].floatValue else {
                 throw ParserError.MalformedRhsValue(error: "Malformed font value: \(mutableRawString)")
             }
             
-            let strippedFontName = LESS_stripQuotesFromString(fontName)
+            let strippedFontName = refl_stripQuotesFromString(fontName)
             self.object = UIFont(name: strippedFontName, size: CGFloat(size))
             return
         }
         
         //geometry
-        if LESS_stringHasPrefix(mutableRawString, ["rect"]) {
+        if refl_stringHasPrefix(mutableRawString, ["rect"]) {
             
             guard let x = args[0].doubleValue, y = args[1].doubleValue, width = args[2].doubleValue, height = args[3].doubleValue else {
               throw ParserError.MalformedRhsValue(error: "Malformed rect value: \(mutableRawString)")
@@ -101,16 +103,16 @@ struct PropertyValue: Parsable {
             return
         }
         
-        if LESS_stringHasPrefix(mutableRawString, ["point"]) {
+        if refl_stringHasPrefix(mutableRawString, ["point"]) {
             
             guard let x = args[0].doubleValue, y = args[1].doubleValue else {
-                throw ParserError.MalformedRhsValue(error: "Malformed size value: \(mutableRawString)")
+                throw ParserError.MalformedRhsValue(error: "Malformed point value: \(mutableRawString)")
             }
             self.object = NSValue(CGPoint: CGPoint(x: x, y: y))
             return
         }
         
-        if LESS_stringHasPrefix(mutableRawString, ["size"]) {
+        if refl_stringHasPrefix(mutableRawString, ["size"]) {
             guard let width = args[0].doubleValue, height = args[1].doubleValue else {
                 throw ParserError.MalformedRhsValue(error: "Malformed size value: \(mutableRawString)")
             }
@@ -118,7 +120,7 @@ struct PropertyValue: Parsable {
             return
         }
         
-        if LESS_stringHasPrefix(mutableRawString, ["edge-insets"]) {
+        if refl_stringHasPrefix(mutableRawString, ["edge-insets"]) {
             
             guard let top = args[0].floatValue, left = args[1].floatValue, bottom = args[2].floatValue, right = args[4].floatValue else {
                 throw ParserError.MalformedRhsValue(error: "Malformed edge insets value: \(mutableRawString)")
@@ -128,7 +130,7 @@ struct PropertyValue: Parsable {
         }
         
         //transformations
-        if LESS_stringHasPrefix(mutableRawString, ["transform-scale"]) {
+        if refl_stringHasPrefix(mutableRawString, ["transform-scale"]) {
             
             guard let x = args[0].floatValue, y = args[1].floatValue else {
                 throw ParserError.MalformedRhsValue(error: "Malformed transform scale value: \(mutableRawString)")
@@ -137,7 +139,7 @@ struct PropertyValue: Parsable {
             return
         }
         
-        if LESS_stringHasPrefix(mutableRawString, ["transform-rotate"]) {
+        if refl_stringHasPrefix(mutableRawString, ["transform-rotate"]) {
             
             guard let angle = args[0].floatValue else {
                 throw ParserError.MalformedRhsValue(error: "Malformed transform rotate value: \(mutableRawString)")
@@ -146,7 +148,7 @@ struct PropertyValue: Parsable {
             return
         }
         
-        if LESS_stringHasPrefix(mutableRawString, ["transform-translate"]) {
+        if refl_stringHasPrefix(mutableRawString, ["transform-translate"]) {
             
             guard let x = args[0].floatValue, y = args[1].floatValue else {
                 throw ParserError.MalformedRhsValue(error: "Malformed transform translate value: \(mutableRawString)")
@@ -156,21 +158,21 @@ struct PropertyValue: Parsable {
         }
         
         //image
-        if LESS_stringHasPrefix(mutableRawString, ["image"]) {
+        if refl_stringHasPrefix(mutableRawString, ["image"]) {
             self.object = args[0]
             self.flags.imageAsset = true
             return
         }
         
         //pure condition
-        if LESS_stringHasPrefix(mutableRawString, ["condition"]) {
+        if refl_stringHasPrefix(mutableRawString, ["condition"]) {
             self.simpleCondition = try Condition(rawString: args[0] as! String)
             self.object = nil
             return
         }
         
         //linear gradients
-        if LESS_stringHasPrefix(mutableRawString, ["linear-gradient"]) {
+        if refl_stringHasPrefix(mutableRawString, ["linear-gradient"]) {
             
             self.flags.gradient = true
             
@@ -188,7 +190,7 @@ struct PropertyValue: Parsable {
         }
         
         //vector
-        if LESS_stringHasPrefix(mutableRawString, ["vector"]) {
+        if refl_stringHasPrefix(mutableRawString, ["vector"]) {
             
             var values = [AnyObject]()
             for arg in args {
@@ -282,3 +284,32 @@ struct PropertyValue: Parsable {
     ///::object:: is the previously parsed object that could contains the value or a intermediate representation of it
     @objc func computeValueForObject(object: AnyObject?, traitCollection: UITraitCollection, size: CGSize) -> AnyObject?
 }
+
+//MARK: Properties
+
+struct PropertyKeyPath: Hashable, Parsable {
+    
+    ///@see Parsable
+    let rawString: String
+    
+    ///!important properties: evaluated at layout time
+    var important = false;
+    
+    var hashValue: Int {
+        get {
+            return hash(self)
+        }
+    }
+    
+    init(rawString: String) throws {
+        self.rawString = refl_stringToCamelCase(rawString)
+    }
+    
+    init(keyPath: String) {
+        self.rawString = keyPath
+    }
+    
+}
+
+
+

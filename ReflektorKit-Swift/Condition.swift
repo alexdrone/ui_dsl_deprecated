@@ -264,7 +264,7 @@ struct Condition: Hashable, Parsable {
 
 private func sanitizeConditionString(string: String) -> String {
     
-    var ps = LESS_stripQuotesFromString(string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())).lowercaseString
+    var ps = refl_stripQuotesFromString(string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())).lowercaseString
     ps = ps.stringByReplacingOccurrencesOfString("!=", withString: ExpressionToken.Operator.NotEqual.rawValue)
     ps = ps.stringByReplacingOccurrencesOfString("<=", withString: ExpressionToken.Operator.LessThanOrEqual.rawValue)
     ps = ps.stringByReplacingOccurrencesOfString(">=", withString: ExpressionToken.Operator.GreaterThanOrEqual.rawValue)

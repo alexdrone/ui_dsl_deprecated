@@ -51,7 +51,7 @@ static NSDictionary *CMRW3CNamedColors(void);
     return [UIColor colorWithPatternImage:uiImage];
 }
 
-+ (UIColor*)LESS_colorWithCSSColor:(NSString *)cssColor
++ (UIColor*)refl_colorWithCSSColor:(NSString *)cssColor
 {
     UIColor *color = nil;
     NSScanner *scanner = [NSScanner scannerWithString:cssColor];

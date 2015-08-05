@@ -14,7 +14,7 @@
  * Reads a color from a string containing hex, RGB, HSL or X11 named color.
  * Returns `nil` on failure.
  */
-+ (UIColor *)LESS_colorWithCSSColor:(NSString *)cssColor;
++ (UIColor *)refl_colorWithCSSColor:(NSString *)cssColor;
 
 /**
  * Reads a color from a string containing a hex color, of the form

@@ -52,18 +52,18 @@ typedef void* yyscan_t;
 #endif
 
 //utilities
-__nonnull NSString *LESS_uuid(void);
-__nonnull NSString *LESS_stripQuotesFromString(__nonnull NSString *string);
-BOOL LESS_stringHasPrefix(__nonnull NSString *string, __nonnull NSArray *prefixes);
-__nonnull NSArray *LESS_prefixedOrderedKeys(__nonnull NSArray *keys);
-__nonnull NSString *LESS_stringToCamelCase(__nonnull NSString *string);
-__nullable NSArray *LESS_getArgumentForValue(__nonnull NSString* stringValue);
-__nullable id LESS_parseKeyword(__nonnull NSString *cssValue);
+__nonnull NSString *refl_uuid(void);
+__nonnull NSString *refl_stripQuotesFromString(__nonnull NSString *string);
+BOOL refl_stringHasPrefix(__nonnull NSString *string, __nonnull NSArray *prefixes);
+__nonnull NSArray *refl_prefixedOrderedKeys(__nonnull NSArray *keys);
+__nonnull NSString *refl_stringToCamelCase(__nonnull NSString *string);
+__nullable NSArray *refl_getArgumentForValue(__nonnull NSString* stringValue);
+__nullable id refl_parseKeyword(__nonnull NSString *cssValue);
 
 //lexer
 int LESSlex(void);
-void LESS_parse(__nonnull const char *buffer);
-void LESS_scan(__nullable const char *text, int token);
+void refl_parse(__nonnull const char *buffer);
+void refl_scan(__nullable const char *text, int token);
 
 @interface LESSParser : NSObject
 

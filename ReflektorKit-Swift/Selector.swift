@@ -112,7 +112,7 @@ struct Selector: Hashable, Parsable, Comparable {
         if let viewClass = NSClassFromString(head) {
             self.type = .Class(viewClass: viewClass)
             
-        } else if LESS_stringHasPrefix(head, [Token.Pre.Variable.actual]) {
+        } else if refl_stringHasPrefix(head, [Token.Pre.Variable.actual]) {
             self.type = .Scope(scope: head.stringByReplacingOccurrencesOfString(Token.Pre.Variable.actual, withString: ""))
             
         } else {
@@ -127,7 +127,7 @@ struct Selector: Hashable, Parsable, Comparable {
         switch (self.type) {
             
         case .Class(_):
-            if !LESS_stringHasPrefix(components[1], ["\(Token.Directive.Where)"]) {
+            if !refl_stringHasPrefix(components[1], ["\(Token.Directive.Where)"]) {
                 self.additionalTrait = components[1]
             }
             
@@ -138,29 +138,4 @@ struct Selector: Hashable, Parsable, Comparable {
     
 }
 
-//MARK: Properties
-
-struct PropertyKeyPath: Hashable, Parsable {
-    
-    ///@see Parsable
-    let rawString: String
-
-    ///!important properties: evaluated at layout time
-    var important = false;
-    
-    var hashValue: Int {
-        get {
-            return hash(self)
-        }
-    }
-    
-    init(rawString: String) throws {
-        self.rawString = LESS_stringToCamelCase(rawString)
-    }
-    
-    init(keyPath: String) {
-        self.rawString = keyPath
-    }
-    
-}
 

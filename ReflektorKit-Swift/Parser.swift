@@ -54,7 +54,7 @@ struct Parser {
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Variable.pre, withString: Token.Pre.Variable.actual)
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Important.pre, withString: Token.Pre.Important.actual)
         payload = payload.stringByReplacingOccurrencesOfString("\(Token.Separator.Selector)\(Token.Directive.Where)",
-                                                    withString:"\(Token.Separator.Selector)\(Token.Directive.Where)_\(LESS_uuid())")
+                                                    withString:"\(Token.Separator.Selector)\(Token.Directive.Where)_\(refl_uuid())")
         
         //parse
         let parser = LESSParser()
@@ -105,7 +105,7 @@ struct Parser {
     
     private func recursivelyResolveInclusions(selector: String, inout dictionary:[String : [String: AnyObject]]) throws {
         
-        let key = LESS_stripQuotesFromString(selector)
+        let key = refl_stripQuotesFromString(selector)
         
         guard var rules = dictionary[key] else {
             return
@@ -148,7 +148,7 @@ struct Parser {
         //retrieve the variables
         for selector in dictionary.keys {
             
-            if LESS_stringHasPrefix(selector, [Token.Pre.Variable.actual]) {
+            if refl_stringHasPrefix(selector, [Token.Pre.Variable.actual]) {
                 
                 for variable in dictionary[selector]!.keys {
                     variables[variable] = dictionary[selector]![variable]
@@ -156,7 +156,7 @@ struct Parser {
             }
         }
         
-        let sortedKeys = LESS_prefixedOrderedKeys(variables.keys.array) as! [String]
+        let sortedKeys = refl_prefixedOrderedKeys(variables.keys.array) as! [String]
         
         //resolve the variables
         for selector in dictionary.keys {
@@ -177,7 +177,7 @@ struct Parser {
         //finally remove all the variable prefixes
         for selector in dictionary.keys {
             
-            if LESS_stringHasPrefix(selector, [Token.Pre.Variable.actual]) {
+            if refl_stringHasPrefix(selector, [Token.Pre.Variable.actual]) {
                 for variable in sortedKeys {
                     
                     let cleanedVariableName = variable.stringByReplacingOccurrencesOfString(Token.Pre.Variable.actual, withString: "")
