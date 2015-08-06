@@ -15,9 +15,12 @@ import UIKit
         ///Use this to access to the value of a global variable
         @objc subscript(key: String) -> AnyObject? {
             get {
-               
-                //get the variable
-                return nil;
+                
+                if let propertyValue = AppearanceManager.sharedManager.stylesheet.variables[PropertyKeyPath(keyPath: key)] {
+                    return
+                        propertyValue.computeValue(UIScreen.mainScreen().traitCollection, size: UIScreen.mainScreen().bounds.size)
+                }
+                return nil
             }
         }
     }
@@ -25,7 +28,7 @@ import UIKit
     weak var view: UIView?
     
     ///All the currently computed properties for this associated view
-    private let computedProperties = (all: Rule(), important: Rule())
+    private var computedProperties = (all: Rule(), important: Rule())
     private var resetDictionary = [String: AnyObject?]()
     
     ///The optional trait associated to this view
@@ -56,12 +59,24 @@ import UIKit
     init(view: UIView) {
         self.view = view
         self.refreshComputedProperties()
+        
+        do {
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: try Selector("didChangeStylesheetNotification:"), name: AppearanceManagerDidChangeStylesheet, object: nil)
+        } catch {
+            assert(false, "selector didChangeStylesheetNotification: not found.")
+        }
+    }
+    
+    ///When the stylesheet changes the properties needs to be re-computed
+    @objc func didChangeStylesheetNotification(notification: NSNotification) {
+        self.refreshComputedProperties()
     }
 
     ///Recompute what properties
     @objc func refreshComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
         
-        //TODO
+        //recompute the matching selectors
+        self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
         
         if Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties {
             self.applyComputedProperties(shouldApplyOnlyImportantProperties)

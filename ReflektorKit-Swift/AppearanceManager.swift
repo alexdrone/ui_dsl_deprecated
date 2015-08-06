@@ -8,6 +8,8 @@
 
 import Foundation
 
+let AppearanceManagerDidChangeStylesheet: String = "AppearanceManagerDidChangeStylesheet"
+
 @objc class AppearanceManager {
     
     ///The unique shared appearance manager
@@ -79,7 +81,7 @@ import Foundation
             }
         }
         
-        //sorts the selectors accordingly to priority
+        //sorts the selectors according to priority
         selectors.sortInPlace()
         
         var all = Rule()
