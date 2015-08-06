@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>09CADF1E-29F2-426D-B28F-9A3C317E4601</string>
+	<string>DAD517E3-9CE3-4387-8086-BFEBAA9B2DFB</string>
 	<key>IDESourceControlProjectName</key>
 	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>github.com:alexdrone/ReflektorKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>~old/ReflektorDemo/ReflektorDemo.xcodeproj/project.xcworkspace</string>
+	<string>ReflektorKitSwift.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>36ECFEB33A1541BBBE1C4B2CF6E6AC5BD03C2D24</key>
-		<string>../../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:alexdrone/ReflektorKit.git</string>

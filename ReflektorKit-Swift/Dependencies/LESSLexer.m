@@ -198,7 +198,16 @@ id refl_parseKeyword(NSString *cssValue)
     return @(value);
 }
 
-
+NSString *refl_bundlePath(NSString *file, NSString *extension)
+{
+    NSString *const resourcePath = @"Frameworks/ReflektorKitSwift.framework/";
+    NSString *path = [[NSBundle mainBundle] pathForResource:file ofType:extension];
+    
+    if (!path)
+        path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@%@", resourcePath, file] ofType:extension];
+    
+    return path;
+}
 
 #pragma mark - Tokenizer
 

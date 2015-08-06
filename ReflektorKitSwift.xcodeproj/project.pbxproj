@@ -21,6 +21,8 @@
 		164F35CC1B5BE3AC00E01834 /* LESSLexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 164F35C61B5BE3AC00E01834 /* LESSLexer.m */; };
 		164F35D41B5BE53400E01834 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F35D31B5BE53400E01834 /* Parser.swift */; };
 		164F35D51B5BE53400E01834 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F35D31B5BE53400E01834 /* Parser.swift */; };
+		165DE5941B737F2700AA02D5 /* main.less in Resources */ = {isa = PBXBuildFile; fileRef = 165DE5931B737F2700AA02D5 /* main.less */; };
+		165DE5961B737F3B00AA02D5 /* foo.less in Resources */ = {isa = PBXBuildFile; fileRef = 165DE5951B737F3B00AA02D5 /* foo.less */; };
 		167A63461B70F19400B91EA3 /* PropertyValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A63451B70F19400B91EA3 /* PropertyValueTests.swift */; };
 		16A211721B5F88D50051F149 /* SelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A211711B5F88D50051F149 /* SelectorTest.swift */; };
 		16B9129A1B5E60CE00B61761 /* PropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B912991B5E60CE00B61761 /* PropertyValue.swift */; };
@@ -31,6 +33,7 @@
 		16B912A51B5E909D00B61761 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625B87D1B5CF9B1005B5717 /* Selector.swift */; };
 		16B912A61B5E909D00B61761 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625B87F1B5CFAB6005B5717 /* Condition.swift */; };
 		16B912A71B5E909D00B61761 /* PropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B912991B5E60CE00B61761 /* PropertyValue.swift */; };
+		16F00DCB1B72B18100B03707 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F00DCA1B72B18100B03707 /* ParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +63,14 @@
 		164F35C51B5BE3AC00E01834 /* LESSLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LESSLexer.h; path = Dependencies/LESSLexer.h; sourceTree = "<group>"; };
 		164F35C61B5BE3AC00E01834 /* LESSLexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LESSLexer.m; path = Dependencies/LESSLexer.m; sourceTree = "<group>"; };
 		164F35D31B5BE53400E01834 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		165DE5931B737F2700AA02D5 /* main.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.less; sourceTree = "<group>"; };
+		165DE5951B737F3B00AA02D5 /* foo.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = foo.less; sourceTree = "<group>"; };
 		167A63451B70F19400B91EA3 /* PropertyValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyValueTests.swift; sourceTree = "<group>"; };
 		16A211711B5F88D50051F149 /* SelectorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorTest.swift; sourceTree = "<group>"; };
 		16B912991B5E60CE00B61761 /* PropertyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyValue.swift; sourceTree = "<group>"; };
 		16B9129D1B5E66C200B61761 /* UIColor+LESS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+LESS.h"; path = "Dependencies/UIColor+LESS.h"; sourceTree = "<group>"; };
 		16B9129E1B5E66C200B61761 /* UIColor+LESS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+LESS.m"; path = "Dependencies/UIColor+LESS.m"; sourceTree = "<group>"; };
+		16F00DCA1B72B18100B03707 /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +134,10 @@
 				164F35A91B5BE22F00E01834 /* ConditionTests.swift */,
 				16A211711B5F88D50051F149 /* SelectorTest.swift */,
 				167A63451B70F19400B91EA3 /* PropertyValueTests.swift */,
+				16F00DCA1B72B18100B03707 /* ParserTests.swift */,
 				164F35AB1B5BE22F00E01834 /* Info.plist */,
+				165DE5931B737F2700AA02D5 /* main.less */,
+				165DE5951B737F3B00AA02D5 /* foo.less */,
 			);
 			path = "ReflektorKit-SwiftTests";
 			sourceTree = "<group>";
@@ -245,6 +254,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				165DE5941B737F2700AA02D5 /* main.less in Resources */,
+				165DE5961B737F3B00AA02D5 /* foo.less in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +288,7 @@
 				16B912A11B5E66C200B61761 /* UIColor+LESS.m in Sources */,
 				16B912A41B5E909D00B61761 /* Configuration.swift in Sources */,
 				167A63461B70F19400B91EA3 /* PropertyValueTests.swift in Sources */,
+				16F00DCB1B72B18100B03707 /* ParserTests.swift in Sources */,
 				16B912A61B5E909D00B61761 /* Condition.swift in Sources */,
 				16B912A51B5E909D00B61761 /* Selector.swift in Sources */,
 				164F35CC1B5BE3AC00E01834 /* LESSLexer.m in Sources */,

@@ -59,6 +59,7 @@ __nonnull NSArray *refl_prefixedOrderedKeys(__nonnull NSArray *keys);
 __nonnull NSString *refl_stringToCamelCase(__nonnull NSString *string);
 __nullable NSArray *refl_getArgumentForValue(__nonnull NSString* stringValue);
 __nullable id refl_parseKeyword(__nonnull NSString *cssValue);
+__nullable NSString *refl_bundlePath(__nonnull NSString *file, __nonnull NSString *extension);
 
 //lexer
 int LESSlex(void);

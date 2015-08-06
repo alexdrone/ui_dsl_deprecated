@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias Rule = [PropertyKeyPath: PropertyValue]
+
 //MARK: Tokens
 
 struct Token {
@@ -44,7 +46,7 @@ enum ParserError: ErrorType {
 ///ReflektorKit is based on a dialect of LESS. See LESSParser.m.
 struct Parser {
 
-    func parseStylesheet(stylesheet: String) throws -> [Selector: [PropertyKeyPath: PropertyValue]] {
+    func parseStylesheet(stylesheet: String) throws -> ([Selector: Rule], Rule) {
         
         //imports /@import\surl\(\"(\w*.\w*)\"\);/g
         
@@ -97,9 +99,54 @@ struct Parser {
             result[selector] = rules
         }
         
-        return result
+        //group the variables together
+        var variables = [PropertyKeyPath: PropertyValue]()
+        
+        for selector in result.keys {
+            if selector.rawString.hasPrefix(Token.Pre.Variable.actual) {
+                let rules = result[selector]!
+                for key in rules.keys {
+                    variables[key] = rules[key]
+                }
+                
+            }
+        }
+        
+        return (result, variables)
     }
     
+    //MARK: Imports
+    
+    func loadStylesheetFileAndResolveImports(fileName: String, fileExtension: String, bundle: NSBundle = NSBundle.mainBundle()) throws -> String {
+        
+        if let path = bundle.pathForResource(fileName, ofType: fileExtension) {
+            
+            //loads the file
+            var file = try String(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+            
+            while let match = file.rangeOfString("@import(\\s*)url\\(\"(\\w*.\\w*)\"\\);", options: .RegularExpressionSearch) {
+                
+                //get the filename of the imported file
+                var importString = file.componentsSeparatedByString("\"")[1]
+                importString = importString.componentsSeparatedByString("\"")[0]
+                
+                let importedFileName = importString.componentsSeparatedByString(".")[0]
+                let importedExtension = importString.componentsSeparatedByString(".")[1]
+                
+                file.removeRange(match)
+                
+                //recursively reads the imported file
+                let importedPayload = try self.loadStylesheetFileAndResolveImports(importedFileName, fileExtension: importedExtension, bundle: bundle)
+                
+                file = "\(importedPayload)\n\(file)"
+            }
+            
+            return file
+        }
+        
+        return ""
+    }
+
     
     //MARK: Private
     
@@ -186,7 +233,6 @@ struct Parser {
                 }
             }
         }
-        
         
     }
     

@@ -10,18 +10,33 @@ import UIKit
 
 @objc class AppearanceProxy {
     
-    private weak var view: UIView?
+     @objc class AppearanceProxyVariablesProxy {
+        
+        ///Use this to access to the value of a global variable
+        @objc subscript(key: String) -> AnyObject? {
+            get {
+               
+                //get the variable
+                return nil;
+            }
+        }
+    }
+    
+    weak var view: UIView?
     
     ///All the currently computed properties for this associated view
-    let computedProperties = AppearanceManager.ComputedProperties()
-    var resetDictionary = [String: AnyObject?]()
+    private let computedProperties = (all: Rule(), important: Rule())
+    private var resetDictionary = [String: AnyObject?]()
     
+    ///The optional trait associated to this view
     @objc var trait: String? {
         didSet {
             self.refreshComputedProperties()
         }
     }
 
+    ///You can get a property by simply subscript the apperarance proxy of a view
+    ///e.g. view.refl_appearanceProxy["backgroundColor"]
     @objc subscript(key: String) -> AnyObject? {
         get {
             if let value = self.computedProperties.all[PropertyKeyPath(keyPath: key)] {
@@ -32,8 +47,14 @@ import UIKit
             }
         }
     }
+
+    ///Use this to access to the global variables (the ones defined with @ in the stylesheet)
+    ///E.g. given the stylesheet @global { @blue = #0000ff; } You can reference the variable from a view
+    ///by calling view.refl_appearanceProxy.variable["blue"]
+    let variable = AppearanceProxyVariablesProxy()
     
-    init() {
+    init(view: UIView) {
+        self.view = view
         self.refreshComputedProperties()
     }
 
@@ -85,14 +106,12 @@ extension UIView {
             var obj = objc_getAssociatedObject(self, &__appearanceProxyHandle) as? AppearanceProxy
             
             if obj == nil {
-                obj = AppearanceProxy()
+                obj = AppearanceProxy(view: self)
                 obj!.view = self
                 objc_setAssociatedObject(self, &__appearanceProxyHandle, obj, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
-            
             return obj!
         }
-
     }
     
     //Set this to true if you wish to use the apperance proxy
