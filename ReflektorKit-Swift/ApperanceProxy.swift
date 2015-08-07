@@ -46,7 +46,7 @@ import UIKit
     @objc subscript(key: String) -> AnyObject? {
         get {
             if let value = self.computedProperties.all[PropertyKeyPath(keyPath: key)] {
-                return value.computeValue((self.view?.traitCollection)!, size: UIScreen.mainScreen().bounds.size)
+                return value.computeValue((self.view?.traitCollection)!, size: UIScreen.mainScreen().bounds.size, view:self.view)
                 
             } else {
                 return nil

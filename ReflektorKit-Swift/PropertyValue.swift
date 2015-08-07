@@ -216,10 +216,10 @@ struct PropertyValue: Parsable {
     }
     
     ///Called when the styelesheet proxy is queried for a specific property value
-    func computeValue(traitCollection: UITraitCollection, size:CGSize) -> AnyObject? {
+    func computeValue(traitCollection: UITraitCollection, size:CGSize, view: UIView? = nil) -> AnyObject? {
         
         if let plugin = self.associatedPlugin {
-            return plugin.computeValueForObject(self.object, traitCollection: traitCollection, size: size)
+            return plugin.computeValueForObject(self.object, traitCollection: traitCollection, size: size, view: view)
         }
         
         //is a pure condition
@@ -227,8 +227,13 @@ struct PropertyValue: Parsable {
             return self.simpleCondition?.evaluate(nil, traitCollection: traitCollection, size: size)
         }
         
-        let minBound = Float(min(size.width, size.height))
+        var viewSize = size
+        if let hostView = view {
+            viewSize = hostView.bounds.size
+        }
         
+        let minBound = Float(min(viewSize.width, viewSize.height))
+
         // % value
         if self.flags.percent {
             
@@ -243,12 +248,12 @@ struct PropertyValue: Parsable {
         
         //linear gradient
         } else if self.flags.gradient {
-            
+
             guard let colors = self.object as? [UIColor] else {
                 return UIColor.blackColor()
             }
             
-            return UIColor.gradientFromColor(colors[0], toColor: colors[1], withSize: size)
+            return UIColor.gradientFromColor(colors[0], toColor: colors[1], withSize: viewSize)
         
         //image
         } else if self.flags.imageAsset {
@@ -258,11 +263,11 @@ struct PropertyValue: Parsable {
             }
             
             if let color = self.object as? UIColor {
-                return UIImage(color: color, size: size)
+                return UIImage(color: color, size: viewSize)
             }
             
             if let colors = self.object as? [UIColor] {
-                return UIColor.gradientFromColor(colors[0], toColor: colors[1], withSize: size)
+                return UIColor.gradientFromColor(colors[0], toColor: colors[1], withSize: viewSize)
             }
             
             return UIImage()
@@ -282,7 +287,7 @@ struct PropertyValue: Parsable {
     
     ///Called when the styelesheet proxy is queried for a specific property value
     ///::object:: is the previously parsed object that could contains the value or a intermediate representation of it
-    @objc func computeValueForObject(object: AnyObject?, traitCollection: UITraitCollection, size: CGSize) -> AnyObject?
+    @objc func computeValueForObject(object: AnyObject?, traitCollection: UITraitCollection, size: CGSize, view: UIView?) -> AnyObject?
 }
 
 //MARK: Properties
