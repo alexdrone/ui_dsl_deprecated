@@ -31,6 +31,9 @@ import UIKit
     private var computedProperties = (all: Rule(), important: Rule())
     private var resetDictionary = [String: AnyObject?]()
     
+    ///By default is the value set in the shared configuration
+    @objc var shouldAutomaticallySetViewProperties = Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties
+    
     ///The optional trait associated to this view
     @objc var trait: String? {
         didSet {
@@ -59,12 +62,8 @@ import UIKit
     init(view: UIView) {
         self.view = view
         self.refreshComputedProperties()
-        
-        do {
-//            NSNotificationCenter.defaultCenter().addObserver(self, selector: try Selector("didChangeStylesheetNotification:"), name: AppearanceManagerDidChangeStylesheet, object: nil)
-        } catch {
-            assert(false, "selector didChangeStylesheetNotification: not found.")
-        }
+    
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: NSSelectorFromString("didChangeStylesheetNotification:"), name: AppearanceManager.Notification.DidChangeStylesheet.rawValue, object: nil)
     }
     
     ///When the stylesheet changes the properties needs to be re-computed
@@ -78,7 +77,7 @@ import UIKit
         //recompute the matching selectors
         self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
         
-        if Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties {
+        if self.shouldAutomaticallySetViewProperties {
             self.applyComputedProperties(shouldApplyOnlyImportantProperties)
         }
         
@@ -108,6 +107,31 @@ import UIKit
             self.view?.setValue(value, forKey: keyPath)
         }
     }
+    
+    ///Swizzle the main view life cycle methods to hook the appearance manager methods
+    @objc func hookToViewLifecycle() {
+        
+        self.shouldAutomaticallySetViewProperties = true
+        
+        do {
+            
+            let layoutSubviewsBlock: @convention(block) (REFLAspectInfo) -> () = { (info: REFLAspectInfo) -> () in
+                self.refreshComputedProperties(true)
+            }
+            
+            let refreshBlock: @convention(block) (REFLAspectInfo) -> () = { (info: REFLAspectInfo) -> () in
+                self.refreshComputedProperties()
+            }
+            
+            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("layoutSubviews"), withOptions: .PositionBefore, usingBlock: unsafeBitCast(layoutSubviewsBlock, AnyObject.self))
+            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("didMoveToSuperview"), withOptions: .PositionBefore, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
+            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("traitCollectionDidChange"), withOptions: .PositionBefore, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
+            
+        } catch {
+            assert(false, "Unable to swizzle the view's lifecycle methods")
+        }
+
+    }
 }
 
 var __appearanceProxyHandle: UInt8 = 0
@@ -115,7 +139,7 @@ var __useAppearanceProxyHandle: UInt8 = 0
 
 extension UIView {
 
-    //The associated apperance proxy for this view
+    ///The associated apperance proxy for this view
     @objc var refl_appearanceProxy: AppearanceProxy {
         get {
             var obj = objc_getAssociatedObject(self, &__appearanceProxyHandle) as? AppearanceProxy
@@ -129,7 +153,7 @@ extension UIView {
         }
     }
     
-    //Set this to true if you wish to use the apperance proxy
+    ///Set this to true if you wish to use the apperance proxy
     @objc var refl_useAppearanceProxy: Bool {
         get {
             return objc_getAssociatedObject(self, &__useAppearanceProxyHandle).boolValue
@@ -144,6 +168,25 @@ extension UIView {
             }
             
         }
+    }
+    
+    ///Convenience intialiser to create a view with an associated appearance proxy
+    ///::useAppearanceProxy;; 'true' if you wish to use the stylesheet engino, 'false' otherwise
+    ///::hookToViewLifecycle:: If set to 'true' the proxy will automatically refresh and apply the properties 
+    ///by hooking itself to 'layoutSubviews' and 'traitCollectionDidChange:' of the hosting view.
+    ///If set to 'false' it is required to call 'refl_appearanceProxy.refreshComputedProperties()' every time 
+    ///a change in the enviroment happens.
+    ///::trait:: The (optional) trait for this view. Can be changed at runtime.
+    convenience init(frame: CGRect, useAppearanceProxy: Bool, hookToViewLifecycle: Bool, trait: String? = nil) {
+        self.init(frame: frame)
+        
+        self.refl_useAppearanceProxy = useAppearanceProxy;
+        
+        if hookToViewLifecycle {
+            self.refl_appearanceProxy.hookToViewLifecycle()
+        }
+        
+        self.refl_appearanceProxy.trait = trait
     }
     
 }

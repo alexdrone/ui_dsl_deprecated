@@ -12,6 +12,9 @@
 		162A33451B71FFE200B7ECC3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 162A33441B71FFE200B7ECC3 /* README.md */; };
 		162A33471B7201BE00B7ECC3 /* ApperanceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162A33461B7201BE00B7ECC3 /* ApperanceProxy.swift */; };
 		162A33491B720B7400B7ECC3 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162A33481B720B7400B7ECC3 /* AppearanceManager.swift */; };
+		16443FDA1B74D72900EE0B50 /* REFLAspects.h in Headers */ = {isa = PBXBuildFile; fileRef = 16443FD81B74D72900EE0B50 /* REFLAspects.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16443FDB1B74D72900EE0B50 /* REFLAspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 16443FD91B74D72900EE0B50 /* REFLAspects.m */; };
+		16443FDC1B74D72900EE0B50 /* REFLAspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 16443FD91B74D72900EE0B50 /* REFLAspects.m */; };
 		164F359E1B5BE22F00E01834 /* ReflektorKitSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 164F359D1B5BE22F00E01834 /* ReflektorKitSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		164F35A51B5BE22F00E01834 /* ReflektorKitSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 164F359A1B5BE22F00E01834 /* ReflektorKitSwift.framework */; };
 		164F35AA1B5BE22F00E01834 /* ConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F35A91B5BE22F00E01834 /* ConditionTests.swift */; };
@@ -52,6 +55,8 @@
 		162A33441B71FFE200B7ECC3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		162A33461B7201BE00B7ECC3 /* ApperanceProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApperanceProxy.swift; sourceTree = "<group>"; };
 		162A33481B720B7400B7ECC3 /* AppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
+		16443FD81B74D72900EE0B50 /* REFLAspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFLAspects.h; path = Dependencies/REFLAspects.h; sourceTree = "<group>"; };
+		16443FD91B74D72900EE0B50 /* REFLAspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = REFLAspects.m; path = Dependencies/REFLAspects.m; sourceTree = "<group>"; };
 		164F359A1B5BE22F00E01834 /* ReflektorKitSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReflektorKitSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		164F359D1B5BE22F00E01834 /* ReflektorKitSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflektorKitSwift.h; sourceTree = "<group>"; };
 		164F359F1B5BE22F00E01834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,6 +155,8 @@
 				164F35C61B5BE3AC00E01834 /* LESSLexer.m */,
 				16B9129D1B5E66C200B61761 /* UIColor+LESS.h */,
 				16B9129E1B5E66C200B61761 /* UIColor+LESS.m */,
+				16443FD81B74D72900EE0B50 /* REFLAspects.h */,
+				16443FD91B74D72900EE0B50 /* REFLAspects.m */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 				164F359E1B5BE22F00E01834 /* ReflektorKitSwift.h in Headers */,
 				164F35CA1B5BE3AC00E01834 /* LESSLexer.h in Headers */,
 				16B9129F1B5E66C200B61761 /* UIColor+LESS.h in Headers */,
+				16443FDA1B74D72900EE0B50 /* REFLAspects.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				164F35CB1B5BE3AC00E01834 /* LESSLexer.m in Sources */,
+				16443FDB1B74D72900EE0B50 /* REFLAspects.m in Sources */,
 				162A33471B7201BE00B7ECC3 /* ApperanceProxy.swift in Sources */,
 				1625B87E1B5CF9B1005B5717 /* Selector.swift in Sources */,
 				16B912A01B5E66C200B61761 /* UIColor+LESS.m in Sources */,
@@ -283,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16443FDC1B74D72900EE0B50 /* REFLAspects.m in Sources */,
 				16A211721B5F88D50051F149 /* SelectorTest.swift in Sources */,
 				16B912A71B5E909D00B61761 /* PropertyValue.swift in Sources */,
 				16B912A11B5E66C200B61761 /* UIColor+LESS.m in Sources */,

@@ -8,9 +8,11 @@
 
 import Foundation
 
-let AppearanceManagerDidChangeStylesheet: String = "AppearanceManagerDidChangeStylesheet"
-
 @objc class AppearanceManager {
+    
+    enum Notification: String {
+        case DidChangeStylesheet = "AppearanceManager.Notification.DidChangeStylesheet"
+    }
     
     ///The unique shared appearance manager
     static let sharedManager = AppearanceManager()
@@ -62,12 +64,17 @@ let AppearanceManagerDidChangeStylesheet: String = "AppearanceManagerDidChangeSt
         //adds the selector if possible to the array of selectors
         let addSelector = { (selector: Selector) -> () in
             
-            if let condition = selector.condition {
-                if condition.evaluate(appearanceProxy.view, traitCollection: (appearanceProxy.view?.traitCollection)!, size: UIScreen.mainScreen().bounds.size) {
+            //if there's an additional trait this should match the one from the appearance proxy
+            if selector.additionalTrait == nil || selector.additionalTrait == appearanceProxy.trait {
+
+                if let condition = selector.condition {
+                    if condition.evaluate(appearanceProxy.view, traitCollection: (appearanceProxy.view?.traitCollection)!, size: UIScreen.mainScreen().bounds.size) {
+                        selectors.append(selector)
+                    }
+                } else {
                     selectors.append(selector)
                 }
-            } else {
-                selectors.append(selector)
+                
             }
         }
         
