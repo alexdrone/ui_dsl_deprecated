@@ -1,10 +1,10 @@
 
 
 Demo.DemoContainerView {
+	background-color: @tomato ;
+}
 
-background-color: linear-gradient(#acacac, #ffccaa);
-border-width: 1px;
-border-color: #001100;
-corner-radius: 25%;
-
+Demo.DemoContainerView:__where {
+	condition: 'horizontal == regular';
+	background-color: @green;
 }

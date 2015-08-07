@@ -263,9 +263,13 @@ struct Condition: Hashable, Parsable {
 private func sanitizeConditionString(string: String) -> String {
     
     var ps = refl_stripQuotesFromString(string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())).lowercaseString
+    ps = ps.stringByReplacingOccurrencesOfString("\"", withString: "")
+    ps = ps.stringByReplacingOccurrencesOfString("'", withString: "")
     ps = ps.stringByReplacingOccurrencesOfString("!=", withString: ExpressionToken.Operator.NotEqual.rawValue)
     ps = ps.stringByReplacingOccurrencesOfString("<=", withString: ExpressionToken.Operator.LessThanOrEqual.rawValue)
     ps = ps.stringByReplacingOccurrencesOfString(">=", withString: ExpressionToken.Operator.GreaterThanOrEqual.rawValue)
+    ps = ps.stringByReplacingOccurrencesOfString("==", withString: ExpressionToken.Operator.Equal.rawValue)
+    ps = ps.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
 
     return ps
 }

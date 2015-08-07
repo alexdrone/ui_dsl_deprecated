@@ -22,6 +22,7 @@ struct Token {
     struct Directive {
         static let Condition = "condition"
         static let Where = "__where"
+        static let WhereSimple = "where"
         static let Include = "include"
         static let AppliesToSubclasses = "applies-to-subclasses"
     }
@@ -79,12 +80,17 @@ struct Parser {
         var result = [Selector: [PropertyKeyPath: PropertyValue]]()
         for selectorString in dictionary.keys {
             
-            let nestedDictionary = dictionary[selectorString]!
+            var nestedDictionary = dictionary[selectorString]!
             
             //creates the selector with the condition if necessary
             var selector = try Selector(rawString: selectorString)
-            if let conditionString = nestedDictionary[Token.Directive.Include] {
-                selector.condition = try Condition(rawString: conditionString as! String)
+            if let conditionString = nestedDictionary[Token.Directive.Condition] {
+                do {
+                    selector.condition = try Condition(rawString: conditionString as! String)
+                    nestedDictionary.removeValueForKey(Token.Directive.Condition)
+                } catch {
+                    assert(false, "malformed condition")
+                }
             }
             
             var rules = [PropertyKeyPath: PropertyValue]()

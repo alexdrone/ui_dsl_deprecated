@@ -23,6 +23,11 @@ import UIKit
                 return nil
             }
         }
+        
+        ///Get the value for a specific property listed in the rules
+        @objc public func property(key: String) -> AnyObject? {
+            return self[key]
+        }
     }
     
     weak var view: UIView?
@@ -53,6 +58,11 @@ import UIKit
             }
         }
     }
+    
+    ///Get the value for a specific property listed in the rules
+    @objc public func property(key: String) -> AnyObject? {
+        return self[key]
+    }
 
     ///Use this to access to the global variables (the ones defined with @ in the stylesheet)
     ///E.g. given the stylesheet @global { @blue = #0000ff; } You can reference the variable from a view
@@ -61,8 +71,7 @@ import UIKit
     
     init(view: UIView) {
         self.view = view
-        self.refreshComputedProperties()
-    
+        self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: NSSelectorFromString("didChangeStylesheetNotification:"), name: AppearanceManager.Notification.DidChangeStylesheet.rawValue, object: nil)
     }
     
@@ -109,7 +118,7 @@ import UIKit
     }
     
     ///Swizzle the main view life cycle methods to hook the appearance manager methods
-    @objc public func hookToViewLifecycle() {
+    @objc public func hookToViewLifeCycle() {
         
         self.shouldAutomaticallySetViewProperties = true
         
@@ -119,15 +128,7 @@ import UIKit
                 self.refreshComputedProperties(true)
             }
             
-            let refreshBlock: @convention(block) (REFLAspectInfo) -> () = { (info: REFLAspectInfo) -> () in
-                dispatch_after(0, dispatch_get_main_queue()) { () -> Void in
-                    self.refreshComputedProperties()
-                }
-            }
-            
             try self.view?.REFLAspect_hookSelector(NSSelectorFromString("layoutSubviews"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(layoutSubviewsBlock, AnyObject.self))
-            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("didMoveToSuperview"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
-            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("traitCollectionDidChange:"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
             
         } catch {
             assert(false, "Unable to swizzle the view's lifecycle methods")
@@ -149,7 +150,6 @@ public extension UIView {
             if obj == nil {
                 obj = AppearanceProxy(view: self)
                 obj!.view = self
-                obj?.refreshComputedProperties()
                 objc_setAssociatedObject(self, &__appearanceProxyHandle, obj, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
             return obj!
@@ -169,7 +169,6 @@ public extension UIView {
                 //triggers the creation of the lazy object
                 self.refl_appearanceProxy
             }
-            
         }
     }
     
@@ -180,16 +179,29 @@ public extension UIView {
     ///If set to 'false' it is required to call 'refl_appearanceProxy.refreshComputedProperties()' every time 
     ///a change in the enviroment happens.
     ///::trait:: The (optional) trait for this view. Can be changed at runtime.
-    convenience init(frame: CGRect, useAppearanceProxy: Bool, hookToViewLifecycle: Bool, trait: String? = nil) {
+    convenience init(frame: CGRect, useAppearanceProxy: Bool, trait: String? = nil) {
         self.init(frame: frame)
         
         self.refl_useAppearanceProxy = useAppearanceProxy;
         
-        if hookToViewLifecycle {
-            self.refl_appearanceProxy.hookToViewLifecycle()
-        }
-        
+        //setting the trait causes the appearance proxy to apply the computed properties
         self.refl_appearanceProxy.trait = trait
     }
     
+    ///Recursively applies the style from the stylesheet to this view and all its subviews (and so on)
+    @objc func refl_applyStyleRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
+        self.refl_appearanceProxy.refreshComputedProperties(shouldApplyOnlyImportantProperties)
+        for subview in self.subviews {
+            subview.refl_appearanceProxy.refreshComputedProperties()
+        }
+    }
+}
+
+public extension UIViewController {
+    
+    ///Recursively applies the style from the stylesheet to this view and all its subviews (and so on)
+    @objc func refl_applyStyleToViewRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
+        self.view.refl_applyStyleRecursive(shouldApplyOnlyImportantProperties)
+    }
+
 }
