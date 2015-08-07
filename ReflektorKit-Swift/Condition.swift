@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias ExternalConditionClosure = (view: UIView?, traitCollection: UITraitCollection, size: CGSize) -> Bool
+public typealias ExternalConditionClosure = (view: UIView?, traitCollection: UITraitCollection, size: CGSize) -> Bool
 
 struct ExpressionToken {
     

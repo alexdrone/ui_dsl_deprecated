@@ -102,8 +102,8 @@ If it matches a class `keyPath`, the value is evaluated and automatically set to
 matches the current selector.
 
 Otherwise the properties can be accessed from within the view's dictionary stored inside the 
-property `rflk_computedProperties` defined in ReflektorKit's UIView category.
-e.g. `self.rflk_computedProperties["anyKey"].computeValue(self.traitCollection size:self.bounds)`
+property `REFL_computedProperties` defined in ReflektorKit's UIView category.
+e.g. `self.REFL_computedProperties["anyKey"].computeValue(self.traitCollection size:self.bounds)`
 
 ##Right-Hand Side Values
 
@@ -282,8 +282,8 @@ rounded {
 	  If it matches a class keyPath, the value is evaluated and automatically set to any view that 
 	  matches the current selector.
 	  Otherwise the properties can be accessed from within the view's dictionary stored inside the 
-	  property rflk_computedProperties defined in ReflektorKit's UIView category.
-	  e.g. [self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]
+	  property REFL_computedProperties defined in ReflektorKit's UIView category.
+	  e.g. [self.REFL_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]
 	  */
 	corner-radius: 50%;
 	any-custom-key: 50px;

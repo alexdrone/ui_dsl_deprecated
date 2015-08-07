@@ -272,7 +272,7 @@ struct PropertyValue: Parsable {
     }
 }
 
-@objc protocol PropertyValuePlugin {
+@objc public protocol PropertyValuePlugin {
     
     ///Should returns 'true' if the rawString passed as argument is a valid input string for this plugin
     @objc func shouldParseValue(rawString: String) -> Bool

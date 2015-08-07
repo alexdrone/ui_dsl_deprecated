@@ -89,6 +89,16 @@ static NSString *const REFLAspectsMessagePrefix = @"aspects_";
 
 @implementation NSObject (REFLAspects)
 
+- (NSString*)refl_className
+{
+    return NSStringFromClass(self.class);
+}
+
+- (Class)refl_class
+{
+    return self.class;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public REFLAspects API
 

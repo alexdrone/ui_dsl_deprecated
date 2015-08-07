@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc class AppearanceProxy {
+@objc public class AppearanceProxy {
     
-     @objc class AppearanceProxyVariablesProxy {
+     @objc public class AppearanceProxyVariablesProxy {
         
         ///Use this to access to the value of a global variable
         @objc subscript(key: String) -> AnyObject? {
@@ -32,7 +32,7 @@ import UIKit
     private var resetDictionary = [String: AnyObject?]()
     
     ///By default is the value set in the shared configuration
-    @objc var shouldAutomaticallySetViewProperties = Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties
+    @objc public var shouldAutomaticallySetViewProperties = Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties
     
     ///The optional trait associated to this view
     @objc var trait: String? {
@@ -67,12 +67,12 @@ import UIKit
     }
     
     ///When the stylesheet changes the properties needs to be re-computed
-    @objc func didChangeStylesheetNotification(notification: NSNotification) {
+    @objc public func didChangeStylesheetNotification(notification: NSNotification) {
         self.refreshComputedProperties()
     }
 
     ///Recompute what properties
-    @objc func refreshComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
+    @objc public func refreshComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
         
         //recompute the matching selectors
         self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
@@ -86,7 +86,7 @@ import UIKit
     ///Applies the properties from the 'computedProperties' dictionary down to the view
     ///If 'shouldApplyOnlyImportantProperties' is set to true, only the rules marked with 
     ///!important are going to be processed and applied to the view.
-    @objc func applyComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
+    @objc public func applyComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
         
         let dictionary = shouldApplyOnlyImportantProperties ? self.computedProperties.important : self.computedProperties.all
         
@@ -97,19 +97,19 @@ import UIKit
         
         for key in dictionary.keys {
             
-            let keyPath = key.rawString
-            let value = self[keyPath]
+            let k = key.rawString
+            let value = self[k]
             
             //populate the reset dictionary
-            self.resetDictionary[keyPath] = self.view?.valueForKey(keyPath)
+            self.resetDictionary[k] = self.view?.valueForKeyPath(k)
 
             //applies the value
-            self.view?.setValue(value, forKey: keyPath)
+            self.view?.setValue(value, forKeyPath: k)
         }
     }
     
     ///Swizzle the main view life cycle methods to hook the appearance manager methods
-    @objc func hookToViewLifecycle() {
+    @objc public func hookToViewLifecycle() {
         
         self.shouldAutomaticallySetViewProperties = true
         
@@ -120,12 +120,14 @@ import UIKit
             }
             
             let refreshBlock: @convention(block) (REFLAspectInfo) -> () = { (info: REFLAspectInfo) -> () in
-                self.refreshComputedProperties()
+                dispatch_after(0, dispatch_get_main_queue()) { () -> Void in
+                    self.refreshComputedProperties()
+                }
             }
             
-            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("layoutSubviews"), withOptions: .PositionBefore, usingBlock: unsafeBitCast(layoutSubviewsBlock, AnyObject.self))
-            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("didMoveToSuperview"), withOptions: .PositionBefore, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
-            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("traitCollectionDidChange"), withOptions: .PositionBefore, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
+            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("layoutSubviews"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(layoutSubviewsBlock, AnyObject.self))
+            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("didMoveToSuperview"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
+            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("traitCollectionDidChange:"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(refreshBlock, AnyObject.self))
             
         } catch {
             assert(false, "Unable to swizzle the view's lifecycle methods")
@@ -137,7 +139,7 @@ import UIKit
 var __appearanceProxyHandle: UInt8 = 0
 var __useAppearanceProxyHandle: UInt8 = 0
 
-extension UIView {
+public extension UIView {
 
     ///The associated apperance proxy for this view
     @objc var refl_appearanceProxy: AppearanceProxy {
@@ -147,6 +149,7 @@ extension UIView {
             if obj == nil {
                 obj = AppearanceProxy(view: self)
                 obj!.view = self
+                obj?.refreshComputedProperties()
                 objc_setAssociatedObject(self, &__appearanceProxyHandle, obj, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
             return obj!

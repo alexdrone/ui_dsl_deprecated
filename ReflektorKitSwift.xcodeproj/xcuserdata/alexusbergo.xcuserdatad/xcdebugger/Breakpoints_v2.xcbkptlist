@@ -1477,38 +1477,6 @@
             endingLineNumber = "203"
             landmarkName = "refl_bundlePath()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "refl_bundlePath"
-                  moduleName = "ReflektorKitSwiftTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexusbergo/Desktop/ReflektorKit/ReflektorKit-Swift/Dependencies/LESSLexer.m"
-                  timestampString = "460555374.699877"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "74">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "refl_bundlePath"
-                  moduleName = "ReflektorKitSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexusbergo/Desktop/ReflektorKit/ReflektorKit-Swift/Dependencies/LESSLexer.m"
-                  timestampString = "460555374.711655"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "74">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1530,7 +1498,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/Parser.swift"
@@ -1541,38 +1509,6 @@
             endingLineNumber = "140"
             landmarkName = "loadStylesheetFileAndResolveImports(_:fileExtension:bundle:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ReflektorKitSwiftTests.Parser.loadStylesheetFileAndResolveImports (ReflektorKitSwiftTests.Parser)(Swift.String, fileExtension : Swift.String, bundle : ObjectiveC.NSBundle) throws -&gt; Swift.String"
-                  moduleName = "ReflektorKitSwiftTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexusbergo/Desktop/ReflektorKit/ReflektorKit-Swift/Parser.swift"
-                  timestampString = "460555374.700269"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "141"
-                  endingLineNumber = "141"
-                  offsetFromSymbolStart = "3231">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ReflektorKitSwift.Parser.loadStylesheetFileAndResolveImports (ReflektorKitSwift.Parser)(Swift.String, fileExtension : Swift.String, bundle : ObjectiveC.NSBundle) throws -&gt; Swift.String"
-                  moduleName = "ReflektorKitSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexusbergo/Desktop/ReflektorKit/ReflektorKit-Swift/Parser.swift"
-                  timestampString = "460555374.711864"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "141"
-                  endingLineNumber = "141"
-                  offsetFromSymbolStart = "3231">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -8,14 +8,14 @@
 
 import Foundation
 
-@objc class AppearanceManager {
+@objc public class AppearanceManager {
     
     enum Notification: String {
         case DidChangeStylesheet = "AppearanceManager.Notification.DidChangeStylesheet"
     }
     
     ///The unique shared appearance manager
-    static let sharedManager = AppearanceManager()
+    public static let sharedManager = AppearanceManager()
     
     struct Stylesheet {
         var rules = [Selector: Rule]()
@@ -26,7 +26,7 @@ import Foundation
     var stylesheet = Stylesheet()
     
     ///Loads the stylesheet from the given payload data
-    @objc func loadStylesheet(stylesheetData: String) {
+    @objc public func loadStylesheet(stylesheetData: String) {
         
         let parser = Parser()
         
@@ -44,7 +44,7 @@ import Foundation
     
     ///Loads a file and parse the stylesheet from there
     ///All the imports are resolved recursively
-    @objc func loadStylesheetFromFile(fileName: String, fileExtension: String = "less", bundle: NSBundle = NSBundle.mainBundle()) {
+    @objc public func loadStylesheetFromFile(fileName: String, fileExtension: String = "less", bundle: NSBundle = NSBundle.mainBundle()) {
         
         let parser = Parser()
         do {
@@ -82,7 +82,7 @@ import Foundation
         for selector in stylesheet.rules.keys {
             
             switch selector.type {
-            case .Class(let c) where (appearanceProxy.view?.isKindOfClass(c) != nil): addSelector(selector)
+            case .Class(let c) where (appearanceProxy.view?.refl_class() == c): addSelector(selector)
             case .Trait(let t) where appearanceProxy.trait == t: addSelector(selector)
             default: continue
             }

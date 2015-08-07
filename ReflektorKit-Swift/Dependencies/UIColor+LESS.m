@@ -9,7 +9,7 @@ typedef struct {
     CGFloat a, b, c, d;
 } CMRFloatQuad;
 
-//RFLKLESS uses HSL, but we have to specify UIColor as HSB
+//REFLLESS uses HSL, but we have to specify UIColor as HSB
 static inline CMRFloatTriple HSB2HSL(CGFloat hue, CGFloat saturation, CGFloat brightness);
 static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat lightness);
 
@@ -565,7 +565,7 @@ static NSArray *CMRW3CColorNames()
     return colorNames;
 }
 
-//Color values as defined in RFLKLESS3 spec.
+//Color values as defined in REFLLESS3 spec.
 //See: http://www.w3.org/TR/css3-color/#svg-color
 static NSDictionary *CMRW3CNamedColors()
 {

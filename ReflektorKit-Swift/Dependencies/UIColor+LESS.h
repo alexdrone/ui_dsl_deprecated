@@ -2,7 +2,7 @@
 @import UIKit;
 
 /**
- * Extensions to read and write colors in the formats supported by RFLKLESS.
+ * Extensions to read and write colors in the formats supported by REFLLESS.
  * Emphasis has been given to parsing corrently formatted colors, rather
  * than rejecting technically invalid colors.
  */
@@ -73,7 +73,7 @@
 
 
 /**
- * Extensions to scan colors in the formats supported by RFLKLESS.
+ * Extensions to scan colors in the formats supported by REFLLESS.
  */
 @interface NSScanner (HTMLColors)
 
@@ -98,7 +98,7 @@
 - (BOOL)scanHexColor:(UIColor **)color;
 
 /**
- * Scan a RFLKLESS3/SVG named color. These are similar to the X11 named colors.
+ * Scan a REFLLESS3/SVG named color. These are similar to the X11 named colors.
  * See: http://www.w3.org/TR/css3-color/#svg-color
  */
 - (BOOL)scanW3CNamedColor:(UIColor **)color;

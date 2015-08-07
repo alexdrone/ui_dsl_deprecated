@@ -8,6 +8,7 @@
 
 @import UIKit;
 
+
 typedef NS_OPTIONS(NSUInteger, REFLAspectOptions) {
     REFLAspectPositionAfter   = 0,            ///Called after the original implementation (default)
     REFLAspectPositionInstead = 1,            ///Will replace the original implementation.
@@ -45,6 +46,10 @@ typedef NS_OPTIONS(NSUInteger, REFLAspectOptions) {
  Adding aspects returns an opaque token which can be used to deregister again. All calls are thread safe.
  */
 @interface NSObject (REFLAspects)
+
+- (NSString*)refl_className;
+
+- (nonnull Class)refl_class;
 
 ///Adds a block of code before/instead/after the current `selector` for a specific class.
 ///
