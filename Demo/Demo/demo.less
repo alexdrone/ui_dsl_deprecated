@@ -1,10 +1,12 @@
 
 
-Demo.DemoContainerView {
+Demo.DemoContainerView:__where {
+    condition: 'horizontal == compact';
 	background-color: @tomato ;
 }
 
 Demo.DemoContainerView:__where {
 	condition: 'horizontal == regular';
 	background-color: @green;
+	corner-radius: 50%;
 }

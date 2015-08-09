@@ -56,8 +56,11 @@ struct Parser {
         //pre-process the stylesheet
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Variable.pre, withString: Token.Pre.Variable.actual)
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Important.pre, withString: Token.Pre.Important.actual)
-        payload = payload.stringByReplacingOccurrencesOfString("\(Token.Separator.Selector)\(Token.Directive.Where)",
-                                                    withString:"\(Token.Separator.Selector)\(Token.Directive.Where)_\(refl_uuid())")
+
+        while let match = payload.rangeOfString("\(Token.Separator.Selector)\(Token.Directive.Where)\\s", options: .RegularExpressionSearch) {
+            payload.replaceRange(match, with: "\(Token.Separator.Selector)\(Token.Directive.Where)_\(refl_uuid()) ")
+        }
+        
         
         //parse
         let parser = LESSParser()
