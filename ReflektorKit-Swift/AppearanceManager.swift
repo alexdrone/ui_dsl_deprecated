@@ -91,6 +91,8 @@ import Foundation
         //sorts the selectors according to priority
         selectors.sortInPlace()
         
+        print(selectors.map(){ return $0.rawString })
+        
         var all = Rule()
         var important = Rule()
         

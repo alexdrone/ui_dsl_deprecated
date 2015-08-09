@@ -48,6 +48,8 @@
 ///Wheter this view uses flexbox layout for its children or not
 @property (nonatomic, assign) BOOL flexContainer;
 
+- (BOOL)refl_hasKey:(NSString*)key;
+
 @end
 
 @interface UIScreen (RLFKAddtions)

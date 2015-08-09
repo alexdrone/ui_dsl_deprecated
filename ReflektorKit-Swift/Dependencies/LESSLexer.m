@@ -168,7 +168,14 @@ NSDictionary *refl_rhsKeywordsMap()
           @"mode-top-left": @(UIViewContentModeTopLeft),
           @"mode-top-right": @(UIViewContentModeTopRight),
           @"mode-bottom-left": @(UIViewContentModeBottomLeft),
-          @"mode-bottom-right": @(UIViewContentModeRight)
+          @"mode-bottom-right": @(UIViewContentModeRight),
+          
+          //ui text alignment
+          @"center": @(NSTextAlignmentCenter),
+          @"right": @(NSTextAlignmentRight),
+          @"left": @(NSTextAlignmentLeft),
+          @"justified": @(NSTextAlignmentJustified),
+          @"natural": @(NSTextAlignmentNatural)
         };
     }
     

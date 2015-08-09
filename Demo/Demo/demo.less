@@ -1,12 +1,21 @@
 
+Demo.DemoContainerView {
+    text-alignment: center;
+    background-color: @tomato;
+}
 
-Demo.DemoContainerView:__where {
+Demo.DemoContainerView:__where  {
     condition: 'horizontal == compact';
-	background-color: @tomato ;
+    text: "C O M P A C T";
 }
 
 Demo.DemoContainerView:__where {
 	condition: 'horizontal == regular';
-	background-color: @green;
-	corner-radius: 50%;
+    text: "R E G U L A R";
+}
+
+Demo.DemoContainerView:blueAndRounded {
+    corner-radius: 50%;
+    background-color: @steelblue;
+    text-color: @coral;
 }

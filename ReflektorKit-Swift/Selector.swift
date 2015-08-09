@@ -91,7 +91,7 @@ struct Selector: Hashable, Parsable, Comparable {
                 case .Trait(_) where self.condition != nil: return 100
                 case .Class(_) where self.additionalTrait != nil && self.condition != nil: return 99
                 case .Class(_) where self.condition != nil: return 95
-                case .Class(_) where self.additionalTrait == nil: return 90
+                case .Class(_) where self.additionalTrait != nil: return 75
                 case .Trait(_): return 70
                 case .Class(_): return 50
                 default: return 1
@@ -117,6 +117,7 @@ struct Selector: Hashable, Parsable, Comparable {
             
         } else {
             self.type = .Trait(trait: head)
+            self.additionalTrait = head
         }
         
         self.additionalTrait = nil

@@ -48,9 +48,7 @@ enum ParserError: ErrorType {
 struct Parser {
 
     func parseStylesheet(stylesheet: String) throws -> ([Selector: Rule], Rule) {
-        
-        //imports /@import\surl\(\"(\w*.\w*)\"\);/g
-        
+                
         var payload = stylesheet
         
         //pre-process the stylesheet

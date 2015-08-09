@@ -40,7 +40,7 @@ import UIKit
     @objc public var shouldAutomaticallySetViewProperties = Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties
     
     ///The optional trait associated to this view
-    @objc var trait: String? {
+    @objc public var trait: String? {
         didSet {
             self.refreshComputedProperties()
         }
@@ -97,6 +97,7 @@ import UIKit
     ///!important are going to be processed and applied to the view.
     @objc public func applyComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
         
+        
         let dictionary = shouldApplyOnlyImportantProperties ? self.computedProperties.important : self.computedProperties.all
         
         //reset the view with the previous values
@@ -105,15 +106,23 @@ import UIKit
         }
         
         for key in dictionary.keys {
-            
+
+            guard let v = self.view else {
+                return
+            }
+
             let k = key.rawString
             let value = self[k]
             
-            //populate the reset dictionary
-            self.resetDictionary[k] = self.view?.valueForKeyPath(k)
+            if v.refl_hasKey(k) {
+                
+                //populate the reset dictionary
+                self.resetDictionary[k] = v.valueForKeyPath(k)
+                
+                //applies the value
+                v.setValue(value, forKeyPath: k)
+            }
 
-            //applies the value
-            self.view?.setValue(value, forKeyPath: k)
         }
     }
     

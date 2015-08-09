@@ -149,6 +149,12 @@ static void *UIViewFlexContainerKey;
     objc_setAssociatedObject(self, &UIViewFlexContainerKey, @(flexContainer), OBJC_ASSOCIATION_RETAIN);
 }
 
+- (BOOL)refl_hasKey:(NSString*)key
+{
+    return [self respondsToSelector:NSSelectorFromString(key)];
+}
+
+
 @end
 
 #pragma mark - UIScreen

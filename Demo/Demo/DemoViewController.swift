@@ -33,6 +33,11 @@ class DemoViewController: UIViewController {
         self.view.addSubview(self.containerView)
         
         print(self.containerView)
+        
+        UIView.animateWithDuration(5) { () -> Void in
+            self.containerView.refl_appearanceProxy.trait = "blueAndRounded"
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +46,7 @@ class DemoViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        self.refl_applyStyleToViewRecursive()
+       self.refl_applyStyleToViewRecursive()
     }
     
     override func viewDidLayoutSubviews() {
