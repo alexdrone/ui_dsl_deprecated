@@ -33,8 +33,8 @@ import UIKit
     weak var view: UIView?
     
     ///All the currently computed properties for this associated view
-    private var computedProperties = (all: Rule(), important: Rule())
-    private var resetDictionary = [String: AnyObject?]()
+    internal var computedProperties = (all: Rule(), important: Rule())
+    internal var resetDictionary = [String: AnyObject?]()
     
     ///By default is the value set in the shared configuration
     @objc public var shouldAutomaticallySetViewProperties = Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties

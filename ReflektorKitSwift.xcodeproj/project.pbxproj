@@ -30,6 +30,7 @@
 		16A207FE1B77A20800BEA26D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A207FD1B77A20800BEA26D /* Constraints.swift */; };
 		16A207FF1B77A20800BEA26D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A207FD1B77A20800BEA26D /* Constraints.swift */; };
 		16A211721B5F88D50051F149 /* SelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A211711B5F88D50051F149 /* SelectorTest.swift */; };
+		16A917C31B78D4A600A8A7B6 /* ConstraintTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A917C21B78D4A600A8A7B6 /* ConstraintTest.swift */; };
 		16ACE38A1B74F09E00FBA867 /* UIKit+REFL.h in Headers */ = {isa = PBXBuildFile; fileRef = 16ACE3881B74F09E00FBA867 /* UIKit+REFL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16ACE38B1B74F09E00FBA867 /* UIKit+REFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 16ACE3891B74F09E00FBA867 /* UIKit+REFL.m */; };
 		16B9129A1B5E60CE00B61761 /* PropertyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B912991B5E60CE00B61761 /* PropertyValue.swift */; };
@@ -77,6 +78,7 @@
 		167A63451B70F19400B91EA3 /* PropertyValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyValueTests.swift; sourceTree = "<group>"; };
 		16A207FD1B77A20800BEA26D /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		16A211711B5F88D50051F149 /* SelectorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorTest.swift; sourceTree = "<group>"; };
+		16A917C21B78D4A600A8A7B6 /* ConstraintTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintTest.swift; sourceTree = "<group>"; };
 		16ACE3881B74F09E00FBA867 /* UIKit+REFL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIKit+REFL.h"; path = "Dependencies/UIKit+REFL.h"; sourceTree = "<group>"; };
 		16ACE3891B74F09E00FBA867 /* UIKit+REFL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIKit+REFL.m"; path = "Dependencies/UIKit+REFL.m"; sourceTree = "<group>"; };
 		16B912991B5E60CE00B61761 /* PropertyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyValue.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				16A211711B5F88D50051F149 /* SelectorTest.swift */,
 				167A63451B70F19400B91EA3 /* PropertyValueTests.swift */,
 				16F00DCA1B72B18100B03707 /* ParserTests.swift */,
+				16A917C21B78D4A600A8A7B6 /* ConstraintTest.swift */,
 				164F35AB1B5BE22F00E01834 /* Info.plist */,
 				165DE5931B737F2700AA02D5 /* main.less */,
 				165DE5951B737F3B00AA02D5 /* foo.less */,
@@ -317,6 +320,7 @@
 				16B912A51B5E909D00B61761 /* Selector.swift in Sources */,
 				164F35CC1B5BE3AC00E01834 /* LESSLexer.m in Sources */,
 				164F35AA1B5BE22F00E01834 /* ConditionTests.swift in Sources */,
+				16A917C31B78D4A600A8A7B6 /* ConstraintTest.swift in Sources */,
 				164F35D51B5BE53400E01834 /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
