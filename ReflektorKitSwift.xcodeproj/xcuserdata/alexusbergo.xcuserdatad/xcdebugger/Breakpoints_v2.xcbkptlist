@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "ConstraintToken"
+            landmarkName = "ConstraintsContainer"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>

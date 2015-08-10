@@ -16,6 +16,7 @@ import Foundation
     
     ///The unique shared appearance manager
     public static let sharedManager = AppearanceManager()
+    public static let constraintPlugin = ConstraintValuePlugin()
     
     struct Stylesheet {
         var rules = [Selector: Rule]()
@@ -24,6 +25,12 @@ import Foundation
     
     ///All the rules parsed from the stylesheet
     var stylesheet = Stylesheet()
+    
+    init() {
+        
+        //Register the built in plugins:
+        Configuration.sharedConfiguration.registerPropertyValuePlugin(AppearanceManager.constraintPlugin)
+    }
     
     ///Loads the stylesheet from the given payload data
     @objc public func loadStylesheet(stylesheetData: String) {

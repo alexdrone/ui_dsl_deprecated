@@ -8,7 +8,7 @@
 
 import UIKit
 
-//MARK: Operator extension
+//MARK: Operator Extension
 
 extension Condition.ExpressionToken.Operator {
     
@@ -60,17 +60,21 @@ extension Condition.ExpressionToken.Operator {
         //append all the keys found in the VFL or in the custom constraint syntax
         var viewKeys = [String]()
         
-        while let match = rawString.rangeOfString("_(\\w*)", options: .RegularExpressionSearch) {
-            let key = rawString[match]
+        //parse the view keys for the viewDictionary
+        var m = rawString
+        while let match = m.rangeOfString("_(\\w*)", options: .RegularExpressionSearch) {
+            let key = m[match]
             viewKeys.append(key)
+            m.removeRange(match)
         }
         self.viewKeys = viewKeys
+
+        //normalizes the string
+        self.rawString = Parser.normalizeExpressionString(rawString, forceLowerCase: false)
         
         if self.vfl {
-            
-            self.rawString = rawString
-            
-            //init private properties
+
+            //no need for these ones here
             self.lhs = nil
             self.rhs = nil
             self.opr = nil
@@ -81,30 +85,40 @@ extension Condition.ExpressionToken.Operator {
             //"__self.height == _containerView.height" or "__self.width < __constant.notAnAttribute"
             
             //parse the custom syntax
-            self.rawString = Parser.normalizeExpressionString(rawString, forceLowerCase: false)
             let terms = self.rawString.componentsSeparatedByCharactersInSet(Condition.ExpressionToken.Operator.characterSet())
             
             //the left and the right side of the expression
             let lhsCompound = terms[0].componentsSeparatedByString(ConstraintValuePlugin.ConstraintToken.Keywords.AttributeSeparator.rawValue)
-            let rhsCompount = terms[1].componentsSeparatedByString(ConstraintValuePlugin.ConstraintToken.Keywords.AttributeSeparator.rawValue)
-            
-            self.lhs = (key: lhsCompound[0], attribute: ConstraintValuePlugin.ConstraintToken.Attribute(rawValue: lhsCompound[1])!)
-            self.rhs = (key: rhsCompount[0], attribute: ConstraintValuePlugin.ConstraintToken.Attribute(rawValue: rhsCompount[1])!)
+            let lhsAttributeString = Parser.normalizeExpressionString(lhsCompound[1], forceLowerCase: false)
+            let rhsCompound = terms[1].componentsSeparatedByString(ConstraintValuePlugin.ConstraintToken.Keywords.AttributeSeparator.rawValue)
+            let rhsAttributeString = Parser.normalizeExpressionString(rhsCompound[1], forceLowerCase: false)
+
+            self.lhs = (key: Parser.normalizeExpressionString(lhsCompound[0], forceLowerCase: false), attribute: ConstraintValuePlugin.ConstraintToken.Attribute(rawValue: lhsAttributeString)!)
+            self.rhs = (key: Parser.normalizeExpressionString(rhsCompound[0], forceLowerCase: false), attribute: ConstraintValuePlugin.ConstraintToken.Attribute(rawValue: rhsAttributeString)!)
             self.opr = Condition.ExpressionToken.Operator.operatorContainedInString(self.rawString)
         }
     }
     
     ///Constraint for the view passed as argument
-    public func constraintsForView(view: UIView?) -> [NSLayoutConstraint] {
+    @objc public func constraintsForView(view: UIView?) -> [NSLayoutConstraint] {
         
         guard let v = view else {
+            
+            //fails gracefully (exceptions are not supported by plugins)
             return [NSLayoutConstraint]()
         }
         
         //populate the viewDicionary
         var viewDictionary = [String: AnyObject]()
+        
+        //__self
         viewDictionary[ConstraintValuePlugin.ConstraintToken.Keywords.SelfReferenced.rawValue] = v
         
+        //__superView
+        if let superview = v.superview {
+            viewDictionary[ConstraintValuePlugin.ConstraintToken.Keywords.SuperView.rawValue] = superview
+        }
+
         for k in viewKeys {
             
             //trims the initial _
@@ -118,24 +132,17 @@ extension Condition.ExpressionToken.Operator {
         
         if self.vfl {
             
-            var metrics = [String: NSNumber]()
-            
-            //builds up the metrics dictionary on the fly
-            for propertyKey in v.refl_appearanceProxy.computedProperties.all.keys {
-                if let value = v.refl_appearanceProxy.property(propertyKey.rawString) as? Float {
-                    metrics[propertyKey.rawString] = value
-                }
-            }
-            
             //creates a visual constraint
-            return NSLayoutConstraint.constraintsWithVisualFormat(self.rawString, options: self.options, metrics: metrics, views: viewDictionary)
+            return NSLayoutConstraint.constraintsWithVisualFormat(self.rawString, options: self.options, metrics: nil, views: viewDictionary)
             
         } else {
             
+            //makes sure the expression's operands are defined
             guard let lhs = self.lhs, rhs = self.rhs, opr = self.opr else {
                 return [NSLayoutConstraint]()
             }
             
+            //constraints operands
             let lhsObj = viewDictionary[lhs.key]!
             let lhsAtt = lhs.attribute.toLayoutAttribute()
             let rhsObj = rhs.key == ConstraintValuePlugin.ConstraintToken.Keywords.Constant.rawValue ? nil : viewDictionary[rhs.key]
@@ -155,6 +162,7 @@ extension Condition.ExpressionToken.Operator {
         enum Keywords: String {
             case Constant = "__constant"
             case SelfReferenced = "__self"
+            case SuperView = "__superView"
             case AttributeSeparator = "."
         }
         
@@ -250,16 +258,19 @@ extension Condition.ExpressionToken.Operator {
                 
                 let container = try ConstraintsContainer(rawString: constraintString)
                 
-                //constant
-                if let c = args[1].floatValue {
-                    container.constant = c
+                if args.count > 3 {
+                    
+                    //constant
+                    if let c = args[1].floatValue {
+                        container.constant = c
+                    }
+                    
+                    //multiplier
+                    if let m = args[2].floatValue {
+                        container.multiplier = m
+                    }
+                    
                 }
-                
-                //multiplier
-                if let m = args[2].floatValue {
-                    container.multiplier = m
-                }
-                
                 return container
 
             } catch {

@@ -45,6 +45,20 @@ import UIKit
             self.refreshComputedProperties()
         }
     }
+    
+    ///Returns all the constraints computed for the associated view
+    @objc public var constraints: [NSLayoutConstraint] {
+        get {
+            
+            var constraints = [NSLayoutConstraint]()
+            for (_, value) in self.computedProperties.all where value.object is ConstraintsContainer {
+                let c = (value.object as! ConstraintsContainer).constraintsForView(self.view)
+                constraints += c
+            }
+            
+            return constraints
+        }
+    }
 
     ///You can get a property by simply subscript the apperarance proxy of a view
     ///e.g. view.refl_appearanceProxy["backgroundColor"]
@@ -97,6 +111,9 @@ import UIKit
     ///!important are going to be processed and applied to the view.
     @objc public func applyComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
         
+        guard let v = self.view else {
+            return
+        }
         
         let dictionary = shouldApplyOnlyImportantProperties ? self.computedProperties.important : self.computedProperties.all
         
@@ -106,15 +123,12 @@ import UIKit
         }
         
         for key in dictionary.keys {
-
-            guard let v = self.view else {
-                return
-            }
-
+            
             let k = key.rawString
-            let value = self[k]
             
             if v.refl_hasKey(k) {
+                
+                let value = self[k]
                 
                 //populate the reset dictionary
                 self.resetDictionary[k] = v.valueForKeyPath(k)
@@ -142,8 +156,8 @@ import UIKit
         } catch {
             assert(false, "Unable to swizzle the view's lifecycle methods")
         }
-
     }
+
 }
 
 var __appearanceProxyHandle: UInt8 = 0

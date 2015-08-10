@@ -17,7 +17,7 @@ struct PropertyValue: Parsable {
     var flags = (important: Bool, percent: Bool, gradient: Bool, imageAsset: Bool)(false, false, false, false)
     
     //The computed object
-    private var object: AnyObject?
+    internal var object: AnyObject?
     
     //If the property is a single condition which could return 'true' or 'false'
     private var simpleCondition: Condition?;

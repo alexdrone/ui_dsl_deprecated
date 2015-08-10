@@ -2,21 +2,31 @@
 Demo.DemoContainerView {
     text-alignment: center;
     background-color: @tomato;
-    test: 5;
+    text: "C O M P A C T";
+
+    /* constraints */
+    constraint-center-x: constraint("__self.centerX == __superView.centerX");
+    constraint-center-y: constraint("__self.centerY == __superView.centerY");
+    constraint-height: vfl-constraint("V:[__self(200)]");
 }
 
-Demo.DemoContainerView:__where  {
+Demo.DemoContainerView:__where   {
     condition: 'horizontal == compact';
     text: "C O M P A C T";
+
+    /* constraints */
+    constraint-width: vfl-constraint("H:[__self(200)]");
 }
 
-Demo.DemoContainerView:__where {
+Demo.DemoContainerView:__where   {
 	condition: 'horizontal == regular';
     text: "R E G U L A R";
+
+    /* constraints */
+    constraint-width: vfl-constraint("H:[__self(400)]");
 }
 
 Demo.DemoContainerView:blueAndRounded {
-    corner-radius: 50%;
     background-color: @steelblue;
     text-color: @coral;
 }

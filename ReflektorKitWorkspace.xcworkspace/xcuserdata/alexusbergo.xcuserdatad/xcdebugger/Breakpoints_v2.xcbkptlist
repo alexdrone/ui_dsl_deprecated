@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460668621.124186"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460668624.767814"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460668723.284885"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460668930.668791"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "loadStylesheet(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -176,11 +176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460669450.524878"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -192,11 +192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460807740.587521"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -239,44 +239,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReflektorKit-Swift/ApperanceProxy.swift"
-            timestampString = "460810061.201276"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "applyComputedProperties(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Demo/Demo/DemoViewController.swift"
-            timestampString = "460810776.67324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460813761.122935"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
             <Locations>
@@ -320,11 +288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460814279.014473"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
             <Locations>
@@ -400,11 +368,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReflektorKit-Swift/AppearanceManager.swift"
-            timestampString = "460814666.864496"
+            timestampString = "460905324.044545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "computeStyleForApperanceProxy(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -428,16 +396,192 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Demo/DemoViewController.swift"
+            timestampString = "460934201.28503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Demo/DemoViewController.swift"
+            timestampString = "460934201.28503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "updateViewConstraints()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Demo/DemoViewController.swift"
+            timestampString = "460934201.28503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "traitCollectionDidChange(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/Demo/DemoViewController.swift"
-            timestampString = "460903783.993036"
+            timestampString = "460934201.28503"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "viewDidLayoutSubviews()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReflektorKit-Swift/Constraints.swift"
+            timestampString = "460932466.965886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "constraintsForView(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Demo/DemoViewController.swift"
+            timestampString = "460934201.28503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "viewDidLayoutSubviews()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

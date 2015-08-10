@@ -10,34 +10,22 @@ import UIKit
 import ReflektorKitSwift
 
 class DemoContainerView : UILabel {
-    
 
-    
 }
 
 class DemoViewController: UIViewController {
     
-    private let containerView = DemoContainerView(frame:  CGRect(x: 100, y: 100, width: 200, height: 200), useAppearanceProxy: true)
+    private let containerView = DemoContainerView(frame:  CGRect.zeroRect, useAppearanceProxy: true)
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        self.containerView.text = "Test"
-        
-//        let text = self.containerView.refl_appearanceProxy.property("text") as? String
-//        self.containerView.text = text
-
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.containerView.translatesAutoresizingMaskIntoConstraints = false        
         self.view.addSubview(self.containerView)
         
-        print(self.containerView)
-        
-        UIView.animateWithDuration(5) { () -> Void in
-            self.containerView.refl_appearanceProxy.trait = "blueAndRounded"
-        }
-        
+        self.updateViewConstraints()
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,5 +40,13 @@ class DemoViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         self.refl_applyStyleToViewRecursive(true)
     }
+    
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        
+//        self.view.removeConstraints(self.view.constraints)
+        self.view.addConstraints(self.containerView.refl_appearanceProxy.constraints)
+    }
 
+    
 }
