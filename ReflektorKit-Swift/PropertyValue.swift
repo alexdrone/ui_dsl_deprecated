@@ -207,9 +207,9 @@ struct PropertyValue: Parsable {
         
         //check if any external plugin is registed for this rhs value
         for plugin in Configuration.sharedConfiguration.propertyValuePlugins {
-            if plugin.shouldParseValue(rawString) {
+            if plugin.shouldParseValue(mutableRawString) {
                 self.associatedPlugin = plugin
-                self.object = plugin.parseValue(rawString)
+                self.object = plugin.parseValue(mutableRawString)
                 return
             }
         }

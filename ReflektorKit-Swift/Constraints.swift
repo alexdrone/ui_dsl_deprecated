@@ -105,7 +105,8 @@ extension Condition.ExpressionToken.Operator {
         }
     }
     
-    private struct ConstraintsContainer {
+    //plugin objects are constrained to classes
+    @objc public class ConstraintsContainer: NSObject {
     
         //@see Parsable
         let rawString: String
@@ -165,7 +166,8 @@ extension Condition.ExpressionToken.Operator {
             }
         }
         
-        func computeValueForObject(object: AnyObject?, traitCollection: UITraitCollection, size: CGSize, view: UIView?) -> [NSLayoutConstraint] {
+        ///Constraint for the view passed as argument
+        public func constraintForView(view: UIView?) -> [NSLayoutConstraint] {
             
             guard let v = view else {
                 return [NSLayoutConstraint]()
@@ -209,11 +211,64 @@ extension Condition.ExpressionToken.Operator {
 
     ///Should returns 'true' if the rawString passed as argument is a valid input string for this plugin
     @objc public func shouldParseValue(rawString: String) -> Bool {
-        return refl_stringHasPrefix(rawString, ["constraint", "constraint-vfl"])
+        return refl_stringHasPrefix(rawString, ["constraint", "vfl-constraint"])
     }
     
     ///Parse the string into a value or an itermediate object to be processed when 'computeValueForObject' is called
     @objc public func parseValue(rawString: String) -> AnyObject? {
+        
+        //get the arguments out from the rawString
+        guard let args = refl_getArgumentForValue(rawString) else {
+            return nil
+        }
+        
+        if refl_stringHasPrefix(rawString, ["constraint"]) {
+            
+            do {
+                
+                guard let constraintString = args[0] as? String else {
+                    return nil
+                }
+                
+                let container = try ConstraintsContainer(rawString: constraintString)
+                
+                //constant
+                if let c = args[1].floatValue {
+                    container.constant = c
+                }
+                
+                //multiplier
+                if let m = args[2].floatValue {
+                    container.multiplier = m
+                }
+                
+                return container
+
+            } catch {
+
+                //plugins can't throw exceptions
+                return nil
+            }
+
+        } else if refl_stringHasPrefix(rawString, ["vfl-constraint"]) {
+            
+            do {
+                
+                guard let constraintString = args[0] as? String else {
+                    return nil
+                }
+                
+                let container = try ConstraintsContainer(rawString: constraintString, vfl: true)
+                
+                return container
+                
+            } catch {
+                
+                //plugins can't throw exceptions
+                return nil
+            }
+            
+        }
         
         return nil
     }
@@ -221,7 +276,6 @@ extension Condition.ExpressionToken.Operator {
     ///Called when the styelesheet proxy is queried for a specific property value
     ///::object:: is the previously parsed object that could contains the value or a intermediate representation of it
     @objc public func computeValueForObject(object: AnyObject?, traitCollection: UITraitCollection, size: CGSize, view: UIView?) -> AnyObject? {
-        
         return nil
     }
     
