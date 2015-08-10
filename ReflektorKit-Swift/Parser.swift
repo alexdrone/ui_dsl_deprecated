@@ -243,6 +243,27 @@ struct Parser {
         
     }
     
+    //MARK: Utilities
+    
+    internal static func normalizeExpressionString(string: String, forceLowerCase: Bool = true) -> String {
+        
+        var ps = refl_stripQuotesFromString(string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
+        
+        if forceLowerCase {
+            ps = ps.lowercaseString
+        }
+        
+        ps = ps.stringByReplacingOccurrencesOfString("\"", withString: "")
+        ps = ps.stringByReplacingOccurrencesOfString("'", withString: "")
+        ps = ps.stringByReplacingOccurrencesOfString("!=", withString: Condition.ExpressionToken.Operator.NotEqual.rawValue)
+        ps = ps.stringByReplacingOccurrencesOfString("<=", withString: Condition.ExpressionToken.Operator.LessThanOrEqual.rawValue)
+        ps = ps.stringByReplacingOccurrencesOfString(">=", withString: Condition.ExpressionToken.Operator.GreaterThanOrEqual.rawValue)
+        ps = ps.stringByReplacingOccurrencesOfString("==", withString: Condition.ExpressionToken.Operator.Equal.rawValue)
+        ps = ps.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        return ps
+    }
+    
 }
 
 

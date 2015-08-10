@@ -27,6 +27,8 @@
 		165DE5941B737F2700AA02D5 /* main.less in Resources */ = {isa = PBXBuildFile; fileRef = 165DE5931B737F2700AA02D5 /* main.less */; };
 		165DE5961B737F3B00AA02D5 /* foo.less in Resources */ = {isa = PBXBuildFile; fileRef = 165DE5951B737F3B00AA02D5 /* foo.less */; };
 		167A63461B70F19400B91EA3 /* PropertyValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A63451B70F19400B91EA3 /* PropertyValueTests.swift */; };
+		16A207FE1B77A20800BEA26D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A207FD1B77A20800BEA26D /* Constraints.swift */; };
+		16A207FF1B77A20800BEA26D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A207FD1B77A20800BEA26D /* Constraints.swift */; };
 		16A211721B5F88D50051F149 /* SelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A211711B5F88D50051F149 /* SelectorTest.swift */; };
 		16ACE38A1B74F09E00FBA867 /* UIKit+REFL.h in Headers */ = {isa = PBXBuildFile; fileRef = 16ACE3881B74F09E00FBA867 /* UIKit+REFL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16ACE38B1B74F09E00FBA867 /* UIKit+REFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 16ACE3891B74F09E00FBA867 /* UIKit+REFL.m */; };
@@ -73,6 +75,7 @@
 		165DE5931B737F2700AA02D5 /* main.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.less; sourceTree = "<group>"; };
 		165DE5951B737F3B00AA02D5 /* foo.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = foo.less; sourceTree = "<group>"; };
 		167A63451B70F19400B91EA3 /* PropertyValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyValueTests.swift; sourceTree = "<group>"; };
+		16A207FD1B77A20800BEA26D /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		16A211711B5F88D50051F149 /* SelectorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorTest.swift; sourceTree = "<group>"; };
 		16ACE3881B74F09E00FBA867 /* UIKit+REFL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIKit+REFL.h"; path = "Dependencies/UIKit+REFL.h"; sourceTree = "<group>"; };
 		16ACE3891B74F09E00FBA867 /* UIKit+REFL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIKit+REFL.m"; path = "Dependencies/UIKit+REFL.m"; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 				16B912991B5E60CE00B61761 /* PropertyValue.swift */,
 				162A33481B720B7400B7ECC3 /* AppearanceManager.swift */,
 				162A33461B7201BE00B7ECC3 /* ApperanceProxy.swift */,
+				16A207FD1B77A20800BEA26D /* Constraints.swift */,
 				162A33441B71FFE200B7ECC3 /* README.md */,
 			);
 			path = "ReflektorKit-Swift";
@@ -286,6 +290,7 @@
 				162A33471B7201BE00B7ECC3 /* ApperanceProxy.swift in Sources */,
 				1625B87E1B5CF9B1005B5717 /* Selector.swift in Sources */,
 				16B912A01B5E66C200B61761 /* UIColor+LESS.m in Sources */,
+				16A207FE1B77A20800BEA26D /* Constraints.swift in Sources */,
 				164F35B51B5BE25D00E01834 /* Configuration.swift in Sources */,
 				164F35D41B5BE53400E01834 /* Parser.swift in Sources */,
 				16ACE38B1B74F09E00FBA867 /* UIKit+REFL.m in Sources */,
@@ -305,6 +310,7 @@
 				16B912A71B5E909D00B61761 /* PropertyValue.swift in Sources */,
 				16B912A11B5E66C200B61761 /* UIColor+LESS.m in Sources */,
 				16B912A41B5E909D00B61761 /* Configuration.swift in Sources */,
+				16A207FF1B77A20800BEA26D /* Constraints.swift in Sources */,
 				167A63461B70F19400B91EA3 /* PropertyValueTests.swift in Sources */,
 				16F00DCB1B72B18100B03707 /* ParserTests.swift in Sources */,
 				16B912A61B5E909D00B61761 /* Condition.swift in Sources */,
