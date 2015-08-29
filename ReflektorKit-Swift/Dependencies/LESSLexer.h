@@ -44,7 +44,7 @@ typedef enum {
     UNKNOWN               //.
 } LESSToken;
 
-extern __nullable const char* LESSTokenName[];
+extern  const char* _Nullable  LESSTokenName[];
 
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
@@ -52,22 +52,22 @@ typedef void* yyscan_t;
 #endif
 
 //utilities
-__nonnull NSString *refl_uuid(void);
-__nonnull NSString *refl_stripQuotesFromString(__nonnull NSString *string);
-BOOL refl_stringHasPrefix(__nonnull NSString *string, __nonnull NSArray *prefixes);
-__nonnull NSArray *refl_prefixedOrderedKeys(__nonnull NSArray *keys);
-__nonnull NSString *refl_stringToCamelCase(__nonnull NSString *string);
-__nullable NSArray *refl_getArgumentForValue(__nonnull NSString* stringValue);
-__nullable id refl_parseKeyword(__nonnull NSString *cssValue);
-__nullable NSString *refl_bundlePath(__nonnull NSString *file, __nonnull NSString *extension);
+ NSString * _Nonnull refl_uuid(void);
+ NSString * _Nonnull refl_stripQuotesFromString(NSString * _Nonnull string);
+BOOL refl_stringHasPrefix( NSString * _Nonnull string, NSArray * _Nonnull prefixes);
+ NSArray * _Nonnull refl_prefixedOrderedKeys(NSArray * _Nonnull keys);
+ NSString * _Nonnull refl_stringToCamelCase(NSString * _Nonnull string);
+NSArray * _Nullable refl_getArgumentForValue( NSString* _Nonnull  stringValue);
+__nullable id refl_parseKeyword(NSString * _Nonnull cssValue);
+ NSString * _Nullable refl_bundlePath(NSString * _Nonnull file,  NSString * _Nonnull extension);
 
 //lexer
 int LESSlex(void);
-void refl_parse(__nonnull const char *buffer);
-void refl_scan(__nullable const char *text, int token);
+void refl_parse(const char * _Nonnull buffer);
+void refl_scan(const char * _Nullable text, int token);
 
 @interface LESSParser : NSObject
 
-- (__nullable NSDictionary*)parseText:(__nonnull NSString*)LESSText;
+- (NSDictionary* _Nullable )parseText:( NSString* _Nonnull )LESSText;
 
 @end

@@ -102,3 +102,8 @@
 
 @end
 
+@interface NSObject (REFLAspects)
+- (NSString*)refl_className;
+- (Class)refl_class;
+@end
+

@@ -368,6 +368,20 @@ static void *UIViewFlexContainerKey;
 
 @end
 
+@implementation NSObject (REFLAspects)
+
+- (NSString*)refl_className
+{
+    return NSStringFromClass(self.class);
+}
+
+- (Class)refl_class
+{
+    return self.class;
+}
+
+@end
+
 #pragma mark - UINotificationCenter
 
 typedef void (^_REFLDeallocBlock)();

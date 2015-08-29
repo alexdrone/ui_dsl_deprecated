@@ -140,24 +140,6 @@ import UIKit
 
         }
     }
-    
-    ///Swizzle the main view life cycle methods to hook the appearance manager methods
-    @objc public func hookToViewLifeCycle() {
-        
-        self.shouldAutomaticallySetViewProperties = true
-        
-        do {
-            
-            let layoutSubviewsBlock: @convention(block) (REFLAspectInfo) -> () = { (info: REFLAspectInfo) -> () in
-                self.refreshComputedProperties(true)
-            }
-            
-            try self.view?.REFLAspect_hookSelector(NSSelectorFromString("layoutSubviews"), withOptions: .PositionAfter, usingBlock: unsafeBitCast(layoutSubviewsBlock, AnyObject.self))
-            
-        } catch {
-            assert(false, "Unable to swizzle the view's lifecycle methods")
-        }
-    }
 
 }
 

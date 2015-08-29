@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <ReflektorKitSwift/LESSLexer.h>
 #import <ReflektorKitSwift/UIColor+LESS.h>
-#import <ReflektorKitSwift/REFLAspects.h>
 #import <ReflektorKitSwift/UIKit+REFL.h>
 
 //! Project version number for ReflektorKit-Swift.

@@ -44,7 +44,7 @@ class DemoViewController: UIViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-//        self.view.removeConstraints(self.view.constraints)
+        //self.view.removeConstraints(self.view.constraints)
         self.view.addConstraints(self.containerView.refl_appearanceProxy.constraints)
     }
 
