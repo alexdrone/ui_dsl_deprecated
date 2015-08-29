@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc public class AppearanceProxy {
+@objc public class AppearanceProxy: NSObject {
     
-     @objc public class AppearanceProxyVariablesProxy {
+    @objc public class AppearanceProxyVariablesProxy: NSObject {
         
         ///Use this to access to the value of a global variable
         @objc subscript(key: String) -> AnyObject? {
@@ -84,6 +84,7 @@ import UIKit
     let variable = AppearanceProxyVariablesProxy()
     
     init(view: UIView) {
+        super.init()
         self.view = view
         self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: NSSelectorFromString("didChangeStylesheetNotification:"), name: AppearanceManager.Notification.DidChangeStylesheet.rawValue, object: nil)

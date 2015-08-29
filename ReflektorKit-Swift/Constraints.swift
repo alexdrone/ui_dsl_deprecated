@@ -155,7 +155,7 @@ extension Condition.ExpressionToken.Operator {
 
 //MARK: Plugin
 
-@objc public class ConstraintValuePlugin: PropertyValuePlugin {
+@objc public class ConstraintValuePlugin: NSObject, PropertyValuePlugin {
     
     private struct ConstraintToken {
         

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class Configuration {
+public class Configuration {
     
     ///The unique shared configuration
     public static let sharedConfiguration = Configuration()

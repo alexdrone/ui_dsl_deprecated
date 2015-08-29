@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class AppearanceManager {
+@objc public class AppearanceManager: NSObject {
     
     enum Notification: String {
         case DidChangeStylesheet = "AppearanceManager.Notification.DidChangeStylesheet"
@@ -26,7 +26,7 @@ import Foundation
     ///All the rules parsed from the stylesheet
     var stylesheet = Stylesheet()
     
-    init() {
+    override init() {
         
         //Register the built in plugins:
         Configuration.sharedConfiguration.registerPropertyValuePlugin(AppearanceManager.constraintPlugin)
