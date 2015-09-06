@@ -128,7 +128,7 @@ struct Selector: Hashable, Parsable, Comparable {
         switch (self.type) {
             
         case .Class(_):
-            if !refl_stringHasPrefix(components[1], ["\(Token.Directive.Where)"]) && !refl_stringHasPrefix(components[1], [Token.Directive.WhereSimple]) {
+            if !refl_stringHasPrefix(components[1], ["\(Token.Directive.Where)"]) && !refl_stringHasPrefix(components[1], [Token.Directive.WhereUnprefixed]) {
                 self.additionalTrait = components[1]
             }
             

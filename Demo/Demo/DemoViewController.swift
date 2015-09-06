@@ -37,7 +37,6 @@ class DemoViewController: UIViewController {
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         self.refl_applyStyleToViewRecursive()
         self.updateViewConstraints()
-
     }
     
     override func viewDidLayoutSubviews() {

@@ -22,7 +22,7 @@ struct Token {
     struct Directive {
         static let Condition = "condition"
         static let Where = "__where"
-        static let WhereSimple = "where"
+        static let WhereUnprefixed = "where"
         static let Include = "include"
         static let AppliesToSubclasses = "applies-to-subclasses"
     }
@@ -54,6 +54,7 @@ struct Parser {
         //pre-process the stylesheet
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Variable.pre, withString: Token.Pre.Variable.actual)
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Important.pre, withString: Token.Pre.Important.actual)
+        payload = payload.stringByReplacingOccurrencesOfString("__\(Token.Directive.Condition)", withString: Token.Directive.Condition)
 
         while let match = payload.rangeOfString("\(Token.Separator.Selector)\(Token.Directive.Where)\\s", options: .RegularExpressionSearch) {
             payload.replaceRange(match, with: "\(Token.Separator.Selector)\(Token.Directive.Where)\(refl_uuid()) ")

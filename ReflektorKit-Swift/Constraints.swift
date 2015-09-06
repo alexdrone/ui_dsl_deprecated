@@ -57,11 +57,13 @@ extension Condition.ExpressionToken.Operator {
         //wether is a visual format language constraint or not
         self.vfl = vfl
         
+        //parse the view keys for the viewDictionary
+        var m = rawString
+        
         //append all the keys found in the VFL or in the custom constraint syntax
         var viewKeys = [String]()
         
-        //parse the view keys for the viewDictionary
-        var m = rawString
+
         while let match = m.rangeOfString("_(\\w*)", options: .RegularExpressionSearch) {
             let key = m[match]
             viewKeys.append(key)
@@ -195,6 +197,10 @@ extension Condition.ExpressionToken.Operator {
                 
                 switch self {
                     
+                case .Width:
+                    return NSLayoutAttribute.Width
+                case .Height:
+                    return NSLayoutAttribute.Height
                 case .Left:
                     return NSLayoutAttribute.Left
                 case .Right:
@@ -258,19 +264,29 @@ extension Condition.ExpressionToken.Operator {
                 
                 let container = try ConstraintsContainer(rawString: constraintString)
                 
-                if args.count > 3 {
+                if args.count > 2 {
                     
                     //constant
-                    if let c = args[1].floatValue {
-                        container.constant = c
+                    if let constant = args[1] as? String {
+                        
+                        let scanner = NSScanner(string: constant)
+                        var numberBuffer: Float = 0
+                        if scanner.scanFloat(&numberBuffer) {
+                            container.constant = numberBuffer
+                        }
                     }
                     
                     //multiplier
-                    if let m = args[2].floatValue {
-                        container.multiplier = m
+                    if let multiplier = args[1] as? String {
+                        
+                        let scanner = NSScanner(string: multiplier)
+                        var numberBuffer: Float = 1
+                        if scanner.scanFloat(&numberBuffer) {
+                            container.multiplier = numberBuffer
+                        }
                     }
-                    
                 }
+                
                 return container
 
             } catch {

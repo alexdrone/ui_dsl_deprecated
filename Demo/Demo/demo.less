@@ -11,15 +11,16 @@ Demo.DemoContainerView {
 }
 
 Demo.DemoContainerView:__where {
-    condition: 'horizontal == compact';
+    __condition: 'horizontal == compact';
+
     text: "C O M P A C T";
 
     /* constraints */
-    constraint-width: vfl-constraint("H:[__self(200)]");
+    constraint-width: constraint("__self.width == __constant.notAnAttribute", 30px, 1.0);
 }
 
 Demo.DemoContainerView:__where {
-	condition: 'horizontal == regular';
+	__condition: 'horizontal == regular';
     text: "R E G U L A R";
 
     /* constraints */
