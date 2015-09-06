@@ -15,7 +15,8 @@ class DemoContainerView : UILabel {
 
 class DemoViewController: UIViewController {
     
-    private let containerView = DemoContainerView(frame:  CGRect.zeroRect, useAppearanceProxy: true)
+    private var constraints = [NSLayoutConstraint]()
+    private let containerView = DemoContainerView(frame:  CGRect.zero, useAppearanceProxy: true)
 
     override func viewDidLoad() {
         
@@ -44,8 +45,9 @@ class DemoViewController: UIViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
-        //self.view.removeConstraints(self.view.constraints)
-        self.view.addConstraints(self.containerView.refl_appearanceProxy.constraints)
+        NSLayoutConstraint.deactivateConstraints(self.constraints)
+        self.constraints = self.containerView.refl_appearanceProxy.constraints;
+        NSLayoutConstraint.activateConstraints(self.containerView.refl_appearanceProxy.constraints)
     }
 
     

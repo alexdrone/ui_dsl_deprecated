@@ -210,7 +210,7 @@ struct Parser {
             }
         }
         
-        let sortedKeys = refl_prefixedOrderedKeys(variables.keys.array) as! [String]
+        let sortedKeys = refl_prefixedOrderedKeys(Array(variables.keys)) as! [String]
         
         //resolve the variables
         for selector in dictionary.keys {

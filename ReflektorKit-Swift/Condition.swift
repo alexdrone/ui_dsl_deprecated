@@ -47,7 +47,7 @@ struct Condition: Hashable, Parsable {
             }
             
             static func characterSet() -> NSCharacterSet {
-                return NSCharacterSet(charactersInString: "".join(self.allRaw()))
+                return NSCharacterSet(charactersInString: self.allRaw().joinWithSeparator(""))
             }
             
             static func operatorContainedInString(string: String) -> Operator {
