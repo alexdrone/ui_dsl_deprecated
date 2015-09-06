@@ -7,10 +7,10 @@ Demo.DemoContainerView {
     /* constraints */
     constraint-center-x: constraint("__self.centerX == __superView.centerX");
     constraint-center-y: constraint("__self.centerY == __superView.centerY");
-    constraint-height: vfl-constraint("V:[__self(200)]");
+    constraint-height: vfl-constraint("V:[__self(50)]");
 }
 
-Demo.DemoContainerView:__where   {
+Demo.DemoContainerView:__where {
     condition: 'horizontal == compact';
     text: "C O M P A C T";
 
@@ -18,15 +18,17 @@ Demo.DemoContainerView:__where   {
     constraint-width: vfl-constraint("H:[__self(200)]");
 }
 
-Demo.DemoContainerView:__where   {
+Demo.DemoContainerView:__where {
 	condition: 'horizontal == regular';
     text: "R E G U L A R";
 
     /* constraints */
-    constraint-width: vfl-constraint("H:[__self(400)]");
+    constraint-width: vfl-constraint("H:[__self(500)]");
 }
 
+/*
 Demo.DemoContainerView:blueAndRounded {
     background-color: @steelblue;
     text-color: @coral;
 }
+*/

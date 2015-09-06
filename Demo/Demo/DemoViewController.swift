@@ -35,7 +35,9 @@ class DemoViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-       self.refl_applyStyleToViewRecursive()
+        self.refl_applyStyleToViewRecursive()
+        self.updateViewConstraints()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,10 +46,10 @@ class DemoViewController: UIViewController {
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
+    
         NSLayoutConstraint.deactivateConstraints(self.constraints)
         self.constraints = self.containerView.refl_appearanceProxy.constraints;
-        NSLayoutConstraint.activateConstraints(self.containerView.refl_appearanceProxy.constraints)
+        NSLayoutConstraint.activateConstraints(self.constraints)
     }
 
     

@@ -56,7 +56,7 @@ struct Parser {
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Important.pre, withString: Token.Pre.Important.actual)
 
         while let match = payload.rangeOfString("\(Token.Separator.Selector)\(Token.Directive.Where)\\s", options: .RegularExpressionSearch) {
-            payload.replaceRange(match, with: "\(Token.Separator.Selector)\(Token.Directive.Where)_\(refl_uuid()) ")
+            payload.replaceRange(match, with: "\(Token.Separator.Selector)\(Token.Directive.Where)\(refl_uuid()) ")
         }
         
         
