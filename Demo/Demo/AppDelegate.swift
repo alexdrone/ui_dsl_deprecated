@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ReflektorKitSwift
+import Reflektor
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {

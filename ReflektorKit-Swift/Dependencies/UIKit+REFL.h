@@ -86,7 +86,7 @@
 
 @end
 
-@interface UIImage (REFLAdditions)
+@interface UIImage (REFL)
 
 + (UIImage*)REFL_imageWithColor:(UIColor*)color;
 + (UIImage*)REFL_imageWithColor:(UIColor*)color size:(CGSize)size;

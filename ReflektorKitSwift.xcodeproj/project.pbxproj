@@ -11,8 +11,8 @@
 		1625B8801B5CFAB6005B5717 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625B87F1B5CFAB6005B5717 /* Condition.swift */; };
 		162A33471B7201BE00B7ECC3 /* ApperanceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162A33461B7201BE00B7ECC3 /* ApperanceProxy.swift */; };
 		162A33491B720B7400B7ECC3 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162A33481B720B7400B7ECC3 /* AppearanceManager.swift */; };
-		164F359E1B5BE22F00E01834 /* ReflektorKitSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 164F359D1B5BE22F00E01834 /* ReflektorKitSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		164F35A51B5BE22F00E01834 /* ReflektorKitSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 164F359A1B5BE22F00E01834 /* ReflektorKitSwift.framework */; };
+		164F359E1B5BE22F00E01834 /* Reflektor.h in Headers */ = {isa = PBXBuildFile; fileRef = 164F359D1B5BE22F00E01834 /* Reflektor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		164F35A51B5BE22F00E01834 /* Reflektor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 164F359A1B5BE22F00E01834 /* Reflektor.framework */; };
 		164F35AA1B5BE22F00E01834 /* ConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F35A91B5BE22F00E01834 /* ConditionTests.swift */; };
 		164F35B51B5BE25D00E01834 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F35B41B5BE25D00E01834 /* Configuration.swift */; };
 		164F35CA1B5BE3AC00E01834 /* LESSLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 164F35C51B5BE3AC00E01834 /* LESSLexer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,10 +56,10 @@
 		162A33441B71FFE200B7ECC3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		162A33461B7201BE00B7ECC3 /* ApperanceProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApperanceProxy.swift; sourceTree = "<group>"; };
 		162A33481B720B7400B7ECC3 /* AppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
-		164F359A1B5BE22F00E01834 /* ReflektorKitSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReflektorKitSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		164F359D1B5BE22F00E01834 /* ReflektorKitSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReflektorKitSwift.h; sourceTree = "<group>"; };
+		164F359A1B5BE22F00E01834 /* Reflektor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reflektor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		164F359D1B5BE22F00E01834 /* Reflektor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reflektor.h; sourceTree = "<group>"; };
 		164F359F1B5BE22F00E01834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		164F35A41B5BE22F00E01834 /* ReflektorKitSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReflektorKitSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		164F35A41B5BE22F00E01834 /* ReflektorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReflektorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		164F35A91B5BE22F00E01834 /* ConditionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTests.swift; sourceTree = "<group>"; };
 		164F35AB1B5BE22F00E01834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		164F35B41B5BE25D00E01834 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				164F35A51B5BE22F00E01834 /* ReflektorKitSwift.framework in Frameworks */,
+				164F35A51B5BE22F00E01834 /* Reflektor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,8 +112,8 @@
 		164F359B1B5BE22F00E01834 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				164F359A1B5BE22F00E01834 /* ReflektorKitSwift.framework */,
-				164F35A41B5BE22F00E01834 /* ReflektorKitSwiftTests.xctest */,
+				164F359A1B5BE22F00E01834 /* Reflektor.framework */,
+				164F35A41B5BE22F00E01834 /* ReflektorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				164F35B61B5BE36000E01834 /* Dependencies */,
-				164F359D1B5BE22F00E01834 /* ReflektorKitSwift.h */,
+				164F359D1B5BE22F00E01834 /* Reflektor.h */,
 				164F359F1B5BE22F00E01834 /* Info.plist */,
 				164F35B41B5BE25D00E01834 /* Configuration.swift */,
 				164F35D31B5BE53400E01834 /* Parser.swift */,
@@ -174,7 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16ACE38A1B74F09E00FBA867 /* UIKit+REFL.h in Headers */,
-				164F359E1B5BE22F00E01834 /* ReflektorKitSwift.h in Headers */,
+				164F359E1B5BE22F00E01834 /* Reflektor.h in Headers */,
 				164F35CA1B5BE3AC00E01834 /* LESSLexer.h in Headers */,
 				16B9129F1B5E66C200B61761 /* UIColor+LESS.h in Headers */,
 			);
@@ -183,9 +183,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		164F35991B5BE22F00E01834 /* ReflektorKitSwift */ = {
+		164F35991B5BE22F00E01834 /* Reflektor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 164F35AE1B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "ReflektorKitSwift" */;
+			buildConfigurationList = 164F35AE1B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "Reflektor" */;
 			buildPhases = (
 				164F35951B5BE22F00E01834 /* Sources */,
 				164F35961B5BE22F00E01834 /* Frameworks */,
@@ -196,14 +196,14 @@
 			);
 			dependencies = (
 			);
-			name = ReflektorKitSwift;
+			name = Reflektor;
 			productName = "ReflektorKit-Swift";
-			productReference = 164F359A1B5BE22F00E01834 /* ReflektorKitSwift.framework */;
+			productReference = 164F359A1B5BE22F00E01834 /* Reflektor.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		164F35A31B5BE22F00E01834 /* ReflektorKitSwiftTests */ = {
+		164F35A31B5BE22F00E01834 /* ReflektorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 164F35B11B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "ReflektorKitSwiftTests" */;
+			buildConfigurationList = 164F35B11B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "ReflektorTests" */;
 			buildPhases = (
 				164F35A01B5BE22F00E01834 /* Sources */,
 				164F35A11B5BE22F00E01834 /* Frameworks */,
@@ -214,9 +214,9 @@
 			dependencies = (
 				164F35A71B5BE22F00E01834 /* PBXTargetDependency */,
 			);
-			name = ReflektorKitSwiftTests;
+			name = ReflektorTests;
 			productName = "ReflektorKit-SwiftTests";
-			productReference = 164F35A41B5BE22F00E01834 /* ReflektorKitSwiftTests.xctest */;
+			productReference = 164F35A41B5BE22F00E01834 /* ReflektorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -249,8 +249,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				164F35991B5BE22F00E01834 /* ReflektorKitSwift */,
-				164F35A31B5BE22F00E01834 /* ReflektorKitSwiftTests */,
+				164F35991B5BE22F00E01834 /* Reflektor */,
+				164F35A31B5BE22F00E01834 /* ReflektorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -318,7 +318,7 @@
 /* Begin PBXTargetDependency section */
 		164F35A71B5BE22F00E01834 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 164F35991B5BE22F00E01834 /* ReflektorKitSwift */;
+			target = 164F35991B5BE22F00E01834 /* Reflektor */;
 			targetProxy = 164F35A61B5BE22F00E01834 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -424,7 +424,7 @@
 				INFOPLIST_FILE = "ReflektorKit-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.reflektorKit.ReflektorKit-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reflektorKit.Reflektor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -442,7 +442,7 @@
 				INFOPLIST_FILE = "ReflektorKit-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.reflektorKit.ReflektorKit-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reflektorKit.Reflektor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -485,7 +485,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		164F35AE1B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "ReflektorKitSwift" */ = {
+		164F35AE1B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "Reflektor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				164F35AF1B5BE22F00E01834 /* Debug */,
@@ -494,7 +494,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		164F35B11B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "ReflektorKitSwiftTests" */ = {
+		164F35B11B5BE22F00E01834 /* Build configuration list for PBXNativeTarget "ReflektorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				164F35B21B5BE22F00E01834 /* Debug */,

@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ReflektorKitSwift/LESSLexer.h>
-#import <ReflektorKitSwift/UIColor+LESS.h>
-#import <ReflektorKitSwift/UIKit+REFL.h>
+#import <Reflektor/LESSLexer.h>
+#import <Reflektor/UIColor+LESS.h>
+#import <Reflektor/UIKit+REFL.h>
 
 //! Project version number for ReflektorKit-Swift.
-FOUNDATION_EXPORT double ReflektorKit_SwiftVersionNumber;
+FOUNDATION_EXPORT double ReflektorVersionNumber;
 
 //! Project version string for ReflektorKit-Swift.
-FOUNDATION_EXPORT const unsigned char ReflektorKit_SwiftVersionString[];
+FOUNDATION_EXPORT const unsigned char ReflektorVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ReflektorKit_Swift/PublicHeader.h>
 

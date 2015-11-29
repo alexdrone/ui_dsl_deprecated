@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ReflektorKitSwift
+import Reflektor
 
 class DemoContainerView : UILabel {
 

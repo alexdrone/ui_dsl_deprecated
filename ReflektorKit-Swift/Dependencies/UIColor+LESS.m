@@ -34,7 +34,7 @@ static NSDictionary *CMRW3CNamedColors(void);
     //The pattern is vertical - it doesn't require the whole width
     CGContextRef bitmapContext = CGBitmapContextCreate(NULL, 1., frame.height, 8, 4 * frame.width, colorSpace, kCGImageAlphaNoneSkipFirst);
     //Draw Gradient Here
-    CGContextDrawLinearGradient(bitmapContext, gradient, CGPointMake(0.0f, 0.0f), CGPointMake(0, frame.height), kCGImageAlphaNoneSkipFirst);
+    CGContextDrawLinearGradient(bitmapContext, gradient, CGPointMake(0.0f, 0.0f), CGPointMake(0, frame.height), (CGGradientDrawingOptions)kCGImageAlphaNoneSkipFirst);
     //Create a CGImage from context
     CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
     //Create a UIImage from CGImage
@@ -398,7 +398,7 @@ static NSCharacterSet *CMRHexCharacters()
 //We know we've got hex already, so assume this works
 static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
 {
-    NSUInteger ans = 0;
+    unsigned ans = 0;
     if (repeated) {
         str = [NSString stringWithFormat:@"%@%@", str, str];
     }
