@@ -46,9 +46,9 @@ The only valid selectors are the following:
 - `ObjCClass {}` (I)
 - `trait {}` (II, NB: Only one trait is allowed)
 - `ObjCClass:trait {}` (III, NB: Only one trait is allowed)
-- `ObjCClass:__where {}` (*condition modifier* on I, see the **Conditions** section to know more about the condition construct)
-- `trait:__where {}` (*condition modifier* on II)
-- `ObjCClass:trait:__where {}` (*condition modifier* on III)
+- `ObjCClass:__where {}` (*__condition modifier* on I, see the **Conditions** section to know more about the condition construct)
+- `trait:__where {}` (*__condition modifier* on II)
+- `ObjCClass:trait:__where {}` (*__condition modifier* on III)
 - `@namespace {}` (variables namespace)
 
 Example of valid selectors are the following
@@ -56,12 +56,12 @@ Example of valid selectors are the following
 - `UILabel {}` (I)
 - `redLabel {}` (II)
 - `UILabel:redLabel {}` (III)
-- `UIView:__where {}` (*condition modifier* on I)
-- `rounded:__where {}` (*condition modifier* on II)
-- `UIView:rounded:__where {}` (*condition modifier* on III)
+- `UIView:__where {}` (*__condition modifier* on I)
+- `rounded:__where {}` (*__condition modifier* on II)
+- `UIView:rounded:__where {}` (*__condition modifier* on III)
 - `@globals {}` (variables namespace)
 
-You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
+You can use the `__include` directive to include the definitions from the scope of other selectors inside a selector.
 
 e.g.
 
@@ -80,13 +80,13 @@ UILabel {
 }
 ```
 
-If `:__where` special trait is defined in the selector, the selector's properties are computed only if the condition string defined in the 'condition' property is satisfied.
+If `:__where` special trait is defined in the selector, the selector's properties are computed only if the __condition string defined in the '__condition' property is satisfied.
 
 e.g.
 
 ```css
 UIView:__where {
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
@@ -161,18 +161,18 @@ To do so you simply have to write a class that conforms  the `PropertyValuePlugi
 ##Special Directives
 
 
-### The `condition`directive
+### The `__condition`directive
 
 If a selector is *conditional* is must be suffixed with the special trait `:__where` (e.g. `XYZButton:__where`).
-Furthermore a `condition` directive should be defined within the scope of the conditional selector.
+Furthermore a `__condition` directive should be defined within the scope of the conditional selector.
 
 ```css
 SELECTOR:__where {
-	condition: @condition;
+	__condition: @condition;
 }
 ```
 
-The right-hand side of a 'condition' has the following syntax
+The right-hand side of a '__condition' has the following syntax
 
 ```
 	CONDITION := 'EXPR and EXPR and ...' //e.g. 'width < 200 and vertical = compact and idiom = phone'
@@ -188,7 +188,7 @@ So an example of a conditional selector is the following
 
 ```css
 UIView:__where {
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
@@ -218,11 +218,11 @@ You can reference these custom conditon by their key + `?` as prefix.
 
 ```css
 UIView:__where {
-	condition: '?alwaysFalse and ?alwaysTrue';
+	__condition: '?alwaysFalse and ?alwaysTrue';
 }
 ```
 
-### The `include`directive
+### The `__include`directive
 
 You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
 
@@ -239,11 +239,11 @@ rounded {
 }
 
 UILabel {
-	include: UIButton, rounded;
+	__include: UIButton, rounded;
 }
 ```
 
-### The `applies-to-subclasses` directive
+### The `__subclasses` directive (deprecated)
 
 By default, in order to improve the performance to compute the style for a view, the class rule for the selector is matched only if the class specified in the selector is exactly the same as the target view.
 
@@ -254,7 +254,7 @@ e.g.
 ```css
 
 UILabel {
-	applies-to-subclasses: true;
+	__subclasses: true;
 }
 ```
 
@@ -297,17 +297,17 @@ UIView {
 /* class + trait selector (override, it is constrained to a single trait per selector). */
 UIView:circularView {
 	/* The 'include' directive includes the definition of other traits or classes inside this selector scope */
-	include: rounded, foo, UILabel;
+	__include: rounded, foo, UILabel;
 	background-color: @blue;
 }
 
 /*
   Any of the previous declared selector can append the special :__where trait.
   If :__where is defined, the selector's properties are computed only if the condition string 
-  defined in the 'condition' property is satisfied.
+  defined in the '__condition' property is satisfied.
  */
 UIView:__where {
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
@@ -319,8 +319,8 @@ UILabel:small {
 
 /* Collection of valid right-hand side values */
 foo {
-	include: rounded, UIView;
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__include: rounded, UIView;
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	color-one: #00ff00;
 	color-two: rgb(255, 0, 0);
 	color-three: rgba(255, 0, 0, 0.3);

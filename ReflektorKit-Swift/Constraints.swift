@@ -304,7 +304,6 @@ extension Condition.ExpressionToken.Operator {
                 }
                 
                 let container = try ConstraintsContainer(rawString: constraintString, vfl: true)
-                
                 return container
                 
             } catch {

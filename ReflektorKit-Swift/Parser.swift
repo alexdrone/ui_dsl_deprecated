@@ -24,7 +24,7 @@ struct Token {
         static let Where = "__where"
         static let WhereUnprefixed = "where"
         static let Include = "include"
-        static let AppliesToSubclasses = "applies-to-subclasses"
+        static let AppliesToSubclasses = "subclasses"
     }
     
     struct Separator {
@@ -55,6 +55,8 @@ struct Parser {
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Variable.pre, withString: Token.Pre.Variable.actual)
         payload = payload.stringByReplacingOccurrencesOfString(Token.Pre.Important.pre, withString: Token.Pre.Important.actual)
         payload = payload.stringByReplacingOccurrencesOfString("__\(Token.Directive.Condition)", withString: Token.Directive.Condition)
+        payload = payload.stringByReplacingOccurrencesOfString("__\(Token.Directive.Include)", withString: Token.Directive.Include)
+        payload = payload.stringByReplacingOccurrencesOfString("__\(Token.Directive.AppliesToSubclasses)", withString: Token.Directive.AppliesToSubclasses)
 
         while let match = payload.rangeOfString("\(Token.Separator.Selector)\(Token.Directive.Where)\\s", options: .RegularExpressionSearch) {
             payload.replaceRange(match, with: "\(Token.Separator.Selector)\(Token.Directive.Where)\(refl_uuid()) ")
@@ -172,7 +174,7 @@ struct Parser {
         }
         
         guard let includeComponents = includeString.componentsSeparatedByString(Token.Separator.Standard) as [String]? else {
-            throw ParserError.MalformedStylesheet(error: "The include directive for \(key) is malformed")
+            throw ParserError.MalformedStylesheet(error: "The __include directive for \(key) is malformed")
         }
         
         //recursive calls
