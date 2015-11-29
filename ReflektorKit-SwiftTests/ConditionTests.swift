@@ -30,7 +30,7 @@ class CondtionTests: XCTestCase {
             let condition1 = try Condition(rawString: "width = 1 and height < 2")
             XCTAssert(condition1.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize(width: 1, height: 1)))
             XCTAssert(!condition1.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize(width: 2, height: 1)))
-            XCTAssert(!condition1.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zeroSize))
+            XCTAssert(!condition1.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zero))
 
             let condition2 = try Condition(rawString: "width ≠ 1")
             XCTAssert(condition2.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize(width: 2, height: 1)))
@@ -41,16 +41,16 @@ class CondtionTests: XCTestCase {
             XCTAssert(!condition2a.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize(width: 1, height: 1)))
 
             let condition3 = try Condition(rawString: "horizontal ≠ compact")
-            XCTAssert(condition3.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Regular), size: CGSize.zeroSize))
-            XCTAssert(!condition3.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zeroSize))
+            XCTAssert(condition3.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Regular), size: CGSize.zero))
+            XCTAssert(!condition3.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zero))
             
             let condition4 = try Condition(rawString: "horizontal = compact")
-            XCTAssert(condition4.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zeroSize))
-            XCTAssert(!condition4.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Regular), size: CGSize.zeroSize))
+            XCTAssert(condition4.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zero))
+            XCTAssert(!condition4.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Regular), size: CGSize.zero))
             
             let condition5 = try Condition(rawString: "vertical ≠ compact")
-            XCTAssert(condition5.evaluate(nil, traitCollection: UITraitCollection(verticalSizeClass: .Regular), size: CGSize.zeroSize))
-            XCTAssert(!condition5.evaluate(nil, traitCollection: UITraitCollection(verticalSizeClass: .Compact), size: CGSize.zeroSize))
+            XCTAssert(condition5.evaluate(nil, traitCollection: UITraitCollection(verticalSizeClass: .Regular), size: CGSize.zero))
+            XCTAssert(!condition5.evaluate(nil, traitCollection: UITraitCollection(verticalSizeClass: .Compact), size: CGSize.zero))
             
             let condition6 = try Condition(rawString: "horizontal = compact and width ≠ 1")
             XCTAssert(condition6.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize(width: 2, height: 1)))
@@ -86,8 +86,8 @@ class CondtionTests: XCTestCase {
             
             //when a condition is ill-formed (such as the following) the evaluation of it is always false
             let condition11 = try Condition(rawString: "horizontal > compact")
-            XCTAssert(!condition11.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zeroSize))
-            XCTAssert(!condition11.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Regular), size: CGSize.zeroSize))
+            XCTAssert(!condition11.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Compact), size: CGSize.zero))
+            XCTAssert(!condition11.evaluate(nil, traitCollection: UITraitCollection(horizontalSizeClass: .Regular), size: CGSize.zero))
             
             let condition12 = try Condition(rawString: "idiom = phone")
             XCTAssert(condition12.evaluate(nil, traitCollection: UITraitCollection(userInterfaceIdiom: UIUserInterfaceIdiom.Phone), size: CGSize(width: 5, height: 3)))

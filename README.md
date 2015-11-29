@@ -10,6 +10,23 @@ The stylesheet language can be considered a *LESS/CSS* dialect, even though it's
 
 Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced by other more UIKit-friendly constructs.
 
+## Installation
+
+### Carthage
+
+To install Carthage, run (using Homebrew):
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+Then add the following line to your `Cartfile`:
+
+```
+github "alexdrone/ReflektorKit" "master"    
+```
+
 ###Why ReflektorKit and not Pixate Freestyle or XYZ?
 
 There are many libraries that offers a way to style native controls, but many times they have a completely different rendering pipeline that makes them incompatible with vanilla custom made uikit controls and they don't offer low level control over the styling of your components.
