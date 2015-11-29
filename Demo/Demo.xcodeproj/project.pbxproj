@@ -13,7 +13,6 @@
 		16ACE3821B74E21B00FBA867 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ACE3811B74E21B00FBA867 /* DemoViewController.swift */; };
 		16ACE3841B74E48500FBA867 /* main.less in Resources */ = {isa = PBXBuildFile; fileRef = 16ACE3831B74E48500FBA867 /* main.less */; };
 		16ACE3861B74E4C000FBA867 /* demo.less in Resources */ = {isa = PBXBuildFile; fileRef = 16ACE3851B74E4C000FBA867 /* demo.less */; };
-		16BA2DFF1C0B9EC400AB43D4 /* Reflektor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16BA2DFE1C0B9EC400AB43D4 /* Reflektor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +25,6 @@
 		16ACE3811B74E21B00FBA867 /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		16ACE3831B74E48500FBA867 /* main.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.less; sourceTree = "<group>"; };
 		16ACE3851B74E4C000FBA867 /* demo.less */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.less; sourceTree = "<group>"; };
-		16BA2DFE1C0B9EC400AB43D4 /* Reflektor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reflektor.framework; path = "../build/Debug-iphoneos/Reflektor.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16BA2DFF1C0B9EC400AB43D4 /* Reflektor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,7 +41,6 @@
 		16443FDF1B74E0F700EE0B50 = {
 			isa = PBXGroup;
 			children = (
-				16BA2DFE1C0B9EC400AB43D4 /* Reflektor.framework */,
 				16443FEA1B74E0F700EE0B50 /* Demo */,
 				16443FE91B74E0F700EE0B50 /* Products */,
 			);
