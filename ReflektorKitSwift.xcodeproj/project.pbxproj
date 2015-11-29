@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1625B87E1B5CF9B1005B5717 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625B87D1B5CF9B1005B5717 /* Selector.swift */; };
 		1625B8801B5CFAB6005B5717 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625B87F1B5CFAB6005B5717 /* Condition.swift */; };
-		162A33451B71FFE200B7ECC3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 162A33441B71FFE200B7ECC3 /* README.md */; };
 		162A33471B7201BE00B7ECC3 /* ApperanceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162A33461B7201BE00B7ECC3 /* ApperanceProxy.swift */; };
 		162A33491B720B7400B7ECC3 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162A33481B720B7400B7ECC3 /* AppearanceManager.swift */; };
 		164F359E1B5BE22F00E01834 /* ReflektorKitSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 164F359D1B5BE22F00E01834 /* ReflektorKitSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -289,7 +288,6 @@
 				164F35D41B5BE53400E01834 /* Parser.swift in Sources */,
 				16ACE38B1B74F09E00FBA867 /* UIKit+REFL.m in Sources */,
 				16B9129A1B5E60CE00B61761 /* PropertyValue.swift in Sources */,
-				162A33451B71FFE200B7ECC3 /* README.md in Sources */,
 				1625B8801B5CFAB6005B5717 /* Condition.swift in Sources */,
 				162A33491B720B7400B7ECC3 /* AppearanceManager.swift in Sources */,
 			);
