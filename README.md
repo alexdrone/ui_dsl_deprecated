@@ -44,7 +44,28 @@ Additionaly ReflektorKit is **extensible** - it allows you to write plugin and e
 
 ##Getting started
 
-- TODO
+- Creates your stylesheet files (use .less as file extension if you want to have good higlighting support from most editors).
+- Create a `main.less` stylesheet. From here you can import all the others stylesheets:
+
+```css
+
+@import url("master.less");
+@import url("detail.less");
+
+```
+ 
+- Add this to your AppDelegate:
+
+```swift
+
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+       
+	AppearanceManager.sharedManager.loadStylesheetFromFile("main", fileExtension: "less")
+	
+		//...
+    }
+
+```
 
 ##Terminology
 
@@ -61,23 +82,26 @@ Only one selector per scope is allowed — so `selector1, selector2 {}` is valid
 
 The only valid selectors are the following:
 
-- `ObjCClass {}` (I)
+- `ObjClass {}` (I)
 - `trait {}` (II, NB: Only one trait is allowed)
-- `ObjCClass:trait {}` (III, NB: Only one trait is allowed)
-- `ObjCClass:__where {}` (*condition modifier* on I, see the **Conditions** section to know more about the condition construct)
+- `ObjClass:trait {}` (III, NB: Only one trait is allowed)
+- `ObjClass:__where {}` (*condition modifier* on I, see the **Conditions** section to know more about the condition construct)
 - `trait:__where {}` (*condition modifier* on II)
-- `ObjCClass:trait:__where {}` (*condition modifier* on III)
+- `ObjClass:trait:__where {}` (*condition modifier* on III)
 - `@namespace {}` (variables namespace)
 
 Example of valid selectors are the following
 
 - `UILabel {}` (I)
+- `MyApp.FooLabel {}` (I)
 - `redLabel {}` (II)
 - `UILabel:redLabel {}` (III)
 - `UIView:__where {}` (*condition modifier* on I)
 - `rounded:__where {}` (*condition modifier* on II)
 - `UIView:rounded:__where {}` (*condition modifier* on III)
 - `@globals {}` (variables namespace)
+
+N.B: In Swift the `ObjClass` should have the project namespace
 
 You can use the `__include` directive to include the definitions from the scope of other selectors inside a selector.
 
