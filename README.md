@@ -275,6 +275,8 @@ e.g.
 UILabel {
 	__subclasses: true;
 }
+```
+
 
 ##Included UIKit's categories
 
