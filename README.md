@@ -3,11 +3,11 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-**ReflektorKit** is a **lightweight** extensible native stylesheet engine for iOS written in *Swift* and compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
-With ReflektorKit, you can replace many complicated lines of Objective-C or Swift with a few lines in the stylesheet, and be able to apply this changes real-time, without rebuilding the app.
+**Reflektor** is a **lightweight** extensible native stylesheet engine for iOS written in *Swift* and compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
+With ReflektorKit, you can replace many tedious and redudant lines of Objective-C or Swift with a few lines in the stylesheet, and be able to apply this changes real-time, without rebuilding the app.
 
 
-The stylesheet language can be considered a *LESS/CSS* dialect, even though it's been designed specifically to map some UIKit patterns and behaviours, therefore — **it is not CSS**.
+The stylesheet language can be considered a *LESS/CSS* dialect, even though it's been designed specifically to map some UIKit patterns and behaviours, therefore — **is not CSS**.
 
 Infact many *CSS* concepts (such as *class* and *id*) are missing and replaced by other more UIKit-friendly constructs.
 
@@ -25,18 +25,18 @@ $ brew install carthage
 Then add the following line to your `Cartfile`:
 
 ```
-github "alexdrone/ReflektorKit" "master"    
+github "alexdrone/Reflektor" "master"    
 ```
 
-###Why ReflektorKit and not Pixate Freestyle or XYZ?
+###Why Reflektor and not Pixate Freestyle or XYZ?
 
 There are many libraries that offers a way to style native controls, but many times they have a completely different rendering pipeline that makes them incompatible with vanilla custom made uikit controls and they don't offer low level control over the styling of your components.
 
-Moreover the aim of these libraries is to port *all of the CSS practices and concepts* to the iOS platform, and I believe this is often an overkill and not an optimal fit.
+Moreover the aim of these libraries is to port *all of the CSS practices and philosophy* to the iOS platform, and this is often an overkill and not an optimal fit.
 
-ReflektorKit was made with UIKit in mind: it takes full advantage of all the capabilities UIKit offers out-of-the-box (such as *size classes*, *appearance selectors* and more) and it doens't fight the platform.
+Reflektor was made with UIKit in mind: it takes full advantage of all the capabilities UIKit offers out-of-the-box (such as *size classes*, *appearance selectors* and more) - it doens't fight the platform.
 
-With ReflektorKit you can have fine control over when a stylesheet property is computed and applied in the lifecycle of UIView.
+With Reflektor you can have fine control over when a stylesheet property is computed and applied in the lifecycle of UIView.
 
 Furthermore the properties defined in the scope a stylesheet selectors are purely *keyPaths*, making it straight-forward to style custom components or supply custom appearance selectors to a view. 
 
@@ -79,7 +79,7 @@ Example of valid selectors are the following
 - `UIView:rounded:__where {}` (*condition modifier* on III)
 - `@globals {}` (variables namespace)
 
-You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
+You can use the `__include` directive to include the definitions from the scope of other selectors inside a selector.
 
 e.g.
 
@@ -94,17 +94,17 @@ rounded {
 }
 
 UILabel {
-	include: UIButton, rounded;
+	__include: UIButton, rounded;
 }
 ```
 
-If `:__where` special trait is defined in the selector, the selector's properties are computed only if the condition string defined in the 'condition' property is satisfied.
+If the `:__where` special trait is defined in the selector, the selector's properties are computed only if the condition string defined in the '__condition' property is satisfied.
 
 e.g.
 
 ```css
 UIView:__where {
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
@@ -114,14 +114,14 @@ To know more about the conditions syntax and semantic, see the **Conditions** se
 
 ##Left-Hand Side Values
 
-The property name can be arbitrary, and the keys are translated from dash notation to camelCase notation at parse time.
+The property name is arbitrary, and the keys are translated from dash notation to camelCase notation at parse time.
 
 If it matches a class `keyPath`, the value is evaluated and automatically set to any view that 
 matches the current selector.
 
 Otherwise the properties can be accessed from within the view's dictionary stored inside the 
-property `rflk_computedProperties` defined in ReflektorKit's UIView category.
-e.g. `[self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]`
+property `rflk_computedProperties` defined in Reflektor's UIView category.
+e.g. `self.rflk_computedProperties[@"anyCustomKey"].value(withTraitCollection:self.traitCollection, bounds:self.bounds)`
 
 
 ##Right-Hand Side Values
@@ -180,14 +180,14 @@ To do so you simply have to write a class that conforms  the `PropertyValuePlugi
 ##Special Directives
 
 
-### The `condition`directive
+### The `__condition`directive
 
 If a selector is *conditional* is must be suffixed with the special trait `:__where` (e.g. `XYZButton:__where`).
-Furthermore a `condition` directive should be defined within the scope of the conditional selector.
+Furthermore a `__condition` directive should be defined within the scope of the conditional selector.
 
 ```css
 SELECTOR:__where {
-	condition: @condition;
+	-_condition: @condition;
 }
 ```
 
@@ -207,7 +207,7 @@ So an example of a conditional selector is the following
 
 ```css
 UIView:__where {
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
@@ -237,11 +237,11 @@ You can reference these custom conditon by their key + `?` as prefix.
 
 ```css
 UIView:__where {
-	condition: '?alwaysFalse and ?alwaysTrue';
+	__condition: '?alwaysFalse and ?alwaysTrue';
 }
 ```
 
-### The `include`directive
+### The `__include`directive
 
 You can use the `include` directive to include the definitions from the scope of other selectors inside a selector.
 
@@ -258,11 +258,11 @@ rounded {
 }
 
 UILabel {
-	include: UIButton, rounded;
+	__include: UIButton, rounded;
 }
 ```
 
-### The `applies-to-subclasses` directive
+### The `__subclasses` directive (deprecated)
 
 By default, in order to improve the performance to compute the style for a view, the class rule for the selector is matched only if the class specified in the selector is exactly the same as the target view.
 
@@ -273,13 +273,68 @@ e.g.
 ```css
 
 UILabel {
-	applies-to-subclasses: true;
+	__subclasses: true;
 }
-```
 
 ##Included UIKit's categories
 
-TODO
+Included in Reflektor there are some handy categories to access some UIView's properties from the stylesheet:
+
+
+```swift
+
+UIView: 
+
+///Redirects to 'layer.cornerRadius'
+var cornerRadius: CGFloat
+
+///Redirects to 'layer.borderWidth'
+var borderWidth: CGFloat
+
+///Redirects to 'layer.borderColor'
+var borderColor: UIColor 
+
+///Frame helper (self.frame.origin.x)
+var x: CGFloat
+
+///Frame helper (self.frame.origin.y)
+var y: CGFloat
+
+///Frame helper (self.frame.size.width)
+var width: CGFloat
+
+///Frame helper (self.frame.size.height)
+var height: CGFloat
+
+///The opacity of the shadow. Defaults to 0. Specifying a value outside the
+var hadowOpacity: CGFloat
+
+///The blur radius used to create the shadow. Defaults to 3.
+var shadowRadius: CGFloat
+
+///The shadow offset. Defaults to (0, -3)
+var shadowOffset: CGSize
+
+///The color of the shadow. Defaults to opaque black.
+var shadowColor: UIColor
+
+
+UIButton:
+
+var text: String
+var highlightedText: String
+var selectedText: String
+var disabledText: String
+
+//Symeetrical to  -[UIButton titleColorForState:]
+var textColor: UIColor
+var highlightedTextColor: UIColor
+var selectedTextColor: UIColor
+var disabledTextColor: UIColor
+
+//..and so on
+
+```
 
 
 ##Example of a stylesheet
@@ -316,7 +371,7 @@ UIView {
 /* class + trait selector (override, it is constrained to a single trait per selector). */
 UIView:circularView {
 	/* The 'include' directive includes the definition of other traits or classes inside this selector scope */
-	include: rounded, foo, UILabel;
+	__include: rounded, foo, UILabel;
 	background-color: @blue;
 }
 
@@ -326,7 +381,7 @@ UIView:circularView {
   defined in the 'condition' property is satisfied.
  */
 UIView:__where {
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	border-width: 2px;
 	border-color: @blue;
 }
@@ -338,8 +393,8 @@ UILabel:small {
 
 /* Collection of valid right-hand side values */
 foo {
-	include: rounded, UIView;
-	condition: 'idiom = pad and width < 200 and vertical = regular';
+	__include: rounded, UIView;
+	__condition: 'idiom = pad and width < 200 and vertical = regular';
 	color-one: #00ff00;
 	color-two: rgb(255, 0, 0);
 	color-three: rgba(255, 0, 0, 0.3);
@@ -372,10 +427,9 @@ foo {
 
 ##Attribuitions
 
-The list of third-party libraries is following:
+The list of third-party libraries used for this project is the following:
 
 - https://github.com/jlawton/UIColor-HTMLColors
 - https://github.com/tracy-e/ESCssParser
-- https://github.com/steipete/RFLKAspects
 - *logo* from: https://dribbble.com/BSteely 
 
