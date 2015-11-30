@@ -464,13 +464,13 @@ void refl_scan(const char *text, int token)
                     break;
                 }
                 default:
-                    printf("[%s] (%s)", text, LESSTokenName[token]);
+                    //printf("[%s] (%s)", text, LESSTokenName[token]);
                     break;
             }
             break;
         }
         default:
-            printf("[%s] (%s)", text, LESSTokenName[token]);
+            //printf("[%s] (%s)", text, LESSTokenName[token]);
             break;
     }
     _state.lastToken = token;
