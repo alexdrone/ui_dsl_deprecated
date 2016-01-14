@@ -2,6 +2,10 @@
 ![GitHub Logo](logo.png)
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build](https://img.shields.io/badge/build-passing-green.svg?style=flat)](#)
+[![Platform](https://img.shields.io/badge/platform-ios | osx | watchos | tvos -lightgrey.svg?style=flat)](#)
+[![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
+
 
 **Reflektor** is a **lightweight** extensible native stylesheet engine for iOS written in *Swift* and compatible with *Objective-C* and *Swift* on *iOS8+* that allows you to style your application in a semantic and reusable fashion, even at runtime.
 With ReflektorKit, you can replace many tedious and redudant lines of Objective-C or Swift with a few lines in the stylesheet, and be able to apply this changes real-time, without rebuilding the app.
@@ -211,7 +215,7 @@ Furthermore a `__condition` directive should be defined within the scope of the 
 
 ```css
 SELECTOR:__where {
-	-_condition: @condition;
+	__condition: @condition;
 }
 ```
 
@@ -383,7 +387,6 @@ rounded {
 	  matches the current selector.
 	  Otherwise the properties can be accessed from within the view's dictionary stored inside the 
 	  property rflk_computedProperties defined in ReflektorKit's UIView category.
-	  e.g. [self.rflk_computedProperties[@"anyCustomKey"] valueWithTraitCollection:self.traitCollection bounds:self.bounds]
 	  */
 	corner-radius: 50%;
 	any-custom-key: 50px;
