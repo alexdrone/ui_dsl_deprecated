@@ -135,7 +135,15 @@ import UIKit
                 self.resetDictionary[k] = v.valueForKeyPath(k)
                 
                 //applies the value
-                v.setValue(value, forKeyPath: k)
+                guard let oldValue = v.valueForKeyPath(k) as? NSObject else {
+                    v.setValue(value, forKeyPath: k)
+                    continue
+                }
+                
+                if !oldValue.isEqual(value) {
+                    v.setValue(value, forKeyPath: k)
+                }
+
             }
 
         }

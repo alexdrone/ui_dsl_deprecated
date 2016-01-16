@@ -133,7 +133,7 @@ struct Parser {
             
             //loads the file
             var file = try String(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-            
+
             while let match = file.rangeOfString("@import(\\s*)url\\(\"(\\w*.\\w*)\"\\);", options: .RegularExpressionSearch) {
                 
                 //get the filename of the imported file

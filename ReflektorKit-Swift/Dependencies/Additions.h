@@ -105,3 +105,38 @@
 - (Class)refl_class;
 @end
 
+@interface UIColor (HTMLColors)
+
++ (UIColor*)gradientFromColor:(UIColor*)color1 toColor:(UIColor*)color2 withSize:(CGSize)frame;
++ (UIColor*)refl_colorWithCSSColor:(NSString *)cssColor;
++ (UIColor*)colorWithHexString:(NSString *)hexColor;
++ (UIColor*)colorWithRGBString:(NSString *)rgbColor;
++ (UIColor*)colorWithHSLString:(NSString *)hslColor;
+- (NSString*)hexStringValue;
+- (NSString*)rgbStringValue;
+- (NSString*)hslStringValue;
+
+@end
+
+@interface NSScanner (HTMLColors)
+- (BOOL)scanLESSColor:(UIColor **)color;
+- (BOOL)scanRGBColor:(UIColor **)color;
+- (BOOL)scanHSLColor:(UIColor **)color;
+- (BOOL)scanHexColor:(UIColor **)color;
+
+@end
+
+@interface UIEGradientColor : NSObject
+
+- (instancetype)initWithColor1:(UIColor*)color1 color2:(UIColor*)color2;
+- (UIColor*)gradientWithSize:(CGSize)size;
+
+@end
+
+@interface UIImage (REFLAdditions)
+
++ (UIImage*)imageWithColor:(UIColor*)color;
++ (UIImage*)imageWithColor:(UIColor*)color size:(CGSize)size;
+
+@end
+

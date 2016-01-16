@@ -1,5 +1,473 @@
+//
+// UIView+REFLAdditions.m
+// ReflektorKit
+//
+// Created by Alex Usbergo on 22/04/15.
+// Copyright (c) 2015 Alex Usbergo. All rights reserved.
+//
 
-#import "UIColor+LESS.H"
+#import "Additions.h"
+#import <objc/runtime.h>
+
+static void *UIViewFlexContainerKey;
+
+#pragma mark - UIView
+
+@implementation UIView (REFLAdditions)
+
+- (CGFloat)cornerRadius
+{
+    return self.layer.cornerRadius;
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius
+{
+    self.clipsToBounds = YES;
+    self.layer.cornerRadius = cornerRadius;
+}
+
+- (CGFloat)borderWidth
+{
+    return self.layer.borderWidth;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth
+{
+    self.layer.borderWidth = borderWidth;
+}
+
+- (UIColor*)borderColor
+{
+    return [UIColor colorWithCGColor:self.layer.borderColor];
+}
+
+- (void)setBorderColor:(UIColor*)borderColor
+{
+    self.layer.borderColor = borderColor.CGColor;
+}
+
+- (CGFloat)paddingLeft
+{
+    return 0;
+}
+
+- (CGFloat)x
+{
+    return self.frame.origin.x;
+}
+
+- (CGFloat)y
+{
+    return self.frame.origin.y;
+}
+
+- (CGFloat)height
+{
+    return CGRectGetHeight(self.frame);
+}
+
+- (CGFloat)width
+{
+    return CGRectGetWidth(self.frame);;
+}
+
+- (void)setX:(CGFloat)x
+{
+    CGRect rect = self.frame;
+    rect.origin.x = x;
+    self.frame = rect;
+}
+
+- (void)setY:(CGFloat)y
+{
+    CGRect rect = self.frame;
+    rect.origin.y = y;
+    self.frame = rect;
+}
+
+- (void)setHeight:(CGFloat)height
+{
+    CGRect rect = self.frame;
+    rect.size.height = height;
+    self.frame = rect;
+}
+
+- (void)setWidth:(CGFloat)width
+{
+    CGRect rect = self.frame;
+    rect.size.width = width;
+    self.frame = rect;
+}
+
+- (CGFloat)shadowOpacity
+{
+    return self.layer.shadowOpacity;
+}
+
+- (void)setShadowOpacity:(CGFloat)shadowOpacity
+{
+    self.layer.shadowOpacity = shadowOpacity;
+}
+
+- (CGFloat)shadowRadius
+{
+    return self.layer.shadowRadius;
+}
+
+- (void)setShadowRadius:(CGFloat)shadowRadius
+{
+    self.layer.shadowRadius = shadowRadius;
+}
+
+- (CGSize)shadowOffset
+{
+    return self.layer.shadowOffset;
+}
+
+- (void)setShadowOffset:(CGSize)shadowOffset
+{
+    self.layer.shadowOffset = shadowOffset;
+}
+
+- (UIColor*)shadowColor
+{
+    return [UIColor colorWithCGColor:self.layer.shadowColor];
+}
+
+- (void)setShadowColor:(UIColor*)shadowColor
+{
+    self.layer.shadowColor = shadowColor.CGColor;
+}
+
+@end
+
+#pragma mark - UIScreen
+
+@implementation UIScreen (RLFKAddtions)
+
+- (CGRect)REFL_screenBounds
+{
+    UIScreen *screen = self;
+    
+#if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    if ([screen respondsToSelector:@selector(fixedCoordinateSpace)])
+        return [screen.coordinateSpace convertRect:screen.bounds toCoordinateSpace:screen.fixedCoordinateSpace];
+#endif
+    
+    return screen.bounds;
+}
+
+@end
+
+
+#pragma mark - UIButton
+
+@implementation UIButton (REFLAdditions)
+
+- (NSString*)text
+{
+    return [self titleForState:UIControlStateNormal];
+}
+
+- (void)setText:(NSString*)text
+{
+    [self setTitle:text forState:UIControlStateNormal];
+}
+
+- (NSString*)highlightedText
+{
+    return [self titleForState:UIControlStateHighlighted];
+}
+
+- (void)setHighlightedText:(NSString*)highlightedText
+{
+    [self setTitle:highlightedText forState:UIControlStateHighlighted];
+}
+
+- (NSString*)selectedText
+{
+    return [self titleForState:UIControlStateSelected];
+}
+
+-  (void)setSelectedText:(NSString*)selectedText
+{
+    [self setTitle:selectedText forState:UIControlStateSelected];
+}
+
+- (NSString*)disabledText
+{
+    return [self titleForState:UIControlStateDisabled];
+}
+
+- (void)setDisabledText:(NSString*)disabledText
+{
+    [self setTitle:disabledText forState:UIControlStateDisabled];
+}
+
+- (UIColor*)textColor
+{
+    return [self titleColorForState:UIControlStateNormal];
+}
+
+- (void)setTextColor:(UIColor*)textColor
+{
+    [self setTitleColor:textColor forState:UIControlStateNormal];
+}
+
+- (UIColor*)highlightedTextColor
+{
+    return [self titleColorForState:UIControlStateHighlighted];
+}
+
+- (void)setHighlightedTextColor:(UIColor*)highlightedTextColor
+{
+    [self setTitleColor:highlightedTextColor forState:UIControlStateHighlighted];
+}
+
+- (UIColor*)selectedTextColor
+{
+    return [self titleColorForState:UIControlStateSelected];
+}
+
+- (void)setSelectedTextColor:(UIColor*)selectedTextColor
+{
+    [self setTitleColor:selectedTextColor forState:UIControlStateSelected];
+}
+
+- (UIColor*)disabledTextColor
+{
+    return [self titleColorForState:UIControlStateDisabled];
+}
+
+- (void)setDisabledTextColor:(UIColor*)disabledTextColor
+{
+    [self setTitleColor:disabledTextColor forState:UIControlStateDisabled];
+}
+
+- (UIImage*)backgroundImage
+{
+    return [self backgroundImageForState:UIControlStateNormal];
+}
+
+- (void)setBackgroundImage:(UIImage*)backgroundImage
+{
+    [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+}
+
+- (UIImage*)highlightedBackgroundImage
+{
+    return [self backgroundImageForState:UIControlStateHighlighted];
+}
+
+- (void)setHighlightedBackgroundImage:(UIImage*)highlightedBackgroundImage
+{
+    [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+}
+
+- (UIImage*)selectedBackgroundImage
+{
+    return [self backgroundImageForState:UIControlStateSelected];
+}
+
+- (void)setSelectedBackgroundImage:(UIImage*)selectedBackgroundImage
+{
+    [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
+}
+
+- (UIImage*)disabledBackgroundImage
+{
+    return [self backgroundImageForState:UIControlStateDisabled];
+}
+
+- (void)setDisabledBackgroundImage:(UIImage*)disabledBackgroundImage
+{
+    [self setBackgroundImage:disabledBackgroundImage forState:UIControlStateDisabled];
+}
+
+- (UIImage*)image
+{
+    return [self imageForState:UIControlStateNormal];
+}
+
+- (void)setImage:(UIImage*)image
+{
+    [self setImage:image forState:UIControlStateNormal];
+}
+
+- (UIImage*)highlightedImage
+{
+    return [self imageForState:UIControlStateHighlighted];
+}
+
+- (void)setHighlightedImage:(UIImage*)highlightedImage
+{
+    [self setImage:highlightedImage forState:UIControlStateHighlighted];
+}
+
+- (UIImage*)selectedImage
+{
+    return [self imageForState:UIControlStateSelected];
+}
+
+- (void)setSelectedImage:(UIImage*)selectedImage
+{
+    [self setImage:selectedImage forState:UIControlStateSelected];
+}
+
+- (UIImage*)disabledImage
+{
+    return [self imageForState:UIControlStateDisabled];
+}
+
+- (void)setDisabledImage:(UIImage*)disabledImage
+{
+    [self setImage:disabledImage forState:UIControlStateDisabled];
+}
+
+@end
+
+#pragma mark - UIImage
+
+@implementation UIImage (REFLAdditions)
+
++ (UIImage*)REFL_imageWithColor:(UIColor*)color
+{
+    return [self REFL_imageWithColor:color size:(CGSize){1,1}];
+}
+
++ (UIImage*)REFL_imageWithColor:(UIColor*)color size:(CGSize)size
+{
+    CGRect rect = (CGRect){CGPointZero, size};
+    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+@end
+
+@implementation NSObject (REFLAspects)
+
+- (NSString*)refl_className
+{
+    return NSStringFromClass(self.class);
+}
+
+- (Class)refl_class
+{
+    return self.class;
+}
+
+@end
+
+#pragma mark - UINotificationCenter
+
+typedef void (^_REFLDeallocBlock)();
+
+@interface NSObject (REFLAutoRemovalNotificationHelper)
+
+@property (nonatomic, strong, setter=REFL_setDeallocContext:) id REFL_deallocContext;
+- (void)REFL_setDeallocBlock:(_REFLDeallocBlock)block;
+
+@end
+
+@implementation NSObject (prmAutoRemovalNotification)
+
+- (void)REFL_addObserverForName:(NSString*)name object:(id)obj queue:(NSOperationQueue*)queue usingBlock:(void (^)(NSNotification*))block
+{
+    id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name object:obj queue:queue usingBlock:block];
+    NSMutableArray *observers = [self REFL_deallocContext];
+    
+    if (observers == nil) {
+        
+        observers = @[].mutableCopy;
+        [self REFL_setDeallocContext:observers];
+        
+        __weak typeof(self) weakSelf = self;
+        [self REFL_setDeallocBlock:^{
+            for (id o in weakSelf.REFL_deallocContext) [[NSNotificationCenter defaultCenter] removeObserver:o];
+        }];
+    }
+    
+    [observers addObject:observer];
+}
+
+- (void)REFL_addObserverForName:(NSString*)name usingBlock:(void (^)(NSNotification*))block
+{
+    [self REFL_addObserverForName:name object:nil queue:nil usingBlock:block];
+}
+
+@end
+
+
+@interface _REFLDeallocBlockBox : NSObject
+
+@property (nonatomic, retain) id context;
+@property (nonatomic, copy) _REFLDeallocBlock block;
+
+@end
+
+static void *_REFLBlockBoxPropertyKey;
+static void *_REFLObservervationAddedPropertyKey;
+
+
+@implementation NSObject (prmAutoRemovalNotificationHelper)
+
+- (id)REFL_deallocContext
+{
+    return [self REFL_box].context;
+}
+
+- (void)REFL_setDeallocContext:(id)context
+{
+    [self REFL_box].context = context;
+}
+
+- (void)REFL_setDeallocBlock:(_REFLDeallocBlock)block
+{
+    [self REFL_box].block = block;
+}
+
+- (_REFLDeallocBlockBox*)REFL_box
+{
+    _REFLDeallocBlockBox *box = objc_getAssociatedObject(self, &_REFLBlockBoxPropertyKey);
+    
+    if (box == nil) {
+        box = [[_REFLDeallocBlockBox alloc] init];
+        objc_setAssociatedObject(self, &_REFLBlockBoxPropertyKey, box, OBJC_ASSOCIATION_RETAIN);
+    }
+    
+    return box;
+}
+
+- (void)setREFL_observationAdded:(BOOL)REFL_observationAdded
+{
+    objc_setAssociatedObject(self, &_REFLObservervationAddedPropertyKey, @(REFL_observationAdded), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)REFL_observationAdded
+{
+    return [objc_getAssociatedObject(self, &_REFLObservervationAddedPropertyKey) boolValue];
+}
+
+@end
+
+@implementation _REFLDeallocBlockBox
+
+- (void)dealloc
+{
+    if (self.block) self.block();
+}
+
+@end
+
+#pragma mark - UIColor
 
 typedef struct {
     CGFloat a, b, c;
@@ -13,13 +481,8 @@ typedef struct {
 static inline CMRFloatTriple HSB2HSL(CGFloat hue, CGFloat saturation, CGFloat brightness);
 static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat lightness);
 
-static NSArray *CMRW3CColorNames(void);
-static NSDictionary *CMRW3CNamedColors(void);
-
-
 @implementation UIColor (HTMLColors)
 
-#pragma mark - Reading
 
 + (UIColor*)gradientFromColor:(UIColor*)color1 toColor:(UIColor*)color2 withSize:(CGSize)frame
 {
@@ -83,15 +546,6 @@ static NSDictionary *CMRW3CNamedColors(void);
     return (scanner.isAtEnd) ? color : nil;
 }
 
-+ (UIColor *)colorWithW3CNamedColor:(NSString *)namedColor
-{
-    UIColor *color = nil;
-    NSScanner *scanner = [NSScanner scannerWithString:namedColor];
-    [scanner scanW3CNamedColor:&color];
-    return (scanner.isAtEnd) ? color : nil;
-}
-
-#pragma mark - Writing
 
 static inline unsigned ToByte(CGFloat f)
 {
@@ -160,7 +614,7 @@ static inline unsigned ToPercentage(CGFloat f)
     if ([self getRed:red green:green blue:blue alpha:alpha]) {
         return YES;
     }
-
+    
     CGFloat white;
     if ([self getWhite:&white alpha:alpha]) {
         if (red)
@@ -171,7 +625,7 @@ static inline unsigned ToPercentage(CGFloat f)
             *blue = white;
         return YES;
     }
-
+    
     return NO;
 }
 
@@ -180,7 +634,7 @@ static inline unsigned ToPercentage(CGFloat f)
     if ([self getHue:hue saturation:saturation brightness:brightness alpha:alpha]) {
         return YES;
     }
-
+    
     CGFloat white;
     if ([self getWhite:&white alpha:alpha]) {
         if (hue)
@@ -191,14 +645,10 @@ static inline unsigned ToPercentage(CGFloat f)
             *brightness = white;
         return YES;
     }
-
+    
     return NO;
 }
 
-+ (NSArray *)W3CColorNames
-{
-    return [[CMRW3CNamedColors() allKeys] sortedArrayUsingSelector:@selector(compare:)];
-}
 
 @end
 
@@ -208,10 +658,9 @@ static inline unsigned ToPercentage(CGFloat f)
 - (BOOL)scanLESSColor:(UIColor **)color
 {
     return [self scanHexColor:color]
-        || [self scanRGBColor:color]
-        || [self scanHSLColor:color]
-        || [self cmr_scanTransparent:color]
-        || [self scanW3CNamedColor:color];
+    || [self scanRGBColor:color]
+    || [self scanHSLColor:color]
+    || [self cmr_scanTransparent:color];
 }
 
 - (BOOL)scanRGBColor:(UIColor **)color
@@ -278,26 +727,10 @@ static inline CGFloat CMRNormHue(CGFloat hue)
 {
     return [self cmr_resetScanLocationOnFailure:^BOOL{
         return [self scanString:@"#" intoString:NULL]
-            && [self cmr_scanHexTriple:color];
+        && [self cmr_scanHexTriple:color];
     }];
 }
 
-- (BOOL)scanW3CNamedColor:(UIColor **)color
-{
-    return [self cmr_caseInsensitiveWithCleanup:^BOOL{
-        NSArray *colorNames = CMRW3CColorNames();
-        NSDictionary *namedColors = CMRW3CNamedColors();
-        for (NSString *name in colorNames) {
-            if ([self scanString:name intoString:NULL]) {
-                if (color) {
-                    *color = [UIColor colorWithHexString:namedColors[name]];
-                }
-                return YES;
-            }
-        }
-        return NO;
-    }];
-}
 
 #pragma mark - Private
 
@@ -351,12 +784,12 @@ static inline CGFloat CMRNormHue(CGFloat hue)
     NSUInteger initialScanLocation = self.scanLocation;
     BOOL caseSensitive = self.caseSensitive;
     self.caseSensitive = NO;
-
+    
     BOOL success = block();
     if (!success) {
         self.scanLocation = initialScanLocation;
     }
-
+    
     self.caseSensitive = caseSensitive;
     return success;
 }
@@ -366,21 +799,21 @@ static inline CGFloat CMRNormHue(CGFloat hue)
 {
     NSRange range = [self cmr_rangeFromScanLocation];
     range.length = MIN(range.length, maxLength);
-
+    
     NSUInteger len;
     for (len = 0; len < range.length; ++len) {
         if (![chars characterIsMember:[self.string characterAtIndex:(range.location + len)]]) {
             break;
         }
     }
-
+    
     NSRange charRange = NSMakeRange(range.location, len);
     if (outString) {
         *outString = [self.string substringWithRange:charRange];
     }
-
+    
     self.scanLocation = charRange.location + charRange.length;
-
+    
     return charRange;
 }
 
@@ -474,12 +907,12 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     __block CMRFloatTriple t;
     [self cmr_withSkip:[NSCharacterSet whitespaceAndNewlineCharacterSet] run:^{
         success = [self scanString:@"(" intoString:NULL]
-            && [self cmr_scanNum:&(t.a) scale:scale.a]
-            && [self scanString:@"," intoString:NULL]
-            && [self cmr_scanNum:&(t.b) scale:scale.b]
-            && [self scanString:@"," intoString:NULL]
-            && [self cmr_scanNum:&(t.c) scale:scale.c]
-            && [self scanString:@")" intoString:NULL];
+        && [self cmr_scanNum:&(t.a) scale:scale.a]
+        && [self scanString:@"," intoString:NULL]
+        && [self cmr_scanNum:&(t.b) scale:scale.b]
+        && [self scanString:@"," intoString:NULL]
+        && [self cmr_scanNum:&(t.c) scale:scale.c]
+        && [self scanString:@")" intoString:NULL];
     }];
     if (triple) {
         *triple = t;
@@ -495,14 +928,14 @@ static NSUInteger CMRParseHex(NSString *str, BOOL repeated)
     __block CMRFloatQuad q;
     [self cmr_withSkip:[NSCharacterSet whitespaceAndNewlineCharacterSet] run:^{
         success = [self scanString:@"(" intoString:NULL]
-            && [self cmr_scanNum:&(q.a) scale:scale.a]
-            && [self scanString:@"," intoString:NULL]
-            && [self cmr_scanNum:&(q.b) scale:scale.b]
-            && [self scanString:@"," intoString:NULL]
-            && [self cmr_scanNum:&(q.c) scale:scale.c]
-            && [self scanString:@"," intoString:NULL]
-            && [self cmr_scanNum:&(q.d) scale:scale.d]
-            && [self scanString:@")" intoString:NULL];
+        && [self cmr_scanNum:&(q.a) scale:scale.a]
+        && [self scanString:@"," intoString:NULL]
+        && [self cmr_scanNum:&(q.b) scale:scale.b]
+        && [self scanString:@"," intoString:NULL]
+        && [self cmr_scanNum:&(q.c) scale:scale.c]
+        && [self scanString:@"," intoString:NULL]
+        && [self cmr_scanNum:&(q.d) scale:scale.d]
+        && [self scanString:@")" intoString:NULL];
     }];
     if (quad) {
         *quad = q;
@@ -545,186 +978,6 @@ static inline CMRFloatTriple HSL2HSB(CGFloat hue, CGFloat saturation, CGFloat l)
     return hsb;
 }
 
-//Color names, longest first
-static NSArray *CMRW3CColorNames()
-{
-    static NSArray *colorNames;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        colorNames = [[CMRW3CNamedColors() allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSString *k1, NSString *k2) {
-            NSInteger diff = k1.length - k2.length;
-            if (!diff) {
-                return NSOrderedSame;
-            } else if (diff > 0) {
-                return NSOrderedAscending;
-            } else {
-                return NSOrderedDescending;
-            }
-        }];
-    });
-    return colorNames;
-}
-
-//Color values as defined in REFLLESS3 spec.
-//See: http://www.w3.org/TR/css3-color/#svg-color
-static NSDictionary *CMRW3CNamedColors()
-{
-    static NSDictionary *namedColors;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        namedColors = @{
-            @"AliceBlue" : @"#F0F8FF",
-            @"AntiqueWhite" : @"#FAEBD7",
-            @"Aqua" : @"#00FFFF",
-            @"Aquamarine" : @"#7FFFD4",
-            @"Azure" : @"#F0FFFF",
-            @"Beige" : @"#F5F5DC",
-            @"Bisque" : @"#FFE4C4",
-            @"Black" : @"#000000",
-            @"BlanchedAlmond" : @"#FFEBCD",
-            @"Blue" : @"#0000FF",
-            @"BlueViolet" : @"#8A2BE2",
-            @"Brown" : @"#A52A2A",
-            @"BurlyWood" : @"#DEB887",
-            @"CadetBlue" : @"#5F9EA0",
-            @"Chartreuse" : @"#7FFF00",
-            @"Chocolate" : @"#D2691E",
-            @"Coral" : @"#FF7F50",
-            @"CornflowerBlue" : @"#6495ED",
-            @"Cornsilk" : @"#FFF8DC",
-            @"Crimson" : @"#DC143C",
-            @"Cyan" : @"#00FFFF",
-            @"DarkBlue" : @"#00008B",
-            @"DarkCyan" : @"#008B8B",
-            @"DarkGoldenRod" : @"#B8860B",
-            @"DarkGray" : @"#A9A9A9",
-            @"DarkGrey" : @"#A9A9A9",
-            @"DarkGreen" : @"#006400",
-            @"DarkKhaki" : @"#BDB76B",
-            @"DarkMagenta" : @"#8B008B",
-            @"DarkOliveGreen" : @"#556B2F",
-            @"DarkOrange" : @"#FF8C00",
-            @"DarkOrchid" : @"#9932CC",
-            @"DarkRed" : @"#8B0000",
-            @"DarkSalmon" : @"#E9967A",
-            @"DarkSeaGreen" : @"#8FBC8F",
-            @"DarkSlateBlue" : @"#483D8B",
-            @"DarkSlateGray" : @"#2F4F4F",
-            @"DarkSlateGrey" : @"#2F4F4F",
-            @"DarkTurquoise" : @"#00CED1",
-            @"DarkViolet" : @"#9400D3",
-            @"DeepPink" : @"#FF1493",
-            @"DeepSkyBlue" : @"#00BFFF",
-            @"DimGray" : @"#696969",
-            @"DimGrey" : @"#696969",
-            @"DodgerBlue" : @"#1E90FF",
-            @"FireBrick" : @"#B22222",
-            @"FloralWhite" : @"#FFFAF0",
-            @"ForestGreen" : @"#228B22",
-            @"Fuchsia" : @"#FF00FF",
-            @"Gainsboro" : @"#DCDCDC",
-            @"GhostWhite" : @"#F8F8FF",
-            @"Gold" : @"#FFD700",
-            @"GoldenRod" : @"#DAA520",
-            @"Gray" : @"#808080",
-            @"Grey" : @"#808080",
-            @"Green" : @"#008000",
-            @"GreenYellow" : @"#ADFF2F",
-            @"HoneyDew" : @"#F0FFF0",
-            @"HotPink" : @"#FF69B4",
-            @"IndianRed" : @"#CD5C5C",
-            @"Indigo" : @"#4B0082",
-            @"Ivory" : @"#FFFFF0",
-            @"Khaki" : @"#F0E68C",
-            @"Lavender" : @"#E6E6FA",
-            @"LavenderBlush" : @"#FFF0F5",
-            @"LawnGreen" : @"#7CFC00",
-            @"LemonChiffon" : @"#FFFACD",
-            @"LightBlue" : @"#ADD8E6",
-            @"LightCoral" : @"#F08080",
-            @"LightCyan" : @"#E0FFFF",
-            @"LightGoldenRodYellow" : @"#FAFAD2",
-            @"LightGray" : @"#D3D3D3",
-            @"LightGrey" : @"#D3D3D3",
-            @"LightGreen" : @"#90EE90",
-            @"LightPink" : @"#FFB6C1",
-            @"LightSalmon" : @"#FFA07A",
-            @"LightSeaGreen" : @"#20B2AA",
-            @"LightSkyBlue" : @"#87CEFA",
-            @"LightSlateGray" : @"#778899",
-            @"LightSlateGrey" : @"#778899",
-            @"LightSteelBlue" : @"#B0C4DE",
-            @"LightYellow" : @"#FFFFE0",
-            @"Lime" : @"#00FF00",
-            @"LimeGreen" : @"#32CD32",
-            @"Linen" : @"#FAF0E6",
-            @"Magenta" : @"#FF00FF",
-            @"Maroon" : @"#800000",
-            @"MediumAquaMarine" : @"#66CDAA",
-            @"MediumBlue" : @"#0000CD",
-            @"MediumOrchid" : @"#BA55D3",
-            @"MediumPurple" : @"#9370DB",
-            @"MediumSeaGreen" : @"#3CB371",
-            @"MediumSlateBlue" : @"#7B68EE",
-            @"MediumSpringGreen" : @"#00FA9A",
-            @"MediumTurquoise" : @"#48D1CC",
-            @"MediumVioletRed" : @"#C71585",
-            @"MidnightBlue" : @"#191970",
-            @"MintCream" : @"#F5FFFA",
-            @"MistyRose" : @"#FFE4E1",
-            @"Moccasin" : @"#FFE4B5",
-            @"NavajoWhite" : @"#FFDEAD",
-            @"Navy" : @"#000080",
-            @"OldLace" : @"#FDF5E6",
-            @"Olive" : @"#808000",
-            @"OliveDrab" : @"#6B8E23",
-            @"Orange" : @"#FFA500",
-            @"OrangeRed" : @"#FF4500",
-            @"Orchid" : @"#DA70D6",
-            @"PaleGoldenRod" : @"#EEE8AA",
-            @"PaleGreen" : @"#98FB98",
-            @"PaleTurquoise" : @"#AFEEEE",
-            @"PaleVioletRed" : @"#DB7093",
-            @"PapayaWhip" : @"#FFEFD5",
-            @"PeachPuff" : @"#FFDAB9",
-            @"Peru" : @"#CD853F",
-            @"Pink" : @"#FFC0CB",
-            @"Plum" : @"#DDA0DD",
-            @"PowderBlue" : @"#B0E0E6",
-            @"Purple" : @"#800080",
-            @"Red" : @"#FF0000",
-            @"RosyBrown" : @"#BC8F8F",
-            @"RoyalBlue" : @"#4169E1",
-            @"SaddleBrown" : @"#8B4513",
-            @"Salmon" : @"#FA8072",
-            @"SandyBrown" : @"#F4A460",
-            @"SeaGreen" : @"#2E8B57",
-            @"SeaShell" : @"#FFF5EE",
-            @"Sienna" : @"#A0522D",
-            @"Silver" : @"#C0C0C0",
-            @"SkyBlue" : @"#87CEEB",
-            @"SlateBlue" : @"#6A5ACD",
-            @"SlateGray" : @"#708090",
-            @"SlateGrey" : @"#708090",
-            @"Snow" : @"#FFFAFA",
-            @"SpringGreen" : @"#00FF7F",
-            @"SteelBlue" : @"#4682B4",
-            @"Tan" : @"#D2B48C",
-            @"Teal" : @"#008080",
-            @"Thistle" : @"#D8BFD8",
-            @"Tomato" : @"#FF6347",
-            @"Turquoise" : @"#40E0D0",
-            @"Violet" : @"#EE82EE",
-            @"Wheat" : @"#F5DEB3",
-            @"White" : @"#FFFFFF",
-            @"WhiteSmoke" : @"#F5F5F5",
-            @"Yellow" : @"#FFFF00",
-            @"YellowGreen" : @"#9ACD32"
-        };
-    });
-    return namedColors;
-}
-
 @interface UIEGradientColor ()
 @property (nonatomic, strong) UIColor *color1, *color2;
 @end
@@ -748,26 +1001,3 @@ static NSDictionary *CMRW3CNamedColors()
 
 @end
 
-@implementation UIImage (REFLAdditions)
-
-+ (UIImage*)imageWithColor:(UIColor*)color
-{
-    return [self imageWithColor:color size:(CGSize){1,1}];
-}
-
-+ (UIImage*)imageWithColor:(UIColor*)color size:(CGSize)size
-{
-    CGRect rect = (CGRect){CGPointZero, size};
-    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-@end

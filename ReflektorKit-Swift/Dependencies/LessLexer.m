@@ -5,7 +5,7 @@
 //
 //
 
-#import "LESSLexer.h"
+#import "LessLexer.h"
 
 #pragma mark - Utilities
 

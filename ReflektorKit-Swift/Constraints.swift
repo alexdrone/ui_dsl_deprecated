@@ -311,7 +311,6 @@ extension Condition.ExpressionToken.Operator {
                 //plugins can't throw exceptions
                 return nil
             }
-            
         }
         
         return nil
