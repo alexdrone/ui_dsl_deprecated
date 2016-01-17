@@ -127,34 +127,47 @@ struct Parser {
     
     //MARK: Imports
     
-    func loadStylesheetFileAndResolveImports(fileName: String, fileExtension: String, bundle: NSBundle = NSBundle.mainBundle()) throws -> String {
+    func loadStylesheetFileAndResolveImports(fileName: String, fileExtension: String, bundle: NSBundle = NSBundle.mainBundle(), url: NSURL? = nil) throws -> String {
         
-        if let path = bundle.pathForResource(fileName, ofType: fileExtension) {
+        var file = ""
+        
+        if let url = url {
             
-            //loads the file
-            var file = try String(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-
-            while let match = file.rangeOfString("@import(\\s*)url\\(\"(\\w*.\\w*)\"\\);", options: .RegularExpressionSearch) {
-                
-                //get the filename of the imported file
-                var importString = file.componentsSeparatedByString("\"")[1]
-                importString = importString.componentsSeparatedByString("\"")[0]
-                
-                let importedFileName = importString.componentsSeparatedByString(".")[0]
-                let importedExtension = importString.componentsSeparatedByString(".")[1]
-                
-                file.removeRange(match)
-                
-                //recursively reads the imported file
-                let importedPayload = try self.loadStylesheetFileAndResolveImports(importedFileName, fileExtension: importedExtension, bundle: bundle)
-                
-                file = "\(importedPayload)\n\(file)"
-            }
+            let path =  NSURL(string: "\(url.absoluteString)/\(fileName).\(fileExtension)")
             
+            //loads the file from the remote url
+            file = try! String(contentsOfURL: path!)
+            
+        } else if let path = bundle.pathForResource(fileName, ofType: fileExtension) {
+            
+            //loads the file from the bundle
+            file = try String(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+        
+        } else {
+            
+            //none of the above
             return file
         }
         
-        return ""
+        while let match = file.rangeOfString("@import(\\s*)url\\(\"(\\w*.\\w*)\"\\);", options: .RegularExpressionSearch) {
+            
+            //get the filename of the imported file
+            var importString = file.componentsSeparatedByString("\"")[1]
+            importString = importString.componentsSeparatedByString("\"")[0]
+            
+            let importedFileName = importString.componentsSeparatedByString(".")[0]
+            let importedExtension = importString.componentsSeparatedByString(".")[1]
+            
+            file.removeRange(match)
+            
+            //recursively reads the imported file
+            let importedPayload = try self.loadStylesheetFileAndResolveImports(importedFileName, fileExtension: importedExtension, bundle: bundle, url: url)
+            
+            file = "\(importedPayload)\n\(file)"
+        }
+        
+        return file
+        
     }
 
     

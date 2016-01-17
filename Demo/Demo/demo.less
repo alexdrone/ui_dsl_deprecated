@@ -7,7 +7,7 @@ Demo.DemoContainerView {
     __include: smallFontLabel;
     text-alignment: center;
     background-color: @tomato;
-    text: "C O M P A C T";
+    text: "None";;
 
     /* constraints */
     constraint-center-x: constraint("__self.centerX == __superView.centerX");
@@ -17,11 +17,11 @@ Demo.DemoContainerView {
 
 Demo.DemoContainerView:__where {
     __condition: 'horizontal == compact';
-    background-color: @steelblue;
+    background-color: @yellow;
     text: "C O M P A C T";
 
     /* constraints */
-    constraint-width: constraint("__self.width == __constant.notAnAttribute", 200px, 1.0);
+    constraint-width: constraint("__self.width == __constant.notAnAttribute", 240px, 1.0);
 }
 
 Demo.DemoContainerView:__where {

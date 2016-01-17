@@ -24,12 +24,20 @@ import Foundation
         server["/refresh"] = { request in
             
             var location: String = ""
-            for param in request.queryParams {
-                if param.0 == "location" { location = param.1 }
-            }
-            print("\(request.path) \(request.queryParams)")
+            for param in request.queryParams { if param.0 == "location" { location = param.1 }}
             
-            return HttpResponse.OK(HttpResponseBody.Html("Attemping to refresh stylesheet from \(location)"))
+            //reload the stylesheets
+            AppearanceManager.sharedManager.loadStylesheetFromFile(self.stylesheetEntryPoint.0, fileExtension: self.stylesheetEntryPoint.1, url: NSURL(string: location))
+            
+            //make sure that the views on screen are updated
+            dispatch_async(dispatch_get_main_queue()) {
+                UIApplication.sharedApplication().keyWindow?.rootViewController?.refl_applyStyleToViewRecursive()
+                UIApplication.sharedApplication().keyWindow?.rootViewController?.updateViewConstraints()
+
+            }
+            
+            //response
+            return HttpResponse.OK(HttpResponseBody.Html(""))
         }
         
         return server

@@ -10,7 +10,7 @@ import Foundation
 
 //display the
 func __usage() {
-    print("✳ usage: ./watch LOCATION [--ip PHONE_IP_ADDRESS --port PORT]")
+    print("✳ usage: ./watch LOCATION")
 }
 
 //search for the refl.less files
@@ -91,9 +91,7 @@ struct Watch {
     var timestamps: [String]
     
     init(args: [String]) {
-        
         self.args = args
-        
         if args.count == 0 {
             __usage()
             exit(EXIT_SUCCESS)
@@ -129,9 +127,7 @@ struct Watch {
     func refreshRequest() {
         var address = "http://localhost"
         var port = "8080"
-        if args.count >= 3 { address = args[2] }
-        if args.count >= 5 { port = args[4] }
-        let url = NSURL(string: "\(address):\(port)/refresh?location=http://localhost:8080/bundle")
+        let url = NSURL(string: "\(address):\(port)/refresh?location=http://localhost:8081/bundle")
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             print(response)
         }

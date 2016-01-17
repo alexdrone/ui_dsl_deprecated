@@ -43,6 +43,8 @@ import Foundation
             self.stylesheet.rules = all;
             self.stylesheet.variables = variables;
             
+            NSNotificationCenter.defaultCenter().postNotificationName(Notification.DidChangeStylesheet.rawValue, object: nil)
+            
         } catch {
             print("Unable to parse the stylesheet")
         }
@@ -51,13 +53,13 @@ import Foundation
     
     ///Loads a file and parse the stylesheet from there
     ///All the imports are resolved recursively
-    @objc public func loadStylesheetFromFile(fileName: String = "main", fileExtension: String = "less", bundle: NSBundle = NSBundle.mainBundle()) {
+    @objc public func loadStylesheetFromFile(fileName: String = "main", fileExtension: String = "less", bundle: NSBundle = NSBundle.mainBundle(), url: NSURL? = nil) {
         
         Configuration.sharedConfiguration.stylesheetEntryPoint = (fileName, fileExtension)
         
         let parser = Parser()
         do {
-            let payload = try parser.loadStylesheetFileAndResolveImports(fileName, fileExtension: fileExtension)
+            let payload = try parser.loadStylesheetFileAndResolveImports(fileName, fileExtension: fileExtension, bundle: bundle, url: url)
             self.loadStylesheet(payload)
             
         } catch {
