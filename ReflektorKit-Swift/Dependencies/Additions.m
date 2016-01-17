@@ -139,6 +139,11 @@ static void *UIViewFlexContainerKey;
     self.layer.shadowColor = shadowColor.CGColor;
 }
 
+- (BOOL)refl_hasKey:(NSString*)key
+{
+    return [self respondsToSelector:NSSelectorFromString(key)];
+}
+
 @end
 
 #pragma mark - UIScreen
@@ -323,6 +328,8 @@ static void *UIViewFlexContainerKey;
 {
     [self setImage:disabledImage forState:UIControlStateDisabled];
 }
+
+
 
 @end
 

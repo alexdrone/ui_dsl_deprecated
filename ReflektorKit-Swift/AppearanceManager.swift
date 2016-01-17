@@ -51,7 +51,9 @@ import Foundation
     
     ///Loads a file and parse the stylesheet from there
     ///All the imports are resolved recursively
-    @objc public func loadStylesheetFromFile(fileName: String, fileExtension: String = "less", bundle: NSBundle = NSBundle.mainBundle()) {
+    @objc public func loadStylesheetFromFile(fileName: String = "main", fileExtension: String = "less", bundle: NSBundle = NSBundle.mainBundle()) {
+        
+        Configuration.sharedConfiguration.stylesheetEntryPoint = (fileName, fileExtension)
         
         let parser = Parser()
         do {

@@ -1,0 +1,44 @@
+
+
+
+
+
+smallFontLabel {
+    font: font(@avenir-font, 14pt);
+}
+
+Demo.DemoContainerView {
+    __include: smallFontLabel;
+    text-alignment: center;
+    background-color: @tomato;
+    text: "C O M P A C T";
+
+    /* constraints */
+    constraint-center-x: constraint("__self.centerX == __superView.centerX");
+    constraint-center-y: constraint("__self.centerY == __superView.centerY");
+    constraint-height: vfl-constraint("V:[__self(50)]");
+}
+
+Demo.DemoContainerView:__where {
+    __condition: 'horizontal == compact';
+    background-color: @steelblue;
+    text: "C O M P A C T";
+
+    /* constraints */
+    constraint-width: constraint("__self.width == __constant.notAnAttribute", 200px, 1.0);
+}
+
+Demo.DemoContainerView:__where {
+	__condition: 'horizontal == regular';
+    text: "R E G U L A R";
+
+    /* constraints */
+    constraint-width: vfl-constraint("H:[__self(500)]");
+}
+
+/*
+Demo.DemoContainerView:blueAndRounded {
+    background-color: @steelblue;
+    text-color: @coral;
+}
+*/

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Configuration: NSObject {
+@objc public class Configuration: NSObject {
     
     ///The unique shared configuration
     @objc public static let sharedConfiguration = Configuration()
@@ -18,32 +18,28 @@ public class Configuration: NSObject {
     @objc public var shouldAutomaticallySetViewProperties = true
     
     ///Call start on this to have the refresh server available.
-    
-    public lazy var refreshServer: HttpServer = {
+    private lazy var refreshServer: HttpServer = {
         
         let server = HttpServer()
         server["/refresh"] = { request in
             
             var location: String = ""
-            var file: String = ""
             for param in request.queryParams {
                 if param.0 == "location" { location = param.1 }
-                if param.0 == "file" { file = param.1 }
             }
-            
             print("\(request.path) \(request.queryParams)")
             
-            return HttpResponse.OK(HttpResponseBody.Html("Attemping to refresh \(file) from \(location)"))
+            return HttpResponse.OK(HttpResponseBody.Html("Attemping to refresh stylesheet from \(location)"))
         }
         
         return server
     }()
     
-    
     //MARK: Plugins
     
     internal var propertyValuePlugins = [PropertyValuePlugin]()
     internal var externalConditions = [String: ExternalConditionClosure]()
+    internal var stylesheetEntryPoint: (String, String) = ("main", "less")
     
     ///Add the plugin passed as argument to the registed plugins
     @objc public func registerPropertyValuePlugin(plugin: PropertyValuePlugin) {
@@ -54,6 +50,11 @@ public class Configuration: NSObject {
     ///External conditions are expressed in the stylesheet in the form of 'external:key'
     @objc public func registerExternalCondition(conditionName: String, conditionClosure: ExternalConditionClosure) {
         self.externalConditions[conditionName.lowercaseString] = conditionClosure
+    }
+    
+    ///Starts the refresh server
+    @objc public func startRefreshServer(port: UInt = 8080) {
+        try! self.refreshServer.start(in_port_t(port))
     }
     
 }

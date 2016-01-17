@@ -27,7 +27,7 @@ class ParserTests: XCTestCase {
         
         do {
             let parser = Parser()
-            let result = try parser.loadStylesheetFileAndResolveImports("main", fileExtension: "less", bundle: NSBundle(forClass: ParserTests.self))
+            let result = try parser.loadStylesheetFileAndResolveImports("foo", fileExtension: "less", bundle: NSBundle(forClass: ParserTests.self))
             print(result)
             
         } catch {

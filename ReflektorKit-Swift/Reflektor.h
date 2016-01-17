@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Reflektor/LESSLexer.h>
-#import <Reflektor/UIColor+LESS.h>
-#import <Reflektor/UIKit+REFL.h>
+#import <Reflektor/LessLexer.h>
+#import <Reflektor/Additions.h>
 
 //! Project version number for ReflektorKit-Swift.
 FOUNDATION_EXPORT double ReflektorVersionNumber;

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         AppearanceManager.sharedManager.loadStylesheetFromFile("main", fileExtension: "less")
+        Configuration.sharedConfiguration.startRefreshServer()
         
         self.window = UIWindow()
         self.window?.rootViewController = DemoViewController()

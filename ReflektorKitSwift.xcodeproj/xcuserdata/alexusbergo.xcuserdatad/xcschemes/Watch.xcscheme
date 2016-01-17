@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "16443FE71B74E0F700EE0B50"
-               BuildableName = "Demo.app"
-               BlueprintName = "Demo"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               BlueprintIdentifier = "16218E4A1C4A50C7002CA83C"
+               BuildableName = "Watch"
+               BlueprintName = "Watch"
+               ReferencedContainer = "container:ReflektorKitSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "16443FE71B74E0F700EE0B50"
-            BuildableName = "Demo.app"
-            BlueprintName = "Demo"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "16218E4A1C4A50C7002CA83C"
+            BuildableName = "Watch"
+            BlueprintName = "Watch"
+            ReferencedContainer = "container:ReflektorKitSwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,12 +55,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "16443FE71B74E0F700EE0B50"
-            BuildableName = "Demo.app"
-            BlueprintName = "Demo"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "16218E4A1C4A50C7002CA83C"
+            BuildableName = "Watch"
+            BlueprintName = "Watch"
+            ReferencedContainer = "container:ReflektorKitSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/alexusbergo/Desktop/swift/Reflektor"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -74,10 +80,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "16443FE71B74E0F700EE0B50"
-            BuildableName = "Demo.app"
-            BlueprintName = "Demo"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "16218E4A1C4A50C7002CA83C"
+            BuildableName = "Watch"
+            BlueprintName = "Watch"
+            ReferencedContainer = "container:ReflektorKitSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
