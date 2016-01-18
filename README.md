@@ -32,6 +32,25 @@ Then add the following line to your `Cartfile`:
 github "alexdrone/Reflektor" "master"    
 ```
 
+### Reflektor Watchfile Server
+
+Reflektor has live reload capabilities. That means that you can edit your stylesheet and see the results in your simulator right away.
+
+In order to do so you need to install **refl**, the watchfile daemon.
+
+Copy and paste this command in your terminal to obtain **refl**:
+
+```
+git clone https://github.com/alexdrone/Reflektor.git && cd Reflektor && cp refl /usr/local/bin/refl && chmod +x /usr/local/bin/refl
+```
+
+The usage of the watchfile is very simple
+```
+refl PROJECT_PATH
+```
+
+The daemon will look for changes in your *.refl.less* files and refresh the instance of your app in the simulator.
+
 ###Why Reflektor and not Pixate Freestyle or XYZ?
 
 There are many libraries that offers a way to style native controls, but many times they have a completely different rendering pipeline that makes them incompatible with vanilla custom made uikit controls and they don't offer low level control over the styling of your components.
@@ -417,7 +436,7 @@ UIView:__where {
 
 UILabel:small {
 	apply-to-subclasses: true; /*This means that all the subclasses of UILabel that also have a 'small' trait defined will apply this style*/
-	font: font('Arial', 12pt) !important; /*!important means that this rule is going to be set at layout time -[layoutSubviews]*/
+	font: font('Arial', 12pt) !important; /*!important means that this rule is going to be set at layout time layoutSubviews*/
 }
 
 /* Collection of valid right-hand side values */
