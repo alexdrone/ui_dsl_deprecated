@@ -110,6 +110,10 @@ extension Condition.ExpressionToken.Operator {
             return [NSLayoutConstraint]()
         }
         
+        if v.translatesAutoresizingMaskIntoConstraints {
+            v.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
         //populate the viewDicionary
         var viewDictionary = [String: AnyObject]()
         

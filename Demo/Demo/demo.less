@@ -4,37 +4,28 @@ smallFontLabel {
 }
 
 Demo.DemoContainerView {
-    __include: smallFontLabel;
-    text-alignment: center;
     background-color: @tomato;
-    text: "None";;
-
-    /* constraints */
     constraint-center-x: constraint("__self.centerX == __superView.centerX");
     constraint-center-y: constraint("__self.centerY == __superView.centerY");
-    constraint-height: vfl-constraint("V:[__self(50)]");
+    constraint-height: vfl-constraint("V:[__self(200)]");
+
+    c-av-w: constraint("_avatarView.width == __constant.notAnAttribute", 50px, 1.0);
+    c-av-h: constraint("_avatarView.height == __constant.notAnAttribute", 50px, 1.0);
+    c-av-x: constraint("_avatarView.top == __self.top", 10px, 1.0);
+    c-av-y: constraint("_avatarView.left == __self.left", 10px, 1.0);
+}
+
+Demo.DemoContainerView.avatarView {
+  background-color: @coral;
 }
 
 Demo.DemoContainerView:__where {
     __condition: 'horizontal == compact';
     background-color: @yellow;
-    text: "C O M P A C T";
-
-    /* constraints */
     constraint-width: constraint("__self.width == __constant.notAnAttribute", 240px, 1.0);
 }
 
 Demo.DemoContainerView:__where {
 	__condition: 'horizontal == regular';
-    text: "R E G U L A R";
-
-    /* constraints */
     constraint-width: vfl-constraint("H:[__self(500)]");
 }
-
-/*
-Demo.DemoContainerView:blueAndRounded {
-    background-color: @steelblue;
-    text-color: @coral;
-}
-*/

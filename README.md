@@ -309,22 +309,6 @@ UILabel {
 }
 ```
 
-### The `__subclasses` directive (deprecated)
-
-By default, in order to improve the performance to compute the style for a view, the class rule for the selector is matched only if the class specified in the selector is exactly the same as the target view.
-
-If you wish to apply a style to all its subclasses (e.g. you specify some rules for UILabel and you want all the UILabel's subclasses to behave in the same way) you just have to define the `applies-to-subclasses` and set it to `true`
-
-e.g.
-
-```css
-
-UILabel {
-	__subclasses: true;
-}
-```
-
-
 ##Included UIKit's categories
 
 Included in Reflektor there are some handy categories to access some UIView's properties from the stylesheet:
@@ -471,6 +455,10 @@ foo {
 }
 
 ```
+
+##Selectors
+
+- Add :__where clausole to traits as well
 
 
 ##Attribuitions

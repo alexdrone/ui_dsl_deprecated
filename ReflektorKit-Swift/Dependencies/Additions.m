@@ -363,7 +363,14 @@ static void *UIViewFlexContainerKey;
 
 - (NSString*)refl_className
 {
-    return NSStringFromClass(self.class);
+    NSString *className = NSStringFromClass(self.class);
+    
+    if ([className hasPrefix:@"Optional("]) {
+        className = [className stringByReplacingOccurrencesOfString:@"Optional(\"" withString:@""];
+        className = [className stringByReplacingOccurrencesOfString:@"\")" withString:@""];
+    }
+    
+    return className;
 }
 
 - (Class)refl_class
