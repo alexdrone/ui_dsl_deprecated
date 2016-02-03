@@ -10,10 +10,10 @@ import UIKit
 import Reflektor
 
 class DemoContainerView : UIView {
-    let avatarView = UIImageView(frame: CGRect.zero, useAppearanceProxy: true)
-    let displayNameLabel = UILabel(frame: CGRect.zero, useAppearanceProxy: true)
-    let timestampLabel = UILabel(frame: CGRect.zero, useAppearanceProxy: true)
-    let postLabel = UILabel(frame: CGRect.zero, useAppearanceProxy: true)
+    let avatarView = UIImageView()
+    let displayNameLabel = UILabel()
+    let timestampLabel = UILabel()
+    let postLabel = UILabel()
     let likeButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
     let commentButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
     let shareButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
@@ -25,7 +25,7 @@ class DemoContainerView : UIView {
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-    
+        
         self.addSubview(self.avatarView)
         self.addSubview(self.displayNameLabel)
         self.addSubview(self.timestampLabel)
@@ -79,10 +79,10 @@ class DemoViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        self.view.backgroundColor = self.view.refl_appearanceProxy.variable.property("white") as? UIColor
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.containerView)
-        
-        self.updateViewConstraints()
+//        self.updateViewConstraints()
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,12 +91,12 @@ class DemoViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        self.refl_applyStyleToViewRecursive()
-        self.updateViewConstraints()
+//        self.refl_applyStyleToViewRecursive()
+//        self.updateViewConstraints()
     }
     
     override func viewDidLayoutSubviews() {
-        self.refl_applyStyleToViewRecursive(true)
+//        self.refl_applyStyleToViewRecursive(true)
     }
 
 }

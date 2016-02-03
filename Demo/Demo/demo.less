@@ -1,64 +1,25 @@
 
 Demo.DemoContainerView {
+    backgroundColor: @fog;
 
-    background-color: @white;
-
-    avatarView--background-color: @tomato;
-    avatarView--height: 50px;
-    avatarView--width: 50px;
-    avatarView--corner-radius: 50%;
-
-    displayNameLabel--text: "Baaa";
-    displayNameLabel--background-color: @tomato;
-    displayNameLabel--font: font(@font, 14pt);
-
-    timestampLabel--text: "88:88";
-    timestampLabel--background-color: @coral;
-    timestampLabel--font: font(@font, 14pt);
-
-    postLabel--text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-    postLabel--font: font(@font, 12pt);
-    postLabel--number-of-lines: 0;
-
-    likeButton--text: "Like":
-    commentButton--text: "Comment":
-    shareButton--text: "Share":
-
-    /* constraints */
-    c-x: constraint("__self.centerX == __superView.centerX");
-    c-y: constraint("__self.centerY == __superView.centerY");
-    c-h: vfl-constraint("V:[__self(300)]");
-
-    c-01: vfl-constraint("V:|-[_avatarView(50)]");
-    c-02: vfl-constraint("H:|-[_avatarView(50)]-[_displayNameLabel]-|");
-    c-03: constraint("_timestampLabel.centerX == _displayNameLabel.centerX");
-    c-04: vfl-constraint("V:|-[_displayNameLabel]-[_timestampLabel]");
-    c-05: constraint("_timestampLabel.width == _displayNameLabel.width");
-
-    c-06: vfl-constraint("H:|-[_postLabel]-|");
-    c-07: vfl-constraint("V:|-[_avatarView]-[_postLabel]");
-
-    c-08: vfl-constraint("H:|-[_likeButton]-[_commentButton]-[_shareButton]-|");
-    c-09: constraint("_likeButton.bottom == __self.bottom", 10, 1);
-    c-10: constraint("_commentButton.bottom ==  __self.bottom");
-    c-11: constraint("_shareButton.bottom ==  __self.bottom");
-    c-12: constraint("_likeButton.width ==  _commentButton.width");
-    c-13: constraint("_shareButton.width ==  _commentButton.width");
+    //due to a bug in the parser, negative values should be always wrapped inside strings
+    constraintHeight: constraint("__self.height == __superView.height", "-64px", 1.0);
+    constraintCenterX: constraint("__self.centerX == __superView.centerX", 0px, 1.0);
+    constraintCenterY: constraint("__self.centerY == __superView.centerY", 0px, 1.0);
 }
 
 DefaultButton {
-    background-color: @steelblue;
+    backgroundColor: @steelblue;
     font: font(@font, 18pt);
-    corner-radius: 0%;
+    cornerRadius: 0%;
 }
-
 
 Demo.DemoContainerView:__where {
     __condition: 'horizontal == compact';
-    constraint-width: constraint("__self.width == __constant.notAnAttribute", 240px, 1.0);
+    constraintWidth: constraint("__self.width == __constant.notAnAttribute", 320px, 1.0);
 }
 
 Demo.DemoContainerView:__where {
 	 __condition: 'horizontal == regular';
-    constraint-width: vfl-constraint("H:[__self(500)]");
+    constraintWidth: vfl-constraint("H:[__self(480)]");
 }

@@ -62,7 +62,6 @@ struct Parser {
             payload.replaceRange(match, with: "\(Token.Separator.Selector)\(Token.Directive.Where)\(refl_uuid()) ")
         }
         
-        
         //parse
         let parser = LESSParser()
         let parsedPayload = parser.parseText(payload) as? [String : [String: AnyObject]]

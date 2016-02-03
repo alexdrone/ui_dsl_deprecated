@@ -258,6 +258,22 @@ extension Condition.ExpressionToken.Operator {
         
         if refl_stringHasPrefix(rawString, ["constraint"]) {
             
+            func scanFloat(string: String) -> Float {
+                var input = refl_stripQuotesFromString(refl_stripQuotesFromString(string))
+                input = input.stringByReplacingOccurrencesOfString("-", withString: "")
+                input = input.stringByReplacingOccurrencesOfString("\"", withString: "")
+                input.trim()
+                
+                print(input)
+                let scanner = NSScanner(string: input)
+                let sign: Float = string.containsString("-") ? -1 : 1
+                var numberBuffer: Float = 0
+                if scanner.scanFloat(&numberBuffer) {
+                    return numberBuffer * sign;
+                }
+                return 0
+            }
+
             do {
                 
                 //format is constraint("__self.top == _aView.bottom") or constraint("__self.top == _aView.bottom", 0, 1)
@@ -269,26 +285,8 @@ extension Condition.ExpressionToken.Operator {
                 let container = try ConstraintsContainer(rawString: constraintString)
                 
                 if args.count > 2 {
-                    
-                    //constant
-                    if let constant = args[1] as? String {
-                        
-                        let scanner = NSScanner(string: constant)
-                        var numberBuffer: Float = 0
-                        if scanner.scanFloat(&numberBuffer) {
-                            container.constant = numberBuffer
-                        }
-                    }
-                    
-                    //multiplier
-                    if let multiplier = args[1] as? String {
-                        
-                        let scanner = NSScanner(string: multiplier)
-                        var numberBuffer: Float = 1
-                        if scanner.scanFloat(&numberBuffer) {
-                            container.multiplier = numberBuffer
-                        }
-                    }
+                    container.constant = scanFloat(args[1] as! String)
+                    container.multiplier = scanFloat(args[2] as! String)
                 }
                 
                 return container

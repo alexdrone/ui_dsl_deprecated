@@ -78,7 +78,7 @@ import UIKit
     ///Use this to access to the global variables (the ones defined with @ in the stylesheet)
     ///E.g. given the stylesheet @global { @blue = #0000ff; } You can reference the variable from a view
     ///by calling view.refl_appearanceProxy.variable["blue"]
-    let variable = AppearanceProxyVariablesProxy()
+    public let variable = AppearanceProxyVariablesProxy()
     
     init(view: UIView) {
         super.init()

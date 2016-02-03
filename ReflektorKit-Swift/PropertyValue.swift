@@ -44,9 +44,10 @@ struct PropertyValue: Parsable {
         
         //number
         let scanner = NSScanner(string: mutableRawString)
+        let sign: Float = mutableRawString.containsString("-") ? -1 : 1
         var numberBuffer: Float = 0
         if scanner.scanFloat(&numberBuffer) {
-            self.object = numberBuffer
+            self.object = sign * numberBuffer
             self.flags.percent = (rawString as NSString).containsString("%")
             return
         }
