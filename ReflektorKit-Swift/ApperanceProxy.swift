@@ -14,8 +14,7 @@ import UIKit
         
         ///Use this to access to the value of a global variable
         @objc subscript(key: String) -> AnyObject? {
-            get {
-                
+            get {   
                 if let propertyValue = AppearanceManager.sharedManager.stylesheet.variables[PropertyKeyPath(keyPath: key)] {
                     return
                         propertyValue.computeValue(UIScreen.mainScreen().traitCollection, size: UIScreen.mainScreen().bounds.size)
@@ -49,13 +48,11 @@ import UIKit
     ///Returns all the constraints computed for the associated view
     @objc public var constraints: [NSLayoutConstraint] {
         get {
-            
             var constraints = [NSLayoutConstraint]()
             for (_, value) in self.computedProperties.all where value.object is ConstraintsContainer {
                 let c = (value.object as! ConstraintsContainer).constraintsForView(self.view)
                 constraints += c
             }
-            
             return constraints
         }
     }
@@ -92,11 +89,16 @@ import UIKit
     
     ///When the stylesheet changes the properties needs to be re-computed
     @objc public func didChangeStylesheetNotification(notification: NSNotification) {
-        self.refreshComputedProperties()
+        dispatch_async(dispatch_get_main_queue()) {
+            assert(NSThread.isMainThread())
+            self.refreshComputedProperties()
+        }
     }
 
     ///Recompute what properties
     @objc public func refreshComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
+        
+        assert(NSThread.isMainThread())
         
         //recompute the matching selectors
         self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
@@ -112,6 +114,8 @@ import UIKit
     ///!important are going to be processed and applied to the view.
     @objc public func applyComputedProperties(shouldApplyOnlyImportantProperties: Bool = false) {
         
+        assert(NSThread.isMainThread())
+        
         guard let v = self.view else {
             return
         }
@@ -120,7 +124,7 @@ import UIKit
         
         //reset the view with the previous values
         for keyPath in self.resetDictionary.keys {
-            self.view?.setValue(self.resetDictionary[keyPath]!, forKey: keyPath)
+            self.view?.setValue(self.resetDictionary[keyPath]!, forKeyPath: keyPath)
         }
         
         for key in dictionary.keys {
@@ -133,7 +137,7 @@ import UIKit
                 
                 //populate the reset dictionary
                 self.resetDictionary[k] = v.valueForKeyPath(k)
-                
+                                
                 //applies the value
                 guard let oldValue = v.valueForKeyPath(k) as? NSObject else {
                     v.setValue(value, forKeyPath: k)
@@ -148,12 +152,6 @@ import UIKit
 
         }
     }
-    
-    ///Automatically gives trait names to all its subviews
-    @objc public func createDefaultTraitsForSubviews() {
-
-    }
-
 }
 
 var __appearanceProxyHandle: UInt8 = 0
@@ -211,7 +209,7 @@ public extension UIView {
     }
     
     ///Recursively applies the style from the stylesheet to this view and all its subviews (and so on)
-    @objc func refl_applyStyleRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
+    @objc public func refl_applyStyleRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
         self.refl_appearanceProxy.refreshComputedProperties(shouldApplyOnlyImportantProperties)
         for subview in self.subviews {
             subview.refl_appearanceProxy.refreshComputedProperties()
@@ -266,7 +264,7 @@ public extension UIView {
 public extension UIViewController {
     
     ///Recursively applies the style from the stylesheet to this view and all its subviews (and so on)
-    @objc func refl_applyStyleToViewRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
+    @objc public func refl_applyStyleToViewRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
         self.view.refl_applyStyleRecursive(shouldApplyOnlyImportantProperties)
     }
 

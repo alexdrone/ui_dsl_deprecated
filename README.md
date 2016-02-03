@@ -166,6 +166,9 @@ The property name is arbitrary, and the keys are translated from dash notation t
 If it matches a class `keyPath`, the value is evaluated and automatically set to any view that 
 matches the current selector.
 
+The `--` separator is converted to `.` in order to create more complex keypaths.
+e.g. `avatar-view--background-color` is translated to `avatarView.backgroundColor`.
+
 Otherwise the properties can be accessed from within the view's dictionary stored inside the 
 property `rflk_computedProperties` defined in Reflektor's UIView category.
 e.g. `self.rflk_computedProperties[@"anyCustomKey"].value(withTraitCollection:self.traitCollection, bounds:self.bounds)`

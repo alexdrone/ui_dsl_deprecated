@@ -141,7 +141,7 @@ var watch = Watch(args: [String](Process.arguments))
 
 //idle
 while true {
-    sleep(2)
+    sleep(4)
     watch.refreshIfNecessary()
 }
 

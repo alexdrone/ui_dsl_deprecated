@@ -70,6 +70,8 @@
 @property (nonatomic, strong) UIColor *selectedTextColor;
 @property (nonatomic, strong) UIColor *disabledTextColor;
 
+@property (nonatomic, strong) UIColor *backgroundColor;
+
 //Symmetrical to -[UIButton backgroundImageForState:]
 @property (nonatomic, strong) UIImage *backgroundImage;
 @property (nonatomic, strong) UIImage *highlightedBackgroundImage;
@@ -135,8 +137,8 @@
 
 @interface UIImage (REFLAdditions)
 
-+ (UIImage*)imageWithColor:(UIColor*)color;
-+ (UIImage*)imageWithColor:(UIColor*)color size:(CGSize)size;
++ (UIImage*)REFL_imageWithColor:(UIColor*)color;
++ (UIImage*)REFL_imageWithColor:(UIColor*)color size:(CGSize)size;
 
 @end
 

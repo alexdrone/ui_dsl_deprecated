@@ -89,7 +89,13 @@ struct PropertyValue: Parsable {
             }
             
             let strippedFontName = refl_stripQuotesFromString(fontName)
-            self.object = UIFont(name: strippedFontName, size: CGFloat(size))
+            
+            if strippedFontName == "-apple-system" || strippedFontName == "system" {
+                self.object = UIFont.systemFontOfSize(CGFloat(size))
+            } else {
+                self.object = UIFont(name: strippedFontName, size: CGFloat(size))
+            }
+
             return
         }
         
@@ -263,7 +269,7 @@ struct PropertyValue: Parsable {
             }
             
             if let color = self.object as? UIColor {
-                return UIImage(color: color, size: viewSize)
+                return UIImage.REFL_imageWithColor(color, size: viewSize)
             }
             
             if let colors = self.object as? [UIColor] {
@@ -307,7 +313,7 @@ struct PropertyKeyPath: Hashable, Parsable {
     }
     
     init(rawString: String) throws {
-        self.rawString = refl_stringToCamelCase(rawString)
+        self.rawString = refl_stringToCamelCase(rawString.stringByReplacingOccurrencesOfString("--", withString: "."))
     }
     
     init(keyPath: String) {

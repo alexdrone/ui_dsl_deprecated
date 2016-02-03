@@ -10,35 +10,35 @@ import UIKit
 import Reflektor
 
 class DemoContainerView : UIView {
-    
     let avatarView = UIImageView(frame: CGRect.zero, useAppearanceProxy: true)
-    
     let displayNameLabel = UILabel(frame: CGRect.zero, useAppearanceProxy: true)
     let timestampLabel = UILabel(frame: CGRect.zero, useAppearanceProxy: true)
-    var titleStackView: UIStackView
-
     let postLabel = UILabel(frame: CGRect.zero, useAppearanceProxy: true)
-    
     let likeButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
     let commentButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
     let shareButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
-    var buttonsStackView: UIStackView
+    
+    var myConstraint: NSLayoutConstraint?
     
     var viewConstraints = [NSLayoutConstraint]()
     
     override init(frame: CGRect) {
-            
-        self.titleStackView = UIStackView(arrangedSubviews: [self.displayNameLabel, self.timestampLabel])
-        self.buttonsStackView = UIStackView(arrangedSubviews: [self.likeButton, self.commentButton, self.shareButton])
         
         super.init(frame: frame)
     
         self.addSubview(self.avatarView)
-        self.addSubview(self.titleStackView)
+        self.addSubview(self.displayNameLabel)
+        self.addSubview(self.timestampLabel)
         self.addSubview(self.postLabel)
-        self.addSubview(self.buttonsStackView)
+        self.addSubview(self.likeButton)
+        self.addSubview(self.commentButton)
+        self.addSubview(self.shareButton)
         
-        self.refl_setDefaultTraitNamesToSubviews()
+        let buttonTrait = "DefaultButton"
+        self.likeButton.refl_appearanceProxy.trait = buttonTrait
+        self.commentButton.refl_appearanceProxy.trait = buttonTrait
+        self.shareButton.refl_appearanceProxy.trait = buttonTrait
+
         self.refl_appearanceProxy.applyComputedProperties(false)
     }
     
@@ -46,7 +46,6 @@ class DemoContainerView : UIView {
         fatalError()
     }
 
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -55,14 +54,19 @@ class DemoContainerView : UIView {
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
+        self.refl_applyStyleRecursive()
+        self.updateConstraints()
+    }
+    
+    override func updateConstraints() {
+        
+        super.updateConstraints()
         
         //activate/deactivate the constraints
         NSLayoutConstraint.deactivateConstraints(self.viewConstraints)
         self.viewConstraints = self.refl_appearanceProxy.constraints;
         NSLayoutConstraint.activateConstraints(self.viewConstraints)
     }
-    
 }
 
 class DemoViewController: UIViewController {

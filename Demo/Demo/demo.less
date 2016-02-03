@@ -1,31 +1,64 @@
 
-smallFontLabel {
-    font: font(@avenir-font, 14pt);
-}
-
 Demo.DemoContainerView {
-    background-color: @tomato;
-    constraint-center-x: constraint("__self.centerX == __superView.centerX");
-    constraint-center-y: constraint("__self.centerY == __superView.centerY");
-    constraint-height: vfl-constraint("V:[__self(200)]");
 
-    c-av-w: constraint("_avatarView.width == __constant.notAnAttribute", 50px, 1.0);
-    c-av-h: constraint("_avatarView.height == __constant.notAnAttribute", 50px, 1.0);
-    c-av-x: constraint("_avatarView.top == __self.top", 10px, 1.0);
-    c-av-y: constraint("_avatarView.left == __self.left", 10px, 1.0);
+    background-color: @white;
+
+    avatarView--background-color: @tomato;
+    avatarView--height: 50px;
+    avatarView--width: 50px;
+    avatarView--corner-radius: 50%;
+
+    displayNameLabel--text: "Baaa";
+    displayNameLabel--background-color: @tomato;
+    displayNameLabel--font: font(@font, 14pt);
+
+    timestampLabel--text: "88:88";
+    timestampLabel--background-color: @coral;
+    timestampLabel--font: font(@font, 14pt);
+
+    postLabel--text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+    postLabel--font: font(@font, 12pt);
+    postLabel--number-of-lines: 0;
+
+    likeButton--text: "Like":
+    commentButton--text: "Comment":
+    shareButton--text: "Share":
+
+    /* constraints */
+    c-x: constraint("__self.centerX == __superView.centerX");
+    c-y: constraint("__self.centerY == __superView.centerY");
+    c-h: vfl-constraint("V:[__self(300)]");
+
+    c-01: vfl-constraint("V:|-[_avatarView(50)]");
+    c-02: vfl-constraint("H:|-[_avatarView(50)]-[_displayNameLabel]-|");
+    c-03: constraint("_timestampLabel.centerX == _displayNameLabel.centerX");
+    c-04: vfl-constraint("V:|-[_displayNameLabel]-[_timestampLabel]");
+    c-05: constraint("_timestampLabel.width == _displayNameLabel.width");
+
+    c-06: vfl-constraint("H:|-[_postLabel]-|");
+    c-07: vfl-constraint("V:|-[_avatarView]-[_postLabel]");
+
+    c-08: vfl-constraint("H:|-[_likeButton]-[_commentButton]-[_shareButton]-|");
+    c-09: constraint("_likeButton.bottom == __self.bottom", 10, 1);
+    c-10: constraint("_commentButton.bottom ==  __self.bottom");
+    c-11: constraint("_shareButton.bottom ==  __self.bottom");
+    c-12: constraint("_likeButton.width ==  _commentButton.width");
+    c-13: constraint("_shareButton.width ==  _commentButton.width");
 }
 
-Demo.DemoContainerView.avatarView {
-  background-color: @coral;
+DefaultButton {
+    background-color: @steelblue;
+    font: font(@font, 18pt);
+    corner-radius: 0%;
 }
+
 
 Demo.DemoContainerView:__where {
     __condition: 'horizontal == compact';
-    background-color: @yellow;
     constraint-width: constraint("__self.width == __constant.notAnAttribute", 240px, 1.0);
 }
 
 Demo.DemoContainerView:__where {
-	__condition: 'horizontal == regular';
+	 __condition: 'horizontal == regular';
     constraint-width: vfl-constraint("H:[__self(500)]");
 }

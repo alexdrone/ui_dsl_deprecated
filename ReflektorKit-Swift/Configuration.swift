@@ -31,9 +31,11 @@ import Foundation
             
             //make sure that the views on screen are updated
             dispatch_async(dispatch_get_main_queue()) {
+                
+                assert(NSThread.isMainThread())
+                
                 UIApplication.sharedApplication().keyWindow?.rootViewController?.refl_applyStyleToViewRecursive()
                 UIApplication.sharedApplication().keyWindow?.rootViewController?.updateViewConstraints()
-
             }
             
             //response

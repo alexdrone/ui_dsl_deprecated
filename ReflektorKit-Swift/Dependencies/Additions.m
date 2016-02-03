@@ -141,6 +141,10 @@ static void *UIViewFlexContainerKey;
 
 - (BOOL)refl_hasKey:(NSString*)key
 {
+    //TOFIX: Keypaths (and not single keys) always returns true for the time being
+    if ([key containsString:@"."])
+        return YES;
+    
     return [self respondsToSelector:NSSelectorFromString(key)];
 }
 
@@ -247,6 +251,12 @@ static void *UIViewFlexContainerKey;
 - (void)setDisabledTextColor:(UIColor*)disabledTextColor
 {
     [self setTitleColor:disabledTextColor forState:UIControlStateDisabled];
+}
+
+- (void)setBackgroundColor:(UIColor*)backgroundColor
+{
+    UIImage *image = [UIImage REFL_imageWithColor:backgroundColor];
+    self.backgroundImage = image;
 }
 
 - (UIImage*)backgroundImage
