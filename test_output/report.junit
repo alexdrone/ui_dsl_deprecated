@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites tests='21' failures='0'>
   <testsuite name='ReflektorTests.CondtionTests' tests='2' failures='0'>
-    <testcase classname='ReflektorTests.CondtionTests' name='testConditions' time='0.006'/>
-    <testcase classname='ReflektorTests.CondtionTests' name='testExternalConditions' time='0.001'/>
+    <testcase classname='ReflektorTests.CondtionTests' name='testConditions' time='0.115'/>
+    <testcase classname='ReflektorTests.CondtionTests' name='testExternalConditions' time='0.004'/>
   </testsuite>
   <testsuite name='ReflektorTests.ConstraintTest' tests='2' failures='0'>
     <testcase classname='ReflektorTests.ConstraintTest' name='testExample' time='0.001'/>
-    <testcase classname='ReflektorTests.ConstraintTest' name='testPerformanceExample' time='0.364'/>
+    <testcase classname='ReflektorTests.ConstraintTest' name='testPerformanceExample' time='0.333'/>
   </testsuite>
   <testsuite name='ReflektorTests.ParserTests' tests='1' failures='0'>
-    <testcase classname='ReflektorTests.ParserTests' name='testVariableReplacement' time='0.005'/>
+    <testcase classname='ReflektorTests.ParserTests' name='testVariableReplacement' time='0.010'/>
   </testsuite>
   <testsuite name='ReflektorTests.PropertyValueTests' tests='14' failures='0'>
-    <testcase classname='ReflektorTests.PropertyValueTests' name='testFont' time='0.017'/>
-    <testcase classname='ReflektorTests.PropertyValueTests' name='testGradient' time='0.003'/>
+    <testcase classname='ReflektorTests.PropertyValueTests' name='testFont' time='0.024'/>
+    <testcase classname='ReflektorTests.PropertyValueTests' name='testGradient' time='0.005'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testHexColor' time='0.001'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testHexInvertedColor' time='0.001'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testNumber' time='0.001'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testNumberPercent' time='0.001'/>
-    <testcase classname='ReflektorTests.PropertyValueTests' name='testNumberPt' time='0.002'/>
+    <testcase classname='ReflektorTests.PropertyValueTests' name='testNumberPt' time='0.001'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testNumberPx' time='0.001'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testPoint' time='0.001'/>
     <testcase classname='ReflektorTests.PropertyValueTests' name='testRect' time='0.001'/>

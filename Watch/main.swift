@@ -114,7 +114,7 @@ struct Watch {
         for var i = 0; i < ts.count; i++ {
             notChanged = notChanged && (ts[i] == self.timestamps[i])
         }
-        if notChanged { return }
+        //=if notChanged { return }
         
         self.timestamps = ts
         print("✳ Observed files changed")
@@ -125,8 +125,8 @@ struct Watch {
     
     //Notify the client of the changes
     func refreshRequest() {
-        var address = "http://localhost"
-        var port = "8080"
+        let address = "http://localhost"
+        let port = "8080"
         let url = NSURL(string: "\(address):\(port)/refresh?location=http://localhost:8081/bundle")
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             print(response)
@@ -141,7 +141,7 @@ var watch = Watch(args: [String](Process.arguments))
 
 //idle
 while true {
-    sleep(4)
+    sleep(5)
     watch.refreshIfNecessary()
 }
 

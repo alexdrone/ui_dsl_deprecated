@@ -1,11 +1,40 @@
 
 Demo.DemoContainerView {
-    backgroundColor: @fog;
+    backgroundColor: @tomato;
+
+    avatarView--translatesAutoresizingMaskIntoConstraints: false;
+    avatarView--backgroundColor: @steelblue;
+
+    displayNameLabel--translatesAutoresizingMaskIntoConstraints: false;
+    displayNameLabel--text: "A pretty long title";
+    displayNameLabel--font: font(@font, 16pt);
+    displayNameLabel--backgroundColor: @coral;
+
+    timestampLabel--translatesAutoresizingMaskIntoConstraints: false;
+    timestampLabel--text: "A modest caption";
+    timestampLabel--font: font(@font, 14pt);
+    timestampLabel--backgroundColor: @coral;
 
     //due to a bug in the parser, negative values should be always wrapped inside strings
-    constraintHeight: constraint("__self.height == __superView.height", "-64px", 1.0);
+    constraintHeight: constraint("__self.height == __superView.height", "-256px", 1.0);
     constraintCenterX: constraint("__self.centerX == __superView.centerX", 0px, 1.0);
     constraintCenterY: constraint("__self.centerY == __superView.centerY", 0px, 1.0);
+
+    constraintAvatarViewTop: constraint("_avatarView.top == __self.top", 16px, 1.0);
+    constraintAvatarViewLeft: constraint("_avatarView.left == __self.left", 16px, 1.0);
+    constraintAvatarViewWidth: constraint("_avatarView.width == __constant.notAnAttribute", 48px, 1.0);
+    constraintAvatarViewHeight: constraint("_avatarView.height == __constant.notAnAttribute", 48px, 1.0);
+
+    constraintDisplayNameLabelTop: constraint("_displayNameLabel.top == _avatarView.top", 0, 1.0);
+    constraintDisplayNameLabelLeft: constraint("_displayNameLabel.leading == _avatarView.trailing", 16px, 1.0);
+
+    constraintTimestampLabelTop: constraint("_timestampLabel.top == _displayNameLabel.bottom", 8px, 1.0);
+    constraintTimestampLabelLeft: constraint("_timestampLabel.leading == _avatarView.trailing", 16px, 1.0);
+
+    /* work in progress: change the constant only
+    constraintAvatarViewWidth--constant: 48px;
+    constraintAvatarViewHeight--constant: 48px;
+    */
 }
 
 DefaultButton {
@@ -21,5 +50,16 @@ Demo.DemoContainerView:__where {
 
 Demo.DemoContainerView:__where {
 	 __condition: 'horizontal == regular';
-    constraintWidth: vfl-constraint("H:[__self(480)]");
+
+   displayNameLabel--font: font(@font, 20pt);
+
+   constraintAvatarViewWidth: constraint("_avatarView.width == __constant.notAnAttribute", 128px, 1.0);
+   constraintAvatarViewHeight: constraint("_avatarView.height == __constant.notAnAttribute", 128px, 1.0);
+
+   /* work in progress: change the constant only
+   constraintAvatarViewWidth--constant: 128px;
+   constraintAvatarViewHeight--constant: 128px;
+   */
+
+   constraintWidth: vfl-constraint("H:[__self(480)]");
 }

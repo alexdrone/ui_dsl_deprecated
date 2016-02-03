@@ -257,27 +257,9 @@ extension Condition.ExpressionToken.Operator {
         }
         
         if refl_stringHasPrefix(rawString, ["constraint"]) {
-            
-            func scanFloat(string: String) -> Float {
-                var input = refl_stripQuotesFromString(refl_stripQuotesFromString(string))
-                input = input.stringByReplacingOccurrencesOfString("-", withString: "")
-                input = input.stringByReplacingOccurrencesOfString("\"", withString: "")
-                input.trim()
-                
-                print(input)
-                let scanner = NSScanner(string: input)
-                let sign: Float = string.containsString("-") ? -1 : 1
-                var numberBuffer: Float = 0
-                if scanner.scanFloat(&numberBuffer) {
-                    return numberBuffer * sign;
-                }
-                return 0
-            }
 
             do {
-                
                 //format is constraint("__self.top == _aView.bottom") or constraint("__self.top == _aView.bottom", 0, 1)
-                
                 guard let constraintString = args[0] as? String else {
                     return nil
                 }
@@ -285,8 +267,8 @@ extension Condition.ExpressionToken.Operator {
                 let container = try ConstraintsContainer(rawString: constraintString)
                 
                 if args.count > 2 {
-                    container.constant = scanFloat(args[1] as! String)
-                    container.multiplier = scanFloat(args[2] as! String)
+                    container.constant = Parser.parseNumber(args[1] as! String)
+                    container.multiplier =  Parser.parseNumber(args[2] as! String)
                 }
                 
                 return container
@@ -294,6 +276,7 @@ extension Condition.ExpressionToken.Operator {
             } catch {
 
                 //plugins can't throw exceptions
+                print("Unable to parse constraint \(rawString)")
                 return nil
             }
 
@@ -311,6 +294,7 @@ extension Condition.ExpressionToken.Operator {
             } catch {
                 
                 //plugins can't throw exceptions
+                print("Unable to parse constraint \(rawString)")
                 return nil
             }
         }

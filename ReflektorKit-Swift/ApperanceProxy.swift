@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreFoundation
 
 @objc public class AppearanceProxy: NSObject {
     
@@ -39,11 +40,7 @@ import UIKit
     @objc public var shouldAutomaticallySetViewProperties = Configuration.sharedConfiguration.shouldAutomaticallySetViewProperties
     
     ///The optional trait associated to this view
-    @objc public var trait: String? {
-        didSet {
-            self.refreshComputedProperties()
-        }
-    }
+    @objc public var trait: String?
     
     ///Returns all the constraints computed for the associated view
     @objc public var constraints: [NSLayoutConstraint] {
@@ -89,10 +86,7 @@ import UIKit
     
     ///When the stylesheet changes the properties needs to be re-computed
     @objc public func didChangeStylesheetNotification(notification: NSNotification) {
-        dispatch_async(dispatch_get_main_queue()) {
-            assert(NSThread.isMainThread())
-            self.refreshComputedProperties()
-        }
+        //not implememented
     }
 
     ///Recompute what properties
@@ -100,11 +94,18 @@ import UIKit
         
         assert(NSThread.isMainThread())
         
-        //recompute the matching selectors
-        self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
+        guard let view = self.view else {
+            return
+        }
         
-        if self.shouldAutomaticallySetViewProperties {
-            self.applyComputedProperties(shouldApplyOnlyImportantProperties)
+        measureTime("\(__FUNCTION__) for \(view.refl_className())") {
+            
+            //recompute the matching selectors
+            self.computedProperties = AppearanceManager.sharedManager.computeStyleForApperanceProxy(self)
+            
+            if self.shouldAutomaticallySetViewProperties {
+                self.applyComputedProperties(shouldApplyOnlyImportantProperties)
+            }
         }
         
     }
@@ -176,7 +177,7 @@ public extension UIView {
     ///Set this to true if you wish to use the apperance proxy
     @objc var refl_useAppearanceProxy: Bool {
         get {
-            return objc_getAssociatedObject(self, &__useAppearanceProxyHandle).boolValue
+            return (objc_getAssociatedObject(self, &__useAppearanceProxyHandle) != nil)
         }
         
         set {
@@ -212,7 +213,9 @@ public extension UIView {
     @objc public func refl_applyStyleRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
         self.refl_appearanceProxy.refreshComputedProperties(shouldApplyOnlyImportantProperties)
         for subview in self.subviews {
-            subview.refl_appearanceProxy.refreshComputedProperties()
+            if subview.refl_useAppearanceProxy {
+                subview.refl_appearanceProxy.refreshComputedProperties()
+            }
         }
     }
     
@@ -267,5 +270,14 @@ public extension UIViewController {
     @objc public func refl_applyStyleToViewRecursive(shouldApplyOnlyImportantProperties: Bool = false) {
         self.view.refl_applyStyleRecursive(shouldApplyOnlyImportantProperties)
     }
+}
 
+//benchmarking
+private func measureTime(task: String, @noescape block: () -> Void) {
+    
+    let startTime = CFAbsoluteTimeGetCurrent()
+    block()
+    let endTime = CFAbsoluteTimeGetCurrent()
+    
+    NSLog("%@: %2fms", task, (endTime - startTime)*1000)
 }

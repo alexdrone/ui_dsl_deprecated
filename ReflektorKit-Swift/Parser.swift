@@ -279,6 +279,20 @@ struct Parser {
         return ps
     }
     
+    internal static func parseNumber(string: String) -> Float {
+        
+        var input = refl_stripQuotesFromString(refl_stripQuotesFromString(string))
+        input = input.stringByReplacingOccurrencesOfString("-", withString: "")
+        input = input.stringByReplacingOccurrencesOfString("\"", withString: "")
+        input.trim()
+        let scanner = NSScanner(string: input)
+        let sign: Float = string.containsString("-") ? -1 : 1
+        var numberBuffer: Float = 0
+        if scanner.scanFloat(&numberBuffer) {
+            return numberBuffer * sign;
+        }
+        return 0
+    }
 }
 
 

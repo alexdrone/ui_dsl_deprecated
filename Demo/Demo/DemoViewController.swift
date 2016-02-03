@@ -18,6 +18,9 @@ class DemoContainerView : UIView {
     let commentButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
     let shareButton = UIButton(frame: CGRect.zero, useAppearanceProxy: true)
     
+    var constraintAvatarViewWidth: NSLayoutConstraint?
+    var constraintAvatarViewHeight: NSLayoutConstraint?
+    
     var myConstraint: NSLayoutConstraint?
     
     var viewConstraints = [NSLayoutConstraint]()
@@ -47,6 +50,7 @@ class DemoContainerView : UIView {
     }
 
     override func layoutSubviews() {
+        print(__FUNCTION__)
         super.layoutSubviews()
         
         //applies the properties from the appearance proxy
@@ -54,6 +58,7 @@ class DemoContainerView : UIView {
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        print(__FUNCTION__)
         self.refl_applyStyleRecursive()
         self.updateConstraints()
     }
