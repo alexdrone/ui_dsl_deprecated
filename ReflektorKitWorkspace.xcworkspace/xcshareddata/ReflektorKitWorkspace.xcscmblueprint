@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "36ECFEB33A1541BBBE1C4B2CF6E6AC5BD03C2D24",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "36ECFEB33A1541BBBE1C4B2CF6E6AC5BD03C2D24" : 0,
+    "DD40210F97430DC611C461222D5A769B69D0AB19" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "72A2DBB6-45AE-4CAF-8052-A20340DA905F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "36ECFEB33A1541BBBE1C4B2CF6E6AC5BD03C2D24" : "ReflektorKit",
+    "DD40210F97430DC611C461222D5A769B69D0AB19" : "..\/.."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ReflektorKitWorkspace",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ReflektorKitWorkspace.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:alexdrone\/ReflektorKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "36ECFEB33A1541BBBE1C4B2CF6E6AC5BD03C2D24"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/daniele-pizziconi\/Bootleg.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DD40210F97430DC611C461222D5A769B69D0AB19"
+    }
+  ]
+}
