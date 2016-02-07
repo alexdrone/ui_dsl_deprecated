@@ -275,7 +275,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Alex Usbergo";
+				ORGANIZATIONNAME = ReflektorKit;
 				TargetAttributes = {
 					16218E4A1C4A50C7002CA83C = {
 						CreatedOnToolsVersion = 7.2;
@@ -564,6 +564,7 @@
 				16218E501C4A50C7002CA83C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		164F35941B5BE22F00E01834 /* Build configuration list for PBXProject "ReflektorKitSwift" */ = {
 			isa = XCConfigurationList;
