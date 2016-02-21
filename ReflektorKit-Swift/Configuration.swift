@@ -65,6 +65,5 @@ import Foundation
     ///Starts the refresh server
     @objc public func startRefreshServer(port: UInt = 8080) {
         try! self.refreshServer.start(in_port_t(port))
-    }
-    
+    }    
 }

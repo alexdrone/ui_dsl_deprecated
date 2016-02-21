@@ -1,0 +1,18 @@
+disabled_rules:
+- force_cast
+- line_length
+- nesting
+- trailing_whitespace
+- valid_docs
+- cyclomatic_complexity
+- variable_name
+- function_body_length
+- file_length
+included: # paths to include during linting. `--path` is ignored if present.
+- ReflektorKit-Swift
+type_body_length:
+- 400
+- 2000
+function_body_length:
+- 80
+- 1000

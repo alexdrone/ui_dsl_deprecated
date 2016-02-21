@@ -10,11 +10,11 @@ import Foundation
 
 //MARK: Equatable compliancy
 
-func ==<T:Parsable>(lhs: T, rhs: T) -> Bool {
+func==<T: Parsable>(lhs: T, rhs: T) -> Bool {
     return lhs.rawString == rhs.rawString
 }
 
-func ==(lhs: SelectorType, rhs: SelectorType) -> Bool {
+func==(lhs: SelectorType, rhs: SelectorType) -> Bool {
     
     switch (lhs, rhs) {
     case (.Class(let a), .Class(let b)) where a == b: return true
@@ -24,7 +24,7 @@ func ==(lhs: SelectorType, rhs: SelectorType) -> Bool {
     }
 }
 
-func ~=(lhs: SelectorType, rhs: SelectorType) -> Bool {
+func~=(lhs: SelectorType, rhs: SelectorType) -> Bool {
     
     switch (lhs, rhs) {
     case (.Class(_), .Class(_)): return true
@@ -34,8 +34,8 @@ func ~=(lhs: SelectorType, rhs: SelectorType) -> Bool {
     }
 }
 
-func hash<T:Parsable>(item: T) -> Int {
-    return item.rawString.hashValue;
+func hash<T: Parsable>(item: T) -> Int {
+    return item.rawString.hashValue
 }
 
 protocol Parsable: Equatable {
@@ -48,19 +48,19 @@ protocol Parsable: Equatable {
 
 //MARK: Selector
 
-func <(lhs: Selector, rhs: Selector) -> Bool {
+func<(lhs: Selector, rhs: Selector) -> Bool {
     return lhs.priority < rhs.priority
 }
 
-func <=(lhs: Selector, rhs: Selector) -> Bool {
+func<=(lhs: Selector, rhs: Selector) -> Bool {
     return lhs.priority <= rhs.priority
 }
 
-func >(lhs: Selector, rhs: Selector) -> Bool {
+func>(lhs: Selector, rhs: Selector) -> Bool {
     return lhs.priority > rhs.priority
 }
 
-func >=(lhs: Selector, rhs: Selector) -> Bool {
+func>=(lhs: Selector, rhs: Selector) -> Bool {
     return lhs.priority >= lhs.priority
 }
 
@@ -125,7 +125,7 @@ struct Selector: Hashable, Parsable, Comparable {
             return
         }
         
-        switch (self.type) {
+        switch self.type {
             
         case .Class(_):
             if !refl_stringHasPrefix(components[1], ["\(Token.Directive.Where)"]) && !refl_stringHasPrefix(components[1], [Token.Directive.WhereUnprefixed]) {
@@ -138,5 +138,3 @@ struct Selector: Hashable, Parsable, Comparable {
     }
     
 }
-
-

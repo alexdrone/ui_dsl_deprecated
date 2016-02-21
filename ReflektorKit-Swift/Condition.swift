@@ -59,7 +59,7 @@ struct Condition: Hashable, Parsable {
                 return Unspecified
             }
             
-            func equal<T:Equatable>(lhs: T, rhs: T) -> Bool {
+            func equal<T: Equatable>(lhs: T, rhs: T) -> Bool {
                 switch self {
                 case .Equal: return lhs == rhs
                 case .NotEqual: return lhs != rhs
@@ -67,7 +67,7 @@ struct Condition: Hashable, Parsable {
                 }
             }
             
-            func compare<T:Comparable>(lhs: T, rhs: T) -> Bool {
+            func compare<T: Comparable>(lhs: T, rhs: T) -> Bool {
                 switch self {
                 case .Equal: return lhs == rhs
                 case .NotEqual: return lhs != rhs
@@ -258,11 +258,3 @@ struct Condition: Hashable, Parsable {
         return satisfied
     }
 }
-
-
-
-
-
-
-
-

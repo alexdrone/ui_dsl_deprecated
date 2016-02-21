@@ -69,8 +69,7 @@ public class HttpHandlers {
                 subData.getBytes(&array, length: subData.length)
                 return HttpResponse.RAW(206, "Partial Content", headers, { $0.write(array) })
                 
-            }
-            else {
+            } else {
                 var array = [UInt8](count: fileBody.length, repeatedValue: 0)
                 fileBody.getBytes(&array, length: fileBody.length)
                 return HttpResponse.RAW(200, "OK", nil, { $0.write(array) })
@@ -233,7 +232,7 @@ public class HttpRequest {
                     return currentResults
                 }
                 let headerValueParams = header.value.split(";").map { $0.trim() }
-                return headerValueParams.reduce(currentResults, combine: { (results:[String], token: String) -> [String] in
+                return headerValueParams.reduce(currentResults, combine: { (results:[ String], token: String) -> [String] in
                     let parameterTokens = token.split(1, separator: "=")
                     if parameterTokens.first == parameterName, let value = parameterTokens.last {
                         return results + [value]
@@ -314,7 +313,7 @@ public class HttpRequest {
     private func nextMultiPartBody(inout generator: IndexingGenerator<[UInt8]>, boundary: String) -> [UInt8]? {
         var body = [UInt8]()
         let boundaryArray = [UInt8](boundary.utf8)
-        var matchOffset = 0;
+        var matchOffset = 0
         while let x = generator.next() {
             matchOffset = ( x == boundaryArray[matchOffset] ? matchOffset + 1 : 0 )
             body.append(x)
@@ -408,7 +407,7 @@ public enum HttpResponse {
         case .Forbidden               : return 403
         case .NotFound                : return 404
         case .InternalServerError     : return 500
-        case .RAW(let code, _ , _, _) : return code
+        case .RAW(let code, _, _, _)  : return code
         }
     }
     
@@ -469,7 +468,7 @@ public enum HttpResponse {
  }
  */
 
-func ==(inLeft: HttpResponse, inRight: HttpResponse) -> Bool {
+func==(inLeft: HttpResponse, inRight: HttpResponse) -> Bool {
     return inLeft.statusCode() == inRight.statusCode()
 }
 
@@ -486,7 +485,7 @@ public class HttpRouter {
     public func routes() -> [String] {
         var routes = [String]()
         for (_, child) in rootNode.nodes {
-            routes.appendContentsOf(routesForNode(child));
+            routes.appendContentsOf(routesForNode(child))
         }
         return routes
     }
@@ -497,7 +496,7 @@ public class HttpRouter {
             result.append(prefix)
         }
         for (key, child) in node.nodes {
-            result.appendContentsOf(routesForNode(child, prefix: prefix + "/" + key));
+            result.appendContentsOf(routesForNode(child, prefix: prefix + "/" + key))
         }
         return result
     }
@@ -585,7 +584,7 @@ public class HttpServer: HttpServerIO {
         self.PUT    = MethodRoute(method: "PUT", router: router)
     }
     
-    public var DELETE, UPDATE, HEAD, POST, GET, PUT : MethodRoute;
+    public var DELETE, UPDATE, HEAD, POST, GET, PUT: MethodRoute
     
     public subscript(path: String) -> (HttpRequest -> HttpResponse)? {
         set {
@@ -595,7 +594,7 @@ public class HttpServer: HttpServerIO {
     }
     
     public var routes: [String] {
-        return router.routes();
+        return router.routes()
     }
     
     override public func dispatch(method: String, path: String) -> ([String:String], HttpRequest -> HttpResponse) {
@@ -654,7 +653,7 @@ public class HttpServerIO {
             let request = request
             let (params, handler) = self.dispatch(request.method, path: request.path)
             request.address = address
-            request.params = params;
+            request.params = params
             let response = handler(request)
             var keepConnection = parser.supportsKeepAlive(request.headers)
             do {
@@ -685,7 +684,7 @@ public class HttpServerIO {
     private func lock(handle: NSLock, closure: () -> ()) {
         handle.lock()
         closure()
-        handle.unlock();
+        handle.unlock()
     }
     
     private struct InnerWriteContext: HttpResponseBodyWriter {
@@ -719,7 +718,7 @@ public class HttpServerIO {
             try writeClosure(context)
         }
         
-        return keepAlive && content.length != -1;
+        return keepAlive && content.length != -1
     }
 }
 
@@ -927,7 +926,7 @@ public class Socket: Hashable, Equatable {
     }
 }
 
-public func ==(socket1: Socket, socket2: Socket) -> Bool {
+public func==(socket1: Socket, socket2: Socket) -> Bool {
     return socket1.socketFileDescriptor == socket2.socketFileDescriptor
 }
 
@@ -949,10 +948,10 @@ extension String {
     }
     
     public func unquote() -> String {
-        var scalars = self.unicodeScalars;
+        var scalars = self.unicodeScalars
         if scalars.first == "\"" && scalars.last == "\"" && scalars.count >= 2 {
-            scalars.removeFirst();
-            scalars.removeLast();
+            scalars.removeFirst()
+            scalars.removeLast()
             return String(scalars)
         }
         return self

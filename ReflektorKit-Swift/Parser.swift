@@ -172,7 +172,7 @@ struct Parser {
     
     //MARK: Private
     
-    private func recursivelyResolveInclusions(selector: String, inout dictionary:[String : [String: AnyObject]]) throws {
+    private func recursivelyResolveInclusions(selector: String, inout dictionary: [String: [String: AnyObject]]) throws {
         
         let key = refl_stripQuotesFromString(selector)
         
@@ -209,7 +209,7 @@ struct Parser {
         dictionary[selector] = rules
     }
     
-    private func resolveVariables(inout dictionary:[String : [String: AnyObject]]) throws {
+    private func resolveVariables(inout dictionary: [String: [String: AnyObject]]) throws {
         
         //this array will contain all the variables
         var variables = [String: AnyObject]()
@@ -289,10 +289,8 @@ struct Parser {
         let sign: Float = string.containsString("-") ? -1 : 1
         var numberBuffer: Float = 0
         if scanner.scanFloat(&numberBuffer) {
-            return numberBuffer * sign;
+            return numberBuffer * sign
         }
         return 0
     }
 }
-
-

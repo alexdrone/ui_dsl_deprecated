@@ -200,7 +200,7 @@ public extension UIView {
     convenience init(frame: CGRect, useAppearanceProxy: Bool, trait: String? = nil) {
         self.init(frame: frame)
         
-        self.refl_useAppearanceProxy = useAppearanceProxy;
+        self.refl_useAppearanceProxy = useAppearanceProxy
         
         //setting the trait causes the appearance proxy to apply the computed properties
         self.refl_appearanceProxy.trait = trait
@@ -233,10 +233,10 @@ public extension UIView {
         
         //get the properties using the ObjC runtime
         var count = UInt32()
-        let properties : UnsafeMutablePointer <objc_property_t> = class_copyPropertyList(self.refl_class(), &count)
+        let properties: UnsafeMutablePointer <objc_property_t> = class_copyPropertyList(self.refl_class(), &count)
         
-        for var i = 0; i < Int(count); i++ {
-            let property : objc_property_t = properties[i]
+        for i in 0 ..< Int(count) {
+            let property: objc_property_t = properties[i]
             
             //get the property name
             guard let propertyName = NSString(UTF8String: property_getName(property)) as? String else { break }

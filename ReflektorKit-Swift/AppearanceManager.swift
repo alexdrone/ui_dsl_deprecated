@@ -40,8 +40,8 @@ import Foundation
         do {
             let (all, variables) = try parser.parseStylesheet(stylesheetData)
             
-            self.stylesheet.rules = all;
-            self.stylesheet.variables = variables;
+            self.stylesheet.rules = all
+            self.stylesheet.variables = variables
             
             NSNotificationCenter.defaultCenter().postNotificationName(Notification.DidChangeStylesheet.rawValue, object: nil)
             
@@ -122,5 +122,4 @@ import Foundation
 
         return (all, important)
     }
-    
 }

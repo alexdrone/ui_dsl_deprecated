@@ -20,10 +20,10 @@ struct PropertyValue: Parsable {
     internal var object: AnyObject?
     
     //If the property is a single condition which could return 'true' or 'false'
-    private var simpleCondition: Condition?;
+    private var simpleCondition: Condition?
     
     //If the property value should be parsed and computed by a plugin, the plugin is stored here
-    private var associatedPlugin: PropertyValuePlugin?;
+    private var associatedPlugin: PropertyValuePlugin?
     
     init(rawString: String) throws {
         self.rawString = rawString
@@ -223,7 +223,7 @@ struct PropertyValue: Parsable {
     }
     
     ///Called when the styelesheet proxy is queried for a specific property value
-    func computeValue(traitCollection: UITraitCollection, size:CGSize, view: UIView? = nil) -> AnyObject? {
+    func computeValue(traitCollection: UITraitCollection, size: CGSize, view: UIView? = nil) -> AnyObject? {
         
         if let plugin = self.associatedPlugin {
             return plugin.computeValueForObject(self.object, traitCollection: traitCollection, size: size, view: view)
@@ -265,7 +265,7 @@ struct PropertyValue: Parsable {
         //image
         } else if self.flags.imageAsset {
             
-            if let imageName = self.object as? String  {
+            if let imageName = self.object as? String {
                 return UIImage(named: imageName)
             }
             
@@ -305,7 +305,7 @@ struct PropertyKeyPath: Hashable, Parsable {
     let rawString: String
     
     ///!important properties: evaluated at layout time
-    var important = false;
+    var important = false
     
     var hashValue: Int {
         get {
@@ -322,6 +322,3 @@ struct PropertyKeyPath: Hashable, Parsable {
     }
     
 }
-
-
-

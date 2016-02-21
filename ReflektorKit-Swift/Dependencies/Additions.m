@@ -9,8 +9,6 @@
 #import "Additions.h"
 #import <objc/runtime.h>
 
-static void *UIViewFlexContainerKey;
-
 #pragma mark - UIView
 
 @implementation UIView (REFLAdditions)
