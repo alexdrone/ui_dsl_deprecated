@@ -1,9 +1,8 @@
-<p align="center">
-![GitHub Logo](logo.png)
+#Reflektor
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build](https://img.shields.io/badge/build-passing-green.svg?style=flat)](#)
-[![Platform](https://img.shields.io/badge/platform-ios | osx | watchos | tvos -lightgrey.svg?style=flat)](#)
+[![Platform](https://img.shields.io/badge/platform-ios | tvos -lightgrey.svg?style=flat)](#)
 [![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 
@@ -50,20 +49,6 @@ refl PROJECT_PATH
 ```
 
 The daemon will look for changes in your *.refl.less* files and refresh the instance of your app in the simulator.
-
-###Why Reflektor and not Pixate Freestyle or XYZ?
-
-There are many libraries that offers a way to style native controls, but many times they have a completely different rendering pipeline that makes them incompatible with vanilla custom made uikit controls and they don't offer low level control over the styling of your components.
-
-Moreover the aim of these libraries is to port *all of the CSS practices and philosophy* to the iOS platform, and this is often an overkill and not an optimal fit.
-
-Reflektor was made with UIKit in mind: it takes full advantage of all the capabilities UIKit offers out-of-the-box (such as *size classes*, *appearance selectors* and more) - it doens't fight the platform.
-
-With Reflektor you can have fine control over when a stylesheet property is computed and applied in the lifecycle of UIView.
-
-Furthermore the properties defined in the scope a stylesheet selectors are purely *keyPaths*, making it straight-forward to style custom components or supply custom appearance selectors to a view. 
-
-Additionaly ReflektorKit is **extensible** - it allows you to write plugin and extensions (for example to parse a custom kind of value, or define a custom condition for the rules to be computed) 
 
 ##Getting started
 
