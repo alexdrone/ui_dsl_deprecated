@@ -2,7 +2,6 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build](https://img.shields.io/badge/build-passing-green.svg?style=flat)](#)
-[![Platform](https://img.shields.io/badge/platform-ios | tvos -lightgrey.svg?style=flat)](#)
 [![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 
@@ -75,7 +74,7 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 
 ```
 
-##Terminology
+## Terminology
 
 ```css
 SELECTOR {
@@ -84,7 +83,7 @@ SELECTOR {
 }
 ```
 
-##Selectors
+## Selectors
 
 Only one selector per scope is allowed — so `selector1, selector2 {}` is valid in *CSS*, but not here.
 
@@ -144,7 +143,7 @@ UIView:__where {
 
 To know more about the conditions syntax and semantic, see the **Conditions** section.
 
-##Left-Hand Side Values
+## Left-Hand Side Values
 
 The property name is arbitrary, and the keys are translated from dash notation to camelCase notation at parse time.
 
@@ -159,7 +158,7 @@ property `rflk_computedProperties` defined in Reflektor's UIView category.
 e.g. `self.rflk_computedProperties[@"anyCustomKey"].value(withTraitCollection:self.traitCollection, bounds:self.bounds)`
 
 
-##Right-Hand Side Values
+## Right-Hand Side Values
 
 N.B. All the components inside this rhs functions can be variables (prefixed with `@`).
 
@@ -250,7 +249,7 @@ UIView:__where {
 
 The properties are computed only if the view matches the condition expressed in the condition string.
 
-####External (or custom) conditions
+#### External (or custom) conditions
 
 You can define some condition in code and bound them to a unique key that can be referenced inside the stylesheet. e.g. 
 
@@ -297,7 +296,7 @@ UILabel {
 }
 ```
 
-##Included UIKit's categories
+## Included UIKit's categories
 
 Included in Reflektor there are some handy categories to access some UIView's properties from the stylesheet:
 
@@ -358,7 +357,7 @@ var disabledTextColor: UIColor
 ```
 
 
-##Example of a stylesheet
+## Example of a stylesheet
 
 ```css
 
@@ -444,12 +443,12 @@ foo {
 
 ```
 
-##Selectors
+## Selectors
 
 - Add :__where clausole to traits as well
 
 
-##Attribuitions
+## Attribuitions
 
 The list of third-party libraries used for this project is the following:
 
